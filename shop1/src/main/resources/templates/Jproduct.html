@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>productList</title>
+
+	<style>
+		.row {
+			display: flex;
+			flex-direction: row;
+		}
+
+		.col {
+			display: flex;
+			flex-direction: column;
+		}
+	</style>
+</head>
+
+<body>
+	<p>중고 옷 사이트</p>
+	<div class="col" th:each="pItem:${plist}">
+		<div class="row">
+			<div th:each="p:${pItem}">
+				<a th:href="${p.url}">
+					<img th:src="${p.img}">
+					<p th:text="${p.name}">옷 이름</p>
+				</a>
+				<p th:text="${p.price}">옷 가격</p>
+				<p>옷 설명</p>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
