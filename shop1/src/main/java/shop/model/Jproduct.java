@@ -19,5 +19,6 @@ public class Jproduct {
 	private int price;
 	private String url;
 	
+
 	
 }
