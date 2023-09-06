@@ -7,3 +7,4 @@ import shop.model.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 }
+

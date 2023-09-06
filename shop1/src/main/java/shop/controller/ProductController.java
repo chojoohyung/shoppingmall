@@ -54,7 +54,7 @@ public class ProductController {
 	            } else {
 	                jproduct.setImg("img/h2.png");
 	            }
-	            jproduct.setImg("img/hi.png");
+	           // jproduct.setImg("img/hi.png");
 	            jproduct.setName("이름" + j);  // 각 제품마다 다른 이름
 	            jproduct.setPrice((j + 1) * 10000);
 	            jproduct.setUrl("/products");
@@ -68,4 +68,3 @@ public class ProductController {
 	    return "jproduct";
 	}
 }
-	
