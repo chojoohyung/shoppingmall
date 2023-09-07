@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="https://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/layout1}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>productList</title>
+
+	<style>
+		.row {
+			display: flex;
+			flex-direction: row;
+		}
+
+		.nav {
+			display: flex;
+			flex-direction: row;
+			padding: 10px;
+		}
+
+		.col {
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+		}
+
+		.product-image {
+			max-width: 250px;
+
+			height: auto;
+			margin: 30px;
+
+		}
+
+		.category-buttons {
+			display: flex;
+			justify-content: center;
+			margin-bottom: 20px;
+		}
+
+		.category-buttons .category {
+			font-size: 18px;
+			padding: 20px 160px;
+			/* 버튼 크기 조절 */
+
+		}
+	</style>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<p>중고 옷 사이트</p>
+
+		<div class="category-buttons">
+			<button class="category" id="tops">상의</button>
+			<button class="category" id="bottoms">하의</button>
+			<button class="category" id="outerwear">아우터</button>
+			<button class="category" id="shoes">신발</button>
+		</div>
+		<div class="col" th:each="pItem : ${plist}">
+			<div class="row">
+				<div th:each="p : ${pItem}">
+					<a th:href="${p.url}">
+						<img th:src="${p.img}" class="product-image">
+						<p th:text="${p.name}">옷 이름</p>
+					</a>
+					<p th:text="${p.price}">옷 가격</p>
+					<p>옷 설명</p>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			const categoryElements = document.querySelectorAll('.category');
+	
+			categoryElements.forEach(button => {
+				button.addEventListener('click', () => {
+					const categoryId = button.id;
+	
+					if (categoryId === 'tops') {
+						// 상의 페이지로 전환
+						location.href = 'top';
+					} else if (categoryId === 'bottoms') {
+						// 하의 페이지로 전환
+						contentDiv.innerHTML = '<h1>하의 페이지</h1><p>이곳에 하의 관련 내용이 들어갑니다.</p>';
+					} else if (categoryId === 'outerwear') {
+						// 아우터 페이지로 전환
+						contentDiv.innerHTML = '<h1>아우터 페이지</h1><p>이곳에 아우터 관련 내용이 들어갑니다.</p>';
+					} else if (categoryId === 'shoes') {
+						// 신발 페이지로 전환
+						contentDiv.innerHTML = '<h1>신발 페이지</h1><p>이곳에 신발 관련 내용이 들어갑니다.</p>';
+					}
+				});
+			});
+		</script>
+	</div>
+	
+
+</body>
+
+</html>
