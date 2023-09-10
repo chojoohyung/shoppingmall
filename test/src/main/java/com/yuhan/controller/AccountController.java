@@ -15,36 +15,25 @@ import com.yuhan.model.Product;
 import com.yuhan.model.User;
 import com.yuhan.service.UserService;
 
-
 @Controller
-@RequestMapping("/account")
 public class AccountController {
 
 	@Autowired
 	private UserService userService;
 	
-	
-	@GetMapping("/login")
+	@GetMapping("/home/login")
 	public String login(User user) {
-		
-
-
-		return "/account/login";
+		return "/home/login";
 	}
 	
-	
-	@GetMapping("/register")
+	@GetMapping("/home/register")
 	public String register() {
-		return "/account/register";
+		return "/home/register";
 	}
 	
-	
-	@PostMapping("/register")
+	@PostMapping("/home/register")
 	public String register(User user) {
 		userService.save(user);
-		return "/account/login";
+		return "/home/login";
 	}
-	
-	
-		
 }
