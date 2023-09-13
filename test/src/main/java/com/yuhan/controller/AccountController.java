@@ -21,20 +21,19 @@ public class AccountController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/home/login")
+	@GetMapping("/public/login")
 	public String login(User user) {
-		return "/home/login";
+		return "/public/login";
 	}
 	
-	@GetMapping("/home/register")
+	@GetMapping("/public/register")
 	public String register() {
-		return "/home/register";
+		return "/public/register";
 	}
 	
-	@PostMapping("/home/register")
+	@PostMapping("/public/register")
 	public String register(User user) {
 		userService.save(user);
-		return "/home/login";
-		
+		return "/public/login";
 	}
 }
