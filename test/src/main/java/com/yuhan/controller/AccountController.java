@@ -35,5 +35,6 @@ public class AccountController {
 	public String register(User user) {
 		userService.save(user);
 		return "/home/login";
+		
 	}
 }
