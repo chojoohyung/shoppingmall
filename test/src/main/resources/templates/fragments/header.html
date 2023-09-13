@@ -34,7 +34,7 @@
                 <div class="pad" onclick="location.href='/public/login'">LOGIN</div>  
             </div>  
             <div class="pad-container" sec:authorize="isAuthenticated()">
-                <div class="pad"><span sec:authentication="name">사용자</span> 님 환영합니다    </div>
+                <div class="pad" onclick="location.href='/protected/mypage'"><span sec:authentication="name">사용자</span> 님 환영합니다    </div>
                 <div class="pad">CART</div>
                 <form th:action="@{/logout}" method="post">
                     <button class="pad" type="submit">LOGOUT</button>

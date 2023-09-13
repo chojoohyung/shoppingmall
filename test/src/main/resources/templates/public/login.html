@@ -10,7 +10,7 @@
 </head>
 <body class="text-center">
 	<div layout:fragment="content">
-		<form class="form-signin" th:action="@{/home/login}" method="post">
+		<form class="form-signin" th:action="@{/public/login}" method="post">
 			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 			<div th:if="${param.error}" class="alert alert-danger" role="alert">Invalid username and password.</div>
 			<div th:if="${param.logout}" class="alert alert-primary" role="alert">You have been logged out.</div>
