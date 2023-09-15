@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="https://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/layout_register}">
+
+<head>
+	<style>
+		header {
+			display: block;
+			min-width: 1080px;
+		}
+
+		.nav {
+			display: flex;
+			flex-direction: row;
+			padding: 10px;
+		}
+
+		.logo {
+			left: 50%;
+		}
+
+		.pad {
+			padding: 10px;
+		}
+		nav {
+			display: flex;
+			justify-content: center;
+			background-color: #444;
+			padding: 0.5em 0;
+		}
+
+		nav a {
+			color: white;
+			text-decoration: none;
+			margin: 0 1em;
+		}
+	</style>
+</head>
+<meta charset="UTF-8">
+
+<body>
+
+	<div layout:fragment="content">
+		<nav>
+			<a href="faq">Q/A</a>
+			<a href="#">문의하기</a>
+			<a href="change">반품 및 교환</a>
+		</nav>
+		<div class="container">
+			<h2>문의하기</h2>
+			<p>궁금하신 사항을 입력해주세요.</p>
+			<form class="contact-form">
+
+				<label for="message">제목</label>
+				<input type="message" id="message" name="message" required>
+
+				<label for="name">이름</label>
+				<input type="text" id="name" name="name" required>
+
+				<label for="id">아이디</label>
+				<input type="id" id="id" name="id" required>
+
+				<label for="message">문의 내용</label>
+				<textarea id="message" name="message" rows="4" required></textarea>
+
+				<button type="submit">문의 보내기</button>
+			</form>
+		</div>
+	</div>
+
+
+
+
+</body>
+
+</html>

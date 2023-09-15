@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="https://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/layout1}">
+<head>
+	<meta charset="utf-8">
+    <title>중고마켓</title>
+    <style>
+        .row{
+            display: flex;
+            flex-direction: row;
+        }
+        .col{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+
+</head>
+<body>
+    <div layout:fragment="content">
+    
+        <p>옷 목록 페이지</p>
+        <div class="col" th:each="pItem:${plist}">
+            <div class="row">
+                <div th:each="p:${pItem}" >
+                    <a th:href="${p.url}">
+                        <img th:src="${p.img}">
+                        <p th:text="${p.name}">옷 이름</p>
+                    </a>
+                    <p th:text="${p.price}">옷 가격</p>
+                    <p>옷 설명</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+</body>
+</html>

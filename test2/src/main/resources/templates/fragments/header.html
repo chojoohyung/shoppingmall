@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+    <title>membership</title>
+
+</head>
+<body>
+    
+    <!-- 홈페이지 헤더부분 -->
+	<div th:fragment="header" class="header">
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="/">HOME</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Clients</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="nav" >
+            <div class="pad-container">
+                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+                <div class="pad" onclick="location.href='/public/productList'">BEST20</div>
+                <div class="pad" onclick="location.href='/public/Jproduct'">중고마켓</div>
+                <div class="pad" onclick="location.href='/protected/cs'">고객센터</div>
+            </div>
+            <a href="/">
+                <div class="logo">
+                    <img src="../resources/img/1694590687835.png" alt="로고 이미지">
+                </div>
+            </a>
+            <div class="pad-container" sec:authorize="!isAuthenticated()">
+                <div class="pad" onclick="location.href='/public/register'">회원가입</div>
+                <div class="pad">CART</div>
+                <div class="pad" onclick="location.href='/public/login'">LOGIN</div>  
+            </div>  
+            <div class="pad-container" sec:authorize="isAuthenticated()">
+                <div class="pad"><span sec:authentication="name">사용자</span> 님 환영합니다    </div>
+                <div class="pad">CART</div>
+                <form th:action="@{/logout}" method="post">
+                    <button class="pad" type="submit">LOGOUT</button>
+                </form>  
+            </div>  
+        </div>
+        <script>
+            function openNav() {
+              document.getElementById("mySidenav").style.width = "250px";
+            }
+            
+            function closeNav() {
+              document.getElementById("mySidenav").style.width = "0";
+            }
+        </script>
+    </div>   
+    
+
+</body>
+</html>
