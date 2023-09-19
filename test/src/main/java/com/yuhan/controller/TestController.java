@@ -143,6 +143,11 @@ public class TestController {
 		return "/protected/coupon";
 	}
 	
+	@GetMapping("/protected/change")
+	public String change(User user) {
+		return "/protected/change";
+	}
+	
 	@GetMapping("/protected/order")
 	public String order(User user) {
 		return "/protected/order";
