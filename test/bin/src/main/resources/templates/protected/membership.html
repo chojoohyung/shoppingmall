@@ -2,22 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
     xmlns:th="https://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layouts/layout1}">
+    layout:decorate="~{layouts/layout_register}">
 <head>
 	<meta charset="utf-8">
-    <title>coupon</title>
-    
-    <style>
-        
-    </style>
+    <title>membership</title>
 
 </head>
 <body>
-    <!-- 홈페이지 헤더부분 -->
-	<div layout:fragment="content">
-        쿠폰
-    </div>
+    <div layout:fragment="content">
     
+    
+    <span sec:authentication="name">사용자</span>님의 멤버십
+
+    </div>
 
 </body>
 </html>

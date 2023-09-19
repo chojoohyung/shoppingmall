@@ -16,9 +16,12 @@
   max-width: 100%;
 }
 .pad {
+  cursor: pointer;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
+  background-color: #fff;
+  font-size: 15px;
 }
 
 .pad:last-child {
