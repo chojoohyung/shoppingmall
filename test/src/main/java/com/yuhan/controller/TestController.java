@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.yuhan.model.Product;
 import com.yuhan.model.Qa;
 import com.yuhan.model.User;
+import com.yuhan.constant.ProductSellStatus;
+import com.yuhan.entity.ProductEntity;
 import com.yuhan.model.Jproduct;
 
 
@@ -20,17 +22,12 @@ import lombok.extern.slf4j.Slf4j;
 public class TestController {
 
 	@GetMapping("/fragments/header")
-	public String header(User user) {
+	public String header() {
 		return "/fragments/header";
 	}
 	
-	@GetMapping("/public/hello")
-	public String hello(User user) {
-		return "/public/hello";
-	}
-	
 	@GetMapping("/public/productList")
-	public String productList(User user, Model model) {
+	public String productList(Model model) {
 		
 		List<List<Product>> plist = new ArrayList<>();
 		
@@ -56,22 +53,18 @@ public class TestController {
 	}
 	
 	@GetMapping("/public/faq")
-	public String qa(User user, Model model) {
+	public String qa(Model model) {
 		
 		List<Qa> qalist = new ArrayList<>();
+
 		
-		Qa qa = new Qa();
-		qa.setPostId(0);
-		qa.setTitle("환불언제됌");
-		qa.setContent("내일이요");
-		
-		Qa qa2 = new Qa();
-		qa2.setPostId(1);
-		qa2.setTitle("결제언제됌");
-		qa2.setContent("내일이요");
-		
-		qalist.add(qa);
-		qalist.add(qa2);
+		for (int i = 0; i < 7; i++) {
+			Qa qa = new Qa();
+			qa.setPostId(0);
+			qa.setTitle("환불언제됌");
+			qa.setContent("내일이요");
+			qalist.add(qa);
+		}
 		
 		
 		model.addAttribute("qalist", qalist);
@@ -113,7 +106,7 @@ public class TestController {
 	
 	
 	@GetMapping("/protected/mypage")
-	public String mypage(User user, Model model) {
+	public String mypage(Model model) {
 		Product product = new Product();
 		product.setImg("../../resources/img/{6E8F3DA7-4F8C-4BDF-85F6-962AF83FF710}.png");
 		
@@ -133,22 +126,27 @@ public class TestController {
 	}
 	
 	@GetMapping("/protected/membership")
-	public String membership(User user) {
+	public String membership() {
 		
 		return "/protected/membership";
 	}
 	
 	@GetMapping("/protected/coupon")
-	public String coupon(User user) {
+	public String coupon() {
 		return "/protected/coupon";
 	}
 	
+	@GetMapping("/protected/change")
+	public String change() {
+		return "/protected/change";
+	}
+	
 	@GetMapping("/protected/order")
-	public String order(User user) {
+	public String order() {
 		return "/protected/order";
 	}
 	@GetMapping("/protected/cs")
-	public String product(Model model, Product products) {
+	public String product() {
 		return "/protected/cs";
 	}
 	

@@ -6,8 +6,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 	
-@Entity
+//@Entity
 @Data
+/*
+ * 상품 테이블
+ * id, img, name, price, url
+ * 
+ * */
 public class Product {
 	
 	@Id

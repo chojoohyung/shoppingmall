@@ -1,21 +1,18 @@
 package com.yuhan.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.mysql.cj.jdbc.Blob;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import lombok.Data;
 	
-@Entity
+//@Entity
 @Data
+/*	
+ * QA 테이블
+ * postId, title, content, + userid
+ * 
+ * */
 public class Qa {
 	
 	@Id

@@ -12,8 +12,16 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import lombok.Data;
 	
+
+
+
 @Entity
 @Data
+/*
+ * 유저 테이블
+ * id, username, password, enabled
+ * 
+ * */
 public class User {
 	
 	@Id
