@@ -24,7 +24,7 @@ public class WebSecurityConfig {
 	private DataSource dataSource;
 	
 	@Bean
-	public SecurityFilterChain securityFilterChain(H ttpSecurity http) throws Exception {
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			.authorizeHttpRequests((requests) -> requests
 				.requestMatchers("/", "/public/**", "/css/**", "/resources/**", "/layouts/**", "/fragments/**").permitAll()
