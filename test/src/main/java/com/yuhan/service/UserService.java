@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.yuhan.model.Role;
-import com.yuhan.model.User;
+import com.yuhan.entity.Role;
+import com.yuhan.entity.User;
 import com.yuhan.repository.UserRepository;
 
 @Service
@@ -14,12 +14,13 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 		
+	
 	public User save(User user) {
 		String encodeedpassword = passwordEncoder.encode(user.getPassword());
+		
 		user.setPassword(encodeedpassword);
 		user.setEnabled(true);
 		

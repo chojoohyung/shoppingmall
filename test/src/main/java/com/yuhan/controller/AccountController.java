@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.yuhan.model.User;
+import com.yuhan.entity.User;
 import com.yuhan.service.UserService;
 
 @Controller
