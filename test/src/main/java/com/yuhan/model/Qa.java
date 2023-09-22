@@ -23,5 +23,7 @@ public class Qa {
 	private int postId;
     private String title;
     private String content;
+    private String content1;
+    
 
 }

@@ -62,9 +62,9 @@ public class TestController {
 		
 		Qa qa = new Qa();
 		qa.setPostId(0);
-		qa.setTitle("환불언제됌");
-		qa.setContent("내일이요");
-		
+		qa.setTitle("고객센터");
+		qa.setContent("기다리세요");
+				
 		Qa qa2 = new Qa();
 		qa2.setPostId(1);
 		qa2.setTitle("결제언제됌");
@@ -156,6 +156,13 @@ public class TestController {
 	public String product(Model model, Product products) {
 		return "/protected/cs";
 	}
-	
+	@GetMapping("/protected/cart")
+	public String cart(Model model, Product products) {
+		return "/protected/cart";
+	}
+	@GetMapping("/protected/cart2")
+	public String cart2(Model model, Product products) {
+		return "/protected/cart2";
+	}
 	
 }
