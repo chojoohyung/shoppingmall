@@ -29,9 +29,9 @@
 			</div>
 
 		</div>
-	
+
 		<section class="cart">
-<h2 class="title">장바구니</h2>
+			<h2 class="title">장바구니</h2>
 			<div class="cart_information">
 
 				<ul>
@@ -47,8 +47,8 @@
 						<tr>
 							<td><input type="checkbox"></td>
 							<td colspan="2">상품정보</td>
-							<td >회원할인</td>
-							<td >주문관리</td>
+							<td>회원할인</td>
+							<td>주문관리</td>
 							<td>상품금액</td>
 							<td> 배송비용</td>
 						</tr>
@@ -64,32 +64,34 @@
 							</td>
 							<td class="cart_discount">
 								<p>-1,398</p>
-							</td>
-							<td class="cart_list_option">
-								<button class="cart_list_optionbtn">주문조건 추가/변경</button>
+							</td>	
+							<td>
+								<button type="button" class="cart_list_optionbtn" onClick="location.href='orderchange'">주문조건 추가/변경</button>
 							</td>
 							<td><span class="price">49,900원</span><br>
-								<button class="cart_list_orderbtn">주문하기</button>
+								<button class="cart_list_orderbtn ">주문하기</button>
 							</td>
 							<td>무료</td>
 						</tr>
-					
-							<td colspan="3"><input type="checkbox"> <button class="cart_list_optionbtn">선택상품
-									삭제</button>
-								<button class="cart_list_optionbtn">선택상품 찜</button>
-							</td>
-							<td></td>
-							<td></td>
-							<td></td>
+
+						<td colspan="3"><input type="checkbox"> <button class="cart_list_optionbtn">선택상품
+								삭제</button>
+							<button class="cart_list_optionbtn">선택상품 찜</button>
+						</td>
+						<td></td>
+						<td></td>
+						<td></td>
 						</tr>
-					</tfoot>
+						</tfoot>
 				</form>
 			</table>
 			<div class="cart_mainbtns">
-				<button class="cart_bigorderbtn left">쇼핑 계속하기</button>
-				<button class="cart_bigorderbtn right">주문하기</button>
+				<button class="cart_orderbtn left">쇼핑 계속하기</button>
+				<button class="cart_orderbtn right" onClick="location.href='order'">주문하기</button>
+
 			</div>
-		</section>
+	</div>
+	</section>
 	</div>
 
 

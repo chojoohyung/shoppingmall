@@ -164,5 +164,8 @@ public class TestController {
 	public String cart2(Model model, Product products) {
 		return "/protected/cart2";
 	}
-	
+	@GetMapping("/protected/orderchange")
+	public String orderchange(Model model, Product products) {
+		return "/protected/orderchange";
+	}
 }
