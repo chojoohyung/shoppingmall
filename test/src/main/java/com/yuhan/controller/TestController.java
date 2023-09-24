@@ -15,6 +15,11 @@ public class TestController {
 		return "/fragments/header";
 	}
 	
+	@GetMapping("/admin/ProductForm")
+	public String ProductForm() {
+		return "/admin/ProductForm";
+	}
+	
 	@GetMapping("/public/productList")
 	public String productList(Model model) {
 		/*

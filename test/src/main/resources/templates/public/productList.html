@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
     xmlns:th="https://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layouts/layout_home}">
+    layout:decorate="~{layouts/layout_public}">
 <head>
 	<meta charset="utf-8">
     <title>productList</title>
@@ -22,6 +22,9 @@
     <div layout:fragment="content">
     
         <p>옷 목록 페이지</p>
+        
+        <button sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='/admin/ProductForm'">상품등록</button>
+        
         <div class="col" th:each="pItem:${plist}">
             <div class="row">
                 <div th:each="p:${pItem}" >

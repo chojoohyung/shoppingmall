@@ -8,12 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -28,6 +24,7 @@ public class WebSecurityConfig {
 		http
 			.authorizeHttpRequests((requests) -> requests
 				.requestMatchers("/", "/public/**", "/css/**", "/resources/**", "/layouts/**", "/fragments/**").permitAll()
+				.requestMatchers("/admin/**").hasRole("ADMIN") //hasRole 사용시 ADMIN 앞에 ROLE_ 이 자동으로 붙음 ※ROLE_USER, ROLE_ADMIN
 				.anyRequest().authenticated()
 			)
 			.formLogin((form) -> form
@@ -35,7 +32,8 @@ public class WebSecurityConfig {
 				.permitAll()
 			)
 			.logout((logout) -> logout.permitAll());
-
+		
+		
 		return http.build();
 	}
 
@@ -51,6 +49,7 @@ public class WebSecurityConfig {
 		        + "from user_role ur inner join user u on ur.no = u.no "
 		        + "inner join role r on ur.role_id = r.id "
 		        + "where u.username = ?");
+	    
 	}
 	
 	@Bean

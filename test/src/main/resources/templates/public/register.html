@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
     xmlns:th="https://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layouts/layout_home}">
+    layout:decorate="~{layouts/layout_public}">
 <head>
 	<meta charset="utf-8">
     <title>register</title>
@@ -18,9 +18,6 @@
 			<label for="inputPassword" class="sr-only">Password</label>
 				<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
 				<br>
-			<label for="username" class="sr-only">Username</label>
-				<input type="text" id="username" name="username" class="form-control" placeholder="username" required autofocus>
-				
 			<div class="checkbox mb-3">
 				<label>
 					<input type="checkbox" value="remember-me"> Remember me
