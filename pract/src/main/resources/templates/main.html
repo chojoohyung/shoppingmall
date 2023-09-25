@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="https://www.thymeleaf.org" 
+    xmls:sec="http://www.thymeleaf.org/extras/spring-security"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/layout_main}">
+    <head>
+        <title>Spring Security Example</title>
+        <style>
+		.row {
+			display: flex;
+			flex-direction: row;
+		}
+
+		.nav {
+			display: flex;
+			flex-direction: row;
+			padding: 10px;
+		}
+
+		.col {
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+		}
+
+		.product-image {
+			max-width: 250px;
+
+			height: auto;
+			margin: 30px;
+
+		}
+
+		.category-buttons {
+			display: flex;
+			justify-content: center;
+			margin-bottom: 20px;
+		}
+
+		.category-buttons .category {
+			font-size: 18px;
+			padding: 20px 160px;
+
+
+		}
+	</style>
+
+
+	<style>
+		#bbtn {
+
+			margin-left: 50%;
+			text-align: center;
+		}
+
+		#slider-container {
+			width: 100%;
+			overflow: hidden;
+		}
+
+		#slider {
+			width: 500px;
+			/* 슬라이드 전체 너비 */
+			display: flex;
+			transition: transform 0.5s ease;
+			/* 슬라이드 속도 */
+		}
+
+		.slide {
+			width: 100%;
+			/* 개별 슬라이드 너비 */
+			flex-shrink: 0;
+			margin-left: 10px;
+		}
+	</style>
+    </head>
+    <body>
+        <div layout:fragment="content">
+			<div id="slider-container">
+				<div style="display: flex; justify-content: center;">	<!-- 슬라이드 div안에 화살표가 있어야 하는데 이거 아직 못함 -->
+	
+	
+					<button onclick="prevSlide()">◀</button>		<!--이전 버튼-->
+	
+	
+					<button onclick="nextSlide()">▶</button>		<!--다음 버튼-->
+				</div>
+
+				<div id="slider">
+					<div class="slide">
+						<img src="resources/img/q1.PNG" alt="슬라이드 1" width="100%" height="70%">	<!--슬라이드 1-->
+					</div>
+	
+					<div class="slide">
+						<img src="resources/img/q2.PNG" alt="슬라이드 2" width="100%" height="70%">	<!--슬라이드 2-->
+					</div>
+					<div class="slide">
+						<img src="resources/img/q3.PNG" alt="슬라이드 3" width="100%" height="70%">	<!--슬라이드 3-->
+					</div>
+					<div class="slide">
+						<img src="resources/img/q4.PNG" alt="슬라이드 4" width="100%" height="70%">	<!--슬라이드 4-->
+					</div>
+	
+	
+				</div>
+			</div>
+
+
+
+			<script>
+				let currentIndex = 0;
+				const slider = document.getElementById("slider");
+				const slides = document.querySelectorAll(".slide");
+	
+				function prevSlide() {
+					currentIndex = (currentIndex - 1 + slides.length) % slides.length;	//이전으로 넘어가는 기능
+					updateSlider();
+				}
+	
+				function nextSlide() {
+					currentIndex = (currentIndex + 1) % slides.length;					//다음으로 넘어가는 기능
+					updateSlider();
+				}
+	
+				function updateSlider() {
+					const translateX = -currentIndex * 300; // 슬라이드 너비를 곱하여 이동 거리 계산
+					slider.style.transform = `translateX(${translateX}px)`;
+				}
+			</script>
+			<!--  
+            <h1>Welcome!</h1>
+		
+            <a th:href="@{/home/hello}">hello</a>
+            <br>
+            <a th:href="@{/home/productList}">옷상품페이지</a>
+            <br>
+            <a href="/register/mypage">마이페이지</a> 
+            <
+            <a class="btn btn-secondary my-2 my-sm-0" th:href="@{/login}"
+                sec:authorize="!isAuthenticated()">Login</a>
+            <form th:action="@{/logout}" method="post"  sec:authorize="isAuthenticated()">
+                <span class="text-white" sec:authentication="name">사용자</span>
+                <span class="text-white mx-2" sec:authentication="principal.authorities">권한</span>
+                <button class="btn bnt-secondary my-2 my-sm-0" type="submit">Logout</button>
+            </form>
+            -->
+        </div>
+        
+    </body>
+</html>
