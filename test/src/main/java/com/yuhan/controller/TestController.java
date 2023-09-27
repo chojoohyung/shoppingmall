@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.yuhan.entity.Product;
 import com.yuhan.entity.User;
 
 import lombok.extern.slf4j.Slf4j;
@@ -151,10 +152,7 @@ public class TestController {
 		
 		return "/protected/cart";
 	}
-	@GetMapping("/protected/cart2")
-	public String cart2(Model model, Product products) {
-		return "/protected/cart2";
-	}
+
 	@GetMapping("/protected/orderchange")
 	public String orderchange(Model model, Product products) {
 		return "/protected/orderchange";

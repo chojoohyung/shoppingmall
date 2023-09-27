@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_register}">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_protected}">
+
 
 <head>
 	<meta charset="utf-8">
 	<!--장바구니 선택 기능-->
+	
+	<link href="../css/cart.css" rel="stylesheet">
+	
+	
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
