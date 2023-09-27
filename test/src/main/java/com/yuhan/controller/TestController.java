@@ -1,17 +1,10 @@
 package com.yuhan.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.yuhan.model.Product;
-import com.yuhan.model.Qa;
-import com.yuhan.model.User;
-import com.yuhan.model.Jproduct;
-
+import com.yuhan.entity.User;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,24 +13,24 @@ import lombok.extern.slf4j.Slf4j;
 public class TestController {
 
 	@GetMapping("/fragments/header")
-	public String header(User user) {
+	public String header() {
 		return "/fragments/header";
 	}
 	
-	@GetMapping("/public/hello")
-	public String hello(User user) {
-		return "/public/hello";
+	@GetMapping("/admin/ProductForm")
+	public String ProductForm() {
+		return "/admin/ProductForm";
 	}
 	
 	@GetMapping("/public/productList")
-	public String productList(User user, Model model) {
-		
-		List<List<Product>> plist = new ArrayList<>();
+	public String productList(Model model) {
+		/*
+		List<List<ProductModel>> plist = new ArrayList<>();
 		
 		for (int i = 0; i < 5; i++) {
-			List<Product> plistItem = new ArrayList<>();
+			List<ProductModel> plistItem = new ArrayList<>();
 			for (int j = 0; j < 4; j++) {
-				Product product = new Product();
+				ProductModel product = new ProductModel();
 				product.setImg("../../resources/img/{6E8F3DA7-4F8C-4BDF-85F6-962AF83FF710}.png");
 				product.setName("흰티");
 				product.setPrice((j+1)*10000);
@@ -50,39 +43,35 @@ public class TestController {
 		
 		
 		model.addAttribute("plist", plist);
-		
+		*/
 		
 		return "/public/productList";
 	}
 	
 	@GetMapping("/public/faq")
-	public String qa(User user, Model model) {
-		
+	public String qa(Model model) {
+		/*
 		List<Qa> qalist = new ArrayList<>();
+
 		
-		Qa qa = new Qa();
-		qa.setPostId(0);
-		qa.setTitle("환불언제됌");
-		qa.setContent("내일이요");
-		
-		Qa qa2 = new Qa();
-		qa2.setPostId(1);
-		qa2.setTitle("결제언제됌");
-		qa2.setContent("내일이요");
-		
-		qalist.add(qa);
-		qalist.add(qa2);
+		for (int i = 0; i < 7; i++) {
+			Qa qa = new Qa();
+			qa.setPostId(0);
+			qa.setTitle("환불언제됌");
+			qa.setContent("내일이요");
+			qalist.add(qa);
+		}
 		
 		
 		model.addAttribute("qalist", qalist);
 		
-		
+		*/
 		return "/public/faq";
 	}
 	
 	@GetMapping("/public/Jproduct")
 	public String JproductPage(Model model) {
-
+		/*
 	    List<List<Jproduct>> plist = new ArrayList<>();
 
 	    for (int i = 0; i < 2; i++) {
@@ -104,7 +93,7 @@ public class TestController {
 	        plist.add(plistItem);
 	    }
 	    model.addAttribute("plist", plist);
-
+		*/
 	    return "/public/Jproduct";
 	}
 	
@@ -113,33 +102,34 @@ public class TestController {
 	
 	
 	@GetMapping("/protected/mypage")
-	public String mypage(User user, Model model) {
-		Product product = new Product();
+	public String mypage(Model model) {
+		/*
+		ProductModel product = new ProductModel();
 		product.setImg("../../resources/img/{6E8F3DA7-4F8C-4BDF-85F6-962AF83FF710}.png");
 		
-		Product product2 = new Product();
+		ProductModel product2 = new ProductModel();
 		product2.setImg("../../resources/img/{5712D152-214F-4503-BA02-79971EB7682C}.png");
 		
 		
-		List<Product> plist = new ArrayList<>();
+		List<ProductModel> plist = new ArrayList<>();
 		plist.add(product);
 		plist.add(product2);
 		
 		
 		model.addAttribute("plist", plist);
 		
-		
+		*/
 		return "/protected/mypage";
 	}
 	
 	@GetMapping("/protected/membership")
-	public String membership(User user) {
+	public String membership() {
 		
 		return "/protected/membership";
 	}
 	
 	@GetMapping("/protected/coupon")
-	public String coupon(User user) {
+	public String coupon() {
 		return "/protected/coupon";
 	}
 	
@@ -149,11 +139,11 @@ public class TestController {
 	}
 	
 	@GetMapping("/protected/order")
-	public String order(User user) {
+	public String order() {
 		return "/protected/order";
 	}
 	@GetMapping("/protected/cs")
-	public String product(Model model, Product products) {
+	public String product() {
 		return "/protected/cs";
 	}
 	

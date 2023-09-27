@@ -5,10 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.yuhan.entity.Product;
-import com.yuhan.entity.User;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+
+public interface ProductRepository extends JpaRepository<Product, Long> {
+
+	List<Product> findProductByName(String name);
 	
-	List<User> findUserByUsername(String username);
 	
 }
