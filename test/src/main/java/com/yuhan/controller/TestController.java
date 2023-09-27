@@ -146,6 +146,17 @@ public class TestController {
 	public String product() {
 		return "/protected/cs";
 	}
-	
-	
+	@GetMapping("/protected/cart")
+	public String cart(Model model, Product products) {
+		
+		return "/protected/cart";
+	}
+	@GetMapping("/protected/cart2")
+	public String cart2(Model model, Product products) {
+		return "/protected/cart2";
+	}
+	@GetMapping("/protected/orderchange")
+	public String orderchange(Model model, Product products) {
+		return "/protected/orderchange";
+	}
 }

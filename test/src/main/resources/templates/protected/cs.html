@@ -36,6 +36,12 @@
 			text-decoration: none;
 			margin: 0 1em;
 		}
+		        .container {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            background-color: #f5f5f5; /* 배경색 설정 */
+        }
 	</style>
 </head>
 <meta charset="UTF-8">
@@ -43,12 +49,14 @@
 <body>
 
 	<div layout:fragment="content">
+
 		<nav>
 			<a th:href="@{/public/faq}">Q/A</a>
 			<a href="#">문의하기</a>
 			<a href="change">반품 및 교환</a>
 		</nav>
 		<div class="container">
+				
 			<h2>문의하기</h2>
 			<p>궁금하신 사항을 입력해주세요.</p>
 			<form class="contact-form">
@@ -69,7 +77,7 @@
 			</form>
 		</div>
 	</div>
-
+</div>
 
 
 

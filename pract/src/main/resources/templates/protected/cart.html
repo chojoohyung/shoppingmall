@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_register}">
+
+<head>
+	<meta charset="utf-8">
+	<style>
+
+	</style>
+
+<body>
+
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="row" onclick="location.href='/protected/cart'">
+				장바구니
+
+
+				<div class="row" onclick="location.href='#'">
+					최근 본 상품
+
+					<div class="row" onclick="location.href='#'">
+						찜한 상품
+					</div>
+
+
+
+				</div>
+			</div>
+
+		</div>
+
+		<section class="cart">
+			<h2 class="title">장바구니</h2>
+			<div class="cart_information">
+
+				<ul>
+					<br>
+					<li>Henly IV는 전부 무료배송입니다.</li>
+					<li>가격, 옵션 등 정보가 변경된 경우 주문이 불가할 수 있습니다.</li>
+					<li>오늘출발 상품은 판매자 설정 시점에 따라 오늘출발 여부가 변경될 수 있으니 주문 시 꼭 다시 확인해 주시기 바랍니다.</li>
+				</ul>
+			</div>
+			<table class="cart_list">
+				<form>
+					<thead>
+						<tr>
+							<td><input type="checkbox"></td>
+							<td colspan="2">상품정보</td>
+							<td>회원할인</td>
+							<td>주문관리</td>
+							<td>상품금액</td>
+							<td> 배송비용</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="cart_list_detail">
+							<td><input type="checkbox"></td>
+							<td><img src="img/q1.PNG" alt="셔츠"></td>
+							<td><a href="#">[수아레] 에어울 아란 스타디움 네이비</a><span class="cart_list_store"> 스마트스토어</span>
+								<p>옵션:네이비/L</p>
+								<span class="price">49,900원</span><span
+									style="text-decoration: line-through; color: lightgray;">59,000</span>
+							</td>
+							<td class="cart_discount">
+								<p>-1,398</p>
+							</td>	
+							<td>
+								<button type="button" class="cart_list_optionbtn" onClick="location.href='orderchange'">주문조건 추가/변경</button>
+							</td>
+							<td><span class="price">49,900원</span><br>
+								<button class="cart_list_orderbtn ">주문하기</button>
+							</td>
+							<td>무료</td>
+						</tr>
+
+						<td colspan="3"><input type="checkbox"> <button class="cart_list_optionbtn">선택상품
+								삭제</button>
+							<button class="cart_list_optionbtn">선택상품 찜</button>
+						</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						</tr>
+						</tfoot>
+				</form>
+			</table>
+			<div class="cart_mainbtns">
+				<button class="cart_orderbtn left">쇼핑 계속하기</button>
+				<button class="cart_orderbtn right" onClick="location.href='order'">주문하기</button>
+
+			</div>
+	</div>
+	</section>
+	</div>
+
+
+
+</body>
+
+</html>
