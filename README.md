@@ -1,1 +1,2 @@
-# shoppingmall
+# shoppingmall/LIB
+
