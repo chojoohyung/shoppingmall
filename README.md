@@ -9,9 +9,11 @@ DB 생성
 3. Defulat Target Schema -> spring_web SCHEMA 선택 -> start Import
 
 이미지 폴더 생성
+
 4. C:\shoppingmall\productImg 폴더 생성
 
 프로젝트 실행
+
 5. Spring 에서 test 실행
 
 
