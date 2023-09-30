@@ -1,5 +1,8 @@
 package com.yuhan.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 
 import com.yuhan.constant.Size;
@@ -7,36 +10,33 @@ import com.yuhan.entity.Product;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
 public class ProductDto {
-	private int id;
+	
+	private Integer id;
 	
 	@NotBlank(message = "상품명 필수 입력")
 	private String name;
 	
-	@NotBlank(message = "가격 필수 입력")
-	private int price;
+	@NotNull(message = "가격 필수 입력")
+	private Integer price;
 	
-	@NotBlank(message = "색상 필수 입력")
+	@NotNull(message = "재고 필수 입력")
+	private Integer stock;
+	
 	private String color;
-	
 	
 	private Size size;
 	
-	
-	private int stock;
-	
-	
 	private String category;
 	
+	private List<ProductImgDto> productImgDtoList = new ArrayList<>();
 	
-	private ProductImgDto productImgDto = new ProductImgDto();
-	
-	
-	private int productImgId;
+	private List<Integer> productImgDtoIds = new ArrayList<>();
 	
 	
 	private static ModelMapper modelMapper = new ModelMapper();

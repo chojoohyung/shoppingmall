@@ -26,6 +26,8 @@ public class ProductImg {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
+	private String oriImgName;
+	
 	private String imgName;
 	
 	private String imgUrl;
@@ -34,7 +36,8 @@ public class ProductImg {
 	@JoinColumn(name="product_id")
 	private Product product;
 	
-	public void updateProductImg(String imgName, String imgUrl) {
+	public void updateProductImg(String oriImgName, String imgName, String imgUrl) {
+		this.oriImgName = oriImgName;
 		this.imgName = imgName;
 		this.imgUrl = imgUrl;
 		

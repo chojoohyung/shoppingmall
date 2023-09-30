@@ -4,12 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.yuhan.dto.ProductDto;
 import com.yuhan.entity.Product;
 import com.yuhan.entity.User;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 public class TestController {
 
@@ -18,36 +18,9 @@ public class TestController {
 		return "/fragments/header";
 	}
 	
-	@GetMapping("/admin/ProductForm")
-	public String ProductForm() {
-		return "/admin/ProductForm";
-	}
 	
-	@GetMapping("/public/productList")
-	public String productList(Model model) {
-		/*
-		List<List<ProductModel>> plist = new ArrayList<>();
-		
-		for (int i = 0; i < 5; i++) {
-			List<ProductModel> plistItem = new ArrayList<>();
-			for (int j = 0; j < 4; j++) {
-				ProductModel product = new ProductModel();
-				product.setImg("../../resources/img/{6E8F3DA7-4F8C-4BDF-85F6-962AF83FF710}.png");
-				product.setName("흰티");
-				product.setPrice((j+1)*10000);
-				product.setUrl("/");
-				plistItem.add(product);
-				
-			}
-			plist.add(plistItem);
-		}
-		
-		
-		model.addAttribute("plist", plist);
-		*/
-		
-		return "/public/productList";
-	}
+	
+	
 	
 	@GetMapping("/public/faq")
 	public String qa(Model model) {

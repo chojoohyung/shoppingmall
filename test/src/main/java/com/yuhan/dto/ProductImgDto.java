@@ -9,7 +9,9 @@ import lombok.Setter;
 
 @Getter @Setter
 public class ProductImgDto {
-	private int id;
+	private Integer id;
+
+	private String oriImgName;
 	
 	private String imgName;
 	

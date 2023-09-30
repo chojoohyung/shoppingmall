@@ -184,8 +184,7 @@ CREATE TABLE `product` (
   `name` varchar(50) NOT NULL,
   `category` varchar(255) DEFAULT NULL,
   `color` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `product_chk_1` CHECK ((`size` between 0 and 2))
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -195,7 +194,59 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES (1,93000,0,93000,'TEST_0930','TOP','BLACK');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product_img`
+--
+
+DROP TABLE IF EXISTS `product_img`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product_img` (
+  `id` int NOT NULL,
+  `product_id` int DEFAULT NULL,
+  `img_name` varchar(255) DEFAULT NULL,
+  `img_url` varchar(255) DEFAULT NULL,
+  `ori_img_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKbnvmhern60vx5hlvaa3ba9u8h` (`product_id`),
+  CONSTRAINT `FKbnvmhern60vx5hlvaa3ba9u8h` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_img`
+--
+
+LOCK TABLES `product_img` WRITE;
+/*!40000 ALTER TABLE `product_img` DISABLE KEYS */;
+INSERT INTO `product_img` VALUES (1,1,'28544a93-8eae-4bcf-952a-9ebf00ba120f.png','/img/productImg/28544a93-8eae-4bcf-952a-9ebf00ba120f.png','{6E8F3DA7-4F8C-4BDF-85F6-962AF83FF710}.png'),(2,1,'','',''),(3,1,'','',''),(4,1,'','',''),(5,1,'','','');
+/*!40000 ALTER TABLE `product_img` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product_img_seq`
+--
+
+DROP TABLE IF EXISTS `product_img_seq`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product_img_seq` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_img_seq`
+--
+
+LOCK TABLES `product_img_seq` WRITE;
+/*!40000 ALTER TABLE `product_img_seq` DISABLE KEYS */;
+INSERT INTO `product_img_seq` VALUES (101);
+/*!40000 ALTER TABLE `product_img_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -216,7 +267,7 @@ CREATE TABLE `product_seq` (
 
 LOCK TABLES `product_seq` WRITE;
 /*!40000 ALTER TABLE `product_seq` DISABLE KEYS */;
-INSERT INTO `product_seq` VALUES (1);
+INSERT INTO `product_seq` VALUES (51);
 /*!40000 ALTER TABLE `product_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -417,7 +468,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (_binary '',1,NULL,NULL,'$2a$10$nQXtYCD5hslFGtAqqpzF9.62ODSSx4w0pAWgChw/epDZdHquLlVEu',NULL,'test'),(_binary '',2,NULL,NULL,'$2a$10$Xi3KINeriVNPVRumADXzMOlELsmbll8.h1viSKzEfEzW7xx1KSowu',NULL,'admin');
+INSERT INTO `user` VALUES (_binary '',1,NULL,NULL,'$2a$10$RKRZMd1DYQw2CYyOKcAdSOBjFj35Vbn6Jc3zOzajObFLb5SxEBZ2K',NULL,'test'),(_binary '',2,NULL,NULL,'$2a$10$NlAr8uSV1SAcBC4JQfKUuemyAmoPTEBHjNir1INWq4v8TB2Lm1DmS',NULL,'admin');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -479,4 +530,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-25  3:02:32
+-- Dump completed on 2023-09-30 16:04:54

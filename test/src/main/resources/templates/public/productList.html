@@ -23,7 +23,7 @@
     
         <p>옷 목록 페이지</p>
         
-        <button sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='/admin/ProductForm'">상품등록</button>
+        <button sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='/admin/product/new'">상품등록</button>
         
         <div class="col" th:each="pItem:${plist}">
             <div class="row">

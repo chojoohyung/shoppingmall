@@ -1,4 +1,4 @@
-package com.yuhan.constant;
+ package com.yuhan.constant;
 
 public enum Size {
 	S, M, L
