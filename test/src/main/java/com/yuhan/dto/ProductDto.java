@@ -17,7 +17,7 @@ import lombok.Setter;
 @Getter @Setter
 public class ProductDto {
 	
-	private Integer id;
+	private Long id;
 	
 	@NotBlank(message = "상품명 필수 입력")
 	private String name;
@@ -36,7 +36,7 @@ public class ProductDto {
 	
 	private List<ProductImgDto> productImgDtoList = new ArrayList<>();
 	
-	private List<Integer> productImgDtoIds = new ArrayList<>();
+	private List<Long> productImgIds = new ArrayList<>();
 	
 	
 	private static ModelMapper modelMapper = new ModelMapper();

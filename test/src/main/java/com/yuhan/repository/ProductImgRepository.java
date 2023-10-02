@@ -9,6 +9,6 @@ import com.yuhan.entity.ProductImg;
 
 public interface ProductImgRepository extends JpaRepository<ProductImg, Long> {
 
-	List<ProductImg> findByProductIdOrderByIdAsc(int id);
+	List<ProductImg> findByProductIdOrderByIdAsc(Long id);
 	
 }

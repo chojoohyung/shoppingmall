@@ -24,7 +24,7 @@ public class ProductImg {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Long id;
 	
 	private String oriImgName;
 	

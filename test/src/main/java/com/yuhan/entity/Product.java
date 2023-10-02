@@ -1,6 +1,7 @@
 package com.yuhan.entity;
 
 import com.yuhan.constant.Size;
+import com.yuhan.dto.ProductDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,7 +23,7 @@ public class Product {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Long id;
 	
 	@Column(nullable=false, length = 50)
 	private String name;
@@ -40,5 +41,14 @@ public class Product {
 	private int stock;
 	
 	private String category;
+	
+	public void updateProduct(ProductDto productDto) {
+		this.name = productDto.getName();
+		this.price = productDto.getPrice();
+		this.color = productDto.getColor();
+		this.size = productDto.getSize();
+		this.stock = productDto.getStock();
+		this.category = productDto.getCategory();
+	}
 	
 }

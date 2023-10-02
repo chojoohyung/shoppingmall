@@ -12,16 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 public class TestController {
-
-	@GetMapping("/fragments/header")
-	public String header() {
-		return "/fragments/header";
-	}
-	
-	
-	
-	
-	
 	@GetMapping("/public/faq")
 	public String qa(Model model) {
 		/*

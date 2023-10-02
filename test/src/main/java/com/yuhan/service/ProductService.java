@@ -1,19 +1,20 @@
 package com.yuhan.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import org.thymeleaf.util.StringUtils;
 
 import com.yuhan.dto.ProductDto;
+import com.yuhan.dto.ProductImgDto;
 import com.yuhan.entity.Product;
 import com.yuhan.entity.ProductImg;
 import com.yuhan.repository.ProductImgRepository;
 import com.yuhan.repository.ProductRepository;
 
-import jakarta.transaction.Transactional;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -25,7 +26,7 @@ public class ProductService {
 	private final ProductImgService productImgService;
 	private final ProductImgRepository productImgRepository;
 	
-	public int saveProduct(ProductDto productDto, List<MultipartFile> productImgFileList) throws Exception{
+	public Long saveProduct(ProductDto productDto, List<MultipartFile> productImgFileList) throws Exception{
 		
 		//상품 등록
 		Product product = productDto.createProduct();
@@ -42,5 +43,38 @@ public class ProductService {
 		return product.getId();
 	}
 	
+	@Transactional(readOnly = true)
+	public ProductDto getProductDtl(Long id) {
+		List<ProductImg> productImgList = productImgRepository.findByProductIdOrderByIdAsc(id);
+		List<ProductImgDto> productImgDtoList = new ArrayList<>();
+		
+		for (ProductImg productImg : productImgList) {
+			ProductImgDto productImgDto = ProductImgDto.of(productImg);
+			productImgDtoList.add(productImgDto);
+		}
+		
+		//상품 id를 통해 상품조회, 없을시 Exception 발생
+		Product product = productRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+		ProductDto productDto = ProductDto.of(product);
+		productDto.setProductImgDtoList(productImgDtoList);
+		return productDto;
+		
+	}
+	
+	public Long updateProduct(ProductDto productDto, List<MultipartFile> productImgFileList) throws Exception{
+		
+		//상품 수정
+		Product product = productRepository.findById(productDto.getId()).orElseThrow(EntityNotFoundException::new);
+		product.updateProduct(productDto);
+		
+		List<Long> productImgIds = productDto.getProductImgIds();
+		
+		
+		//이미지 등록
+		for (int i = 0; i < productImgFileList.size(); i++) {
+			productImgService.updateProductImg(productImgIds.get(i), productImgFileList.get(i));
+		}
+		return product.getId();
+	}
 	
 }
