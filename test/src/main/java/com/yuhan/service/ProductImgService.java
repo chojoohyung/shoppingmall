@@ -58,7 +58,7 @@ public class ProductImgService {
 	}
 	
 	public List<ProductImg> getProductImgs(){
-		return productImgRepository.findAll();
+		return productImgRepository.findByCustomView();
 	}
 	
 }

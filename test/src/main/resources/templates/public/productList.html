@@ -21,10 +21,11 @@
 <body>
     <div layout:fragment="content">
     
-        <p>옷 목록 페이지</p>
+        옷 목록 페이지
         
         <button sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='/admin/product/new'">상품등록</button>
-        
+        <br>
+        --- 상품 리스트 ---
         <div class="col" th:each="product:${products}">
             <div th:each="p:${product}" class="row" >
                 <p th:text="${p.name}">옷 이름</p>&nbsp;
@@ -35,11 +36,15 @@
             </div>
         </div>
 
+
+        --- 상품 이미지 ---
         <div class="col" th:each="productImg:${productImgs}">
             <div th:if="${#strings.isEmpty(productImg.imgUrl)}">
             </div>
             <div th:unless="${#strings.isEmpty(productImg.imgUrl)}">
-                <a th:href="${productImg.imgUrl}">이미지</a>
+                <a th:href="'/public/productList/'+${productImg.product.id}">
+                    <img th:src="${productImg.imgUrl}">
+                </a>
             </div>
         </div>
     </div>

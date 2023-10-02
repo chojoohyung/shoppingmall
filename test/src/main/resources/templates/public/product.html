@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="https://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/layout_public}">
+<head>
+	<meta charset="utf-8">
+    <title>product</title>
+
+</head>
+<body>
+    <div layout:fragment="content">
+    
+        <p>옷 상세 페이지</p>
+        <p th:text="'이름 : '+${productDto.name}">옷 이름</p><br>
+        <p th:text="'가격 : '+${productDto.price}">옷 가격</p><br>
+        <p th:text="'카테고리 : '+${productDto.category}">옷 카테고리</p><br>  
+        <p th:text="'사이즈 : '+${productDto.size}">옷 사이즈</p><br>  
+        <p th:text="'재고 : '+${productDto.stock}">옷 재고</p><br>
+        
+        <p>-----상세이미지 ----</p>
+
+        
+        <div th:each="productImgDto, status: ${productDto.productImgDtoList}">
+            <div>
+                <input type="hidden" name="productImgIds" th:value="${productImgDto.id}">
+                <img th:src="${productImgDto.imgUrl}">
+            </div>
+        </div>
+        
+    </div>
+    
+
+</body>
+</html>

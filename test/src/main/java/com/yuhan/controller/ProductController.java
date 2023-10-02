@@ -98,4 +98,11 @@ public class ProductController {
 		return "/public/productList";
 	}
 	
+	@GetMapping("/public/productList/{id}")
+	public String productList(Model model, @PathVariable("id") Long id) {
+		ProductDto productDto = productService.getProductDtl(id);
+		model.addAttribute("productDto", productDto);
+		return "/public/product";
+	}
+	
 }
