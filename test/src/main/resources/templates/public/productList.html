@@ -25,16 +25,21 @@
         
         <button sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='/admin/product/new'">상품등록</button>
         
-        <div class="col" th:each="pItem:${plist}">
-            <div class="row">
-                <div th:each="p:${pItem}" >
-                    <a th:href="${p.url}">
-                        <img th:src="${p.img}">
-                        <p th:text="${p.name}">옷 이름</p>
-                    </a>
-                    <p th:text="${p.price}">옷 가격</p>
-                    <p>옷 설명</p>
-                </div>
+        <div class="col" th:each="product:${products}">
+            <div th:each="p:${product}" class="row" >
+                <p th:text="${p.name}">옷 이름</p>&nbsp;
+                <p th:text="${p.price}">옷 가격</p>&nbsp;
+                <p th:text="${p.category}">옷 카테고리</p>&nbsp;
+                <p th:text="${p.size}">옷 사이즈</p>&nbsp;
+                <p th:text="${p.stock}">옷 재고</p>&nbsp;
+            </div>
+        </div>
+
+        <div class="col" th:each="productImg:${productImgs}">
+            <div th:if="${#strings.isEmpty(productImg.imgUrl)}">
+            </div>
+            <div th:unless="${#strings.isEmpty(productImg.imgUrl)}">
+                <a th:href="${productImg.imgUrl}">이미지</a>
             </div>
         </div>
     </div>

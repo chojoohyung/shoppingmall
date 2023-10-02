@@ -1,5 +1,7 @@
 package com.yuhan.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -49,11 +51,14 @@ public class ProductImgService {
 			}
 			String oriImgName = productImgFile.getOriginalFilename();
 			String imgName = fileService.uploadFile(productImgLocation, oriImgName, productImgFile.getBytes());
-			String imgUrl = "/img/product/" + imgName;
+			String imgUrl = "/img/productImg/" + imgName;
 			savedProductImg.updateProductImg(oriImgName, imgName, imgUrl);
 			
 		}
 	}
 	
+	public List<ProductImg> getProductImgs(){
+		return productImgRepository.findAll();
+	}
 	
 }

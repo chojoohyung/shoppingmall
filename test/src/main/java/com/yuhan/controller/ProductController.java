@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.yuhan.dto.ProductDto;
+import com.yuhan.service.ProductImgService;
 import com.yuhan.service.ProductService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -24,6 +25,8 @@ import lombok.RequiredArgsConstructor;
 public class ProductController {
 
 	private final ProductService productService;
+	private final ProductImgService productImgService;
+	
 	
 	@GetMapping("/admin/product/new")
 	public String ProductForm(Model model) {
@@ -90,27 +93,8 @@ public class ProductController {
 	
 	@GetMapping("/public/productList")
 	public String productList(Model model) {
-		/*
-		List<List<ProductModel>> plist = new ArrayList<>();
-		
-		for (int i = 0; i < 5; i++) {
-			List<ProductModel> plistItem = new ArrayList<>();
-			for (int j = 0; j < 4; j++) {
-				ProductModel product = new ProductModel();
-				product.setImg("../../resources/img/{6E8F3DA7-4F8C-4BDF-85F6-962AF83FF710}.png");
-				product.setName("흰티");
-				product.setPrice((j+1)*10000);
-				product.setUrl("/");
-				plistItem.add(product);
-				
-			}
-			plist.add(plistItem);
-		}
-		
-		
-		model.addAttribute("plist", plist);
-		*/
-		
+		model.addAttribute("products", productService.getProducts());
+		model.addAttribute("productImgs", productImgService.getProductImgs());
 		return "/public/productList";
 	}
 	

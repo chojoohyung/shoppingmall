@@ -77,4 +77,9 @@ public class ProductService {
 		return product.getId();
 	}
 	
+	@Transactional(readOnly = true)
+	public List<Product> getProducts(){
+		return productRepository.findAll();
+	}
+	
 }
