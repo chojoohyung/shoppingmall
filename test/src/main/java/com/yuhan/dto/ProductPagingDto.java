@@ -16,17 +16,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
-public class ProductDto {
+public class ProductPagingDto {
 	
 	private Long id;
 	
-	@NotBlank(message = "상품명 필수 입력")
 	private String name;
 	
-	@NotNull(message = "가격 필수 입력")
 	private Integer price;
 	
-	@NotNull(message = "재고 필수 입력")
 	private Integer stock;
 	
 	private String color;
@@ -35,9 +32,9 @@ public class ProductDto {
 	
 	private String category;
 	
-	private List<ProductImgDto> productImgDtoList = new ArrayList<>();
+	private ProductImgDto productImgDto = new ProductImgDto();
 	
-	private List<Long> productImgIds = new ArrayList<>();
+	private Long productImgId;
 	
 	
 	private static ModelMapper modelMapper = new ModelMapper();
@@ -46,8 +43,8 @@ public class ProductDto {
 		return modelMapper.map(this, Product.class);
 	}
 	
-	public static ProductDto of(Product product) {
-		return modelMapper.map(product, ProductDto.class);
+	public static ProductPagingDto of(Product product) {
+		return modelMapper.map(product, ProductPagingDto.class);
 	}
 	
 }

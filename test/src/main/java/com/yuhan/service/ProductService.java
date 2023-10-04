@@ -3,12 +3,17 @@ package com.yuhan.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.yuhan.dto.ProductDto;
 import com.yuhan.dto.ProductImgDto;
+import com.yuhan.dto.ProductPagingDto;
 import com.yuhan.entity.Product;
 import com.yuhan.entity.ProductImg;
 import com.yuhan.repository.ProductImgRepository;
@@ -82,4 +87,17 @@ public class ProductService {
 		return productRepository.findAll();
 	}
 	
+	@Transactional(readOnly = true)
+	public List<ProductDto> test(Pageable pageable) {
+		List<ProductDto> productDtos = new ArrayList<>();
+		
+		List<Product> productList = productRepository.queryAnnotion(pageable);
+		
+		for (int i = 0; i < productList.size(); i++) {
+			productDtos.add(getProductDtl(productList.get(i).getId()));
+		}
+		
+		
+		return productDtos;
+	}
 }

@@ -1,7 +1,10 @@
 package com.yuhan.controller;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.yuhan.dto.ProductDto;
+import com.yuhan.dto.ProductPagingDto;
+import com.yuhan.entity.Product;
 import com.yuhan.service.ProductImgService;
 import com.yuhan.service.ProductService;
 
@@ -90,15 +95,17 @@ public class ProductController {
 		return "redirect:/";
 	}
 	
-	
-	@GetMapping("/public/productList")
-	public String productList(Model model) {
-		model.addAttribute("products", productService.getProducts());
-		model.addAttribute("productImgs", productImgService.getProductImgs());
+	@GetMapping("/public/productList/{page}")
+	public String productList(Model model, @PathVariable("page") Optional<Integer> page) {
+		Pageable paging = PageRequest.of(page.isPresent() ? page.get() : 0 , 8);
+		
+		List<ProductDto> productDto = productService.test(paging);
+		
+		model.addAttribute("productPagingDto", productDto);
 		return "/public/productList";
 	}
 	
-	@GetMapping("/public/productList/{id}")
+	@GetMapping("/public/product/{id}")
 	public String productList(Model model, @PathVariable("id") Long id) {
 		ProductDto productDto = productService.getProductDtl(id);
 		model.addAttribute("productDto", productDto);

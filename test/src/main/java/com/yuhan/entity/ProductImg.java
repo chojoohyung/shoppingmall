@@ -1,7 +1,5 @@
 package com.yuhan.entity;
 
-import com.yuhan.constant.Size;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -4,10 +4,11 @@ import org.modelmapper.ModelMapper;
 
 import com.yuhan.entity.ProductImg;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Data
 public class ProductImgDto {
 	private Long id;
 

@@ -1,20 +1,25 @@
 package com.yuhan.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.yuhan.dto.ProductDto;
 import com.yuhan.entity.Product;
+import com.yuhan.entity.Qa;
 import com.yuhan.entity.User;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 public class TestController {
+	
+	
 	@GetMapping("/public/faq")
 	public String qa(Model model) {
-		/*
 		List<Qa> qalist = new ArrayList<>();
 
 		
@@ -29,7 +34,6 @@ public class TestController {
 		
 		model.addAttribute("qalist", qalist);
 		
-		*/
 		return "/public/faq";
 	}
 	
