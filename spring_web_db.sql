@@ -67,6 +67,59 @@ INSERT INTO `cart_seq` VALUES (1);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `order_product`
+--
+
+DROP TABLE IF EXISTS `order_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order_product` (
+  `count` int NOT NULL,
+  `order_price` int NOT NULL,
+  `id` bigint NOT NULL,
+  `order_id` bigint DEFAULT NULL,
+  `product_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKl5mnj9n0di7k1v90yxnthkc73` (`order_id`),
+  KEY `FKhnfgqyjx3i80qoymrssls3kno` (`product_id`),
+  CONSTRAINT `FKhnfgqyjx3i80qoymrssls3kno` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
+  CONSTRAINT `FKl5mnj9n0di7k1v90yxnthkc73` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_product`
+--
+
+LOCK TABLES `order_product` WRITE;
+/*!40000 ALTER TABLE `order_product` DISABLE KEYS */;
+INSERT INTO `order_product` VALUES (1,29000,1,1,1),(2,29000,2,2,1),(1,29000,52,52,2);
+/*!40000 ALTER TABLE `order_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order_product_seq`
+--
+
+DROP TABLE IF EXISTS `order_product_seq`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order_product_seq` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_product_seq`
+--
+
+LOCK TABLES `order_product_seq` WRITE;
+/*!40000 ALTER TABLE `order_product_seq` DISABLE KEYS */;
+INSERT INTO `order_product_seq` VALUES (151);
+/*!40000 ALTER TABLE `order_product_seq` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `orders`
 --
 
@@ -74,18 +127,11 @@ DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orders` (
-  `id` int NOT NULL,
-  `payments_id` int DEFAULT NULL,
   `user_id` int DEFAULT NULL,
-  `date` datetime(6) DEFAULT NULL,
-  `product_id` bigint DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
+  `id` bigint NOT NULL,
+  `order_date` datetime(6) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK5wgqgnwjcphvwupghjuq3nygd` (`payments_id`),
-  KEY `FK787ibr3guwp6xobrpbofnv7le` (`product_id`),
   KEY `FKel9kyl84ego2otj2accfd8mr7` (`user_id`),
-  CONSTRAINT `FK5wgqgnwjcphvwupghjuq3nygd` FOREIGN KEY (`payments_id`) REFERENCES `payments` (`id`),
-  CONSTRAINT `FK787ibr3guwp6xobrpbofnv7le` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   CONSTRAINT `FKel9kyl84ego2otj2accfd8mr7` FOREIGN KEY (`user_id`) REFERENCES `user` (`no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -96,6 +142,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (2,1,'2023-10-06 02:45:42.121560'),(2,2,'2023-10-06 02:45:54.829554'),(1,52,'2023-10-06 04:25:52.874957');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +164,7 @@ CREATE TABLE `orders_seq` (
 
 LOCK TABLES `orders_seq` WRITE;
 /*!40000 ALTER TABLE `orders_seq` DISABLE KEYS */;
-INSERT INTO `orders_seq` VALUES (1);
+INSERT INTO `orders_seq` VALUES (151);
 /*!40000 ALTER TABLE `orders_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,6 +241,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES (29000,0,0,1,'test','TOP','WHITE'),(29000,0,29,2,'test','TOP','BLACK');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,6 +270,7 @@ CREATE TABLE `product_img` (
 
 LOCK TABLES `product_img` WRITE;
 /*!40000 ALTER TABLE `product_img` DISABLE KEYS */;
+INSERT INTO `product_img` VALUES (1,1,'f6dc9d51-df2c-486a-8249-d7fa14507aca.PNG','/img/productImg/f6dc9d51-df2c-486a-8249-d7fa14507aca.PNG','q1.PNG'),(2,1,'1577f2ed-73cf-4366-bfee-710f73d02537.PNG','/img/productImg/1577f2ed-73cf-4366-bfee-710f73d02537.PNG','q1.PNG'),(3,1,'ef9f883e-f69d-4985-b3b9-4d0a114d13ea.PNG','/img/productImg/ef9f883e-f69d-4985-b3b9-4d0a114d13ea.PNG','q2.PNG'),(4,1,'','',''),(5,1,'','',''),(52,2,'1298bbed-2731-41c4-8ac8-b2c5dfdbf3d6.PNG','/img/productImg/1298bbed-2731-41c4-8ac8-b2c5dfdbf3d6.PNG','q3.PNG'),(53,2,'60bbf31a-c104-470c-9457-b335d25630a6.PNG','/img/productImg/60bbf31a-c104-470c-9457-b335d25630a6.PNG','q3.PNG'),(54,2,'73878c20-3ace-482e-b5a3-86af816c7a52.PNG','/img/productImg/73878c20-3ace-482e-b5a3-86af816c7a52.PNG','q2.PNG'),(55,2,'','',''),(56,2,'','','');
 /*!40000 ALTER TABLE `product_img` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -243,7 +292,7 @@ CREATE TABLE `product_img_seq` (
 
 LOCK TABLES `product_img_seq` WRITE;
 /*!40000 ALTER TABLE `product_img_seq` DISABLE KEYS */;
-INSERT INTO `product_img_seq` VALUES (1);
+INSERT INTO `product_img_seq` VALUES (151);
 /*!40000 ALTER TABLE `product_img_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +314,7 @@ CREATE TABLE `product_seq` (
 
 LOCK TABLES `product_seq` WRITE;
 /*!40000 ALTER TABLE `product_seq` DISABLE KEYS */;
-INSERT INTO `product_seq` VALUES (1);
+INSERT INTO `product_seq` VALUES (101);
 /*!40000 ALTER TABLE `product_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,8 +396,8 @@ DROP TABLE IF EXISTS `used`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `used` (
-  `order_id` int DEFAULT NULL,
   `price` int NOT NULL,
+  `order_id` bigint DEFAULT NULL,
   `used_no` bigint NOT NULL,
   `content` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
@@ -466,7 +515,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (_binary '',1,NULL,NULL,'$2a$10$hq4vSft1ssQ2HfvY4IG7/us30jr5qDgY8C1v38gp6T5BZ3niEdiiK',NULL,'test'),(_binary '',2,NULL,NULL,'$2a$10$ANWdD5Kmemli0WNwh3O98eKd3R4CfiRy8KmkwDPUcd.dpj3MImbiq',NULL,'admin');
+INSERT INTO `user` VALUES (_binary '',1,NULL,NULL,'$2a$10$gWxlNNOwK7ASHkwO4ol0U.qs0twDhn5lRgo3E1M35Z/OwDd6NN.W.',NULL,'test'),(_binary '',2,NULL,NULL,'$2a$10$jzH8QOwllneYfJbs1yrlaOMH3PuMI/0xQwTd7yRMTJEHzj8NFa5Xa',NULL,'admin');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -528,4 +577,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-02 17:32:07
+-- Dump completed on 2023-10-06 13:33:38

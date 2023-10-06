@@ -2,6 +2,7 @@ package com.yuhan.entity;
 
 import com.yuhan.constant.Size;
 import com.yuhan.dto.ProductDto;
+import com.yuhan.exception.OutOfStockException;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -49,6 +50,14 @@ public class Product {
 		this.size = productDto.getSize();
 		this.stock = productDto.getStock();
 		this.category = productDto.getCategory();
+	}
+	
+	public void removeStock(int stock) {
+		int restStock = this.stock - stock;
+		if(restStock<0) {
+			throw new OutOfStockException("상품 재고가 부족합니다. 현재 재고 수량 : "+this.stock);
+		}
+		this.stock = restStock;
 	}
 	
 }

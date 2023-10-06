@@ -5,19 +5,25 @@
     layout:decorate="~{layouts/layout_public}">
 <head>
 	<meta charset="utf-8">
-    <title>product</title>
+    <title>product</title> 
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 </head>
 <body>
     <div layout:fragment="content">
     
         <p>옷 상세 페이지</p>
+        <input type="hidden" id="productId" th:value="${productDto.id}">
         <p th:text="'이름 : '+${productDto.name}">옷 이름</p><br>
         <p th:text="'가격 : '+${productDto.price}">옷 가격</p><br>
         <p th:text="'카테고리 : '+${productDto.category}">옷 카테고리</p><br>  
         <p th:text="'사이즈 : '+${productDto.size}">옷 사이즈</p><br>  
         <p th:text="'재고 : '+${productDto.stock}">옷 재고</p><br>
-        
+        <input type="number" name="count" id="count" class="form-control" value="1" min="1">
+        <button type="button" onclick="order()" >주문하기</button>
         <p>-----상세이미지 ----</p>
 
         
@@ -28,6 +34,64 @@
             </div>
         </div>
         
+        <script>
+            $(document).ready(function(){
+                calculateToalPrice();
+
+                $("#count").change( function(){
+                    calculateToalPrice();
+                });
+            });
+
+            function calculateToalPrice(){
+                var count = $("#count").val();
+                var price = $("#price").val();
+                var totalPrice = price*count;
+                $("#totalPrice").html(totalPrice + '원');
+            }
+
+            function order(){
+                  
+                var token = $("meta[name='_csrf']").attr("content");
+                var header = $("meta[name='_csrf_header']").attr("content");
+                var url = "/order";
+                var paramData = {
+                    productId : $("#productId").val(),
+                    count : $("#count").val()
+                };
+                
+                var param = JSON.stringify(paramData);
+
+                $.ajax({
+                    url      : url,
+                    type     : "POST",
+                    contentType : "application/json",
+                    data     : param,
+                    beforeSend : function(xhr){
+                        /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                        xhr.setRequestHeader(header, token);
+                    },
+                    dataType : "json",
+                    cache   : false,
+                    success  : function(result, status){
+                        alert("주문이 완료 되었습니다.");
+                        location.href='/';
+                    },
+                    error : function(jqXHR, status, error){
+
+                        if(jqXHR.status == '401'){
+                            alert('로그인 후 이용해주세요');
+                            location.href='/public/login';
+                        } else{
+                            alert(jqXHR.responseText);
+                        }
+
+                    }
+                });
+            }
+
+        </script>
+
     </div>
     
 
