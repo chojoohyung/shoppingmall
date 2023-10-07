@@ -39,9 +39,14 @@ public class OrderService {
 		
 		return order.getId();
 		
-		
-		
-		
+	}
+	
+	public List<Order> findAll(){
+		return orderRepository.findAll();
+	}
+	
+	public List<Order> findUsername(String username){
+		return orderRepository.findByUserUsername(username);
 	}
 	
 }

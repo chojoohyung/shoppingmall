@@ -49,7 +49,10 @@
                 <div class="btn" onclick="location.href='coupon'">
                         쿠폰
                 </div>
-                <div class="btn" onclick="location.href='order'">
+                <div class="btn" sec:authorize="hasRole('ROLE_USER')" onclick="location.href='order'">
+                        주문배송조회
+                </div>
+                <div class="btn" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='../admin/order'">
                         주문배송조회
                 </div>
                 

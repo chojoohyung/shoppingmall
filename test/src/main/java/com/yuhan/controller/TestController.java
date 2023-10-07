@@ -1,5 +1,6 @@
 package com.yuhan.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,13 +9,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.yuhan.dto.ProductDto;
+import com.yuhan.entity.Order;
+import com.yuhan.entity.OrderProduct;
 import com.yuhan.entity.Product;
 import com.yuhan.entity.Qa;
 import com.yuhan.entity.User;
+import com.yuhan.service.OrderProductService;
+import com.yuhan.service.OrderService;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@RequiredArgsConstructor
 public class TestController {
 	
 	
@@ -35,34 +42,6 @@ public class TestController {
 		model.addAttribute("qalist", qalist);
 		
 		return "/public/faq";
-	}
-	
-	@GetMapping("/public/Jproduct")
-	public String JproductPage(Model model) {
-		/*
-	    List<List<Jproduct>> plist = new ArrayList<>();
-
-	    for (int i = 0; i < 2; i++) {
-	        List<Jproduct> plistItem = new ArrayList<>();
-	        for (int j = 0; j < 5; j++) {
-	            Jproduct jproduct = new Jproduct();
-	            if (j % 2 == 0) {
-	                jproduct.setImg("img/hi.png");
-	            } else {
-	                jproduct.setImg("img/h2.png");
-	            }
-	           // jproduct.setImg("img/hi.png");
-	            jproduct.setName("이름" + j);  // 각 제품마다 다른 이름
-	            jproduct.setPrice((j + 1) * 10000);
-	            jproduct.setUrl("/products");
-	            plistItem.add(jproduct);
-	        }
-	       
-	        plist.add(plistItem);
-	    }
-	    model.addAttribute("plist", plist);
-		*/
-	    return "/public/Jproduct";
 	}
 	
 	
@@ -106,10 +85,7 @@ public class TestController {
 		return "/protected/change";
 	}
 	
-	@GetMapping("/protected/order")
-	public String order() {
-		return "/protected/order";
-	}
+	
 	@GetMapping("/protected/cs")
 	public String product() {
 		return "/protected/cs";

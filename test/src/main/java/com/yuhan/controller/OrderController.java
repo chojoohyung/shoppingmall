@@ -6,13 +6,19 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yuhan.dto.OrderDto;
+import com.yuhan.dto.OrderProductDto;
+import com.yuhan.entity.Order;
+import com.yuhan.entity.User;
+import com.yuhan.service.OrderProductService;
 import com.yuhan.service.OrderService;
 
 import jakarta.validation.Valid;
@@ -22,6 +28,33 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderController {
 	private final OrderService orderService;
+	private final OrderProductService orderProductService;
+	
+	@GetMapping("/protected/order")
+	public String orderUser(Model model, Principal principal, User user) {
+		
+		List<Order> orders = orderService.findUsername(principal.getName());
+		model.addAttribute("orders", orders);
+		
+		/*
+		List<OrderProductDto> orderProductDtoList = orderProductService.getOrderProductDtl(user.getNo());
+		model.addAttribute("orderProductDtoList", orderProductDtoList);
+
+		for (OrderProductDto orderProductDto : orderProductDtoList) {
+			System.out.println(orderProductDto.toString());
+		}*/
+		
+		return "/protected/order";
+	}
+	
+	//admin용
+	@GetMapping("/admin/order")
+	public String orderAdmin(Model model) {
+		List<Order> orders = orderService.findAll();
+		model.addAttribute("orders", orders);
+		return "/protected/order";
+	}
+	
 	
 	@PostMapping("/order")
 	public @ResponseBody ResponseEntity order(@RequestBody @Valid OrderDto orderDto, BindingResult bindingResult, Principal principal) {

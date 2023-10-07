@@ -15,8 +15,13 @@
 <body>
     <!-- 홈페이지 헤더부분 -->
 	<div layout:fragment="content">
-    
-    order
+        <div th:each="order, status:${orders}">
+            <input type="hidden" name="productImgIds" th:value="${order.id}">
+            <span th:text="${order.orderDate}">주문 일</span>
+            <div th:each="products, status:${order.orderProducts}">
+                <span th:text="${products.product.name}">주문 상품</span>
+            </div>
+        </div>
     </div>
 
 </body>
