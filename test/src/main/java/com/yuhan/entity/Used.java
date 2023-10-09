@@ -33,7 +33,7 @@ public class Used {
 	
 	private String content;
 	
-	//private LocalDateTime createDate; 
+	private LocalDateTime createDate; 
 	
 	
 	@ManyToOne
