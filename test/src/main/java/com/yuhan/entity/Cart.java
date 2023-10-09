@@ -15,9 +15,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity	
-@Data	
+@Getter @Setter
 @Table(name="cart")
 /*
  * Product 테이블에 대응하는 클래스
@@ -27,7 +29,7 @@ public class Cart {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")

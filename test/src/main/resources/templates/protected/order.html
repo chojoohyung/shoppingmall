@@ -8,20 +8,45 @@
     <title>order</title>
     
     <style>
-        
+        table {
+            width: 100%;
+            border: 1px solid #444444;
+            text-align: center;
+        }
+        th, td {
+            border: 1px solid #444444;
+        }
     </style>
 
 </head>
 <body>
     <!-- 홈페이지 헤더부분 -->
 	<div layout:fragment="content">
+        <table>
+			<tr>
+				<th>#</th>
+				<th>주문내역</th>
+				<th>주문날짜</th>
+			</tr>
+			<tr th:each="order, index:${orders}">
+                <input type="hidden" name="productImgIds" th:value="${order.id}">
+				<td th:text="${index.index}">#</td>
+				<td>
+                    <div th:each="products, status:${order.orderProducts}">
+                        <span th:text="${products.product.name}">주문 상품</span>
+                    </div>
+                </td>
+                <td th:text="${order.orderDate}">주문날짜</td>
+			</tr>
+		</table>
+        <!--
         <div th:each="order, status:${orders}">
             <input type="hidden" name="productImgIds" th:value="${order.id}">
             <span th:text="${order.orderDate}">주문 일</span>
             <div th:each="products, status:${order.orderProducts}">
                 <span th:text="${products.product.name}">주문 상품</span>
             </div>
-        </div>
+        </div>-->
     </div>
 
 </body>

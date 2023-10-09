@@ -13,18 +13,20 @@ public class MvcConfig implements WebMvcConfigurer {
 	@Value("${uploadPath}")
 	String uploadPath;
 	
-	//이미지 업로드 url 지정 -> img
+	/* 이미지 업로드 url 지정 -> img
+	 * 8080/img/** 에 대한 접근 설정
+	 */
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/img/**").addResourceLocations(uploadPath);
 	}
 	
-	
+	/*
+	 * index, main 컨트롤러
+	 */
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/index").setViewName("index");
 		registry.addViewController("/").setViewName("main");
-		//registry.addViewController("/home/hello").setViewName("hello");
-		//registry.addViewController("/login").setViewName("login");
 	}
 
 }

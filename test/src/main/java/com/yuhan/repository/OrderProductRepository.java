@@ -13,8 +13,11 @@ import com.yuhan.entity.OrderProduct;
 public interface OrderProductRepository extends JpaRepository<OrderProduct, Long> {
 
 	@Query("SELECT o FROM OrderProduct o WHERE o.product.name = :name")
-	List<OrderProduct> findByProductName(@Param("name") String name);
+	OrderProduct findOrderProductByProductName(@Param("name") String name);
 	
 	@Query("SELECT o FROM OrderProduct o WHERE o.order.user.username = :username")
-	List<OrderProduct> findByUserName(@Param("username") String username);
+	List<OrderProduct> findOrderProductByUserName(@Param("username") String username);
+	
+	@Query("SELECT o FROM OrderProduct o WHERE o.product.id = :id")
+	OrderProduct CustomfindById(@Param("id") Long id);
 }

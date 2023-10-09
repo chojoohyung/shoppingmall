@@ -100,4 +100,9 @@ public class ProductService {
 		
 		return productDtos;
 	}
+	
+	public String findIdByName(Long id) {
+		return productRepository.findIdByName(id);
+	}
+	
 }

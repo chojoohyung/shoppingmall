@@ -1,11 +1,12 @@
 package com.yuhan.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter @Setter	
 public class Qa {
 
-	private int PostId;
+	private Long PostId;
 	private String title;
 	private String content;
 }

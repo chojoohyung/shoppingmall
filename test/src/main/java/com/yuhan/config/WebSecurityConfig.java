@@ -19,6 +19,12 @@ public class WebSecurityConfig {
 	@Autowired
 	private DataSource dataSource;
 	
+	/*
+	 * requestMatchers : 접근권한에 대한 권한설정
+	 * public, css 등은 접근권한을 주지않아 로그인하지않아도 접근 가능
+	 * admin 은 hasRole 을 사용해 어드민만 사용가능하게 권한설정
+	 * 그 외는 로그인 후 접근가능 
+	 */
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
@@ -46,7 +52,7 @@ public class WebSecurityConfig {
 	  	        + "from user "
 		        + "where username = ?")
 		      .authoritiesByUsernameQuery("select u.username, r.name "
-		        + "from user_role ur inner join user u on ur.no = u.no "
+		        + "from user_role ur inner join user u on ur.id = u.id "
 		        + "inner join role r on ur.role_id = r.id "
 		        + "where u.username = ?");
 	    

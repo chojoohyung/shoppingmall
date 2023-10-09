@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.yuhan.dto.ProductDto;
-import com.yuhan.dto.ProductPagingDto;
-import com.yuhan.entity.Product;
-import com.yuhan.service.ProductImgService;
 import com.yuhan.service.ProductService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -30,15 +27,19 @@ import lombok.RequiredArgsConstructor;
 public class ProductController {
 
 	private final ProductService productService;
-	private final ProductImgService productImgService;
 	
-	
+	/*
+	 * Admin용 상품등록 폼
+	 */
 	@GetMapping("/admin/product/new")
 	public String ProductForm(Model model) {
 		model.addAttribute("productDto", new ProductDto());
 		return "/admin/ProductForm";
 	}
 	
+	/*
+	 * Admin용 상품등록 뷰
+	 */
 	@PostMapping(value = "/admin/product/new")
 	public String productNew(@Valid ProductDto productDto, BindingResult bindingResult, Model model, 
 			@RequestParam("productImgFile") List<MultipartFile> productImgFilList) {
@@ -62,6 +63,9 @@ public class ProductController {
 		return "redirect:/";
 	}
 	
+	/*
+	 * Admin용 상품수정 폼
+	 */
 	@GetMapping("/admin/product/{id}")
 	public String ProductDtl(@PathVariable("id") Long id, Model model) {
 		try {
@@ -76,6 +80,9 @@ public class ProductController {
 		return "/admin/ProductForm";
 	}
 	
+	/*
+	 * Admin용 상품수정 뷰
+	 */
 	@PostMapping("/admin/product/{id}")
 	public String productUpdate(@Valid ProductDto productDto, BindingResult bindingResult, 
 									@RequestParam("productImgFile") List<MultipartFile> productImgFileList, Model model) {
@@ -95,6 +102,9 @@ public class ProductController {
 		return "redirect:/";
 	}
 	
+	/*
+	 * 상품정보 리스트
+	 */
 	@GetMapping("/public/productList/{page}")
 	public String productList(Model model, @PathVariable("page") Optional<Integer> page) {
 		Pageable paging = PageRequest.of(page.isPresent() ? page.get() : 0 , 8);
@@ -105,6 +115,9 @@ public class ProductController {
 		return "/public/productList";
 	}
 	
+	/*
+	 * 상품상세정보
+	 */
 	@GetMapping("/public/product/{id}")
 	public String productList(Model model, @PathVariable("id") Long id) {
 		ProductDto productDto = productService.getProductDtl(id);

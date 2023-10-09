@@ -16,6 +16,7 @@
     <div layout:fragment="content">
     
         <p>옷 상세 페이지</p>
+        <button type="button" id="yourButtonId" sec:authorize="hasRole('ROLE_ADMIN')"  >상품변경</button>
         <input type="hidden" id="productId" th:value="${productDto.id}">
         <p th:text="'이름 : '+${productDto.name}">옷 이름</p><br>
         <p th:text="'가격 : '+${productDto.price}">옷 가격</p><br>
@@ -23,7 +24,7 @@
         <p th:text="'사이즈 : '+${productDto.size}">옷 사이즈</p><br>  
         <p th:text="'재고 : '+${productDto.stock}">옷 재고</p><br>
         <input type="number" name="count" id="count" class="form-control" value="1" min="1">
-        <button type="button" onclick="order()" >주문하기</button>
+        <button type="button" onclick="order()" sec:authorize="hasRole('ROLE_USER')" >주문하기</button>
         <p>-----상세이미지 ----</p>
 
         
@@ -35,6 +36,22 @@
         </div>
         
         <script>
+            function redirectToAdminPage() {
+            // 현재 페이지 주소를 가져옵니다.
+            var currentURL = window.location.href;
+
+            // 현재 페이지 주소에서 "/public/"을 "/admin/"으로 대체합니다.
+            var newURL = currentURL.replace("/public/", "/admin/");
+
+            // 변경된 주소로 페이지를 이동합니다.
+            window.location.href = newURL;
+            }
+            var button = document.getElementById("yourButtonId"); // 버튼의 ID를 지정하세요.
+            button.addEventListener("click", redirectToAdminPage);
+
+
+
+
             $(document).ready(function(){
                 calculateToalPrice();
 

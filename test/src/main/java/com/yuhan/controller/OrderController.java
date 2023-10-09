@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yuhan.dto.OrderDto;
-import com.yuhan.dto.OrderProductDto;
+import com.yuhan.dto.OrderFormDto;
 import com.yuhan.entity.Order;
-import com.yuhan.entity.User;
-import com.yuhan.service.OrderProductService;
 import com.yuhan.service.OrderService;
 
 import jakarta.validation.Valid;
@@ -28,26 +25,22 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderController {
 	private final OrderService orderService;
-	private final OrderProductService orderProductService;
 	
+	/*
+	 * User용 유저 주문내역 리스트
+	 */
 	@GetMapping("/protected/order")
-	public String orderUser(Model model, Principal principal, User user) {
+	public String orderUser(Model model, Principal principal) {
 		
 		List<Order> orders = orderService.findUsername(principal.getName());
 		model.addAttribute("orders", orders);
-		
-		/*
-		List<OrderProductDto> orderProductDtoList = orderProductService.getOrderProductDtl(user.getNo());
-		model.addAttribute("orderProductDtoList", orderProductDtoList);
-
-		for (OrderProductDto orderProductDto : orderProductDtoList) {
-			System.out.println(orderProductDto.toString());
-		}*/
-		
+	
 		return "/protected/order";
 	}
 	
-	//admin용
+	/*
+	 * Admin용 모든 주문내역 리스트
+	 */
 	@GetMapping("/admin/order")
 	public String orderAdmin(Model model) {
 		List<Order> orders = orderService.findAll();
@@ -56,8 +49,11 @@ public class OrderController {
 	}
 	
 	
+	/*
+	 * 주문 시 동작할 컨트롤러
+	 */
 	@PostMapping("/order")
-	public @ResponseBody ResponseEntity order(@RequestBody @Valid OrderDto orderDto, BindingResult bindingResult, Principal principal) {
+	public @ResponseBody ResponseEntity order(@RequestBody @Valid OrderFormDto orderDto, BindingResult bindingResult, Principal principal) {
 		if(bindingResult.hasErrors()) {
 			StringBuilder sb = new StringBuilder();
 			List<FieldError> fieldErrors = bindingResult.getFieldErrors();

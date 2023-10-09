@@ -1,6 +1,5 @@
 package com.yuhan.controller;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,22 +7,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.yuhan.dto.ProductDto;
-import com.yuhan.entity.Order;
-import com.yuhan.entity.OrderProduct;
-import com.yuhan.entity.Product;
 import com.yuhan.entity.Qa;
-import com.yuhan.entity.User;
-import com.yuhan.service.OrderProductService;
-import com.yuhan.service.OrderService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
+/*
+ * 현재 구현안된 나머지 모아놓은 컨트롤러
+ */
 public class TestController {
-	
 	
 	@GetMapping("/public/faq")
 	public String qa(Model model) {
@@ -32,7 +25,7 @@ public class TestController {
 		
 		for (int i = 0; i < 7; i++) {
 			Qa qa = new Qa();
-			qa.setPostId(0);
+			qa.setPostId(0L);
 			qa.setTitle("환불언제됌");
 			qa.setContent("내일이요");
 			qalist.add(qa);
@@ -44,28 +37,8 @@ public class TestController {
 		return "/public/faq";
 	}
 	
-	
-	//------------------------------------------------------------
-	
-	
 	@GetMapping("/protected/mypage")
-	public String mypage(Model model) {
-		/*
-		ProductModel product = new ProductModel();
-		product.setImg("../../resources/img/{6E8F3DA7-4F8C-4BDF-85F6-962AF83FF710}.png");
-		
-		ProductModel product2 = new ProductModel();
-		product2.setImg("../../resources/img/{5712D152-214F-4503-BA02-79971EB7682C}.png");
-		
-		
-		List<ProductModel> plist = new ArrayList<>();
-		plist.add(product);
-		plist.add(product2);
-		
-		
-		model.addAttribute("plist", plist);
-		
-		*/
+	public String mypage() {
 		return "/protected/mypage";
 	}
 	
@@ -81,23 +54,22 @@ public class TestController {
 	}
 	
 	@GetMapping("/protected/change")
-	public String change(User user) {
+	public String change() {
 		return "/protected/change";
 	}
-	
 	
 	@GetMapping("/protected/cs")
 	public String product() {
 		return "/protected/cs";
 	}
+	
 	@GetMapping("/protected/cart")
-	public String cart(Model model, Product products) {
-		
+	public String cart() {
 		return "/protected/cart";
 	}
-
+	
 	@GetMapping("/protected/orderchange")
-	public String orderchange(Model model, Product products) {
+	public String orderchange() {
 		return "/protected/orderchange";
 	}
 }

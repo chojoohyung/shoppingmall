@@ -1,24 +1,30 @@
 package com.yuhan.dto;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
 
-import com.yuhan.entity.Order;
 import com.yuhan.entity.OrderProduct;
 import com.yuhan.entity.Product;
-import com.yuhan.entity.User;
+import com.yuhan.entity.Used;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class OrderDto {
+public class UsedFormDto {
 	
 	private Long id;
-	private LocalDateTime orderDate; 
+	private String title;
+	private int price;
+	private String content;
+
+	private Long selectOrderProductId;
+	private List<OrderProductDto> orderProductDtoList = new ArrayList<>();
 	
 	/*
 	 * ModelMapper : Entity와 Dto간의 같은필드 값 매핑
@@ -29,16 +35,16 @@ public class OrderDto {
 	 * Entity <- Dto
 	 * Entity entity = Dto.createEntity();
 	 */
-	public Order createOrder() {
-		return modelMapper.map(this, Order.class);
+	public Used createUsed() {
+		return modelMapper.map(this, Used.class);
 	}
 	
 	/*
 	 * Dto <- Entity
 	 * Dto dto = Dto.of(entity)
 	 */
-	public static OrderDto of(Order order) {
-		OrderDto orderDto = modelMapper.map(order, OrderDto.class);
-        return orderDto;
+	public static UsedFormDto of(Used used) {
+		return modelMapper.map(used, UsedFormDto.class);
 	}
+	
 }

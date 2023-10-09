@@ -43,17 +43,14 @@
         <div class="body">
             <!-- 멤버십, 쿠폰, 주문배송조회 -->
             <div class="row">
-                <div class="btn" onclick="location.href='membership'" >
-                        멤버십
-                </div>
                 <div class="btn" onclick="location.href='coupon'">
                         쿠폰
                 </div>
                 <div class="btn" sec:authorize="hasRole('ROLE_USER')" onclick="location.href='order'">
-                        주문배송조회
+                        주문조회
                 </div>
                 <div class="btn" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='../admin/order'">
-                        주문배송조회
+                        주문조회
                 </div>
                 
             </div>

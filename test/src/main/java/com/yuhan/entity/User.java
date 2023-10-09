@@ -16,16 +16,16 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity	
-@Data	
+@Getter @Setter	
 @Table(name="user")
 public class User {
 	@Id
-	@Column(name="no")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int no;
+	private Long id;
 	
 	@Column(unique = true)
 	private String username;
@@ -44,7 +44,7 @@ public class User {
 	@ManyToMany
 	@JoinTable(
 	  name = "user_role", 
-	  joinColumns = @JoinColumn(name = "no"), 
+	  joinColumns = @JoinColumn(name = "id"), 
 	  inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Role> roles = new ArrayList<>();
 	

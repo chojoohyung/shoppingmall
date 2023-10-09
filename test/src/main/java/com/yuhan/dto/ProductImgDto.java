@@ -18,6 +18,7 @@ public class ProductImgDto {
 	
 	private String imgUrl;
 	
+	
 	private static ModelMapper modelMappler = new ModelMapper();
 	
 	public static ProductImgDto of(ProductImg productImge) {

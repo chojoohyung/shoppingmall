@@ -8,10 +8,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity	
-@Data	
+@Getter @Setter	
 @Table(name="usedcomment")
 /*
  * Product 테이블에 대응하는 클래스

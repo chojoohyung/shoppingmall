@@ -39,13 +39,23 @@ public class ProductDto {
 	
 	private List<Long> productImgIds = new ArrayList<>();
 	
-	
+	/*
+	 * ModelMapper : Entity와 Dto간의 같은필드 값 매핑
+	 */
 	private static ModelMapper modelMapper = new ModelMapper();
 	
+	/*
+	 * Entity <- Dto
+	 * Entity entity = Dto.createEntity();
+	 */
 	public Product createProduct() {
 		return modelMapper.map(this, Product.class);
 	}
 	
+	/*
+	 * Dto <- Entity
+	 * Dto dto = Dto.of(entity)
+	 */
 	public static ProductDto of(Product product) {
 		return modelMapper.map(product, ProductDto.class);
 	}

@@ -14,13 +14,13 @@ import lombok.Setter;
 
 @Entity	
 @Getter @Setter	
-@Table(name="product_img")
+@Table(name="used_img")
 /*
- * Product 테이블에 대응하는 클래스
+ * used 테이블에 대응하는 클래스
  * 
  */
-public class ProductImg {
-	
+public class UsedImg {
+
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,8 +33,8 @@ public class ProductImg {
 	private String imgUrl;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="product_id")
-	private Product product;
+	@JoinColumn(name="used_id")
+	private Used used;
 	
 	public void updateProductImg(String oriImgName, String imgName, String imgUrl) {
 		this.oriImgName = oriImgName;
@@ -42,6 +42,5 @@ public class ProductImg {
 		this.imgUrl = imgUrl;
 		
 	}
-	
 	
 }
