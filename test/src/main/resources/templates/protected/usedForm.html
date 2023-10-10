@@ -76,6 +76,9 @@
 				<label for="message">내용</label>
 				<textarea id="message" th:field="*{content}" rows="4" required></textarea>
 
+				<label for="title">가격</label>
+				<input type="number" th:field="*{price}" placeholder="상품의 가격을 입력해주세요" required>
+
 				<button type="submit">글 작성</button>
 
 				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">

@@ -15,6 +15,7 @@ import com.yuhan.repository.OrderProductRepository;
 import com.yuhan.repository.ProductRepository;
 import com.yuhan.repository.UsedRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UsedService {
 	private final UsedRepository usedRepository;
-	private final ProductService productService;
 	private final ProductRepository productRepository;
 	private final OrderProductRepository orderProductRepository;
 	
@@ -55,6 +55,12 @@ public class UsedService {
 		usedFormDto.setOrderProductDtoList(orderProductDtoList);
 		
 		return usedFormDto;
+	}
+	
+	public Used getDtl(Long id) throws Exception {
+		Used used = usedRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+		
+		return used;
 	}
 	
 }

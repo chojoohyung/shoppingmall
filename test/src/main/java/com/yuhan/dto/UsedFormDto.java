@@ -1,5 +1,6 @@
 package com.yuhan.dto;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,8 @@ public class UsedFormDto {
 	private String title;
 	private int price;
 	private String content;
-
+	private LocalDateTime createDate;
+	
 	private Long selectOrderProductId;
 	private List<OrderProductDto> orderProductDtoList = new ArrayList<>();
 	
@@ -36,6 +38,7 @@ public class UsedFormDto {
 	 * Entity entity = Dto.createEntity();
 	 */
 	public Used createUsed() {
+		
 		return modelMapper.map(this, Used.class);
 	}
 	

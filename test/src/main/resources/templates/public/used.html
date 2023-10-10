@@ -3,128 +3,47 @@
     xmlns:th="https://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{layouts/layout_public}">
-
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
+    <title>used</title> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-	<style>
-		.row {
-			display: flex;
-			flex-direction: row;
-		}
 
-		.nav {
-			display: flex;
-			flex-direction: row;
-			padding: 10px;
-		}
-
-		.col {
-			display: flex;
-			flex-direction: column;
-			text-align: center;
-		}
-
-		.product-image {
-			max-width: 250px;
-
-			height: auto;
-			margin: 30px;
-
-		}
-
-		.category-buttons {
-			display: flex;
-			justify-content: center;
-			margin-bottom: 20px;
-		}
-
-		.category-buttons .category {
-			font-size: 18px;
-			padding: 20px 160px;
-			/* 버튼 크기 조절 */
-		}
-		table {
-            width: 100%;
-            border: 1px solid #444444;
-            text-align: center;
-        }
-        th, td {
-            border: 1px solid #444444;
-        }
-	</style>
 </head>
-
 <body>
-	<div layout:fragment="content">
-		<p>중고 옷 사이트</p>
-
-		<div class="category-buttons">
-			<button class="category" id="tops">상의</button>
-			<button class="category" id="bottoms">하의</button>
-			<button class="category" id="outerwear">아우터</button>
-			<button class="category" id="shoes">신발</button>
-		</div>
-		<button onclick="location.href='/protected/usedForm'">중고 글등록</button>
-		<table>
-			<tr>
-				<th>#</th>
-				<th>제목</th>
-				<th>내용</th>
-				<th>주문내역</th>
-				<th>글쓴이</th>
-				<th>작성일</th>
-			</tr>
-			<tr th:each="used, index : ${usedList}">
-				<td th:text="${index.index}">#</td>
-				<td th:text="${used.title}">중고 제목</td>
-				<td th:text="${used.content}">중고 내용</td>
-				<td th:text="${used.orderProduct}">주문 내역</td>
-				<!-- <td th:text="${event.endDateTime}">2019년 1월 10일 오전 12시</td> -->
-				<!-- <td th:text="${index}">index</td> -->
-			</tr>
-		</table>
-
-		<script>
- 			$(document).ready(function(){
-                var errorMessage = [[${errorMessage}]];
-                if(errorMessage != null){
-                    alert(errorMessage);
-                }
-
-                bindDomEvent();
-
-            });
-
-			const categoryElements = document.querySelectorAll('.category');
-	
-			categoryElements.forEach(button => {
-				button.addEventListener('click', () => {
-					const categoryId = button.id;
-	
-					if (categoryId === 'tops') {
-						// 상의 페이지로 전환
-						location.href = 'top';
-					} else if (categoryId === 'bottoms') {
-						// 하의 페이지로 전환
-						contentDiv.innerHTML = '<h1>하의 페이지</h1><p>이곳에 하의 관련 내용이 들어갑니다.</p>';
-					} else if (categoryId === 'outerwear') {
-						// 아우터 페이지로 전환
-						contentDiv.innerHTML = '<h1>아우터 페이지</h1><p>이곳에 아우터 관련 내용이 들어갑니다.</p>';
-					} else if (categoryId === 'shoes') {
-						// 신발 페이지로 전환
-						contentDiv.innerHTML = '<h1>신발 페이지</h1><p>이곳에 신발 관련 내용이 들어갑니다.</p>';
-					}
-				});
-			});
-
-			
+    <div layout:fragment="content">
+    
+        <p>옷 상세 페이지</p>
+        <button type="button" id="yourButtonId" sec:authorize="hasRole('ROLE_ADMIN')"  >상품보기</button>
+        <input type="hidden" id="used.id" th:value="${used.id}">
+        <p th:text="'제목 : '+${used.title}">제목</p><br>
+        <p th:text="'내용 : '+${used.content}">내용</p><br>
+        <p th:text="'가격 : '+${used.price}">가격</p><br>  
+        <p th:text="'작성일 : '+${used.createDate}">옷 사이즈</p><br>  
+        <p>-----상세이미지 ----</p>
 
 
-		</script>
-	</div>
-	
+        
+        <script>
+            function redirectToAdminPage() {
+                // 현재 페이지 주소를 가져옵니다.
+                var currentURL = window.location.href;
+
+                // 현재 페이지 주소에서 "/public/"을 "/admin/"으로 대체합니다.
+                var newURL = currentURL.replace("/used/", "/product/");
+
+                // 변경된 주소로 페이지를 이동합니다.
+                window.location.href = newURL;
+            }
+            var button = document.getElementById("yourButtonId"); // 버튼의 ID를 지정하세요.
+            button.addEventListener("click", redirectToAdminPage);
+
+
+           
+        </script>
+
+    </div>
+    
 
 </body>
-
 </html>
