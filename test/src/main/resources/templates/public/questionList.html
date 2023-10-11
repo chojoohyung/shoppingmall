@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="https://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/layout_public}">
+
+<head>
+	<meta charset="UTF-8">
+
+	<style>
+		.row {
+			display: flex;
+			flex-direction: row;
+		}
+
+		.nav {
+			display: flex;
+			flex-direction: row;
+			padding: 10px;
+		}
+
+		.col {
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+		}
+
+		.product-image {
+			max-width: 250px;
+
+			height: auto;
+			margin: 30px;
+
+		}
+
+		.category-buttons {
+			display: flex;
+			justify-content: center;
+			margin-bottom: 20px;
+		}
+
+		.category-buttons .category {
+			font-size: 18px;
+			padding: 20px 160px;
+			/* 버튼 크기 조절 */
+		}
+		table {
+            width: 100%;
+            border: 1px solid #444444;
+            text-align: center;
+        }
+        th, td {
+            border: 1px solid #444444;
+        }
+          .accordion {
+            cursor: pointer;
+            padding: 18px;
+            border: none;
+            background-color: #f1f1f1;
+            text-align: left;
+            outline: none;
+            transition: 0.4s;
+        }
+
+        .active, .accordion:hover {
+            background-color: #ddd;
+        }
+
+        .panel {
+            display: none;
+            background-color: white;
+            overflow: hidden;
+        }
+
+
+		header {
+			display: block;
+			min-width: 1080px;
+		}
+
+		.nav {
+			display: flex;
+			flex-direction: row;
+			padding: 10px;
+		}
+
+		.logo {
+			left: 50%;
+		}
+
+		.pad {
+			padding: 10px;
+		}
+
+		nav {
+			display: flex;
+			justify-content: center;
+			background-color: #444;
+			padding: 0.5em 0;
+		}
+
+		nav a {
+			color: white;
+			text-decoration: none;
+			margin: 0 1em;
+		}
+
+		.container {
+			display: flex;
+			flex-direction: column;
+			margin: 0;
+			background-color: #f5f5f5;
+			/* 배경색 설정 */
+		}
+	</style>
+</head>
+
+<body>
+	<div layout:fragment="content">
+<nav>
+			<a th:href="@{/public/faq}">Q/A</a>
+			<a href="/public/questionList">문의하기</a>
+			<a href="change">반품 및 교환</a>
+		</nav>
+		<table>
+			<tr>
+				<th>#</th>
+				<th>제목</th>
+				<th>내용</th>
+				<th>유저</th>
+			</tr>
+			<tr th:each="question, index : ${questionList}">
+				<td th:text="${index.index}">#</td>
+				<td th:text="${question.title}">제목</td>
+				<td th:text="${question.content}">내용</td>
+				<td th:text="${question.user.username}">유저</td>
+
+				
+				<!-- <td th:text="${event.endDateTime}">2019년 1월 10일 오전 12시</td> -->
+				<!-- <td th:text="${index}">index</td> -->
+			</tr>
+		</table>
+		<button onclick="location.href='/protected/questionForm'" sec:authorize="hasRole('ROLE_USER')">글쓰기</button>
+
+		<script>
+ 			
+
+
+		</script>
+	</div>
+	
+
+</body>
+
+</html>

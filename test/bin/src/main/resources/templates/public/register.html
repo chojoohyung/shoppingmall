@@ -1,29 +1,67 @@
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
     xmlns:th="https://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layouts/layout_home}">
+    layout:decorate="~{layouts/layout_public}">
 <head>
-	<meta charset="utf-8">
-    <title>register</title>
-	<link th:href="@{/css/signin.css}" rel="stylesheet">
+	<meta charset="UTF-8">
+	<link href="../css/register.css" rel="stylesheet">
 </head>
-<body class="text-center">
+
+
+<body>
+	
 	<div layout:fragment="content">
-		<form class="form-register" th:action="@{/public/register}" method="post">
-			<h1 class="h3 mb-3 font-weight-normal">회원가입</h1>
-			<label for="username" class="sr-only">Username</label>
-				<input type="text" id="username" name="username" class="form-control" placeholder="username" required autofocus>
-				<br>
-			<label for="inputPassword" class="sr-only">Password</label>
-				<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-			<div class="checkbox mb-3">
-				<label>
-					<input type="checkbox" value="remember-me"> Remember me
-				</label>
-			</div>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">회원가입</button>
-		</form>
+	<form class="form-register" th:action="@{/public/register}" method="post">
+	<table align=center>
+		
+	<tr><td colspan=2 align=center height=40><b>회원가입</b><td></tr>
+	<div class="textForm">
+	<tr>
+		<td align=right>아이디&nbsp;</td> 
+		<td><input type="text" id="username" name="username" class="idform-control" placeholder="username" required autofocus></td>
+	</tr>
 	</div>
+	<div class="textForm">
+	<tr>
+		<td align=right>패스워드&nbsp;</td> 
+		<td><input type="password"  id="inputPassword" name="password" class="pwform-control" placeholder="Password" required></td>
+	</tr>
+	</div>
+	<div class="textForm">
+	<div> 
+    <td align=right>패스워드(확인)&nbsp;</td>
+    <td><input type="password" required name="inputPassword2" id="inputPassword2" class="pwform-control" onchange="check_pw()">&nbsp:<span id="check"></span></td>
+  
+</tr>
+  </div>
+	<tr>
+		<td align=right>핸드폰번호&nbsp;</td> 
+		<!--  <td><input type="tel"  id="phone" name="phone" class="pform-control" placeholder="Phone" required></td>-->
+	</tr>
+	<tr>
+		<td colspan=2 align=center height=50>
+			<button class="sub" type="submit">회원가입하기</button>
+		</td>
+	</tr>
+	<script>
+		function check_pw(){
+			if(document.getElementById('inputPassword').value !='' && document.getElementById('inputPassword2').value!=''){
+		        if(document.getElementById('inputPassword').value==document.getElementById('inputPassword2').value){
+		            document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+		            document.getElementById('check').style.color='blue';
+		        }
+		        else{
+		            document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+		            document.getElementById('check').style.color='red';
+		        }
+		    }
+		}
+	</script>
+	</table>
+	</form>
+	</div>
+	
+	
+	
 </body>
 </html>

@@ -2,21 +2,66 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
     xmlns:th="https://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layouts/layout_register}">
+    layout:decorate="~{layouts/layout_protected}">
 <head>
 	<meta charset="utf-8">
     <title>order</title>
     
     <style>
-        
+        table {
+            width: 100%;
+            border: 1px solid #444444;
+            text-align: center;
+        }
+        th, td {
+            border: 1px solid #444444;
+        }
     </style>
 
 </head>
 <body>
     <!-- 홈페이지 헤더부분 -->
 	<div layout:fragment="content">
-    
-    order
+        <table>
+			<tr>
+				<th>#</th>
+				<th>주문내역</th>
+                <th>수량</th>
+                <th>가격</th>
+				<th>주문날짜</th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">유저</th>
+			</tr>
+			<tr th:each="order, index:${orders}">
+                <input type="hidden" name="productImgIds" th:value="${order.id}">
+				<td th:text="${index.index}">#</td>
+				<td>
+                    <div th:each="products, status:${order.orderProducts}">
+                        <span th:text="${products.product.name}">주문내역</span>
+                    </div>
+                </td>
+                <td>
+                    <div th:each="products, status:${order.orderProducts}">
+                        <span th:text="${products.count}">주문내역</span>
+                    </div>
+                </td>
+                <td>
+                    <div th:each="products, status:${order.orderProducts}">
+                        <span th:text="${products.orderPrice*products.count}">주문내역</span>
+                    </div>
+                </td>
+                <td th:text="${order.orderDate}">주문날짜</td>
+                <td th:text="${order.user.username}" sec:authorize="hasRole('ROLE_ADMIN')">유저</td>
+                
+			</tr>
+		</table>
+        <!--
+        <div th:each="order, status:${orders}">
+            <input type="hidden" name="productImgIds" th:value="${order.id}">
+            <span th:text="${order.orderDate}">주문 일</span>
+            <div th:each="products, status:${order.orderProducts}">
+                <span th:text="${products.product.name}">주문 상품</span>
+            </div>
+        </div>-->
     </div>
 
 </body>

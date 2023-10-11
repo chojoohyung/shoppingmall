@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="https://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/layout_public}">
+<head>
+	<meta charset="utf-8">
+    <title>used</title> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+</head>
+<body>
+    <div layout:fragment="content">
+    
+        <p>옷 상세 페이지</p>
+        <button type="button" id="yourButtonId" sec:authorize="hasRole('ROLE_ADMIN')"  >상품보기</button>
+        <input type="hidden" id="used.id" th:value="${used.id}">
+        <p th:text="'제목 : '+${used.title}">제목</p><br>
+        <p th:text="'내용 : '+${used.content}">내용</p><br>
+        <p th:text="'가격 : '+${used.price}">가격</p><br>  
+        <p th:text="'작성일 : '+${used.createDate}">옷 사이즈</p><br>  
+        <p>-----상세이미지 ----</p>
+
+
+        
+        <script>
+            function redirectToAdminPage() {
+                // 현재 페이지 주소를 가져옵니다.
+                var currentURL = window.location.href;
+
+                // 현재 페이지 주소에서 "/public/"을 "/admin/"으로 대체합니다.
+                var newURL = currentURL.replace("/used/", "/product/");
+
+                // 변경된 주소로 페이지를 이동합니다.
+                window.location.href = newURL;
+            }
+            var button = document.getElementById("yourButtonId"); // 버튼의 ID를 지정하세요.
+            button.addEventListener("click", redirectToAdminPage);
+
+
+           
+        </script>
+
+    </div>
+    
+
+</body>
+</html>

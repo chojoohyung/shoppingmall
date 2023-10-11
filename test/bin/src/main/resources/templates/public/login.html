@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
     xmlns:th="https://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layouts/layout_home}">
+    layout:decorate="~{layouts/layout_public}">
 <head>
 	<meta charset="utf-8">
     <title>Signin Template · Bootstrap</title>
@@ -13,7 +13,7 @@
 		<form class="form-signin" th:action="@{/public/login}" method="post">
 			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 			<div th:if="${param.error}" class="alert alert-danger" role="alert">Invalid username and password.</div>
-			<div th:if="${param.logout}" class="alert alert-primary" role="alert">You have been logged out.</div>
+			<div th:if="${param.logout}" onclick="location.href='/public/productList'" class="alert alert-primary" role="alert">You have been logged out.</div>
 			<label for="username" class="sr-only">Username</label>
 				<input type="text" id="username" name="username" class="form-control" placeholder="username" required autofocus>
 				<br>

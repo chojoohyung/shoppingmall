@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:th="https://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layouts/layout_protected}">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_protected}">
 
 <head>
 	<style>
@@ -24,6 +22,7 @@
 		.pad {
 			padding: 10px;
 		}
+
 		nav {
 			display: flex;
 			justify-content: center;
@@ -36,12 +35,14 @@
 			text-decoration: none;
 			margin: 0 1em;
 		}
-		        .container {
-            display: flex;
-            flex-direction: column;
-            margin: 0;
-            background-color: #f5f5f5; /* 배경색 설정 */
-        }
+
+		.container {
+			display: flex;
+			flex-direction: column;
+			margin: 0;
+			background-color: #f5f5f5;
+			/* 배경색 설정 */
+		}
 	</style>
 </head>
 <meta charset="UTF-8">
@@ -56,28 +57,24 @@
 			<a href="change">반품 및 교환</a>
 		</nav>
 		<div class="container">
-				
+
 			<h2>문의하기</h2>
 			<p>궁금하신 사항을 입력해주세요.</p>
-			<form class="contact-form">
 
+			<form role="form" method="post" th:object="${question}">
+				<input type="hidden" th:field="*{id}">
 				<label for="message">제목</label>
-				<input type="message" id="message" name="message" required>
-
-				<label for="name">이름</label>
-				<input type="text" id="name" name="name" required>
-
-				<label for="id">아이디</label>
-				<input type="id" id="id" name="id" required>
+				<input type="text" id="title" th:field="*{title}" required>
 
 				<label for="message">문의 내용</label>
-				<textarea id="message" name="message" rows="4" required></textarea>
+				<textarea id="content" th:field="*{content}" rows="4" required></textarea>
 
 				<button type="submit">문의 보내기</button>
+				<input type="hidden" th:name = "${_csrf.parameterName}" th:value = "${_csrf.token}">
 			</form>
 		</div>
 	</div>
-</div>
+	</div>
 
 
 
