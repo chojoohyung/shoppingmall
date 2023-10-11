@@ -26,17 +26,32 @@
 			<tr>
 				<th>#</th>
 				<th>주문내역</th>
+                <th>수량</th>
+                <th>가격</th>
 				<th>주문날짜</th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">유저</th>
 			</tr>
 			<tr th:each="order, index:${orders}">
                 <input type="hidden" name="productImgIds" th:value="${order.id}">
 				<td th:text="${index.index}">#</td>
 				<td>
                     <div th:each="products, status:${order.orderProducts}">
-                        <span th:text="${products.product.name}">주문 상품</span>
+                        <span th:text="${products.product.name}">주문내역</span>
+                    </div>
+                </td>
+                <td>
+                    <div th:each="products, status:${order.orderProducts}">
+                        <span th:text="${products.count}">주문내역</span>
+                    </div>
+                </td>
+                <td>
+                    <div th:each="products, status:${order.orderProducts}">
+                        <span th:text="${products.orderPrice*products.count}">주문내역</span>
                     </div>
                 </td>
                 <td th:text="${order.orderDate}">주문날짜</td>
+                <td th:text="${order.user.username}" sec:authorize="hasRole('ROLE_ADMIN')">유저</td>
+                
 			</tr>
 		</table>
         <!--
