@@ -1,13 +1,7 @@
 package com.yuhan.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import com.yuhan.entity.Qa;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,24 +12,7 @@ import lombok.RequiredArgsConstructor;
  */
 public class TestController {
 	
-	@GetMapping("/public/faq")
-	public String qa(Model model) {
-		List<Qa> qalist = new ArrayList<>();
 
-		
-		for (int i = 0; i < 7; i++) {
-			Qa qa = new Qa();
-			qa.setPostId(0L);
-			qa.setTitle("환불언제됌");
-			qa.setContent("내일이요");
-			qalist.add(qa);
-		}
-		
-		
-		model.addAttribute("qalist", qalist);
-		
-		return "/public/faq";
-	}
 	
 	@GetMapping("/protected/mypage")
 	public String mypage() {

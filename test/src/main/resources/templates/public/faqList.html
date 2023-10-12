@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
+
+<head>
+	<meta charset="utf-8">
+	<title>q/a</title>
+
+	<style>
+	
+
+		.nav {
+			display: flex;
+			flex-direction: row;
+			padding: 10px;
+		}
+
+		.logo {
+			left: 50%;
+		}
+
+		.pad {
+			padding: 10px;
+		}
+
+		nav {
+			display: flex;
+			justify-content: center;
+			background-color: #444;
+			padding: 0.5em 0;
+		}
+
+		nav a {
+			color: white;
+			text-decoration: none;
+			margin: 0 1em;
+		}
+
+		
+
+		#check-btn {
+			display: none;
+		}
+
+		#check-btn:checked~.menubars {
+			display: block;
+		}
+
+		.menubars {
+			display: none;
+		}
+	</style>
+
+
+
+
+
+</head>
+
+<body>
+	<!-- 홈페이지 헤더부분 -->
+	<div layout:fragment="content">
+		<nav>
+			<a th:href="@{/public/faqList}">Q/A</a>
+			<a href="/public/questionList">문의하기</a>
+			<a href="change">반품 및 교환</a>
+		</nav>
+		<div>
+			<tr th:each="faq, index : ${faqList}">
+				<input id="check-btn" type="checkbox" />
+
+				<div>
+					<label for="check-btn" td th:text="${faq.title}"></label></td>
+				</div>
+				<div>
+					<ul class="menubars" td th:text="${faq.content}">
+
+					</ul>
+			</tr>
+		</div>
+		<button onclick="location.href='/public/faqForm'" sec:authorize="hasRole('ROLE_ADMIN')">글쓰기</button>
+
+
+
+
+</body>
+
+</html>
