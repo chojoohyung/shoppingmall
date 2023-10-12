@@ -1,8 +1,4 @@
-# shoppingmall/jjh
-## log
-### 1011 이제 이렇게 하는거 알게됨
-### 1011 고객센터 글 등록, 글 조회 추가
-
+# shoppingmall
 
 
 
