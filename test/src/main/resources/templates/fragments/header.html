@@ -15,7 +15,7 @@
 	
 		<div class="nav1" style="border-bottom:solid">
 			<div class="pad-container">
-				<div class="pad" onclick="location.href='/public/productList/0'">BEST20</div>
+				<div class="pad" onclick="location.href='/public/productList'">BEST50</div>
 				<div class="pad" onclick="location.href='/public/usedList'">중고마켓</div>
 				<div class="pad" onclick="location.href='/public/faqList'">고객센터</div>
 			</div>
@@ -43,15 +43,15 @@
 		</div>
 		<div class="category1">
 			<nav >
-				<a th:href="@{/public/productList/0}">BEST50</a>
+				<a th:href="@{/public/productList}">BEST50</a>
 				<a th:href="@{/public/NEW}">NEW</a>
-				<a th:href="@{/public/top}">상의</a>
-				<a href="/public/#">하의</a>
-				<a href="/public/#">반팔티</a>
-				<a href="/public/#">셔츠</a>
-				<a href="/public/#">아우터</a>
-				<a href="/public/#">신발</a>
-				<a href="/public/#">ACC</a>
+				<a th:href="@{/public/productList?category=TOP}">상의</a>
+				<a th:href="@{/public/productList?category=BOTTOM}">하의</a>
+				<a th:href="@{/public/productList?category=T-SHIRTS}">반팔티</a>
+				<a th:href="@{/public/productList?category=SHIRTS}">셔츠</a>
+				<a th:href="@{/public/productList?category=OUTER}">아우터</a>
+				<a th:href="@{/public/productList?category=SHOES}">신발</a>
+				<a th:href="@{/public/productList?category=ACC}">ACC</a>
 		</div>
 		</nav>
 		<script>
