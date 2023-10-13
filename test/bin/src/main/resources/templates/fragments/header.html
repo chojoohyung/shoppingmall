@@ -38,6 +38,7 @@
 				<div class="pad" onclick="location.href='/public/login'">LOGIN</div>
 			</div>
 			<div class="pad-container" sec:authorize="isAuthenticated()">
+				<button class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='/admin/product/new'">상품등록</button>
 				<div class="text" ><span sec:authentication="name"></span>님 환영합니다 </div>
 				<div class="pad" onclick="location.href='/protected/mypage'">MY PAGE
 				</div>

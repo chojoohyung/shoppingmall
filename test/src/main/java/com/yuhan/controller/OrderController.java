@@ -1,6 +1,7 @@
 package com.yuhan.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yuhan.dto.OrderFormDto;
+import com.yuhan.dto.ProductDto;
 import com.yuhan.entity.Order;
 import com.yuhan.service.OrderService;
+import com.yuhan.service.ProductService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderController {
 	private final OrderService orderService;
+	private final ProductService productService;
 	
 	/*
 	 * User용 유저 주문내역 리스트
@@ -33,8 +37,14 @@ public class OrderController {
 	public String orderUser(Model model, Principal principal) {
 		
 		List<Order> orders = orderService.findUsername(principal.getName());
+		List<ProductDto> productDtoList = new ArrayList<>();
+		for (Order order : orders) {
+			ProductDto productDto = productService.getProductDtl(order.getOrderProducts().get(0).getProduct().getId());
+			productDtoList.add(productDto);
+		}
+		
 		model.addAttribute("orders", orders);
-	
+		model.addAttribute("productDtoList", productDtoList);
 		return "/protected/order";
 	}
 	
