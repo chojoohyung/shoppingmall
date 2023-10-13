@@ -16,6 +16,7 @@
     <style>
         /* 그리드 컨테이너 설정 */
         .grid-container {
+			margin-left:50px;
             display: grid;
             grid-template-columns: repeat(4, 1fr); /* 2열로 나눔 */
             grid-gap: 20px; /* 그리드 아이템 간의 간격 설정 */
@@ -26,6 +27,14 @@
             /*border: 1px solid #ddd;  그리드 아이템 테두리 설정 */
             padding: 10px; /* 그리드 아이템 안의 여백 설정 */
         }
+        .card-title{
+			font-size: 13px;
+		}
+		.list-group-item1{
+			margin-top:15px;
+			font-size: 9px;
+		}
+		
 
     </style>
     
@@ -34,24 +43,22 @@
 <body>
     <div layout:fragment="content">
     
-        <button class="btn btn-primary" onclick="decrementPage()">이전 페이지</button>
-        <button class="btn btn-primary" onclick="incrementPage()">다음 페이지</button>
+      <!--  <button class="btn btn-primary" onclick="decrementPage()">이전 페이지</button>
+        <button class="btn btn-primary" onclick="incrementPage()">다음 페이지</button>-->
         <button class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='/admin/product/new'">상품등록</button>
         <br>
         <div class="grid-container" >
-            <div class="card" style="width: 18rem;" th:each="p:${productPagingDto}">
+            <div class="card" style="width: 20rem;"  th:each="p:${productPagingDto}">
                 <input type="hidden" name="productImgIds" th:value="${p.id}">
                 <a th:href="'/public/product/'+${p.id}">
                     <img th:src="${p.productImgDtoList[0].imgUrl}" class="card-img-top" alt="...">
                 </a>
                 <div class="card-body">
-                    <h5 class="card-title" th:text="${p.name}">옷 이름</h5>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" th:text="${p.price}">옷 가격</li>
-                    <li class="list-group-item" th:text="${p.size}">옷 사이즈</li>
-                    <li class="list-group-item" th:text="${p.stock}">옷 재고</li>
-                </ul>
+                    <p class="card-title" th:text="${p.name}">옷 이름</p>              
+                    <p class="list-group-item1" th:text="${p.price}+'원 /'">옷 가격</p>
+                    <p class="list-group-item1" th:text="${p.size}">옷 사이즈</p>
+                </p>
+                
             </div>
         </div>
         <!--
@@ -70,7 +77,7 @@
             </div>
         </div>
         -->
-        <script>
+       <!-- <script>
             // 현재 페이지의 숫자를 가져옵니다.
             const currentPageNumber = parseInt(location.pathname.split('/').pop());
     
@@ -87,7 +94,7 @@
                 const nextPageNumber = currentPageNumber + 1;
                 location.href = `/public/productList/${nextPageNumber}`;
             }
-        </script>
+        </script>-->
     </div>
     
 

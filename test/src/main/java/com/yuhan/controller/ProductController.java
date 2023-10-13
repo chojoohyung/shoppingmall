@@ -107,7 +107,7 @@ public class ProductController {
 	 */
 	@GetMapping("/public/productList/{page}")
 	public String productList(Model model, @PathVariable("page") Optional<Integer> page) {
-		Pageable paging = PageRequest.of(page.isPresent() ? page.get() : 0 , 8);
+		Pageable paging = PageRequest.of(page.isPresent() ? page.get() : 0 , 100);
 		
 		List<ProductDto> productDto = productService.test(paging);
 		

@@ -1,6 +1,7 @@
 # shoppingmall/jjh
 ## log
-### 1012-13 고객센터 백엔 프엔 디비 연결, 제목 클릭하면 내용 펼쳐지는것까지 구현 
+### 1013 product,productList,header 프론트엔드 구현
+### header 상단바 고정 구현
 
 
 
