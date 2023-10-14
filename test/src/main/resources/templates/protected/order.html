@@ -46,7 +46,9 @@
                 
                 <!-- 이미지를 따로 model에 productDtoList 를 추가해 넣음. 해당 인덱스번호 찾기위해 42번줄 index사용 -->
                 <td>
-                    <img class="product-img" th:src="${productDtoList[index.index].productImgDtoList[0].imgUrl}" alt ="상품이미지">
+                    <div th:if="${not #strings.isEmpty(productDtoList[index.index])}">
+                        <img class="product-img" th:src="${productDtoList[index.index].productImgDtoList[0].imgUrl}" alt ="상품이미지">
+                    </div>    
                 </td>
                 
                 <td th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}">주문날짜</td>
