@@ -1,6 +1,6 @@
 # shoppingmall
 ## log
-## 
+### 1014 장바구니 기능 구현 
 ## 프로그램 실행방법
 ### DB 생성
 1. mysql workbench localhost:3306 -> spring_web SCHEMA 생성

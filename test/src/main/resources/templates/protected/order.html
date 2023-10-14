@@ -30,8 +30,8 @@
         <table>
 			<tr>
 				<th>#</th>
+                <th>주문날짜</th>
                 <th>상품이미지</th>
-				<th>주문날짜</th>
                 <th>상품이름</th>
                 <th>컬러</th>
 				<th>사이즈</th>
@@ -41,15 +41,19 @@
 			</tr>
 			<tr th:each="order, index:${orders}">
                 <input type="hidden" name="productImgIds" th:value="${order.id}">
-				<td th:text="${index.index}">#</td>
+                <td th:text="${index.index}">#</td>
+                <td th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}">주문날짜</td>
+				
                 
                 
                 <!-- 이미지를 따로 model에 productDtoList 를 추가해 넣음. 해당 인덱스번호 찾기위해 42번줄 index사용 -->
+                
                 <td>
-                    <img class="product-img" th:src="${productDtoList[index.index].productImgDtoList[0].imgUrl}" alt ="상품이미지">
+                    <div th:each="products, status:${order.orderProducts}">
+                        <img class="product-img" th:src="${productDtoList[index.index].productImgDtoList[0].imgUrl}" alt ="상품이미지">
+                    </div>
                 </td>
                 
-                <td th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}">주문날짜</td>
 				<td>
                     <div th:each="products, status:${order.orderProducts}">
                         <span th:text="${products.product.name}">상품이름</span>

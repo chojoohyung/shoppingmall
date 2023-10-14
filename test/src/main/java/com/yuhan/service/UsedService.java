@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yuhan.dto.OrderProductDto;
 import com.yuhan.dto.ProductDto;
@@ -16,7 +17,6 @@ import com.yuhan.repository.ProductRepository;
 import com.yuhan.repository.UsedRepository;
 
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service

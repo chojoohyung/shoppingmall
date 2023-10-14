@@ -35,13 +35,6 @@ public class TestController {
 		return "/protected/change";
 	}
 	
-
-	
-	@GetMapping("/protected/cart")
-	public String cart() {
-		return "/protected/cart";
-	}
-	
 	@GetMapping("/protected/orderchange")
 	public String orderchange() {
 		return "/protected/orderchange";
