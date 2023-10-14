@@ -39,7 +39,6 @@ public class FaqController {
 	public String faqListGet(Model model) {
 		List<Faq> faqList = faqService.findAll();
 		model.addAttribute("faqList",faqList);
-		System.out.println(faqList.get(3).getContent());
 		return "/public/faqList";
 }
 }
