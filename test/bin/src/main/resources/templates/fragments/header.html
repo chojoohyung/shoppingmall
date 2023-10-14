@@ -25,7 +25,7 @@
 				<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 				<div class="pad" onclick="location.href='/public/productList/0'">BEST20</div>
 				<div class="pad" onclick="location.href='/public/usedList'">중고마켓</div>
-				<div class="pad" onclick="location.href='/protected/cs'">고객센터</div>
+				<div class="pad" onclick="location.href='/public/faqList'">고객센터</div>
 			</div>
 			<a href="/">
 				<div class="logo">
@@ -38,6 +38,7 @@
 				<div class="pad" onclick="location.href='/public/login'">LOGIN</div>
 			</div>
 			<div class="pad-container" sec:authorize="isAuthenticated()">
+				<button class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='/admin/product/new'">상품등록</button>
 				<div class="text" ><span sec:authentication="name"></span>님 환영합니다 </div>
 				<div class="pad" onclick="location.href='/protected/mypage'">MY PAGE
 				</div>

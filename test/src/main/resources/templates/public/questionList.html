@@ -92,18 +92,7 @@
 			padding: 10px;
 		}
 
-		nav {
-			display: flex;
-			justify-content: center;
-			background-color: #444;
-			padding: 0.5em 0;
-		}
-
-		nav a {
-			color: white;
-			text-decoration: none;
-			margin: 0 1em;
-		}
+	
 
 		.container {
 			display: flex;
@@ -118,7 +107,7 @@
 <body>
 	<div layout:fragment="content">
 <nav>
-			<a th:href="@{/public/faq}">Q/A</a>
+			<a th:href="@{/public/faqList}">Q/A</a>
 			<a href="/public/questionList">문의하기</a>
 			<a href="change">반품 및 교환</a>
 		</nav>

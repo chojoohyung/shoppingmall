@@ -10,22 +10,15 @@
 <body>
 
 	<!-- 홈페이지 헤더부분 -->
+	
 	<div th:fragment="header" class="header">
-		<div id="mySidenav" class="sidenav">
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			<a href="/">HOME</a>
-			<a href="#">TOP</a>
-			<a href="#">SHIRTS</a>
-			<a href="#">PANTS</a>
-			<a href="#">ACC</a>
-			<a href="../protected/cs">C/S</a>
-		</div>
-		<div class="nav">
+	
+		<div class="nav1" style="border-bottom:solid">
 			<div class="pad-container">
-				<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-				<div class="pad" onclick="location.href='/public/productList/0'">BEST20</div>
+				<div class="pad" onclick="location.href='/public/productList'">BEST50</div>
 				<div class="pad" onclick="location.href='/public/usedList'">중고마켓</div>
-				<div class="pad" onclick="location.href='/public/faq'">고객센터</div>
+				<div class="pad" onclick="location.href='/public/faqList'">고객센터</div>
+				<button class="pad" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='/admin/product/new'">상품등록</button>
 			</div>
 			<a href="/">
 				<div class="logo">
@@ -38,6 +31,7 @@
 				<div class="pad" onclick="location.href='/public/login'">LOGIN</div>
 			</div>
 			<div class="pad-container" sec:authorize="isAuthenticated()">
+				
 				<div class="text" ><span sec:authentication="name"></span>님 환영합니다 </div>
 				<div class="pad" onclick="location.href='/protected/mypage'">MY PAGE
 				</div>
@@ -45,8 +39,23 @@
 				<form th:action="@{/logout}" method="post">
 					<button class="pad" type="submit">LOGOUT</button>
 				</form>
+				
 			</div>
+			
 		</div>
+		<div class="category1">
+			<nav >
+				<a th:href="@{/public/productList}">BEST50</a>
+				<a th:href="@{/}">NEW</a>
+				<a th:href="@{/public/productList?category=TOP}">상의</a>
+				<a th:href="@{/public/productList?category=BOTTOM}">하의</a>
+				<a th:href="@{/public/productList?category=T-SHIRTS}">반팔티</a>
+				<a th:href="@{/public/productList?category=SHIRTS}">셔츠</a>
+				<a th:href="@{/public/productList?category=OUTER}">아우터</a>
+				<a th:href="@{/public/productList?category=SHOES}">신발</a>
+				<a th:href="@{/public/productList?category=ACC}">ACC</a>
+		</div>
+		</nav>
 		<script>
 			function openNav() {
 				document.getElementById("mySidenav").style.width = "250px";
@@ -57,6 +66,7 @@
 			}
 		</script>
 	</div>
+	
 </body>
 
 </html>

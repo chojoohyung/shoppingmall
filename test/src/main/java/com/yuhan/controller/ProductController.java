@@ -103,13 +103,33 @@ public class ProductController {
 	}
 	
 	/*
-	 * 상품정보 리스트
+	 * Main 상품게시글
 	 */
-	@GetMapping("/public/productList/{page}")
-	public String productList(Model model, @PathVariable("page") Optional<Integer> page) {
-		Pageable paging = PageRequest.of(page.isPresent() ? page.get() : 0 , 8);
+	@GetMapping("/")
+	public String main(Model model, Optional<Integer> page) {
+		Pageable paging = PageRequest.of(page.isPresent() ? page.get() : 0 , 100);
 		
 		List<ProductDto> productDto = productService.test(paging);
+		
+		model.addAttribute("productPagingDto", productDto);
+		return "/main";
+	}
+	
+	/*
+	 * BEST50 상품게시글
+	 */
+	@GetMapping("/public/productList")
+	public String productList(Model model, @RequestParam(name = "category", required = false) String category, Optional<Integer> page) {
+		Pageable paging = PageRequest.of(page.isPresent() ? page.get() : 0 , 50);
+		
+		List<ProductDto> productDto;
+		
+		if (category != null) {
+	    	productDto = productService.findcategory(paging, category);
+	    } else {
+	        // 카테고리가 전달되지 않은 경우 기본적으로 전체 상품 목록을 가져옵니다.
+	        productDto = productService.test(paging);
+	    }
 		
 		model.addAttribute("productPagingDto", productDto);
 		return "/public/productList";

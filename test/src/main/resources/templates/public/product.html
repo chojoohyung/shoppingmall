@@ -15,32 +15,44 @@
          body {
             font-family: Arial, sans-serif;
             background-color: #fff;
-            padding: 20px;
+            padding: 10px;
         }
 
         /* 상품 정보 컨테이너 스타일 */
         .product-info-container {
             background-color: #fff;
             border: 1px solid #ddd;
-            padding: 20px;
+            padding: 5%;
             margin: 20px auto;
-            max-width: 600px;
+            max-width: 1000px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
             display: flex; /* 이미지와 정보를 가로로 나란히 배치하기 위해 flex 사용 */
         }
 
         /* 상품 이미지 스타일 */
-        .product-img {
-            max-width: 50%; /* 이미지 컨테이너의 절반 너비를 차지 */
-            height: auto;
-            margin-right: 20px; /* 이미지 오른쪽 여백 추가 */
-        }
+
+    .product-img {
+        max-width: 50%;
+        height: auto;
+        margin-right: 20px;
+        border: 1px solid #ddd;
+    }
 
         /* 상품 정보 스타일 */
         .product-details {
-            font-size: 18px;
+            font-size: 16px;
+            margin-left:60px;
             margin-bottom: 10px;
+           
         }
+        /*상품 제목*/
+        .product-details1{
+			font-size:40px;
+			margin-left:60px;
+			margin-top:0px;
+			
+			
+		}
 
         /* 주문 관련 스타일 */
         .order-section {
@@ -53,20 +65,37 @@
         }
 
         /* 주문 버튼 스타일 */
-        .order-button {
-            background-color: #007bff;
+        .order-button1 {
+            background-color: rgb(0, 0, 0);
             color: #fff;
             border: none;
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 15px 50%;
+            font-size: 14px;
             cursor: pointer;
+             margin-left:60px;
+             margin-top:50px;
         }
+         .order-button2 {
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            border-color:black;
+            padding: 18px 49.2%;
+            font-size: 14px;
+            cursor: pointer;
+             margin-left:60px;
+             margin-top:5px;
+        }
+     .product-images{
+		  margin-left: 20%;
+	 }
+        
+		.form-control{
+			 margin-left:60px;
+			 
+		}
 
-        /* 주문 버튼 호버 스타일 */
-        .order-button:hover {
-            background-color: #0056b3;
-        }
     </style>
+    
 </head>
 <body>
     <div layout:fragment="content">
@@ -77,13 +106,14 @@
             <img class="product-img" th:src="${productDto.productImgDtoList[0].imgUrl}" alt="상품 이미지">
             <div>
                 <input type="hidden" id="productId" th:value="${productDto.id}">
-                <p class="product-details" th:text="'이름 : '+${productDto.name}">옷 이름</p>
-                <p class="product-details" th:text="'가격 : '+${productDto.price}">옷 가격</p>
-                <p class="product-details" th:text="'카테고리 : '+${productDto.category}">옷 카테고리</p>
-                <p class="product-details" th:text="'사이즈 : '+${productDto.size}">옷 사이즈</p>
-                <p class="product-details" th:text="'재고 : '+${productDto.stock}">옷 재고</p>
-                <input type="number" name="count" sec:authorize="hasRole('ROLE_USER')" id="count" class="form-control" value="1" min="1">
-                <button type="button" onclick="order()" sec:authorize="hasRole('ROLE_USER')" class="order-button">주문하기</button>
+                <p class="product-details1" th:text="''+${productDto.name}">옷 이름</p>
+                <p class="product-details" th:text="'판매가 &nbsp;&nbsp;&nbsp; ' +${productDto.price}">옷 가격</p>
+                <p class="product-details" th:text="'사이즈 &nbsp;&nbsp;&nbsp;&nbsp;'+${productDto.size}">사이즈 </p>
+                <p class="product-details" th:text="'컬러 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '+${productDto.size}">컬러 </p>
+                <p class="product-details" th:text="'재고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '+${productDto.stock}">옷 재고</p>
+                <input type="number" name="count" sec:authorize="hasRole('ROLE_USER')" id="count" class="form-control" value="1" min="1"><br>
+                <button type="button" onclick="order()" sec:authorize="hasRole('ROLE_USER')" class="order-button1">BUY NOW</button><br>
+    <!--장바구니 추가해주세요--><button type="button" onclick="order()" sec:authorize="hasRole('ROLE_USER')" class="order-button2">CART</button>
                 <button type="button" id="yourButtonId" sec:authorize="hasRole('ROLE_ADMIN')">상품변경</button>
                 
             </div>
@@ -137,7 +167,7 @@
                 $("#totalPrice").html(totalPrice + '원');
             }
 
-            function order(){
+            function order(){ 
                   
                 var token = $("meta[name='_csrf']").attr("content");
                 var header = $("meta[name='_csrf_header']").attr("content");
