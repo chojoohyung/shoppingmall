@@ -1,5 +1,7 @@
 package com.yuhan.entity;
 
+import java.util.List;
+
 import com.yuhan.constant.Size;
 import com.yuhan.dto.ProductDto;
 import com.yuhan.exception.OutOfStockException;
@@ -9,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -43,6 +46,9 @@ public class Product {
 	private int stock;
 	
 	private String category;
+	
+	@OneToMany(mappedBy = "product")
+	private List<ProductImg> productImgList;
 	
 	public void updateProduct(ProductDto productDto) {
 		this.name = productDto.getName();
