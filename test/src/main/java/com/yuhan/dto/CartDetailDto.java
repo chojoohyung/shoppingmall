@@ -2,10 +2,11 @@ package com.yuhan.dto;
 
 import com.yuhan.constant.Size;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Data
 public class CartDetailDto {
 
 	private Long cartProductId;
