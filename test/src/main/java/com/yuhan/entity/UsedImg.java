@@ -36,7 +36,7 @@ public class UsedImg {
 	@JoinColumn(name="used_id")
 	private Used used;
 	
-	public void updateProductImg(String oriImgName, String imgName, String imgUrl) {
+	public void updateUsedImg(String oriImgName, String imgName, String imgUrl) {
 		this.oriImgName = oriImgName;
 		this.imgName = imgName;
 		this.imgUrl = imgUrl;

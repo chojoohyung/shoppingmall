@@ -38,7 +38,7 @@ public class UsedFormDto {
 	 * Entity entity = Dto.createEntity();
 	 */
 	public Used createUsed() {
-		
+		this.createDate = LocalDateTime.now();
 		return modelMapper.map(this, Used.class);
 	}
 	
