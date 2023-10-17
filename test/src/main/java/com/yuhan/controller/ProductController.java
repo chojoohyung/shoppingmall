@@ -124,6 +124,9 @@ public class ProductController {
 		
 		List<ProductDto> productDto;
 		
+		/*
+		 * 카테고리
+		 */
 		if (category != null) {
 	    	productDto = productService.findcategory(paging, category);
 	    } else {

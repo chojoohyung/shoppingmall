@@ -44,11 +44,11 @@ public class Used {
 	@JoinColumn(name = "orderProduct_id")
 	private OrderProduct orderProduct;
 	
-	public void updateUsed(UsedFormDto usedFormDto, OrderProduct orderProduct) {
+	public void updateUsed(UsedFormDto usedFormDto) {
 		this.title = usedFormDto.getTitle();
 		this.price = usedFormDto.getPrice();
 		this.content = usedFormDto.getContent();
-		this.orderProduct = orderProduct;
+		this.createDate = usedFormDto.getCreateDate();
 		
 	}
 	
