@@ -35,10 +35,10 @@ public class Cart {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@ManyToOne
-	@JoinColumn(name="product_id")
-	private Product product;
-	
-	private Date cart_date;
+	public static Cart createCart(User user) {
+		Cart cart = new Cart();
+		cart.setUser(user);
+		return cart;
+	}
 	
 }

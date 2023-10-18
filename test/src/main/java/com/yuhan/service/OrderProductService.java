@@ -4,19 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yuhan.dto.OrderProductDto;
-import com.yuhan.dto.ProductImgDto;
-import com.yuhan.dto.UsedFormDto;
-import com.yuhan.entity.Order;
 import com.yuhan.entity.OrderProduct;
-import com.yuhan.entity.ProductImg;
 import com.yuhan.repository.OrderProductRepository;
-import com.yuhan.repository.OrderRepository;
-import com.yuhan.repository.ProductRepository;
-import com.yuhan.repository.UserRepository;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -25,6 +18,16 @@ import lombok.RequiredArgsConstructor;
 public class OrderProductService {
 	private final OrderProductRepository orderProductRepository;
 	
-	
+	public List<OrderProductDto> findByName(String username){
+		List<OrderProduct> orderProductList = orderProductRepository.findOrderProductByUserName(username);
+		
+		List<OrderProductDto> orderProductDtoList = new ArrayList<>();
+		for (OrderProduct orderProduct : orderProductList) {
+			OrderProductDto orderProductDto = OrderProductDto.of(orderProduct);
+			orderProductDtoList.add(orderProductDto);
+		}
+		
+		return orderProductDtoList;
+	}
 	
 }

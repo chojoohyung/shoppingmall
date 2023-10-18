@@ -20,13 +20,22 @@ import lombok.Setter;
 public class UsedFormDto {
 	
 	private Long id;
+	
 	private String title;
+	
 	private int price;
+	
 	private String content;
+	
 	private LocalDateTime createDate;
 	
 	private Long selectOrderProductId;
+	
 	private List<OrderProductDto> orderProductDtoList = new ArrayList<>();
+	
+	private List<UsedImgDto> usedImgDtoList = new ArrayList<>();
+	
+	private List<Long> usedImgIds = new ArrayList<>();
 	
 	/*
 	 * ModelMapper : Entity와 Dto간의 같은필드 값 매핑
@@ -38,7 +47,7 @@ public class UsedFormDto {
 	 * Entity entity = Dto.createEntity();
 	 */
 	public Used createUsed() {
-		
+		this.createDate = LocalDateTime.now();
 		return modelMapper.map(this, Used.class);
 	}
 	

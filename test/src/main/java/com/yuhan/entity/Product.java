@@ -1,5 +1,7 @@
 package com.yuhan.entity;
 
+import java.util.List;
+
 import com.yuhan.constant.Size;
 import com.yuhan.dto.ProductDto;
 import com.yuhan.exception.OutOfStockException;
@@ -9,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,7 +45,12 @@ public class Product {
 	@Column(nullable=false)
 	private int stock;
 	
+	private int sales;
+	
 	private String category;
+	
+	@OneToMany(mappedBy = "product")
+	private List<ProductImg> productImgList;
 	
 	public void updateProduct(ProductDto productDto) {
 		this.name = productDto.getName();
@@ -58,7 +66,9 @@ public class Product {
 		if(restStock<0) {
 			throw new OutOfStockException("상품 재고가 부족합니다. 현재 재고 수량 : "+this.stock);
 		}
+		this.sales += stock;
 		this.stock = restStock;
 	}
+
 	
 }

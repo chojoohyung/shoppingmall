@@ -23,14 +23,10 @@ DROP TABLE IF EXISTS `cart`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cart` (
-  `cart_date` datetime(6) DEFAULT NULL,
   `id` bigint NOT NULL,
-  `product_id` bigint DEFAULT NULL,
   `user_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK3d704slv66tw6x5hmbm6p2x3u` (`product_id`),
   KEY `FKl70asp4l4w0jmbm1tqyofho4o` (`user_id`),
-  CONSTRAINT `FK3d704slv66tw6x5hmbm6p2x3u` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   CONSTRAINT `FKl70asp4l4w0jmbm1tqyofho4o` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -42,6 +38,57 @@ CREATE TABLE `cart` (
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cart_product`
+--
+
+DROP TABLE IF EXISTS `cart_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cart_product` (
+  `count` int NOT NULL,
+  `cart_id` bigint DEFAULT NULL,
+  `id` bigint NOT NULL,
+  `product_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKlv5x4iresnv4xspvomrwd8ej9` (`cart_id`),
+  KEY `FK2kdlr8hs2bwl14u8oop49vrxi` (`product_id`),
+  CONSTRAINT `FK2kdlr8hs2bwl14u8oop49vrxi` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
+  CONSTRAINT `FKlv5x4iresnv4xspvomrwd8ej9` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cart_product`
+--
+
+LOCK TABLES `cart_product` WRITE;
+/*!40000 ALTER TABLE `cart_product` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cart_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cart_product_seq`
+--
+
+DROP TABLE IF EXISTS `cart_product_seq`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cart_product_seq` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cart_product_seq`
+--
+
+LOCK TABLES `cart_product_seq` WRITE;
+/*!40000 ALTER TABLE `cart_product_seq` DISABLE KEYS */;
+INSERT INTO `cart_product_seq` VALUES (1);
+/*!40000 ALTER TABLE `cart_product_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -64,6 +111,55 @@ LOCK TABLES `cart_seq` WRITE;
 /*!40000 ALTER TABLE `cart_seq` DISABLE KEYS */;
 INSERT INTO `cart_seq` VALUES (1);
 /*!40000 ALTER TABLE `cart_seq` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `faq`
+--
+
+DROP TABLE IF EXISTS `faq`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `faq` (
+  `id` bigint NOT NULL,
+  `user_id` bigint DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKindd77321r69a4vielp3cloel` (`user_id`),
+  CONSTRAINT `FKindd77321r69a4vielp3cloel` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `faq`
+--
+
+LOCK TABLES `faq` WRITE;
+/*!40000 ALTER TABLE `faq` DISABLE KEYS */;
+/*!40000 ALTER TABLE `faq` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `faq_seq`
+--
+
+DROP TABLE IF EXISTS `faq_seq`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `faq_seq` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `faq_seq`
+--
+
+LOCK TABLES `faq_seq` WRITE;
+/*!40000 ALTER TABLE `faq_seq` DISABLE KEYS */;
+INSERT INTO `faq_seq` VALUES (1);
+/*!40000 ALTER TABLE `faq_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -323,9 +419,12 @@ DROP TABLE IF EXISTS `question`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `question` (
   `id` bigint NOT NULL,
+  `user_id` bigint DEFAULT NULL,
   `content` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `FK4ekrlbqiybwk8abhgclfjwnmc` (`user_id`),
+  CONSTRAINT `FK4ekrlbqiybwk8abhgclfjwnmc` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -562,7 +661,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (_binary '',1,NULL,NULL,'$2a$10$unSTEvBCtGaPXTnNNDBIAeZRSmNf8Eh2vL5vv1CrYLLnpM10vwHC6',NULL,'test'),(_binary '',2,NULL,NULL,'$2a$10$Foi8Qp4o9LLV2vF63p/cm..eGGNp7WB3cSo5Wlw/9uxTp5pVHkrtK',NULL,'admin');
+INSERT INTO `user` VALUES (_binary '',1,NULL,NULL,'$2a$10$dXua.dKCtsH0NvmjQuZin.6FdpsOz452Hlja3i8nFQSgWqR0htfj.',NULL,'user'),(_binary '',2,NULL,NULL,'$2a$10$avZx7uOfxbyVzRqCmLpCl.UArrqMjz12bKkyPycp53LCwcorJUcSe',NULL,'admin');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -624,4 +723,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-10  7:41:44
+-- Dump completed on 2023-10-16 16:04:31

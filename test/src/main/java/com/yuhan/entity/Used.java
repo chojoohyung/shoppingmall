@@ -1,6 +1,7 @@
 package com.yuhan.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.yuhan.dto.UsedFormDto;
 
@@ -10,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,16 +37,18 @@ public class Used {
 	
 	private LocalDateTime createDate; 
 	
+	@OneToMany(mappedBy = "used")
+	private List<UsedImg> usedImgList;
 	
 	@ManyToOne
 	@JoinColumn(name = "orderProduct_id")
 	private OrderProduct orderProduct;
 	
-	public void updateUsed(UsedFormDto usedFormDto, OrderProduct orderProduct) {
+	public void updateUsed(UsedFormDto usedFormDto) {
 		this.title = usedFormDto.getTitle();
 		this.price = usedFormDto.getPrice();
 		this.content = usedFormDto.getContent();
-		this.orderProduct = orderProduct;
+		this.createDate = usedFormDto.getCreateDate();
 		
 	}
 	
