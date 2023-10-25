@@ -62,7 +62,7 @@ public class UsedController {
 	 */
 	@PostMapping("/protected/used/new")
 	public String JproductFormPost(@Valid UsedFormDto usedFormDto, BindingResult bindingResult, Model model, 
-			@RequestParam("usedImgFile") List<MultipartFile> usedImgFilList) {
+			@RequestParam("usedImgFile") List<MultipartFile> usedImgFilList, @RequestParam("selectedOrderProductId") Long selectedOrderProductId) {
 		
 		if(bindingResult.hasErrors()) {
 			return "/protected/usedForm";
@@ -74,6 +74,7 @@ public class UsedController {
 		}
 		
 		try {
+			usedFormDto.setOrderProduct(orderProductService.findById(selectedOrderProductId));
 			usedService.save(usedFormDto, usedImgFilList);
 			
 		}catch(Exception e){

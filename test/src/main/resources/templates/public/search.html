@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="https://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/layout_public}">
+<head>
+	<meta charset="UTF-8">
+	<link href="../css/register.css" rel="stylesheet">
+</head>
+
+
+<body>
+	
+	<div layout:fragment="content">
+	<form class="form-search" th:action="@{/public/search}" method="post">
+	<table align=center>
+		
+	<tr><td colspan=2 align=center height=40><b>아이디찾기</b><td></tr>
+	
+	<div class="textForm">
+	<tr>
+		<td align=right>이메일&nbsp;</td> 
+		<td><input type="text" id="email" name="email" class="emailform-control" placeholder="email" required autofocus></td>
+	</tr>
+	</div>
+	<form role="form" method="post" th:object="${email}">
+			<td colspan=2 align=center height=50>
+			<div class="pad" onclick="location.href='/public/idresult'">아이디 찾기</div>
+				<input type="hidden" th:name = "${_csrf.parameterName}" th:value = "${_csrf.token}">
+			</form>
+	<tr>
+		<!--<td colspan=2 align=center height=50>
+			<a href="#"><button onclick="alert('아이디찾기')">아이디찾기</button></a>
+		</td>-->
+	</tr>
+
+
+	</table>
+	</form>
+	</div>
+	
+	
+	
+</body>
+</html>

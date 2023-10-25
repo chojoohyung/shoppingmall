@@ -10,6 +10,7 @@ import com.yuhan.dto.OrderProductDto;
 import com.yuhan.entity.OrderProduct;
 import com.yuhan.repository.OrderProductRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -28,6 +29,10 @@ public class OrderProductService {
 		}
 		
 		return orderProductDtoList;
+	}
+	
+	public OrderProduct findById(Long id) {
+		return orderProductRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 	}
 	
 }

@@ -29,4 +29,9 @@ public class AccountController {
 		userService.save(user);
 		return "/public/login";
 	}
+	
+	@GetMapping("/public/search")
+    public String showSearchForm() {
+        return "/public/search"; // 검색 폼을 보여주는 HTML 파일 이름
+    }
 }

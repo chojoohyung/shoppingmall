@@ -104,7 +104,7 @@
 			<div class="input-group-prepend">
 				<span class="input-group-text">구매목록</span>
 			</div>
-			<select th:field="*{selectOrderProductId}" class="custom-select">
+			<select name="selectedOrderProductId" class="custom-select">
 				<option th:each="orderProductDto : ${orderProductDtoList}"  th:value="${orderProductDto.id}" >
 					<div th:text="${orderProductDto.product.name}"></div>
 					<div th:text="${#temporals.format(orderProductDto.order.orderDate, 'yyyy-MM-dd HH:mm')}"></div>

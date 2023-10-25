@@ -56,10 +56,7 @@ public class CartController {
 	@GetMapping("/protected/cart")
 	public String orderList(Principal principal, Model model) {
 		List<CartDetailDto> cartDetailDtoList = cartService.getCartList(principal.getName());
-
-		for (CartDetailDto cartDetailDto : cartDetailDtoList) {
-			System.out.println(cartDetailDto.getSize().toString());
-		}
+		System.out.println(cartDetailDtoList.size());
 		
 		model.addAttribute("cartDetailDtoList", cartDetailDtoList);
 		return "/protected/cart";

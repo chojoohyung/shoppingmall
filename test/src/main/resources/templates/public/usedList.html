@@ -73,12 +73,6 @@
 	<div layout:fragment="content">
 		<p>중고 옷 사이트</p>
 
-		<div class="category-buttons">
-			<button class="category" id="tops">상의</button>
-			<button class="category" id="bottoms">하의</button>
-			<button class="category" id="outerwear">아우터</button>
-			<button class="category" id="shoes">신발</button>
-		</div>
 		<button onclick="location.href='/protected/used/new'" sec:authorize="hasRole('ROLE_USER')">중고 글등록</button>
 		<table>
 			<tr>
@@ -95,7 +89,9 @@
 				<td th:text="${index.index}">#</td>
 				<td>
 					<div th:each="usedImg, index:${used.usedImgList}">
-						<img class="product-img" th:src="${usedImg.imgUrl}" alt="Image">
+						<th:block th:if="${index.index == 0}">
+							<img class="product-img" th:src="${usedImg.imgUrl}" alt="Image">
+						</th:block>
 					</div>
 				</td>
 				<td><a th:text="${used.title}" th:href="'/public/used/'+${used.id}">제목</a></td>
@@ -112,30 +108,6 @@
 		</table>
 
 		<script>
-			const categoryElements = document.querySelectorAll('.category');
-	
-			categoryElements.forEach(button => {
-				button.addEventListener('click', () => {
-					const categoryId = button.id;
-	
-					if (categoryId === 'tops') {
-						// 상의 페이지로 전환
-						location.href = 'top';
-					} else if (categoryId === 'bottoms') {
-						// 하의 페이지로 전환
-						contentDiv.innerHTML = '<h1>하의 페이지</h1><p>이곳에 하의 관련 내용이 들어갑니다.</p>';
-					} else if (categoryId === 'outerwear') {
-						// 아우터 페이지로 전환
-						contentDiv.innerHTML = '<h1>아우터 페이지</h1><p>이곳에 아우터 관련 내용이 들어갑니다.</p>';
-					} else if (categoryId === 'shoes') {
-						// 신발 페이지로 전환
-						contentDiv.innerHTML = '<h1>신발 페이지</h1><p>이곳에 신발 관련 내용이 들어갑니다.</p>';
-					}
-				});
-			});
-
-			
-
 
 		</script>
 	</div>

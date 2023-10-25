@@ -29,7 +29,7 @@ public class UsedFormDto {
 	
 	private LocalDateTime createDate;
 	
-	private Long selectOrderProductId;
+	private OrderProduct orderProduct;
 	
 	private List<OrderProductDto> orderProductDtoList = new ArrayList<>();
 	
@@ -48,7 +48,9 @@ public class UsedFormDto {
 	 */
 	public Used createUsed() {
 		this.createDate = LocalDateTime.now();
-		return modelMapper.map(this, Used.class);
+		
+		Used used = modelMapper.map(this, Used.class);
+		return used;
 	}
 	
 	/*
