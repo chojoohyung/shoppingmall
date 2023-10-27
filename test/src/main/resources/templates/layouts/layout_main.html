@@ -6,6 +6,7 @@
     <title>membership</title>
 
     <link th:href="@{css/header.css}" rel="stylesheet">
+     <link th:href="@{css/footer.css}" rel="stylesheet">
     
 
 </head>
@@ -15,6 +16,9 @@
     <div layout:fragment="content">
 
     </div>
+     <div th:replace="~{fragments/footer::footer}"></div>
+
+</body> 
     
 
 </body>

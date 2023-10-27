@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
     <title>membership</title>
     <link th:href="@{../css/header.css}" rel="stylesheet">
-    
+     <link th:href="@{../css/footer.css}" rel="stylesheet">
 
 </head>
 <body>
@@ -14,7 +14,9 @@
     <div layout:fragment="content">
 
     </div>
-    
+     <div th:replace="~{fragments/footer::footer}"></div>
+
+</body> 
 
 </body>
 </html>
