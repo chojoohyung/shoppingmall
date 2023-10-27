@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: spring_web
 -- ------------------------------------------------------
--- Server version	8.0.30
+-- Server version	8.0.34
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,14 +23,10 @@ DROP TABLE IF EXISTS `cart`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cart` (
-  `cart_date` datetime(6) DEFAULT NULL,
   `id` bigint NOT NULL,
-  `product_id` bigint DEFAULT NULL,
   `user_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK3d704slv66tw6x5hmbm6p2x3u` (`product_id`),
   KEY `FKl70asp4l4w0jmbm1tqyofho4o` (`user_id`),
-  CONSTRAINT `FK3d704slv66tw6x5hmbm6p2x3u` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   CONSTRAINT `FKl70asp4l4w0jmbm1tqyofho4o` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -42,6 +38,57 @@ CREATE TABLE `cart` (
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cart_product`
+--
+
+DROP TABLE IF EXISTS `cart_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cart_product` (
+  `count` int NOT NULL,
+  `cart_id` bigint DEFAULT NULL,
+  `id` bigint NOT NULL,
+  `product_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKlv5x4iresnv4xspvomrwd8ej9` (`cart_id`),
+  KEY `FK2kdlr8hs2bwl14u8oop49vrxi` (`product_id`),
+  CONSTRAINT `FK2kdlr8hs2bwl14u8oop49vrxi` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
+  CONSTRAINT `FKlv5x4iresnv4xspvomrwd8ej9` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cart_product`
+--
+
+LOCK TABLES `cart_product` WRITE;
+/*!40000 ALTER TABLE `cart_product` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cart_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cart_product_seq`
+--
+
+DROP TABLE IF EXISTS `cart_product_seq`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cart_product_seq` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cart_product_seq`
+--
+
+LOCK TABLES `cart_product_seq` WRITE;
+/*!40000 ALTER TABLE `cart_product_seq` DISABLE KEYS */;
+INSERT INTO `cart_product_seq` VALUES (1);
+/*!40000 ALTER TABLE `cart_product_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -64,6 +111,55 @@ LOCK TABLES `cart_seq` WRITE;
 /*!40000 ALTER TABLE `cart_seq` DISABLE KEYS */;
 INSERT INTO `cart_seq` VALUES (1);
 /*!40000 ALTER TABLE `cart_seq` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `faq`
+--
+
+DROP TABLE IF EXISTS `faq`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `faq` (
+  `id` bigint NOT NULL,
+  `user_id` bigint DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKindd77321r69a4vielp3cloel` (`user_id`),
+  CONSTRAINT `FKindd77321r69a4vielp3cloel` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `faq`
+--
+
+LOCK TABLES `faq` WRITE;
+/*!40000 ALTER TABLE `faq` DISABLE KEYS */;
+/*!40000 ALTER TABLE `faq` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `faq_seq`
+--
+
+DROP TABLE IF EXISTS `faq_seq`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `faq_seq` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `faq_seq`
+--
+
+LOCK TABLES `faq_seq` WRITE;
+/*!40000 ALTER TABLE `faq_seq` DISABLE KEYS */;
+INSERT INTO `faq_seq` VALUES (1);
+/*!40000 ALTER TABLE `faq_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -93,7 +189,6 @@ CREATE TABLE `order_product` (
 
 LOCK TABLES `order_product` WRITE;
 /*!40000 ALTER TABLE `order_product` DISABLE KEYS */;
-INSERT INTO `order_product` VALUES (1,123,1,1,1),(112,123,2,2,1),(4,123,52,52,2),(1,123,53,53,2),(1,123,102,102,1);
 /*!40000 ALTER TABLE `order_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,7 +210,7 @@ CREATE TABLE `order_product_seq` (
 
 LOCK TABLES `order_product_seq` WRITE;
 /*!40000 ALTER TABLE `order_product_seq` DISABLE KEYS */;
-INSERT INTO `order_product_seq` VALUES (201);
+INSERT INTO `order_product_seq` VALUES (1);
 /*!40000 ALTER TABLE `order_product_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +237,6 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,'2023-10-09 22:42:14.044022',1),(2,'2023-10-10 02:40:01.436393',1),(52,'2023-10-10 03:07:08.482839',1),(53,'2023-10-10 03:07:15.788842',1),(102,'2023-10-10 03:31:25.240126',102);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,7 +258,7 @@ CREATE TABLE `orders_seq` (
 
 LOCK TABLES `orders_seq` WRITE;
 /*!40000 ALTER TABLE `orders_seq` DISABLE KEYS */;
-INSERT INTO `orders_seq` VALUES (201);
+INSERT INTO `orders_seq` VALUES (1);
 /*!40000 ALTER TABLE `orders_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,6 +319,7 @@ DROP TABLE IF EXISTS `product`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `product` (
   `price` int NOT NULL,
+  `sales` int NOT NULL,
   `size` tinyint NOT NULL,
   `stock` int NOT NULL,
   `id` bigint NOT NULL,
@@ -241,7 +336,6 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (123,0,9,1,'상품A','TOP','BLACK'),(123,2,118,2,'잠옷2','TOP','WHITE');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,7 +364,6 @@ CREATE TABLE `product_img` (
 
 LOCK TABLES `product_img` WRITE;
 /*!40000 ALTER TABLE `product_img` DISABLE KEYS */;
-INSERT INTO `product_img` VALUES (1,1,'0e55ccac-c615-46ad-8ee7-1b2f1bd3a20d.PNG','/img/productImg/0e55ccac-c615-46ad-8ee7-1b2f1bd3a20d.PNG','q2.PNG'),(2,1,'37fec407-814b-4918-bdf4-2ceba282f33a.PNG','/img/productImg/37fec407-814b-4918-bdf4-2ceba282f33a.PNG','q1.PNG'),(3,1,'','',''),(4,1,'','',''),(5,1,'','',''),(52,2,'87a1deac-40e4-4963-b860-6d7478d76ee0.png','/img/productImg/87a1deac-40e4-4963-b860-6d7478d76ee0.png','화면 캡처 2023-04-12 123235.png'),(53,2,'','',''),(54,2,'','',''),(55,2,'','',''),(56,2,'','','');
 /*!40000 ALTER TABLE `product_img` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -292,7 +385,7 @@ CREATE TABLE `product_img_seq` (
 
 LOCK TABLES `product_img_seq` WRITE;
 /*!40000 ALTER TABLE `product_img_seq` DISABLE KEYS */;
-INSERT INTO `product_img_seq` VALUES (151);
+INSERT INTO `product_img_seq` VALUES (1);
 /*!40000 ALTER TABLE `product_img_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -314,7 +407,7 @@ CREATE TABLE `product_seq` (
 
 LOCK TABLES `product_seq` WRITE;
 /*!40000 ALTER TABLE `product_seq` DISABLE KEYS */;
-INSERT INTO `product_seq` VALUES (101);
+INSERT INTO `product_seq` VALUES (1);
 /*!40000 ALTER TABLE `product_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -327,9 +420,12 @@ DROP TABLE IF EXISTS `question`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `question` (
   `id` bigint NOT NULL,
+  `user_id` bigint DEFAULT NULL,
   `content` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `FK4ekrlbqiybwk8abhgclfjwnmc` (`user_id`),
+  CONSTRAINT `FK4ekrlbqiybwk8abhgclfjwnmc` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -414,7 +510,6 @@ CREATE TABLE `used` (
 
 LOCK TABLES `used` WRITE;
 /*!40000 ALTER TABLE `used` DISABLE KEYS */;
-INSERT INTO `used` VALUES (0,NULL,1,1,'중고내용_asd','중고제목_asdasd'),(0,'2023-10-10 01:44:49.381922',2,1,'awdawdwa','adwad'),(0,'2023-10-10 01:47:50.935945',52,1,'asdasdasdasd','asdasdasdasdasd'),(0,'2023-10-10 01:49:27.606978',102,1,'test','testasdasdas'),(30000,NULL,152,1,'prrice','price'),(2333,NULL,202,1,'gd','gd'),(3,NULL,252,1,'asdasdas','asdasd'),(1208,NULL,302,53,'1208','1208'),(0,NULL,303,1,'ㄴ','ㄴ'),(28000,NULL,352,102,'user','user');
 /*!40000 ALTER TABLE `used` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -486,7 +581,7 @@ CREATE TABLE `used_seq` (
 
 LOCK TABLES `used_seq` WRITE;
 /*!40000 ALTER TABLE `used_seq` DISABLE KEYS */;
-INSERT INTO `used_seq` VALUES (451);
+INSERT INTO `used_seq` VALUES (1);
 /*!40000 ALTER TABLE `used_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -567,7 +662,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (_binary '',1,NULL,NULL,'$2a$10$unSTEvBCtGaPXTnNNDBIAeZRSmNf8Eh2vL5vv1CrYLLnpM10vwHC6',NULL,'test'),(_binary '',2,NULL,NULL,'$2a$10$Foi8Qp4o9LLV2vF63p/cm..eGGNp7WB3cSo5Wlw/9uxTp5pVHkrtK',NULL,'admin'),(_binary '',52,NULL,NULL,'$2a$10$pfnnPFZ/y9kD5tVm1/6D0.w3yFGoSOLISWaMENNR4.lEdRGxW/rO2',NULL,'asd'),(_binary '',102,NULL,NULL,'$2a$10$1biUKxffX8ZwSJT6m11BsuyV2pZTzySbb.FF/nm8/KhJlieIR9kra',NULL,'user');
+INSERT INTO `user` VALUES (_binary '',1,NULL,NULL,'$2a$10$Qv6I1NuesDEvBeOqVZGl7OKoaaTokDFM.jyJ3ZTL5gL91FKLpAD3G',NULL,'user'),(_binary '',2,NULL,NULL,'$2a$10$5lV98JX2vibZBiMwtjxU6uskYbMg7OnV07ZgEpOuw8eaKz.UVOxFu',NULL,'admin');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -594,7 +689,7 @@ CREATE TABLE `user_role` (
 
 LOCK TABLES `user_role` WRITE;
 /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
-INSERT INTO `user_role` VALUES (1,1),(2,2),(52,1),(102,1);
+INSERT INTO `user_role` VALUES (1,1),(2,2);
 /*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -616,13 +711,9 @@ CREATE TABLE `user_seq` (
 
 LOCK TABLES `user_seq` WRITE;
 /*!40000 ALTER TABLE `user_seq` DISABLE KEYS */;
-INSERT INTO `user_seq` VALUES (201);
+INSERT INTO `user_seq` VALUES (101);
 /*!40000 ALTER TABLE `user_seq` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'spring_web'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -633,4 +724,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-10 12:55:48
+-- Dump completed on 2023-10-18 16:31:38

@@ -37,14 +37,7 @@ public class OrderController {
 	public String orderUser(Model model, Principal principal) {
 		
 		List<Order> orders = orderService.findUsername(principal.getName());
-		List<ProductDto> productDtoList = new ArrayList<>();
-		for (Order order : orders) {
-			ProductDto productDto = productService.getProductDtl(order.getOrderProducts().get(0).getProduct().getId());
-			productDtoList.add(productDto);
-		}
-		
 		model.addAttribute("orders", orders);
-		model.addAttribute("productDtoList", productDtoList);
 		return "/protected/order";
 	}
 	
@@ -59,7 +52,6 @@ public class OrderController {
 			ProductDto productDto = productService.getProductDtl(order.getOrderProducts().get(0).getProduct().getId());
 			productDtoList.add(productDto);
 		}
-		
 		model.addAttribute("orders", orders);
 		model.addAttribute("productDtoList", productDtoList);
 		return "/protected/order";

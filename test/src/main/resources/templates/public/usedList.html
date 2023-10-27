@@ -4,6 +4,20 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{layouts/layout_public}">
 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<th:block layout:fragment="script">
+		<script th:inline="javascript">
+			$(document).ready(function(){
+				var errorMessage = [[${errorMessage}]];
+				if(errorMessage != null){
+					alert(errorMessage);
+				}
+
+			});
+		</script>
+	</th:block>
+
 <head>
 	<meta charset="UTF-8">
 
@@ -26,7 +40,7 @@
 		}
 
 		.product-image {
-			max-width: 250px;
+			max-width: 30px;
 
 			height: auto;
 			margin: 30px;
@@ -65,10 +79,11 @@
 			<button class="category" id="outerwear">아우터</button>
 			<button class="category" id="shoes">신발</button>
 		</div>
-		<button onclick="location.href='/protected/usedForm'" sec:authorize="hasRole('ROLE_USER')">중고 글등록</button>
+		<button onclick="location.href='/protected/used/new'" sec:authorize="hasRole('ROLE_USER')">중고 글등록</button>
 		<table>
 			<tr>
 				<th>#</th>
+				<th>이미지</th>
 				<th>제목</th>
 				<th>상품</th>
 				<th>가격</th>
@@ -78,12 +93,18 @@
 			</tr>
 			<tr th:each="used, index : ${usedList}">
 				<td th:text="${index.index}">#</td>
-				<td><a th:text="${used.title}" th:href="'/public/used/'+${used.id}"></a></td>
-				<td><a th:text="${used.orderProduct.product.name}" th:href="'/public/product/'+${used.orderProduct.product.id}"></a></td>
+				<td>
+					<div th:each="usedImg, index:${used.usedImgList}">
+						<img class="product-img" th:src="${usedImg.imgUrl}" alt="Image">
+					</div>
+				</td>
+				<td><a th:text="${used.title}" th:href="'/public/used/'+${used.id}">제목</a></td>
+				<td><a th:text="${used.orderProduct.product.name}" th:href="'/public/product/'+${used.orderProduct.product.id}">상품</a></td>
 				<td th:text="${used.price}">가격</td>
-				<td th:text="${used.orderProduct.order.orderDate}">주문 내역</td>
-				<td th:text="${used.orderProduct.order.user.username}">주문 내역</td>
-				<td th:text="${used.createDate}">주문 내역</td>
+				<td th:text="${#temporals.format(used.orderProduct.order.orderDate, 'yyyy-MM-dd HH:mm')}">주문 내역</td>
+				
+				<td th:text="${used.orderProduct.order.user.username}">글쓴이</td>
+				<td th:text="${#temporals.format(used.createDate, 'yyyy-MM-dd HH:mm')}">작성일</td>
 				
 				<!-- <td th:text="${event.endDateTime}">2019년 1월 10일 오전 12시</td> -->
 				<!-- <td th:text="${index}">index</td> -->
@@ -91,16 +112,6 @@
 		</table>
 
 		<script>
- 			$(document).ready(function(){
-                var errorMessage = [[${errorMessage}]];
-                if(errorMessage != null){
-                    alert(errorMessage);
-                }
-
-                bindDomEvent();
-
-            });
-
 			const categoryElements = document.querySelectorAll('.category');
 	
 			categoryElements.forEach(button => {

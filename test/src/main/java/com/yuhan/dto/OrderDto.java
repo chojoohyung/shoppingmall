@@ -18,6 +18,7 @@ import lombok.Setter;
 public class OrderDto {
 	
 	private Long id;
+	private int count;
 	private LocalDateTime orderDate; 
 	
 	/*

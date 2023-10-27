@@ -113,7 +113,7 @@
                 <p class="product-details" th:text="'재고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '+${productDto.stock}">옷 재고</p>
                 <input type="number" name="count" sec:authorize="hasRole('ROLE_USER')" id="count" class="form-control" value="1" min="1"><br>
                 <button type="button" onclick="order()" sec:authorize="hasRole('ROLE_USER')" class="order-button1">BUY NOW</button><br>
-    <!--장바구니 추가해주세요--><button type="button" onclick="order()" sec:authorize="hasRole('ROLE_USER')" class="order-button2">CART</button>
+                <button type="button" onclick="addCart()" sec:authorize="hasRole('ROLE_USER')" class="order-button2">CART</button>
                 <button type="button" id="yourButtonId" sec:authorize="hasRole('ROLE_ADMIN')">상품변경</button>
                 
             </div>
@@ -206,6 +206,47 @@
                     }
                 });
             }
+
+            function addCart(){
+                var token = $("meta[name='_csrf']").attr("content");
+                var header = $("meta[name='_csrf_header']").attr("content");
+
+                var url = "/cart";
+                var paramData = {
+                    productId : $("#productId").val(),
+                    count : $("#count").val()
+                };
+
+                var param = JSON.stringify(paramData);
+
+                $.ajax({
+                    url      : url,
+                    type     : "POST",
+                    contentType : "application/json",
+                    data     : param,
+                    beforeSend : function(xhr){
+                        /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                        xhr.setRequestHeader(header, token);
+                    },
+                    dataType : "json",
+                    cache   : false,
+                    success  : function(result, status){
+                        alert("상품을 장바구니에 담았습니다.");
+                        location.href='/';
+                    },
+                    error : function(jqXHR, status, error){
+
+                        if(jqXHR.status == '401'){
+                            alert('로그인 후 이용해주세요');
+                            location.href='/public/login';
+                        } else{
+                            alert(jqXHR.responseText);
+                        }
+
+                    }
+                });
+            }
+
         </script>
     </div>
 </body>

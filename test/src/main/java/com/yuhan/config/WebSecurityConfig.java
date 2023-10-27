@@ -29,7 +29,7 @@ public class WebSecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/", "/public/**", "/css/**", "/resources/**", "/layouts/**", "/fragments/**", "/img/**").permitAll()
+				.requestMatchers("/", "/public/**", "/css/**", "/resources/**", "/layouts/**", "/fragments/**", "/img/**", "/error").permitAll()
 				.requestMatchers("/admin/**").hasRole("ADMIN") //hasRole 사용시 ADMIN 앞에 ROLE_ 이 자동으로 붙음 ※ROLE_USER, ROLE_ADMIN
 				.anyRequest().authenticated()
 			)
