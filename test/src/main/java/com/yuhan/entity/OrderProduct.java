@@ -39,6 +39,7 @@ public class OrderProduct {
 		orderProduct.setOrderPrice(product.getPrice());
 		orderProduct.setCount(count);
 		product.removeStock(count);
+		
 		return orderProduct;
 	}
 	

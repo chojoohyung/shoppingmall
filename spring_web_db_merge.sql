@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: spring_web
 -- ------------------------------------------------------
--- Server version	8.0.30
+-- Server version	8.0.34
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -319,6 +319,7 @@ DROP TABLE IF EXISTS `product`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `product` (
   `price` int NOT NULL,
+  `sales` int NOT NULL,
   `size` tinyint NOT NULL,
   `stock` int NOT NULL,
   `id` bigint NOT NULL,
@@ -661,7 +662,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (_binary '',1,NULL,NULL,'$2a$10$dXua.dKCtsH0NvmjQuZin.6FdpsOz452Hlja3i8nFQSgWqR0htfj.',NULL,'user'),(_binary '',2,NULL,NULL,'$2a$10$avZx7uOfxbyVzRqCmLpCl.UArrqMjz12bKkyPycp53LCwcorJUcSe',NULL,'admin');
+INSERT INTO `user` VALUES (_binary '',1,NULL,NULL,'$2a$10$Qv6I1NuesDEvBeOqVZGl7OKoaaTokDFM.jyJ3ZTL5gL91FKLpAD3G',NULL,'user'),(_binary '',2,NULL,NULL,'$2a$10$5lV98JX2vibZBiMwtjxU6uskYbMg7OnV07ZgEpOuw8eaKz.UVOxFu',NULL,'admin');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -723,4 +724,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-16 16:04:31
+-- Dump completed on 2023-10-18 16:31:38

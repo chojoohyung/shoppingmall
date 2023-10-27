@@ -47,8 +47,13 @@ public class OrderController {
 	@GetMapping("/admin/order")
 	public String orderAdmin(Model model) {
 		List<Order> orders = orderService.findAll();
-		
+		List<ProductDto> productDtoList = new ArrayList<>();
+		for (Order order : orders) {
+			ProductDto productDto = productService.getProductDtl(order.getOrderProducts().get(0).getProduct().getId());
+			productDtoList.add(productDto);
+		}
 		model.addAttribute("orders", orders);
+		model.addAttribute("productDtoList", productDtoList);
 		return "/protected/order";
 	}
 	

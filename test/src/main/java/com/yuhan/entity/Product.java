@@ -45,6 +45,8 @@ public class Product {
 	@Column(nullable=false)
 	private int stock;
 	
+	private int sales;
+	
 	private String category;
 	
 	@OneToMany(mappedBy = "product")
@@ -64,7 +66,9 @@ public class Product {
 		if(restStock<0) {
 			throw new OutOfStockException("상품 재고가 부족합니다. 현재 재고 수량 : "+this.stock);
 		}
+		this.sales += stock;
 		this.stock = restStock;
 	}
+
 	
 }
