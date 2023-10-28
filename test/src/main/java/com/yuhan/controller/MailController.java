@@ -17,12 +17,11 @@ public class MailController {
     @ResponseBody
     @PostMapping("/mail")
     public String MailSend(String mail){
-    	System.out.println("인증메시지 옴");
-
+    	
         int number = mailService.sendMail(mail);
 
         String num = "" + number;
-
+        System.out.println("mail number : "+number);
         return num;
     }
 	
