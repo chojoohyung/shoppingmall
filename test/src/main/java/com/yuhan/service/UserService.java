@@ -30,4 +30,22 @@ public class UserService {
 		
 		return userRepository.save(user);
 	}
+	
+	public User findByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
+	
+	public Long updateUser(User user) {
+		User myuser = userRepository.findByUsername(user.getUsername());
+		
+		String encodeedpassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(encodeedpassword);
+		
+		myuser.updateUser(user);
+		
+		
+		
+		userRepository.save(myuser);
+		return myuser.getId();
+	}
 }

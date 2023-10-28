@@ -38,6 +38,8 @@ public class User {
 	
 	private String phone;
 	
+	private String email;
+	
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	
@@ -48,6 +50,13 @@ public class User {
 	  inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Role> roles = new ArrayList<>();
 	
+	public void updateUser(User user) {
+		this.email = user.getEmail();
+		this.password = user.getPassword();
+		this.phone = user.getPhone();
+		this.gender = user.getGender();
+		
+	}
 	
 	
 }

@@ -1,0 +1,72 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="https://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/layout_public}">
+<head>
+	<meta charset="UTF-8">
+	<link href="../css/register.css" rel="stylesheet">
+</head>
+
+
+<body>
+<div layout:fragment="content">
+	<form class="form-register" th:action="@{/protected/userUpdateForm}" method="post" th:object="${user}">
+		<table align=center>
+			<tr><td colspan=2 align=center height=40><b>내 정보 수정</b><td></tr>
+			<div class="textForm">
+				<tr>
+					<td align=right>아이디&nbsp;</td> 
+					<td><input type="text" id="username" th:field="*{username}" class="idform-control" readonly></td>
+				</tr>
+				<tr>
+					<td align=right>이메일&nbsp;</td> 
+					<td><input type="email" id="email" th:field="*{email}" class="emailform-control" placeholder="Email" required></td>
+				</tr>
+				<tr>
+					<td align=right>패스워드&nbsp;</td> 
+					<td><input type="password"  id="inputPassword" th:field="*{password}" class="pwform-control" placeholder="Password" required></td>
+				</tr>
+				<tr>
+					<td align=right>패스워드(확인)&nbsp;</td>
+					<td><input type="password" required id="inputPassword2" class="pwform-control" onchange="check_pw()">&nbsp:<span id="check"></span></td>
+				</tr>
+				<tr>
+					<td align=right>핸드폰번호&nbsp;</td> 
+					<td><input type="tel"  id="phone" th:field="*{phone}" class="pform-control" placeholder="Phone" required></td>
+				</tr>
+				<tr>
+					<td align=right>성별&nbsp;</td>
+					<td>
+						<label for="male">남자</label>
+						<input type="radio" id="male" th:field="*{gender}" value="MALE">
+						<label for="female">여자</label>
+						<input type="radio" id="female" th:field="*{gender}" value="FEMALE">
+					</td>
+				</tr>
+			</div>
+			<tr>
+				<td colspan=2 align=center height=50>
+					<button class="sub"type="submit">정보수정하기</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<script>
+		function check_pw(){
+			if(document.getElementById('inputPassword').value !='' && document.getElementById('inputPassword2').value!=''){
+				if(document.getElementById('inputPassword').value==document.getElementById('inputPassword2').value){
+					document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+					document.getElementById('check').style.color='blue';
+				}
+				else{
+					document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+					document.getElementById('check').style.color='red';
+				}
+			}
+		}
+	</script>
+</div>
+	
+
+</body>
+</html>
