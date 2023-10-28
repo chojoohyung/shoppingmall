@@ -1,143 +1,106 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:th="https://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layouts/layout_public}">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
 
 <head>
+	<link href="../css/questionList.css" rel="stylesheet">
 	<meta charset="UTF-8">
 
-	<style>
-		.row {
-			display: flex;
-			flex-direction: row;
-		}
-
-		.nav {
-			display: flex;
-			flex-direction: row;
-			padding: 10px;
-		}
-
-		.col {
-			display: flex;
-			flex-direction: column;
-			text-align: center;
-		}
-
-		.product-image {
-			max-width: 250px;
-
-			height: auto;
-			margin: 30px;
-
-		}
-
-		.category-buttons {
-			display: flex;
-			justify-content: center;
-			margin-bottom: 20px;
-		}
-
-		.category-buttons .category {
-			font-size: 18px;
-			padding: 20px 160px;
-			/* 버튼 크기 조절 */
-		}
-		table {
-            width: 100%;
-            border: 1px solid #444444;
-            text-align: center;
-        }
-        th, td {
-            border: 1px solid #444444;
-        }
-          .accordion {
-            cursor: pointer;
-            padding: 18px;
-            border: none;
-            background-color: #f1f1f1;
-            text-align: left;
-            outline: none;
-            transition: 0.4s;
-        }
-
-        .active, .accordion:hover {
-            background-color: #ddd;
-        }
-
-        .panel {
-            display: none;
-            background-color: white;
-            overflow: hidden;
-        }
-
-
-		header {
-			display: block;
-			min-width: 1080px;
-		}
-
-		.nav {
-			display: flex;
-			flex-direction: row;
-			padding: 10px;
-		}
-
-		.logo {
-			left: 50%;
-		}
-
-		.pad {
-			padding: 10px;
-		}
-
-	
-
-		.container {
-			display: flex;
-			flex-direction: column;
-			margin: 0;
-			background-color: #f5f5f5;
-			/* 배경색 설정 */
-		}
-	</style>
 </head>
 
 <body>
 	<div layout:fragment="content">
-<nav>
-			<a th:href="@{/public/faqList}">Q/A</a>
-			<a href="/public/questionList">문의하기</a>
-			<a href="change">반품 및 교환</a>
-		</nav>
-		<table>
-			<tr>
-				<th>#</th>
-				<th>제목</th>
-				<th>내용</th>
-				<th>유저</th>
-			</tr>
-			<tr th:each="question, index : ${questionList}">
-				<td th:text="${index.index}">#</td>
-				<td th:text="${question.title}">제목</td>
-				<td th:text="${question.content}">내용</td>
-				<td th:text="${question.user.username}">유저</td>
 
+
+	
+
+
+		<div class="header-container">
+			<div class="header-left">
+				<p class="customer">
+					<b>Customer Center</b>
+					</p>
+				<p class="number"><b>☎ 1588-0909</b>
+				<p class="date">
+				<b>평일</b> 오전 10:00 ~ 오후 06:00<br>
+				<b>점심</b> 오후 12:00 ~ 오후 01:00<br>
+				<b>휴무</b> 토 / 일 / 공휴일은 휴무</p>
+			</div>
+			<div class="header-right">
+				<p class="membership">
+					<b>MemberShip</b>
+				</p>
+				<p class="track-num">
+					<mark style="background-color: aliceblue;">다이아</mark>
+					<mark style="background-color: aliceblue;">에메랄드</mark>
+					<mark style="background-color: aliceblue;">플레티넘</mark><br>
+					<mark style="background-color: aliceblue;">골드</mark>
+					<mark style="background-color: aliceblue;">실버</mark>
+
+					
+				</p>
 				
-				<!-- <td th:text="${event.endDateTime}">2019년 1월 10일 오전 12시</td> -->
-				<!-- <td th:text="${index}">index</td> -->
-			</tr>
-		</table>
-		<button onclick="location.href='/protected/questionForm'" sec:authorize="hasRole('ROLE_USER')">글쓰기</button>
+				<p class="content1">
+					<p>등급 별로 할인률은 상이하나 <br>저희 HENRY IV는 회원 모두 무료 배송입니다.</p>
+				</p>
+
+			</div>
+			<div class="header-right1">
+			<p class = "question">
+			<b>자주하는 질문</b></p>
+			<p class="content1">
+					<p>FAQ를 참고하신 후 문의를 주시면<br>
+보다 빠른 답변을 찾으실 수 있습니다.</p>
+				</p>
+					<button class="button"  onclick="location.href='/public/faqList'">자세히 보기</button>
+			</div>
+		</div>
+<div class = "sidebar">
+	
+	<h2 class="titlee" >문의 게시판</h2>
+	<div class="subsidebar">
+<ul>
+
+	<div class="subsidebar">
+  <li><a href="/public/faqList">FAQ</a></li>
+  <li><a href="/public/questionList">문의 글 보기</a></li>
+  <li><a href="/protected/questionForm">1:1 문의 글 쓰기</a></li>
+
+</ul>
+</div> 
+</div>
+
+		<div class = "question-title">
+		
+				<p class = "title"> 게시번호 아이디   &nbsp;제목</p>
+				
+				</div>
+	
+			
+			<tr th:each="question, index : ${questionList}">
+				
+				<div class="question-content">
+				<span class="content11"  th:text="${index.index}">게시번호</span>
+				<span  class="content22" th:text="${question.user.username}">아이디</span>
+				<span   class="content33" th:text="${question.title}">제목</p>
+				
+				<!--<td th:text="${question.content}">내용</td>-->
+				
+				
+
+
+		</div>
+		
+</tr>
+	
 
 		<script>
- 			
+
 
 
 		</script>
 	</div>
-	
+
 
 </body>
 

@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>q/a</title>
-
+<link href="../css/questionList.css" rel="stylesheet">
 	<!-- JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 	
@@ -70,11 +70,64 @@
 <body>
 	<!-- 홈페이지 헤더부분 -->
 	<div layout:fragment="content">
-		<nav>
-			<a th:href="@{/public/faqList}">Q/A</a>
-			<a href="/public/questionList">문의하기</a>
-			<a href="change">반품 및 교환</a>
-		</nav>
+	
+		
+			<div class="header-container">
+			<div class="header-left">
+				<p class="customer">
+					<b>Customer Center</b>
+					</p>
+				<p class="number"><b>☎ 1588-0909</b>
+				<p class="date">
+				<b>평일</b> 오전 10:00 ~ 오후 06:00<br>
+				<b>점심</b> 오후 12:00 ~ 오후 01:00<br>
+				<b>휴무</b> 토 / 일 / 공휴일은 휴무</p>
+			</div>
+			<div class="header-right">
+				<p class="membership">
+					<b>MemberShip</b>
+				</p>
+				<p class="track-num">
+					<mark style="background-color: aliceblue;">다이아</mark>
+					<mark style="background-color: aliceblue;">에메랄드</mark>
+					<mark style="background-color: aliceblue;">플레티넘</mark><br>
+					<mark style="background-color: aliceblue;">골드</mark>
+					<mark style="background-color: aliceblue;">실버</mark>
+
+					
+				</p>
+				
+				<p class="content1">
+					<p>등급 별로 할인률은 상이하나 <br>저희 HENRY IV는 회원 모두 무료 배송입니다.</p>
+				</p>
+
+			</div>
+			<div class="header-right1">
+			<p class = "question">
+			<b>자주하는 질문</b></p>
+			<p class="content1">
+					<p>FAQ를 참고하신 후 문의를 주시면<br>
+보다 빠른 답변을 찾으실 수 있습니다.</p>
+				</p>
+					<button class="button"  onclick="location.href='/public/faqList'">자세히 보기</button>
+			</div>
+		</div>
+<div class = "sidebar1">
+	<div class ="time">
+	
+	</div>
+	<h2 class="titlee" >문의 게시판</h2>
+	<div class="subsidebar">
+<ul>
+
+	<div class="subsidebar">
+  <li><a href="/public/faqList">FAQ</a></li>
+  <li><a href="/public/questionList">문의 글 보기</a></li>
+  <li><a href="/protected/questionForm">1:1 문의 글 쓰기</a></li>
+
+</ul>
+</div> 
+</div>
 		<!--
 		<div>
 			<tr th:each="faq, index : ${faqList}">
