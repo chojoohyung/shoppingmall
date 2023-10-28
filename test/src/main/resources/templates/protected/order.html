@@ -62,7 +62,6 @@
 <body>
 	<!-- Homepage Header -->
 	<div layout:fragment="content">
-		
 		<div class="order-container">
 			<div th:each="order, index:${orders}">
 				<input type="hidden" name="productImgIds" th:value="${order.id}">
@@ -86,7 +85,6 @@
 			</div>
 		</div>
 	</div>
-			
 </body>
 
 </html>
