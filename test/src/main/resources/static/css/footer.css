@@ -1,11 +1,17 @@
 footer {}
 
-.footer1 {}
+/*.underbar1{
+	position: fixed;
+	 left: 0;
+        right: 0;
+        bottom: 0;
+        height: 6rem;
+}*/
 
 .footer-container1 {
-
+	
 	border-top: 1px solid gray;
-	margin-top: 30px;
+
 	height: auto;
 	padding: 10px;
 	margin-left: 60px;

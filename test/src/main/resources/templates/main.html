@@ -46,7 +46,7 @@
 		}
 
 		.grid-container {
-			margin-left: 50px;
+			margin-left: 60px;
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
 			/* 2열로 나눔 */
@@ -124,10 +124,8 @@
 			<div style="display: flex; justify-content: center;"> <!-- 슬라이드 div안에 화살표가 있어야 하는데 이거 아직 못함 -->
 
 
-				<button onclick="prevSlide()">◀</button> <!--이전 버튼-->
-
-
-				<button onclick="nextSlide()">▶</button> <!--다음 버튼-->
+				<button class="slider-button left" onclick="prevSlide()">◀</button>
+    <button class="slider-button right" onclick="nextSlide()">▶</button>
 			</div>
 
 			<div id="slider">

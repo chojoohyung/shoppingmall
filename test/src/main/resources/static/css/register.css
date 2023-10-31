@@ -3,9 +3,71 @@
   padding: 0px;
   text-decoration: none;
   font-family:sans-serif;
+  
 
 }
 
+.logo-png img {
+    max-height: 80px;
+    margin-left: 500px;
+
+ 
+  }
+.sign{
+	font-size: 30px;
+	text-align: center;
+	margin-top:50px;
+}
+.id{
+	text-align: left;
+	width: 500px;
+	
+}
+.pw{
+	text-align: left;
+	width: 500px;
+}
+.pwcheck{
+		text-align: left;
+	width: 500px;
+}
+.phone{
+		text-align: left;
+	width: 500px;
+}
+
+.textForm{
+	    margin-top: 20px;
+	width: 21%;
+	margin-left: 40%;
+	height: 510px;
+border-top: 1px solid rgb(192, 192, 192);
+border-left:1px solid rgb(192, 192, 192);
+border-right:1px solid rgb(192, 192, 192);
+border-bottom: 1px solid rgb(192, 192, 192);
+
+}
+input::placeholder {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+   
+}
+.colored-letter{
+	color: #FF0000; 
+  font-weight: bold;
+}
+.use{
+	margin-top:30px;
+	  margin-left:580px;
+}
+.container-s {
+
+        width: 350px;
+        height: 140px;
+        overflow: auto;
+        margin-left:580px;
+        text-align: center;
+      }
 body {
   background-image:#34495e;
 }
@@ -29,7 +91,34 @@ body {
 }
 
 
-
+.emailform-control{
+	  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+    border-bottom: 2px solid #adadad;
+  margin: 10px;
+  padding: 10px 10px;
+  margin-right:100px;
+	
+}
+.verificationform-control{
+	width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+    border-bottom: 2px solid #adadad;
+  margin: 10px;
+  padding: 10px 10px;
+  margin-right:100px;
+	
+}
 
 .idform-control {
   width: 100%;
@@ -42,6 +131,7 @@ body {
     border-bottom: 2px solid #adadad;
   margin: 10px;
   padding: 10px 10px;
+  margin-right:100px;
 }
 
 .pwform-control {
@@ -88,14 +178,14 @@ body {
   margin: 10px;
   padding: 10px 10px;
 }
-
+ 
 .sub {
   position:relative;
   left:40%;
   transform: translateX(-50%);
   margin-bottom: 40px;
-  width:80%;
-  height:40px;
+  width:25%;
+  height:60px;
   background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
   background-position: left;
   background-size: 200%;
@@ -105,6 +195,8 @@ body {
   cursor:pointer;
   transition: 0.4s;
   display:inline;
+  margin-top : 50px;
+  margin-left:160px;
 }
 
 .sub:hover {
