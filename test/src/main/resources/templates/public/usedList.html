@@ -1,118 +1,81 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:th="https://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layouts/layout_public}">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
+	
+<th:block layout:fragment="script">
+	<script th:inline="javascript">
+		$(document).ready(function () {
+			var errorMessage = [[${errorMessage}]];
+			if (errorMessage != null) {
+				alert(errorMessage);
+			}
 
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-	<th:block layout:fragment="script">
-		<script th:inline="javascript">
-			$(document).ready(function(){
-				var errorMessage = [[${errorMessage}]];
-				if(errorMessage != null){
-					alert(errorMessage);
-				}
-
-			});
-		</script>
-	</th:block>
-
+		});
+	</script>
+</th:block>
 <head>
 	<meta charset="UTF-8">
-
 	<style>
-		.row {
-			display: flex;
-			flex-direction: row;
+		/* 그리드 컨테이너 설정 */
+		.retro-container {	
+			margin-left: 60px;
+			display: grid;
+			grid-template-columns: repeat(4, 1fr); /* 4개의 열로 나눔 */
+			grid-gap: 0px; /* 그리드 아이템 간의 간격 설정 */
+			
 		}
 
-		.nav {
-			display: flex;
-			flex-direction: row;
-			padding: 10px;
+		/* 각 그리드 아이템 스타일 */
+		.retro-item {
+			padding: 10px; /* 그리드 아이템 안의 여백 설정 */
+			text-align: center; /* 가운데 정렬 */
 		}
 
-		.col {
-			display: flex;
-			flex-direction: column;
-			text-align: center;
+		.product-img {
+			max-width: 100%; /* 이미지 크기 제한 */
 		}
 
-		.product-image {
-			max-width: 30px;
-
-			height: auto;
-			margin: 30px;
-
+		.card-title {
+			font-size: 16px;
+			font-weight: bold; /* 제목 굵게 표시 */
 		}
 
-		.category-buttons {
-			display: flex;
-			justify-content: center;
-			margin-bottom: 20px;
-		}
-
-		.category-buttons .category {
+		.retro-item-price {
 			font-size: 18px;
-			padding: 20px 160px;
-			/* 버튼 크기 조절 */
 		}
-		table {
-            width: 100%;
-            border: 1px solid #444444;
-            text-align: center;
-        }
-        th, td {
-            border: 1px solid #444444;
-        }
+
+		.retro-item-info {
+			font-size: 12px;
+		}
 	</style>
 </head>
 
 <body>
 	<div layout:fragment="content">
-		<p>중고 옷 사이트</p>
-
-		<button onclick="location.href='/protected/used/new'" sec:authorize="hasRole('ROLE_USER')">중고 글등록</button>
-		<table>
-			<tr>
-				<th>#</th>
-				<th>이미지</th>
-				<th>제목</th>
-				<th>상품</th>
-				<th>가격</th>
-				<th>주문내역</th>
-				<th>글쓴이</th>
-				<th>작성일</th>
-			</tr>
-			<tr th:each="used, index : ${usedList}">
-				<td th:text="${index.index}">#</td>
-				<td>
-					<div th:each="usedImg, index:${used.usedImgList}">
-						<th:block th:if="${index.index == 0}">
-							<img class="product-img" th:src="${usedImg.imgUrl}" alt="Image">
-						</th:block>
-					</div>
-				</td>
-				<td><a th:text="${used.title}" th:href="'/public/used/'+${used.id}">제목</a></td>
-				<td><a th:text="${used.orderProduct.product.name}" th:href="'/public/product/'+${used.orderProduct.product.id}">상품</a></td>
-				<td th:text="${used.price}">가격</td>
-				<td th:text="${#temporals.format(used.orderProduct.order.orderDate, 'yyyy-MM-dd HH:mm')}">주문 내역</td>
-				
-				<td th:text="${used.orderProduct.order.user.username}">글쓴이</td>
-				<td th:text="${#temporals.format(used.createDate, 'yyyy-MM-dd HH:mm')}">작성일</td>
-				
-				<!-- <td th:text="${event.endDateTime}">2019년 1월 10일 오전 12시</td> -->
-				<!-- <td th:text="${index}">index</td> -->
-			</tr>
-		</table>
-
-		<script>
-
-		</script>
-	</div>
 	
+		<button onclick="location.href='/protected/used/new'" sec:authorize="hasRole('ROLE_USER')">중고 글등록</button>
 
+		
+		<div class="retro-container">
+
+				
+				<div class="retro-item" style="width: 20rem;" th:each="used,index : ${usedList}">
+				
+				<!--이미지 코드 넣으면 오류나서 빼버림 테이블로 만들어져있을때도 동작은 됐는데 이미지는 안나타남-->
+		
+					<a class="card-title" th:text="${used.title}" th:href="'/public/used/'+${used.id}">제목</a>
+					<p class="retro-item-price" th:text="${used.price}">가격</p>
+					<div class="retro-item-info">
+						<p th:text="${used.orderProduct.order.user.username + ' / ' 
+						+ #temporals.format(used.createDate, 'yyyy-MM-dd HH:mm') + '씀'}">글쓴이</p>
+						</div>	
+					
+				</div>
+		
+		</div>
+	</div>
+
+	
 </body>
 
 </html>
