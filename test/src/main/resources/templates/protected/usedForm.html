@@ -104,12 +104,20 @@
 				</select>
 			</div>
 
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">가격</span>
+				</div>
+				<input type="text" th:field="*{price}" class="form-control" placeholder="가격을 입력해주세요">
+			</div>
+			<p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="fieldError">Incorrect data</p>
+
 
 			<div class="input-group">
 				<div class="input-group-prepend">
 					<span class="input-group-text">내용</span>
 				</div>
-				<input type="text" th:field="*{content}" class="form-control" placeholder="상품명을 입력해주세요">
+				<input type="text" th:field="*{content}" class="form-control" placeholder="내용을 입력해주세요">
 			</div>
 			<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="fieldError">Incorrect data</p>
 

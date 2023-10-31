@@ -32,7 +32,7 @@
 		}
 
 		.product-img {
-			max-width: 100%; /* 이미지 크기 제한 */
+			
 		}
 
 		.card-title {
@@ -47,6 +47,10 @@
 		.retro-item-info {
 			font-size: 12px;
 		}
+		h2{
+			font-size: 0px;
+			text-align: center;
+		}
 	</style>
 </head>
 
@@ -54,26 +58,29 @@
 	<div layout:fragment="content">
 	
 		<button onclick="location.href='/protected/used/new'" sec:authorize="hasRole('ROLE_USER')">중고 글등록</button>
-
+<h2>중고 등록된 상품!</h2>
 		
 		<div class="retro-container">
 
-				
-				<div class="retro-item" style="width: 20rem;" th:each="used,index : ${usedList}">
-				
-				<!--이미지 코드 넣으면 오류나서 빼버림 테이블로 만들어져있을때도 동작은 됐는데 이미지는 안나타남-->
-		
-					<a class="card-title" th:text="${used.title}" th:href="'/public/used/'+${used.id}">제목</a>
-					<p class="retro-item-price" th:text="${used.price}">가격</p>
-					<div class="retro-item-info">
-						<p th:text="${used.orderProduct.order.user.username + ' / ' 
-						+ #temporals.format(used.createDate, 'yyyy-MM-dd HH:mm') + '씀'}">글쓴이</p>
-						</div>	
-					
-				</div>
-		
-		</div>
-	</div>
+				<div class="retro-container">
+    <div class="retro-item" th:each="used,index : ${usedList}">
+        <div th:each="usedImg, index:${used.usedImgList}">
+            <th:block th:if="${index.index == 0}">
+                <a th:href="'/public/used/'+${used.id}">
+                    <img class="product-img" th:src="${usedImg.imgUrl}" alt="Image" width="300" height="400">
+                </a>
+            </th:block>
+        </div>
+        <p class="card-title" th:text="${used.title}">제목</p>
+        <p class="retro-item-price" th:text="${used.price}">가격</p>
+        <div class="retro-item-info">
+            <p th:text="${used.orderProduct.order.user.username + ' / ' 
+                + #temporals.format(used.createDate, 'yyyy-MM-dd HH:mm') + '씀'}">글쓴이</p>
+        </div>
+    </div>
+</div>
+</div>
+
 
 	
 </body>

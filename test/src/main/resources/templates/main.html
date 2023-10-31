@@ -145,7 +145,7 @@
 			<div class="card" style="width: 20rem;" th:each="p:${productPagingDto}">
 				<input type="hidden" name="productImgIds" th:value="${p.id}">
 				<a th:href="'/public/product/'+${p.id}">
-					<img th:src="${p.productImgDtoList[0].imgUrl}" class="card-img-top" alt="...">
+					<img th:src="${p.productImgDtoList[0].imgUrl}" class="card-img-top" alt="..." width="200" height="400">
 				</a>
 				<div class="card-body">
 					<p class="card-title" th:text="${p.name}">옷 이름</p>
