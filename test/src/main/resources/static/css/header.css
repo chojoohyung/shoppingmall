@@ -10,6 +10,17 @@
 /** border: 2px solid rgb(0, 0, 0);**/
   z-index: 10;
 }
+ 
+
+.category1 a:hover {
+    background-color: rgb(192, 192, 192);
+    border-radius: 10px;
+}
+.pad-container div:hover{
+	 background-color: rgb(192, 192, 192);
+    border-radius: 10px;
+}
+
 nav {
 			display: flex;
 			justify-content: center;
@@ -26,6 +37,90 @@ nav {
 			text-decoration: none;
 
 		}
+		
+.pad1{
+	color:black;
+	cursor: pointer;
+	font-weight: bold;
+}
+.pad2{
+	color:black;
+	cursor: pointer;
+	margin-left: 11px;
+	font-weight: bold;
+}
+.pad3{
+	color:black;
+	cursor: pointer;
+	margin-left: 11px;
+	font-weight: bold;
+}
+.pad4{
+	color:black;
+	cursor: pointer;
+	margin-right: 11px;
+	margin-left: 11px;
+	font-weight: bold;
+}
+.pad5{
+	color:black;
+	cursor: pointer;
+	margin-right: 11px;
+	font-weight: bold;
+}
+.pad6{
+	color:black;
+	cursor: pointer;
+	font-weight: bold;
+}
+.pad7{
+	color:black;
+	margin-right: 11px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.pad8{
+	color:black;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.padd1{
+	color: orangered;
+	font-weight: bold;
+}
+.padd2{
+	color:blue;
+	font-weight: bold;
+}
+.padd3{
+	color:black;
+	font-weight: bold;
+}
+.padd4{
+	color:black;
+	font-weight: bold;
+}
+.padd5{
+	color:black;
+	font-weight: bold;
+}
+.padd6{
+	color:black;
+	font-weight: bold;
+}
+.padd7{
+	color:black;
+	font-weight: bold;
+}
+.padd8{
+	color:black;
+	font-weight: bold;
+}
+.padd9{
+	color:black;
+	font-weight: bold;
+}
 
 
 /* 네비게이션 메뉴 스타일 */
@@ -124,6 +219,8 @@ nav {
   .logo img {
     max-height: 40px;
   }
+
+
 
   
 }

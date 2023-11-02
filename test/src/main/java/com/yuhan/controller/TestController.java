@@ -1,7 +1,14 @@
 package com.yuhan.controller;
 
+import java.security.Principal;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.yuhan.dto.CartDetailDto;
+import com.yuhan.service.CartService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -12,12 +19,22 @@ import lombok.RequiredArgsConstructor;
  */
 public class TestController {
 	
-	
+	private final CartService cartService;
 	
 	@GetMapping("/protected/mypage")
-	public String mypage() {
+	public String mypage(Principal principal, Model model) {
+		 
+			List<CartDetailDto> cartDetailDtoList = cartService.getCartList(principal.getName());
+			System.out.println(cartDetailDtoList.size());
+			
+			
+			model.addAttribute("cartDetailDtoList", cartDetailDtoList);
+			
+		
 		return "/protected/mypage";
 	}
+	
+	
 	
 	@GetMapping("/protected/membership")
 	public String membership() {

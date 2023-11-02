@@ -1,0 +1,125 @@
+ .btn{
+            margin: 5px;
+            padding: 6px 20px;
+            background-color: rgb(255, 255, 255);
+            border: 1px solid rgb(95, 102, 149);
+           
+            cursor: pointer;
+            width: 300px;
+            height: 50px;
+            text-align: center;
+          	font-family: 'Nanum Gothic', sans-serif;
+            
+        }
+
+        .row{
+            display: flex;
+            flex-direction: row;
+        }
+
+        .my-underline{
+            text-decoration: underline;
+            display: flex;
+            justify-content: center;
+            
+        }
+        .body {
+            display: flex;
+            flex-direction: column;
+           font-family: 'GodoM', sans-serif;
+            justify-content: center;
+            margin: 5%;
+            background-color: #f5f5f5; /* 배경색 설정 */
+            margin-top: -10px;
+             border-radius: 30px;
+        }
+        .m-title{
+			text-align: left;
+			font-size: 50px;
+		
+			margin:5%;
+			margin-bottom: 50px;
+			
+		}
+		.all{
+			border:2px solid black;
+			margin-left: 70px;
+			margin-top: 20px;
+			width: 90%;
+			height: 70px;
+			font-size: 25px;
+			
+			
+			 
+		}
+		.userupdate{
+			float: left;
+			margin-left: 10%;
+			cursor: pointer;
+			margin-top: 15px;
+			
+		}
+		.userorder{
+			float: left;
+				margin-left: 23%;
+				cursor: pointer;
+				margin-top: 15px;
+		}
+		.coupon{
+			float: left;
+				margin-left: 27%;
+				cursor: pointer;
+				margin-top: 15px;
+		}
+		img {
+  display: block;
+  width: 200px;
+  height: 300px;
+
+}
+.cart-grid {
+    margin-left: 50px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5개의 열을 설정 */
+    grid-gap: 20px; /* 그리드 아이템 간의 간격 설정 */
+    margin-top: 30px;
+    overflow: hidden; /* 초과하는 내용 숨김 */
+}
+.usercart{
+	  display: flex;
+            flex-direction: column;
+             border-radius: 30px;
+        
+            justify-content: center;
+            margin: 5%;
+            background-color: #f5f5f5; /* 배경색 설정 */
+            margin-top: -10px;
+}
+
+.button{
+	
+	  margin: 5px;
+            padding: 6px 20px;
+            background-color: rgb(255, 255, 255);
+            border: 1px solid rgb(95, 102, 149);
+           	margin-left: 45%;
+           	margin-top:30px;
+            cursor: pointer;
+            width: 150px;
+            height: 55px;
+            text-align: center;
+            font-size: 20px;
+          	font-family: fantasy;
+	
+}
+
+.cart-item {
+    border: 2px solid black; /* 테두리 스타일을 필요에 맞게 조정합니다 */
+    padding: 5px; /* 각 그리드 항목 내의 내용과 테두리 사이의 간격을 만듭니다 */
+    width: 200px;
+}
+.cartname{
+	display: flex;
+	font-size: 20px;
+	justify-content: center
+}

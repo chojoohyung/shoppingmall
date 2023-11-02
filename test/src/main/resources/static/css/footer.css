@@ -1,16 +1,22 @@
 footer {}
 
-.footer1 {}
+/*.underbar1{
+	position: fixed;
+	 left: 0;
+        right: 0;
+        bottom: 0;
+        height: 6rem;
+}*/
 
 .footer-container1 {
-
+	
 	border-top: 1px solid gray;
-	margin-top: 30px;
-	height: auto;
+
+	height: 100%;
 	padding: 10px;
 	margin-left: 60px;
 	margin-right: 60px;
-	margin-top: 50px;
+	margin-top: 150px;
 	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }

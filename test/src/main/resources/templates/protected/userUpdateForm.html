@@ -4,69 +4,69 @@
     layout:decorate="~{layouts/layout_public}">
 <head>
 	<meta charset="UTF-8">
-	<link href="../css/register.css" rel="stylesheet">
+	<link href="../css/userUpdateForm.css" rel="stylesheet">
 </head>
 
 
 <body>
-<div layout:fragment="content">
-	<form class="form-register" th:action="@{/protected/userUpdateForm}" method="post" th:object="${user}">
-		<table align=center>
-			<tr><td colspan=2 align=center height=40><b>내 정보 수정</b><td></tr>
-			<div class="textForm">
-				<tr>
-					<td align=right>아이디&nbsp;</td> 
-					<td><input type="text" id="username" th:field="*{username}" class="idform-control" readonly></td>
-				</tr>
-				<tr>
-					<td align=right>이메일&nbsp;</td> 
-					<td><input type="email" id="email" th:field="*{email}" class="emailform-control" placeholder="Email" required></td>
-				</tr>
-				<tr>
-					<td align=right>패스워드&nbsp;</td> 
-					<td><input type="password"  id="inputPassword" th:field="*{password}" class="pwform-control" placeholder="Password" required></td>
-				</tr>
-				<tr>
-					<td align=right>패스워드(확인)&nbsp;</td>
-					<td><input type="password" required id="inputPassword2" class="pwform-control" onchange="check_pw()">&nbsp:<span id="check"></span></td>
-				</tr>
-				<tr>
-					<td align=right>핸드폰번호&nbsp;</td> 
-					<td><input type="tel"  id="phone" th:field="*{phone}" class="pform-control" placeholder="Phone" required></td>
-				</tr>
-				<tr>
-					<td align=right>성별&nbsp;</td>
-					<td>
-						<label for="male">남자</label>
-						<input type="radio" id="male" th:field="*{gender}" value="MALE">
-						<label for="female">여자</label>
-						<input type="radio" id="female" th:field="*{gender}" value="FEMALE">
-					</td>
-				</tr>
-			</div>
-			<tr>
-				<td colspan=2 align=center height=50>
-					<button class="sub"type="submit">정보수정하기</button>
-				</td>
-			</tr>
-		</table>
-	</form>
-	<script>
-		function check_pw(){
-			if(document.getElementById('inputPassword').value !='' && document.getElementById('inputPassword2').value!=''){
-				if(document.getElementById('inputPassword').value==document.getElementById('inputPassword2').value){
-					document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
-					document.getElementById('check').style.color='blue';
-				}
-				else{
-					document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
-					document.getElementById('check').style.color='red';
-				}
-			}
-		}
-	</script>
-</div>
-	
-
+    <div layout:fragment="content">
+        <form class="form-register1" th:action="@{/protected/userUpdateForm}" method="post" th:object="${user}">
+            <p class="sign"><b>UPDATE</b></p>
+            <div class="textForm1">
+                <div class="id">
+                    <label for="username">아이디</label>
+                    <input type="text" id="username" th:field="*{username}" class="idform-control1" readonly>
+                </div>
+                <div class="email">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" th:field="*{email}" class="emailform-control1" placeholder="Email" required>
+                </div>
+                <div class="pw">
+                    <label for="inputPassword">패스워드</label>
+                    <input type="password" id="inputPassword" th:field="*{password}" class="pwform-control1" placeholder="Password" required>
+                </div>
+             
+	<div class="pwcheck">
+					<label for="inputPassword2">패스워드(확인)&nbsp;</label>
+					<input type="password" required id="inputPassword2" class="pwform-control2" onchange="check_pw()">
+				</div>
+				&nbsp;<span id="check"></span>
+                <div class="phone">
+                    <label for="phone">핸드폰번호</label>
+                    <input type="tel" id="phone" th:field="*{phone}" class="pform-control1" placeholder="Phone" required>
+                </div>
+                <div class="radio-group">
+                    <label>성별</label>
+                    </div>
+                    <div class="radio-group1">
+                    <label for="male">남자</label>
+                     
+                    
+                    <input type="radio" id="male" th:field="*{gender}" value="MALE">
+                      </div>
+                       <div class="radio-group2">
+                    <label for="female">여자</label>
+                    <input type="radio" id="female" th:field="*{gender}" value="FEMALE">
+                      </div>
+            
+                <div class="submit-button">
+                    <button class="sub" type="submit">정보수정하기</button>
+                </div>
+            </div>
+        </form>
+        <script>
+            function check_pw() {
+                if (document.getElementById('inputPassword').value != '' && document.getElementById('inputPassword2').value != '') {
+                    if (document.getElementById('inputPassword').value == document.getElementById('inputPassword2').value) {
+                        document.getElementById('check').innerHTML = '비밀번호가 일치합니다.';
+                        document.getElementById('check').style.color = 'blue';
+                    } else {
+                        document.getElementById('check').innerHTML = '비밀번호가 일치하지 않습니다.';
+                        document.getElementById('check').style.color = 'red';
+                    }
+                }
+            }
+        </script>
+    </div>
 </body>
 </html>
