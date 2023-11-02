@@ -23,7 +23,9 @@ public class CartDetailDto {
 	
 	private String imgUrl;
 	
-	public CartDetailDto(Long cartProductId, String name, int price, Size size, String color, int count, String imgUrl) {
+	private Long productId;
+	
+	public CartDetailDto(Long cartProductId, String name, int price, Size size, String color, int count, String imgUrl, Long productId) {
 		this.cartProductId = cartProductId;
 		this.name = name;
 		this.price = price;
@@ -31,6 +33,7 @@ public class CartDetailDto {
 		this.color = color;
 		this.count = count;
 		this.imgUrl = imgUrl;
+		this.productId = productId;
 		
 	}
 }

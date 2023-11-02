@@ -51,7 +51,7 @@
 							<img th:src="${cartDetailDto.imgUrl}" alt="셔츠">
 						</td>
 						<td>
-							<a th:href="@{'/public/product/'+${cartDetailDto.cartProductId}}" th:text="${cartDetailDto.name}"></a> <!--<span class="cart_list_store"> 스마트스토어</span>-->
+							<a th:href="@{'/public/product/'+${cartDetailDto.productId}}" th:text="${cartDetailDto.name}"></a> <!--<span class="cart_list_store"> 스마트스토어</span>-->
 							<p th:text="'옵션:'+${cartDetailDto.color}+'/'+${cartDetailDto.size}">옵션:네이비/L</p>
 							<span class="price" th:id="'price_' + ${cartDetailDto.cartProductId}" th:data-price="${cartDetailDto.price}" th:text="${cartDetailDto.price} +'원'"></span>
 							<!-- <span style="text-decoration: line-through; color: lightgray;">59,000</span> -->
