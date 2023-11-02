@@ -13,8 +13,12 @@
             padding: 6px 20px;
             background-color: rgb(255, 255, 255);
             border: 1px solid rgb(95, 102, 149);
-            border-radius: 6px;
+           
             cursor: pointer;
+            width: 300px;
+            height: 50px;
+            text-align: center;
+          	font-family: fantasy;
             
         }
 
@@ -29,11 +33,44 @@
         .body {
             display: flex;
             flex-direction: column;
-            align-items: center;
+           
             justify-content: center;
-            margin: 0;
+            margin: 5%;
             background-color: #f5f5f5; /* 배경색 설정 */
+            margin-top: -10px;
         }
+        .m-title{
+			text-align: left;
+			font-size: 50px;
+			
+		}
+		.all{
+			border:2px solid black;
+			margin-left: 15%;
+			width: 70%;
+			height: 70px;
+			font-size: 20px;
+			
+			
+			 
+		}
+		.userupdate{
+			float: left;
+			margin-left: 30px;
+			cursor: pointer;
+			margin-top: 10px;
+			
+		}
+		.userorder{
+			float: left;
+				margin-left: 30%;
+				cursor: pointer;
+		}
+		.coupon{
+			float: left;
+				margin-left: 35%;
+				cursor: pointer;
+		}
     </style>
 
 </head>
@@ -41,19 +78,31 @@
     <!-- 홈페이지 헤더부분 -->
 	<div layout:fragment="content">
         <div class="body">
+		<div>
+			<span class="m-title" ><b>MY PAGE</b> &nbsp;</span><span class="text" sec:authentication="name"></span>님의 마이페이지
+			</div>
             <!-- 멤버십, 쿠폰, 주문배송조회 -->
-            <div class="row">
-                <div class="btn" onclick="location.href='userUpdateForm'">
-                        내 정보수정
+            <div class = "all">
+            <div class="userupdate">
+                <div class="" onclick="location.href='userUpdateForm'">
+                        회원정보변경
                 </div>
-                <div class="btn" onclick="location.href='coupon'">
-                        쿠폰
                 </div>
-                <div class="btn" sec:authorize="hasRole('ROLE_USER')" onclick="location.href='order'">
+                  <div class="userorder">
+                <div class="" sec:authorize="hasRole('ROLE_USER')" onclick="location.href='order'">
                         주문조회
                 </div>
+                </div>
+                  <div class="coupon">
+                <div class="" onclick="location.href='coupon'">
+                        쿠폰ss
+                </div>
+                  </div>
+                    <div class="adminorder">
                 <div class="btn" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='../admin/order'">
                         주문조회
+                </div>
+                </div>
                 </div>
                 <div class="btn">
                         회원탈퇴
