@@ -21,6 +21,16 @@
 
 
 	<style>
+		.card-img-top {
+  width: 318px;
+  height: 400px;
+  transition: filter 0.3s; /* 호버 시 효과 적용을 위한 트랜지션 설정 */
+}
+
+.card-img-top:hover {
+   opacity: 0.4; /* 호버 시 블러 효과 적용 */
+}
+
 		.grid-container {
 			margin-left: 60px;
 			display: grid;
@@ -39,12 +49,12 @@
 		}
 
 		.card-title {
-			font-size: 13px;
+			font-size: 17px;
 		}
 
 		.list-group-item1 {
 			margin-top: 15px;
-			font-size: 9px;
+			font-size: 12px;
 		}
 
 		#slider-container {
@@ -165,8 +175,8 @@
 				</a>
 				<div class="card-body">
 					<p class="card-title" th:text="${p.name}">옷 이름</p>
-					<p class="list-group-item1" th:text="${p.price}+'원 /'">옷 가격</p>
-					<p class="list-group-item1" th:text="${p.size}">옷 사이즈</p>
+					<span class="list-group-item1" th:text="${p.price}+'원 /'">옷 가격</span>
+					<span class="list-group-item1" th:text="${p.size}">옷 사이즈</span>
 					</p>
 
 				</div>

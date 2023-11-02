@@ -47,6 +47,16 @@ border-right:1px solid rgb(192, 192, 192);
 border-bottom: 1px solid rgb(192, 192, 192);
 
 }
+.textForm1{
+	    margin-top: 50px;
+	width: 26%;
+	margin-left: 37%;
+	height: 510px;
+border-top: 1px solid rgb(192, 192, 192);
+border-left:1px solid rgb(192, 192, 192);
+border-right:1px solid rgb(192, 192, 192);
+border-bottom: 1px solid rgb(192, 192, 192);
+}
 input::placeholder {
   color: rgb(0, 0, 0);
   font-weight: bold;
@@ -83,7 +93,10 @@ body {
   left:50%;
   transform: translate(-50%,-50%);
   border-radius: 15px;
+  
 }
+
+
 
 .form-register h2 {
   text-align: center;
@@ -93,6 +106,20 @@ body {
 
 .emailform-control{
 	  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+    border-bottom: 2px solid #adadad;
+  margin: 10px;
+  padding: 10px 10px;
+  margin-right:100px;
+	
+}
+.emailform-control1{
+	  width: 57%;
   border:none;
   outline:none;
   color: #636e72;
@@ -133,9 +160,47 @@ body {
   padding: 10px 10px;
   margin-right:100px;
 }
+.idform-control1 {
+  width: 54%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+    border-bottom: 2px solid #adadad;
+ padding: 10px 10px;
+  margin-right:100px;
+}
 
 .pwform-control {
   width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+    border-bottom: 2px solid #adadad;
+  margin: 10px;
+  padding: 10px 10px;
+}
+
+.pwform-control1 {
+  width: 49%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+    border-bottom: 2px solid #adadad;
+  margin: 10px;
+  padding: 10px 10px;
+}
+
+.pwform-control2 {
+  width: 41%;
   border:none;
   outline:none;
   color: #636e72;
@@ -168,6 +233,18 @@ body {
 */
 .pform-control {
   width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+    border-bottom: 2px solid #adadad;
+  margin: 10px;
+  padding: 10px 10px;
+}
+ .pform-control1 {
+  width: 46%;
   border:none;
   outline:none;
   color: #636e72;

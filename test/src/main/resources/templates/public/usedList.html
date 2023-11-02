@@ -16,6 +16,15 @@
 <head>
 	<meta charset="UTF-8">
 	<style>
+		.retro-item {
+			
+  transition: transform 0.3s; /* 호버 시 효과 적용을 위한 트랜지션 설정 */
+}
+
+.retro-item:hover {
+  transform: scale(1.05); /* 호버 시 이미지 크기를 1.05배로 확대 */
+}
+			
 		/* 그리드 컨테이너 설정 */
 		.retro-container {	
 			margin-left: 60px;
