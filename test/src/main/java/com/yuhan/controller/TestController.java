@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
  */
 public class TestController {
 	
-
+	
 	
 	@GetMapping("/protected/mypage")
 	public String mypage() {

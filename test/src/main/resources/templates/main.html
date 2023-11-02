@@ -18,7 +18,6 @@
 		crossorigin="anonymous"></script>
 
 
-
 	<style>
 		.row {
 			display: flex;
@@ -178,6 +177,7 @@
 				const slider = document.getElementById("slider");
 				const slides = document.querySelectorAll(".slide");
 
+
 				function prevSlide() {
 					currentIndex = (currentIndex - 1 + slides.length) % slides.length;	//이전으로 넘어가는 기능
 					updateSlider();
@@ -192,6 +192,7 @@
 					const translateX = -currentIndex * 300; // 슬라이드 너비를 곱하여 이동 거리 계산
 					slider.style.transform = `translateX(${translateX}px)`;
 				}
+				
 			</script>
 
 
