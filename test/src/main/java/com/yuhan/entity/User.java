@@ -58,6 +58,7 @@ public class User {
 		this.password = user.getPassword();
 		this.phone = user.getPhone();
 		this.gender = user.getGender();
+		this.addr = user.getAddr();
 		
 	}
 	

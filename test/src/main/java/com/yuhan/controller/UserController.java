@@ -49,7 +49,9 @@ public class UserController {
     }
 	
 	@PostMapping("/protected/userUpdateForm")
-	public String userUpdate(User user) {
+	public String userUpdate(User user, @RequestParam("addr2") String addr2, @RequestParam("addr3") String addr3) {
+		System.out.println(addr2+' '+addr3);
+		user.setAddr(addr2+' '+addr3);
 		userService.updateUser(user);
 		return "redirect:/";
 	}
