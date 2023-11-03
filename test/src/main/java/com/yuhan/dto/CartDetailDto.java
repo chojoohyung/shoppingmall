@@ -1,10 +1,6 @@
 package com.yuhan.dto;
 
-import com.yuhan.constant.Size;
-
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 public class CartDetailDto {
@@ -15,7 +11,7 @@ public class CartDetailDto {
 	
 	private int price;
 	
-	private Size size;
+	private String size;
 	
 	private String color;
 	
@@ -25,7 +21,7 @@ public class CartDetailDto {
 	
 	private Long productId;
 	
-	public CartDetailDto(Long cartProductId, String name, int price, Size size, String color, int count, String imgUrl, Long productId) {
+	public CartDetailDto(Long cartProductId, String name, int price, String size, String color, int count, String imgUrl, Long productId) {
 		this.cartProductId = cartProductId;
 		this.name = name;
 		this.price = price;

@@ -2,7 +2,6 @@ package com.yuhan.entity;
 
 import java.util.List;
 
-import com.yuhan.constant.Size;
 import com.yuhan.dto.ProductDto;
 import com.yuhan.exception.OutOfStockException;
 
@@ -40,7 +39,7 @@ public class Product {
 	private String color;
 	
 	@Column(nullable=false)
-	private Size size;
+	private String size;
 	
 	@Column(nullable=false)
 	private int stock;

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
-import com.yuhan.constant.Size;
 import com.yuhan.entity.Product;
 
 @SpringBootTest
@@ -27,7 +26,7 @@ class ProductRepositoryTest {
 		product.setName("검정티");
 		product.setPrice(10000);
 		product.setColor("검정");
-		product.setSize(Size.S);
+		product.setSize("S");
 		product.setStock(100);
 		product.setCategory("상의");
 		
@@ -44,7 +43,7 @@ class ProductRepositoryTest {
 			product.setName("검정티");
 			product.setPrice(10000);
 			product.setColor("검정");
-			product.setSize(Size.S);
+			product.setSize("S");
 			product.setStock(100);
 			product.setCategory("상의");
 			

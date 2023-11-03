@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:th="https://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layouts/layout_public}">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
+
 <head>
     <meta charset="utf-8">
-    <title>product</title> 
-    <meta name="_csrf" th:content="${_csrf.token}"/>
-    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <title>product</title>
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-  
+
     <link href="../../css/product.css" rel="stylesheet">
 
-    
+
 </head>
+
 <body>
     <div layout:fragment="content">
         <!-- 상품 정보 컨테이너 -->
@@ -27,20 +27,21 @@
                 <p class="product-details1" id="product_name" th:text="''+${productDto.name}">옷 이름</p>
                 <p class="product-details" id="product_price" th:text="'판매가 &nbsp;&nbsp;&nbsp; ' +${productDto.price}">옷 가격</p>
                 <p class="product-details" th:text="'사이즈 &nbsp;&nbsp;&nbsp;&nbsp;'+${productDto.size}">사이즈 </p>
-                <p class="product-details" th:text="'컬러 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '+${productDto.size}">컬러 </p>
+                <p class="product-details" th:text="'컬러 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '+${productDto.color}">컬러</p>
                 <p class="product-details" th:text="'재고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '+${productDto.stock}">옷 재고</p>
-                <input type="number" name="count" sec:authorize="hasRole('ROLE_USER')" id="count" class="form-control" value="1" min="1"><br>
-                <button type="button" onclick="requestPay()" sec:authorize="hasRole('ROLE_USER')" class="order-button1">BUY NOW</button><br>
-                <button type="button" onclick="addCart()" sec:authorize="hasRole('ROLE_USER')" class="order-button2">CART</button>
+                <input type="number" name="count" sec:authorize="hasRole('ROLE_USER')" id="count" class="form-control"
+                    value="1" min="1"><br>
+                <button type="button" onclick="requestPay()" sec:authorize="hasRole('ROLE_USER')"
+                    class="order-button1">BUY NOW</button><br>
+                <button type="button" onclick="addCart()" sec:authorize="hasRole('ROLE_USER')"
+                    class="order-button2">CART</button>
                 <button type="button" id="yourButtonId" sec:authorize="hasRole('ROLE_ADMIN')">상품변경</button>
-                
             </div>
         </div>
         <div class="product-info-container">
             <div class="product-images">
                 <div th:each="productImgDto, status: ${productDto.productImgDtoList}">
                     <div th:if="${status.index==0}">
-
                     </div>
                     <div th:unless="${status.index==0}">
                         <div>
@@ -48,20 +49,19 @@
                             <img class="product-image" th:src="${productImgDto.imgUrl}">
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
 
         <script>
-            var IMP = window.IMP; 
-            IMP.init("imp46787317"); 
+            var IMP = window.IMP;
+            IMP.init("imp46787317");
 
             var productName = document.querySelector('#product_name').textContent;
             var productPrice = document.querySelector('#product_price').textContent;
 
             var token = $("meta[name='_csrf']").attr("content");
-		    var header = $("meta[name='_csrf_header']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
 
 
             function requestPay() {
@@ -79,12 +79,12 @@
                     $.ajax({
                         type: 'POST',
                         url: '/verify/' + rsp.imp_uid,
-                        beforeSend : function(xhr){
-						/* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
-						xhr.setRequestHeader(header, token);
-					},
-                    }).done(function(data) {
-                        if(rsp.paid_amount === data.response.amount){
+                        beforeSend: function (xhr) {
+                            /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                            xhr.setRequestHeader(header, token);
+                        },
+                    }).done(function (data) {
+                        if (rsp.paid_amount === data.response.amount) {
                             order();
                         } else {
                             alert("결제 실패");
@@ -103,56 +103,58 @@
                 // 변경된 주소로 페이지를 이동합니다.
                 window.location.href = newURL;
             }
+            var button = document.getElementById("yourButtonId"); // 버튼의 ID를 지정하세요.
+            button.addEventListener("click", redirectToAdminPage);
 
 
-            $(document).ready(function(){
+            $(document).ready(function () {
                 calculateToalPrice();
 
-                $("#count").change( function(){
+                $("#count").change(function () {
                     calculateToalPrice();
                 });
             });
 
-            function calculateToalPrice(){
+            function calculateToalPrice() {
                 var count = $("#count").val();
                 var price = $("#price").val();
-                var totalPrice = price*count;
+                var totalPrice = price * count;
                 $("#totalPrice").html(totalPrice + '원');
             }
 
-            function order(){ 
-                
+            function order() {
+
                 var token = $("meta[name='_csrf']").attr("content");
                 var header = $("meta[name='_csrf_header']").attr("content");
                 var url = "/order";
                 var paramData = {
-                    productId : $("#productId").val(),
-                    count : $("#count").val()
+                    productId: $("#productId").val(),
+                    count: $("#count").val()
                 };
-                
+
                 var param = JSON.stringify(paramData);
 
                 $.ajax({
-                    url      : url,
-                    type     : "POST",
-                    contentType : "application/json",
-                    data     : param,
-                    beforeSend : function(xhr){
+                    url: url,
+                    type: "POST",
+                    contentType: "application/json",
+                    data: param,
+                    beforeSend: function (xhr) {
                         /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
                         xhr.setRequestHeader(header, token);
                     },
-                    dataType : "json",
-                    cache   : false,
-                    success  : function(result, status){
+                    dataType: "json",
+                    cache: false,
+                    success: function (result, status) {
                         alert("주문이 완료 되었습니다.");
-                        location.href='/';
+                        location.href = '/';
                     },
-                    error : function(jqXHR, status, error){
+                    error: function (jqXHR, status, error) {
 
-                        if(jqXHR.status == '401'){
+                        if (jqXHR.status == '401') {
                             alert('로그인 후 이용해주세요');
-                            location.href='/public/login';
-                        } else{
+                            location.href = '/public/login';
+                        } else {
                             alert(jqXHR.responseText);
                         }
 
@@ -160,46 +162,46 @@
                 });
             }
 
-            function addCart(){
+            function addCart() {
                 var token = $("meta[name='_csrf']").attr("content");
                 var header = $("meta[name='_csrf_header']").attr("content");
 
                 var url = "/cart";
                 var paramData = {
-                    productId : $("#productId").val(),
-                    count : $("#count").val()
+                    productId: $("#productId").val(),
+                    count: $("#count").val()
                 };
 
                 var param = JSON.stringify(paramData);
 
                 $.ajax({
-                    url      : url,
-                    type     : "POST",
-                    contentType : "application/json",
-                    data     : param,
-                    beforeSend : function(xhr){
+                    url: url,
+                    type: "POST",
+                    contentType: "application/json",
+                    data: param,
+                    beforeSend: function (xhr) {
                         /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
                         xhr.setRequestHeader(header, token);
                     },
-                    dataType : "json",
-                    cache   : false,
-                    success  : function(result, status){
+                    dataType: "json",
+                    cache: false,
+                    success: function (result, status) {
                         alert("상품을 장바구니에 담았습니다.");
-                        location.href='/';
+                        location.href = '/';
                     },
-                    error : function(jqXHR, status, error){
+                    error: function (jqXHR, status, error) {
 
-                        if(jqXHR.status == '401'){
+                        if (jqXHR.status == '401') {
                             alert('로그인 후 이용해주세요');
-                            location.href='/public/login';
-                        } else{
+                            location.href = '/public/login';
+                        } else {
                             alert(jqXHR.responseText);
                         }
-
                     }
                 });
             }
         </script>
     </div>
 </body>
+
 </html>

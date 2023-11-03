@@ -18,40 +18,32 @@ import lombok.RequiredArgsConstructor;
  * 현재 구현안된 나머지 모아놓은 컨트롤러
  */
 public class TestController {
-	
+
 	private final CartService cartService;
-	
+
 	@GetMapping("/protected/mypage")
 	public String mypage(Principal principal, Model model) {
-		 
-			List<CartDetailDto> cartDetailDtoList = cartService.getCartList(principal.getName());
-			System.out.println(cartDetailDtoList.size());
-			
-			
-			model.addAttribute("cartDetailDtoList", cartDetailDtoList);
-			
-		
+		List<CartDetailDto> cartDetailDtoList = cartService.getCartList(principal.getName());
+		model.addAttribute("cartDetailDtoList", cartDetailDtoList);
 		return "/protected/mypage";
 	}
-	
-	
-	
+
 	@GetMapping("/protected/membership")
 	public String membership() {
-		
+
 		return "/protected/membership";
 	}
-	
+
 	@GetMapping("/protected/coupon")
 	public String coupon() {
 		return "/protected/coupon";
 	}
-	
+
 	@GetMapping("/protected/change")
 	public String change() {
 		return "/protected/change";
 	}
-	
+
 	@GetMapping("/protected/orderchange")
 	public String orderchange() {
 		return "/protected/orderchange";
