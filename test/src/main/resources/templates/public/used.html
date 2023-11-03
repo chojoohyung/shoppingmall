@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
 
 <head>
@@ -52,10 +52,10 @@
 
 		}
 
-		.text1 {
+		.text11 {
 			border-bottom: solid 1px;
 			border-width: 10%;
-			margin-left: 30%
+			
 		}
 
 		.text-form {
@@ -73,7 +73,7 @@
 
 		}
 
-		.content1 {
+		.content11 {
 			margin-top: -50px;
 			margin-right: 20px;
 		}
@@ -89,23 +89,64 @@
 			margin-bottom: 50px;
 		}
 		
+		   .slideshow-container {
+        position: relative;
+        max-width: 100%;
+        margin: auto;
+    }
+
+    .mySlides {
+        display: none;
+    }
+
+    .prev, .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 10px;
+        font-size: 30px;
+        cursor: pointer;
+        color: rgb(0, 0, 0);
+    }
+
+    .prev {
+        left: 0;
+    }
+
+    .next {
+        right: 0;
+    }
+    .used-title{
+		margin-right: 40px;
+	}
 	</style>
 </head>
 
-<body>
+
+	
 	<div layout:fragment="content">
 
 		<div class="retro-container">
-			<!-- 이걸로 슬라이드 중고 이미지 칸에 슬라이드로 부탁
-				<div th:each="productImgDto, status: ${used.usedImgList}">
-					<div>
-						<input type="hidden" name="productImgIds" th:value="${productImgDto.id}">
-						<img class="product-image" th:src="${productImgDto.imgUrl}">
-					</div>
-                </div>
-			-->
-			<img class="product-img" th:src="${used.usedImgList[0].imgUrl}" alt="상품 이미지" width="500" height="600">
-			<div>
+		
+
+<div class="slideshow-container">
+    <div th:each="productImgDto, status: ${used.usedImgList}">
+        <div class="mySlides">
+            <input type="hidden" name="productImgIds" th:value="${productImgDto.id}">
+            <img class="product-image" th:src="${productImgDto.imgUrl}" width="500" height="500">
+        </div>
+    </div>
+
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+
+
+		
+			<div class="used-title" >
 				<button type="button" id="yourButtonId" >상품보기</button>
 				<input type="hidden" id="used.id" th:value="${used.id}">
 				<p class="retro-title" th:text="${used.title}">제목</p><br>
@@ -129,14 +170,16 @@
 				<h3 style="color: red; text-align: center;">거래 전 주의사항 안내</h3><br>
 				판매자가 별도의 메신저로 결제링크를 보내거나 직거래(직접송금)을<br>
 				유도하는 경우 사기일 가능성이 높으니 거래를 자제해 주시고<br>
-				<p class="text1">HENRY IV 고객센터로 신고해주시기 바랍니다.</p>
+				<p class="text11">HENRY IV 고객센터로 신고해주시기 바랍니다.</p>
 			</div>
 		</div>
 		<div class="content">
-			<p class="content1" th:text="'내용 : '+${used.content}">내용</p>
+			<p class="content11" th:text="'내용 : '+${used.content}">내용</p>
 			
 
 		</div>
+		
+
 		<script>
 			function redirectToUsedPage() {
 				// 현재 페이지 주소를 가져옵니다.
@@ -154,8 +197,38 @@
 
 
 		</script>
-	</div>
-	</div>
+		<script>
+    var slideIndex = 0; 
+    var totalPages = document.getElementsByClassName("mySlides").length; // 전체 슬라이드 수
+
+    showSlides();
+
+
+    function plusSlides(n) {
+        slideIndex += n;
+        showSlides();
+    }
+
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+
+        if (slideIndex >= slides.length) {
+            slideIndex = 0;
+        } else if (slideIndex < 0) {
+            slideIndex = slides.length - 1;
+        }
+
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        slides[slideIndex].style.display = "block";
+    }
+</script>
+
+	
 
 
 </body>
