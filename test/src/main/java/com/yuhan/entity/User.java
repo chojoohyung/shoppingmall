@@ -40,8 +40,11 @@ public class User {
 	
 	private String email;
 	
+	private String addr;
+	
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
+	
 	
 	@ManyToMany
 	@JoinTable(

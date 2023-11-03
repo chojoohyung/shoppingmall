@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yuhan.entity.User;
 import com.yuhan.service.UserService;
@@ -29,7 +30,8 @@ public class UserController {
 	}
 	
 	@PostMapping("/public/register")
-	public String register(User user) {
+	public String register(User user, @RequestParam("addr2") String addr2, @RequestParam("addr3") String addr3) {
+		user.setAddr(addr2+' '+addr3);
 		userService.save(user);
 		return "/public/login";
 	}
