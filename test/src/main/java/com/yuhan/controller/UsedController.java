@@ -3,7 +3,11 @@ package com.yuhan.controller;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -109,13 +113,31 @@ public class UsedController {
 	/*
 	 * 중고상품 리스트
 	 */
-	@GetMapping("/public/usedList")
-	public String JproductPage(Model model) {
-		List<Used> usedList = usedService.findAll();
-		model.addAttribute("usedList", usedList);
+	@GetMapping(value = {"/public/usedList/{page}", "/public/usedList"})
+	public String JproductPage(Model model, @PathVariable("page") Optional<Integer> page) {
+	    int pageSize = 8; // 페이지당 항목 수
+	    int defaultPage = 0; // 기본 페이지 번호
+
+	    if (page.isPresent()) {
+	        if (page.get() < 0) {
+	            // 페이지 번호가 0 미만인 경우 기본 페이지 번호로 설정
+	            page = Optional.of(defaultPage);
+	        }
+	    } else {
+	        page = Optional.of(defaultPage);
+	    }
+
+	    Pageable pageable = PageRequest.of(page.get(), pageSize);
+
+	    Page<Used> usedPage = usedService.test(pageable);
+	    List<Used> usedList = usedPage.getContent(); // 현재 페이지의 항목 목록
+	    int totalPages = usedPage.getTotalPages() - 1; // 전체 페이지 수
+
+	    model.addAttribute("usedList", usedList);
+	    model.addAttribute("totalPages", totalPages);
+	    model.addAttribute("page", page.orElse(defaultPage)); // 현재 페이지 번호
 	    return "/public/usedList";
 	}
-	
 	/*
 	 * 중고상품 상세정보
 	 */

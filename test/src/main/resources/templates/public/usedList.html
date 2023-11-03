@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
-	
+
 <th:block layout:fragment="script">
 	<script th:inline="javascript">
 		$(document).ready(function () {
-			var errorMessage = [[${errorMessage}]];
+			var errorMessage = [[${ errorMessage }]];
 			if (errorMessage != null) {
 				alert(errorMessage);
 			}
@@ -13,40 +13,46 @@
 		});
 	</script>
 </th:block>
+
 <head>
 	<meta charset="UTF-8">
 	<style>
 		.retro-item {
-			
-  transition: transform 0.3s; /* 호버 시 효과 적용을 위한 트랜지션 설정 */
-}
 
-.retro-item:hover {
-  transform: scale(1.05); /* 호버 시 이미지 크기를 1.05배로 확대 */
-}
-			
+			transition: transform 0.3s;
+			/* 호버 시 효과 적용을 위한 트랜지션 설정 */
+		}
+
+		.retro-item:hover {
+			transform: scale(1.05);
+			/* 호버 시 이미지 크기를 1.05배로 확대 */
+		}
+
 		/* 그리드 컨테이너 설정 */
-		.retro-container {	
+		.retro-container {
 			margin-left: 60px;
 			display: grid;
-			grid-template-columns: repeat(4, 1fr); /* 4개의 열로 나눔 */
-			grid-gap: 0px; /* 그리드 아이템 간의 간격 설정 */
-			
+			grid-template-columns: repeat(4, 1fr);
+			/* 4개의 열로 나눔 */
+			grid-gap: 0px;
+			/* 그리드 아이템 간의 간격 설정 */
+
 		}
 
 		/* 각 그리드 아이템 스타일 */
 		.retro-item {
-			padding: 10px; /* 그리드 아이템 안의 여백 설정 */
-			text-align: center; /* 가운데 정렬 */
+			padding: 10px;
+			/* 그리드 아이템 안의 여백 설정 */
+			text-align: center;
+			/* 가운데 정렬 */
 		}
 
-		.product-img {
-			
-		}
+		.product-img {}
 
 		.card-title {
 			font-size: 16px;
-			font-weight: bold; /* 제목 굵게 표시 */
+			font-weight: bold;
+			/* 제목 굵게 표시 */
 		}
 
 		.retro-item-price {
@@ -56,8 +62,12 @@
 		.retro-item-info {
 			font-size: 12px;
 		}
-		h2{
+
+		h2 {
 			font-size: 0px;
+			text-align: center;
+		}
+		.pagination {
 			text-align: center;
 		}
 	</style>
@@ -65,33 +75,49 @@
 
 <body>
 	<div layout:fragment="content">
-	
+
 		<button onclick="location.href='/protected/used/new'" sec:authorize="hasRole('ROLE_USER')">중고 글등록</button>
-<h2>중고 등록된 상품!</h2>
+		<h2>중고 등록된 상품!</h2>
 		
+
 		<div class="retro-container">
 
-				<div class="retro-container">
-    <div class="retro-item" th:each="used,index : ${usedList}">
-        <div th:each="usedImg, index:${used.usedImgList}">
-            <th:block th:if="${index.index == 0}">
-                <a th:href="'/public/used/'+${used.id}">
-                    <img class="product-img" th:src="${usedImg.imgUrl}" alt="Image" width="300" height="400">
-                </a>
-            </th:block>
-        </div>
-        <p class="card-title" th:text="${used.title}">제목</p>
-        <p class="retro-item-price" th:text="${used.price}">가격</p>
-        <div class="retro-item-info">
-            <p th:text="${used.orderProduct.order.user.username + ' / ' 
+			<div class="retro-container">
+				<div class="retro-item" th:each="used,index : ${usedList}">
+					<div th:each="usedImg, index:${used.usedImgList}">
+						<th:block th:if="${index.index == 0}">
+							<a th:href="'/public/used/'+${used.id}">
+								<img class="product-img" th:src="${usedImg.imgUrl}" alt="Image" width="300"
+									height="400">
+							</a>
+						</th:block>
+					</div>
+					<p class="card-title" th:text="${used.title}">제목</p>
+					<p class="retro-item-price" th:text="${used.price}">가격</p>
+					<div class="retro-item-info">
+						<p th:text="${used.orderProduct.order.user.username + ' / ' 
                 + #temporals.format(used.createDate, 'yyyy-MM-dd HH:mm') + '씀'}">글쓴이</p>
-        </div>
-    </div>
-</div>
-</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="pagination">
+			<button class="page-button" th:each="pageNumber : ${#numbers.sequence(0, totalPages)}" 
+					th:classappend="${pageNumber == page ? 'active' : ''}" 
+					th:if="${pageNumber >= (page - 1) && pageNumber <= (page + 1)}">
+				<a class="page-link" th:href="@{'/public/usedList/' + ${pageNumber}}" th:text="${pageNumber}"></a>
+			</button>
+		</div>
+		<div class="pagination">
+			<button class="page-button" th:classappend="${page == 0 ? 'disabled' : ''}" th:if="${page > 0}">
+				<a class="page-link" th:href="@{(${page} - 1)}">Previous</a>
+			</button>
+			<button class="page-button" th:classappend="${page == totalPages ? 'disabled' : ''}" th:if="${page < totalPages}">
+				<a class="page-link" th:href="@{(${page} + 1)}">Next</a>
+			</button>
+		</div>
 
 
-	
 </body>
 
 </html>
