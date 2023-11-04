@@ -17,6 +17,10 @@
 <head>
 	<meta charset="UTF-8">
 	<style>
+			.all-container{
+	padding-left:10% ;
+	padding-right:10% ;
+}
 		.retro-item {
 
 			transition: transform 0.3s;
@@ -30,11 +34,12 @@
 
 		/* 그리드 컨테이너 설정 */
 		.retro-container {
-			margin-left: 60px;
+			
 			display: grid;
+			place-items: center;
 			grid-template-columns: repeat(4, 1fr);
 			/* 4개의 열로 나눔 */
-			grid-gap: 0px;
+			grid-gap: 20px;
 			/* 그리드 아이템 간의 간격 설정 */
 
 		}
@@ -113,7 +118,7 @@
 
 <body>
 	<div layout:fragment="content">
-
+<div class="all-container">
 		<button onclick="location.href='/protected/used/new'" sec:authorize="hasRole('ROLE_USER')">중고 글등록</button>
 		<h2>중고 등록된 상품!</h2>
 		
@@ -125,8 +130,8 @@
 					<div th:each="usedImg, index:${used.usedImgList}">
 						<th:block th:if="${index.index == 0}">
 							<a th:href="'/public/used/'+${used.id}">
-								<img class="product-img" th:src="${usedImg.imgUrl}" alt="Image" width="300"
-									height="400">
+								<img class="product-img" th:src="${usedImg.imgUrl}" alt="Image" width="400"
+									height="500">
 							</a>
 						</th:block>
 					</div>
@@ -150,7 +155,7 @@
 			<button class="page-button" th:classappend="${page == 0 ? 'disabled' : ''}" th:if="${page > 0}">
 				<a class="page-link" th:href="@{(${page} - 1)}">이전</a>
 			</button>
-
+</div>
 		</div>
 
 

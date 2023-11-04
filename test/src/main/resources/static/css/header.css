@@ -10,6 +10,10 @@
 /** border: 2px solid rgb(0, 0, 0);**/
   z-index: 10;
 }
+
+.category1{
+	border-bottom: 4px solid black;
+}
  
 
 .category1 a:hover {

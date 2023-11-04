@@ -10,6 +10,10 @@
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 	<style>
+							.all-container{
+	padding-left:10% ;
+	padding-right:10% ;
+}
 		.doubleChk {
 			background-color: rgb(255, 255, 255);
 			border: 1px solid rgb(95, 102, 149);
@@ -23,6 +27,7 @@
 
 <body>
 	<div layout:fragment="content">
+		<div class="all-container">
 		<p class="sign"><b>SIGN UP</b></p>
 		<form th:action="@{/public/register}" method="post" th:object="${user}" onsubmit="return validateForm()">
 			<div class="textForm">
@@ -603,6 +608,7 @@
 
 		</script>
 		</form>
+		</div>
 	</div>
 
 

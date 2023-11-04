@@ -20,31 +20,36 @@
 
 
 	<style>
+	.card{
+		width: 25rem;
+		
+	}
 		.card-img-top {
-  width: 318px;
-  height: 400px;
-  transition: filter 0.3s; /* 호버 시 효과 적용을 위한 트랜지션 설정 */
+  width: 400px;
+  height: 500px;
+  transition: filter 0.3s; 
 }
 
 .card-img-top:hover {
-   opacity: 0.4; /* 호버 시 블러 효과 적용 */
+   opacity: 0.4; 
 }
 
 		.grid-container {
-			margin-left: 60px;
+		
 			display: grid;
+			place-items: center;
 			grid-template-columns: repeat(4, 1fr);
 			/* 2열로 나눔 */
 			grid-gap: 20px;
-			/* 그리드 아이템 간의 간격 설정 */
+			margin-right: 50px;
 			margin-top: 30px;
 		}
 
 		/* 각 그리드 아이템 스타일 */
 		.col {
-			/*border: 1px solid #ddd;  그리드 아이템 테두리 설정 */
+		
 			padding: 10px;
-			/* 그리드 아이템 안의 여백 설정 */
+		
 		}
 
 		.card-title {
@@ -75,6 +80,7 @@
 		}
 
 		.slidebox {
+			margin-top: 20px;
 			display: flex;
 			width: 100%;
 
@@ -98,19 +104,26 @@
 			}
 		}
 
-
-		.category1 {}
+.between-text{
+	padding: 3%;
+	text-align: center;
+}
+.all-container{
+	padding-left:10% ;
+	padding-right:10% ;
+}
+		
 	</style>
 </head>
 
 <body>
 
-	<div layout:fragment="content" style="border-top:1px solid lightslategray">
+	<div layout:fragment="content" >
 
-
+<div class="all-container">
 		<div id="slider-container">
 
-			<div style="display: flex; justify-content: center;"> <!-- 슬라이드 div안에 화살표가 있어야 하는데 이거 아직 못함 -->
+			<div style="display: flex; justify-content: center;">
 
 
 
@@ -120,42 +133,42 @@
 				<div class="slidebox">
 					<a href="/">
 					<div style="margin-left: 10px;">
-						<img src="resources/img/q1.PNG" alt=""  width="500px;" height="500px"> <!--슬라이드 1-->
+						<img src="resources/img/q1.PNG" alt=""  width="500px;" height="600px"> <!--슬라이드 1-->
 					</div>
 					</a>
 					<a href="/">
 					<div style="margin-left: 10px;">
-						<img src="resources/img/q2.PNG" alt="" width="500px;" height="500px"> <!--슬라이드 2-->
+						<img src="resources/img/q2.PNG" alt="" width="500px;" height="600px"> <!--슬라이드 2-->
 					</div>
 					</a>
 					<a href="/">
 					<div style="margin-left: 10px;">
-						<img src="resources/img/q3.PNG" alt="" width="500px;" height="500px"> <!--슬라이드 3-->
+						<img src="resources/img/q3.PNG" alt="" width="500px;" height="600px"> <!--슬라이드 3-->
 					</div>
 					</a>
 					<a href="/">
 					<div style="margin-left: 10px;">
-						<img src="resources/img/q4.PNG" alt="" width="500px;" height="500px" > <!--슬라이드 4-->
+						<img src="resources/img/q4.PNG" alt="" width="500px;" height="600px" > <!--슬라이드 4-->
 					</div>
 					</a>
 					<a href="/">
 					<div style="margin-left: 10px;">
-						<img src="resources/img/q1.PNG" alt="" width="500px;" height="500px"> <!--슬라이드 1-->
+						<img src="resources/img/q1.PNG" alt="" width="500px;" height="600px"> <!--슬라이드 1-->
 					</div>
 					</a>
 					<a href="/">
 					<div style="margin-left: 10px;">
-						<img src="resources/img/q2.PNG" alt="" width="500px;" height="500px"> <!--슬라이드 2-->
+						<img src="resources/img/q2.PNG" alt="" width="500px;" height="600px"> <!--슬라이드 2-->
 					</div>
 					</a>
 					<a href="/">
 					<div style="margin-left: 10px;">
-						<img src="resources/img/q3.PNG" alt="" width="500px;" height="500px"> <!--슬라이드 3-->
+						<img src="resources/img/q3.PNG" alt="" width="500px;" height="600px"> <!--슬라이드 3-->
 					</div>
 					</a>
 					<a href="/">
 					<div style="margin-left: 10px;">
-						<img src="resources/img/q4.PNG" alt="" width="500px;" height="500px"> <!--슬라이드 4-->
+						<img src="resources/img/q4.PNG" alt="" width="500px;" height="600px"> <!--슬라이드 4-->
 					</div>
 					</a>
 
@@ -163,13 +176,17 @@
 
 				</div>
 			</div>
+			<div class="between-text" >
+			<h2>NEW ITEM</h2>
+			<h4>새로 업데이트 된 상품들입니다</h4>
+			</div>
 		</div>
 
 		<div class="grid-container">
-			<div class="card" style="width: 20rem;" th:each="p:${productPagingDto}">
+			<div class="card" th:each="p:${productPagingDto}">
 				<input type="hidden" name="productImgIds" th:value="${p.id}">
 				<a th:href="'/public/product/'+${p.id}">
-					<img th:src="${p.productImgDtoList[0].imgUrl}" class="card-img-top" alt="..." width="200" height="400">
+					<img th:src="${p.productImgDtoList[0].imgUrl}" class="card-img-top" alt="..." >
 				</a>
 				<div class="card-body">
 					<p class="card-title" th:text="${p.name}">옷 이름</p>
@@ -202,7 +219,7 @@
 
 		</div>
 
-
+</div>
 
 </body>
 

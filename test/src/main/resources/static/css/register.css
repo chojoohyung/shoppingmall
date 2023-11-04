@@ -1,3 +1,8 @@
+.all-container{
+	padding-left:10% ;
+	padding-right:10% ;
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -68,14 +73,16 @@ input::placeholder {
 }
 .use{
 	margin-top:30px;
-	  margin-left:580px;
+	  margin-left:730px;
+	  margin-bottom: 30px;
 }
 .container-s {
 
         width: 350px;
         height: 140px;
         overflow: auto;
-        margin-left:580px;
+        margin-left:730px;
+       
         text-align: center;
       }
 body {
@@ -273,7 +280,7 @@ body {
   transition: 0.4s;
   display:inline;
   margin-top : 50px;
-  margin-left:160px;
+  margin-left:190px;
 }
 
 .sub:hover {

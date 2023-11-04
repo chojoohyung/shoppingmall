@@ -13,6 +13,7 @@
 
 <body>
     <div layout:fragment="content">
+			<div class="all-container">
         <form class="form-register1" th:action="@{/protected/userUpdateForm}" method="post" th:object="${user}" onsubmit="return validateForm()">
             <p class="sign"><b>UPDATE</b></p>
             <div class="textForm1">
@@ -152,6 +153,7 @@
 
 
         </script>
+    </div>
     </div>
 </body>
 
