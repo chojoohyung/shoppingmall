@@ -2,17 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
 
-<th:block layout:fragment="script">
-	<script th:inline="javascript">
-		$(document).ready(function () {
-			var errorMessage = [[${ errorMessage }]];
-			if (errorMessage != null) {
-				alert(errorMessage);
-			}
 
-		});
-	</script>
-</th:block>
 
 <head>
 	<meta charset="UTF-8">
@@ -71,6 +61,18 @@
 			text-align: center;
 		}
 	</style>
+
+	<th:block layout:fragment="script">
+		<script th:inline="javascript">
+			$(document).ready(function () {
+				var errorMessage = [[${ errorMessage }]];
+				if (errorMessage != null) {
+					alert(errorMessage);
+				}
+
+			});
+		</script>
+	</th:block>
 </head>
 
 <body>

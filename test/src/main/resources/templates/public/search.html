@@ -1,44 +1,64 @@
-<html xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:th="https://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layouts/layout_public}">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
+
 <head>
 	<meta charset="UTF-8">
-	<link href="../css/register.css" rel="stylesheet">
+	<style>
+		.hi {
+			text-align: center;
+
+		}
+
+		.login-button {
+			margin-top: 20px;
+			background-color: rgb(0, 0, 0);
+			color: rgb(255, 255, 255);
+			border-color: black;
+			padding: 15px 155px;
+			font-size: 14px;
+			cursor: pointer;
+
+
+
+		}
+
+		.emailform-control {
+			width: 30%;
+			border: none;
+			outline: none;
+			color: #636e72;
+			font-size: 16px;
+			height: 25px;
+			background: none;
+			border-bottom: 2px solid #adadad;
+			margin: 10px;
+			padding: 10px 10px;
+
+		}
+	</style>
 </head>
 
 
 <body>
-	
+
 	<div layout:fragment="content">
-	<form class="form-search" th:action="@{/public/search}" method="post">
-	<table align=center>
-		
-	<tr><td colspan=2 align=center height=40><b>아이디찾기</b><td></tr>
-	
-	<div class="textForm">
-	<tr>
-		<td align=right>이메일&nbsp;</td> 
-		<td><input type="text" id="email" name="email" class="emailform-control" placeholder="email" required autofocus></td>
-	</tr>
-	</div>
-	<form role="form" method="post" th:object="${email}">
-			<td colspan=2 align=center height=50>
-			<div class="pad" onclick="location.href='/public/idresult'">아이디 찾기</div>
-				<input type="hidden" th:name = "${_csrf.parameterName}" th:value = "${_csrf.token}">
+		<div class="hi">
+			<form class="form-search" th:action="@{/public/search}" method="post">
+				<h2>아이디찾기</h2>
+
+				<div>
+					<input type="email" id="email" name="email" class="emailform-control" placeholder="email" required
+						autofocus>
+				</div>
+				<br>
+				<button class="login-button" type="submit">아이디 찾기</button><br>
+
 			</form>
-	<tr>
-		<!--<td colspan=2 align=center height=50>
-			<a href="#"><button onclick="alert('아이디찾기')">아이디찾기</button></a>
-		</td>-->
-	</tr>
-
-
-	</table>
-	</form>
+		</div>
 	</div>
-	
-	
-	
+
+
+
 </body>
+
 </html>

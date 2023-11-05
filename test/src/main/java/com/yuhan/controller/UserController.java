@@ -1,6 +1,7 @@
 package com.yuhan.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,8 +39,20 @@ public class UserController {
 	
 	@GetMapping("/public/search")
     public String showSearchForm() {
+		
         return "/public/search"; // 검색 폼을 보여주는 HTML 파일 이름
     }
+	
+	@PostMapping("/public/search")
+    public String Search(Model model, @RequestParam("email") String email) {
+		
+		List<User> userlist = userService.findByemail(email);
+		model.addAttribute("userlist", userlist);
+		
+        return "/public/idresult"; // 검색 폼을 보여주는 HTML 파일 이름
+    }
+	
+	
 	
 	@GetMapping("/protected/userUpdateForm")
     public String userUpdateForm(Model model, Principal principal) {

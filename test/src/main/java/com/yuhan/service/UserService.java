@@ -1,5 +1,7 @@
 package com.yuhan.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -33,6 +35,10 @@ public class UserService {
 	
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);
+	}
+	
+	public List<User> findByemail(String email) {
+		return userRepository.findByemail(email);
 	}
 	
 	public Long updateUser(User user) {

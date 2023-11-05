@@ -24,7 +24,7 @@
 
 			width: 350px;
 			height: 50px;
-		
+
 		}
 
 		.form-control2 {
@@ -70,13 +70,12 @@
 			align-items: center;
 			background-color: transparent;
 			/* 배경색 제거 */
-				border: none;
+			border: none;
 			/* 테두리 제거 */
-	
+
 
 
 		}
-	
 	</style>
 </head>
 
@@ -87,7 +86,7 @@
 				<h2>LOGIN</h2>
 				<h5 class="h5">welcome</h5>
 			</div>
-			<form class="form-signin" th:action="@{/public/login}" method="post">
+			<form th:action="@{/public/login}" method="post">
 
 				<div th:if="${param.error}" class="alert alert-danger" role="alert">아이디 또는 비밀번호가 맞지 않습니다</div>
 				<div th:if="${param.logout}" onclick="location.href='/public/productList'" class="alert alert-primary"
@@ -103,17 +102,9 @@
 
 				<br>
 				<button class="login-button" type="submit">로그인</button><br>
-				<div class="checkbox-container">
-					<label for="idCheckbox" class="checkbox-label">아이디 저장</label>
-					<input type="checkbox" id="idCheckbox" name="idCheckbox">
-				</div>
 
 				<div class="search">
-
-
 					<div class="pad" onclick="location.href='/public/search'">아이디 찾기</div>
-					<div class="pad" onclick="location.href='/public/pwsearch'">비밀번호 찾기</div>
-
 				</div>
 
 
