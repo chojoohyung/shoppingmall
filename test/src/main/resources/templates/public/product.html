@@ -9,9 +9,11 @@
     <meta name="_csrf_header" th:content="${_csrf.headerName}" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
     <link href="../../css/product.css" rel="stylesheet">
+<style>
 
+</style>
 
 </head>
 
@@ -21,23 +23,28 @@
         <!-- 상품 정보 컨테이너 -->
         <!-- 기존 코드 유지 -->
 
-        <div class="product-info-container">
+        <div class="product-info-container1">
             <img class="product-img" th:src="${productDto.productImgDtoList[0].imgUrl}" alt="상품 이미지">
-            <div>
+            <div class="product-container1">
                 <input type="hidden" id="productId" th:value="${productDto.id}">
                 <p class="product-details1" id="product_name" th:text="''+${productDto.name}">옷 이름</p>
-                <p class="product-details" id="product_price" th:text="'판매가 &nbsp;&nbsp;&nbsp; ' +${productDto.price}">옷 가격</p>
-                <p class="product-details" th:text="'사이즈 &nbsp;&nbsp;&nbsp;&nbsp;'+${productDto.size}">사이즈 </p>
-                <p class="product-details" th:text="'컬러 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '+${productDto.color}">컬러</p>
-                <p class="product-details" th:text="'재고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '+${productDto.stock}">옷 재고</p>
-                <input type="number" name="count" sec:authorize="hasRole('ROLE_USER')" id="count" class="form-control"
-                    value="1" min="1"><br>
+                <p class="product-details2">' 판매가   &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;: <span class="product-details22" id="product_price" th:text="''+${productDto.price}+'won'">옷 가격</span></p>
+                <p class="product-details3">' 사이즈   &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;: <span class="product-details33 "th:text="''+${productDto.size}">사이즈</span> </p>
+                <p class="product-details4">' 컬러  &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <span class="product-details44 "th:text="''+${productDto.color}">컬러</span></p>
+                <p class="product-details5">' 현 재고   &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;: <span class="product-details55 "th:text="''+${productDto.stock}">옷 재고</span></p>
+                <p class="product-details6">' 수량<input type="number" name="count" sec:authorize="hasRole('ROLE_USER')" id="count" class="form-control"
+                    value="1" min="1"><br></p>
                 <button type="button" onclick="requestPay()" sec:authorize="hasRole('ROLE_USER')"
                     class="order-button1">BUY NOW</button><br>
                 <button type="button" onclick="addCart()" sec:authorize="hasRole('ROLE_USER')"
                     class="order-button2">CART</button>
                 <button type="button" id="yourButtonId" sec:authorize="hasRole('ROLE_ADMIN')">상품변경</button>
-            </div>
+               </div>
+            
+            <div class="kk1">
+					<img class="kk" src="/images/kk.PNG"alt="My Image">
+				</div>
+				
         </div>
         <div class="product-info-container">
             <div class="product-images">
@@ -47,7 +54,7 @@
                     <div th:unless="${status.index==0}">
                         <div>
                             <input type="hidden" name="productImgIds" th:value="${productImgDto.id}">
-                            <img class="product-image" th:src="${productImgDto.imgUrl}">
+                            <img class="product-image1" th:src="${productImgDto.imgUrl}">
                         </div>
                     </div>
                 </div>

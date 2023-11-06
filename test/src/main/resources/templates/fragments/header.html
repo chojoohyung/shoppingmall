@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>membership</title>
-
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 </head>
 
 <body>
@@ -12,7 +12,7 @@
 	<!-- 홈페이지 헤더부분 -->
 	
 	<div th:fragment="header" class="header">
-	
+	<div class="ma">
 		<div class="nav1" style="border-bottom:solid">
 			<div class="pad-container">
 				
@@ -20,11 +20,7 @@
 				<div class="pad8" onclick="location.href='/public/faqList'">고객센터</div>
 				<button class="pad" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='/admin/product/new'">상품등록</button>
 			</div>
-			<a href="/">
-				<div class="logo">
-					<img src="../../resources/img/1694590687835.png" alt="로고 이미지">
-				</div>
-			</a>
+		
 			<div class="pad-container" sec:authorize="!isAuthenticated()">
 				<div class="pad1" onclick="location.href='/public/register'">회원가입</div>
 				<div class="pad2" >CART</div>
@@ -43,6 +39,11 @@
 			</div>
 			
 		</div>
+			<a href="/">
+				<div class="logo">
+					<img src="../../resources/img/1694590687835.png" alt="로고 이미지">
+				</div>
+			</a>
 		<div class="category1">
 			<nav >
 				<a class="padd1"  th:href="@{/public/productList}">BEST50</a>
@@ -65,6 +66,7 @@
 				document.getElementById("mySidenav").style.width = "0";
 			}
 		</script>
+		</div>
 	</div>
 	
 </body>

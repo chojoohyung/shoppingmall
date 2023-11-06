@@ -92,26 +92,43 @@
 				<h2>LOGIN</h2>
 				<h5 class="h5">welcome</h5>
 			</div>
-			<form class="form-signin" th:action="@{/public/login}" method="post">
+			 <form class="form-signin" th:action="@{/public/login}" method="post">
+        <div th:if="${param.error}" class="alert alert-danger" role="alert">아이디 또는 비밀번호가 맞지 않습니다</div>
+        <div th:if="${param.logout}" onclick="location.href='/public/productList'" class="alert alert-primary" role="alert">You have been logged out.</div>
+        
+        <label for="username" class="sr-only"></label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="  아이디 입력" required autofocus>
+        <br>
+        <label for="inputPassword" class="sr-only"></label>
+        <input type="password" id="inputPassword" name="password" class="form-control2" placeholder="   비밀번호 입력" required>
+        <br>
+        <button class="login-button" type="submit">로그인</button>
+        <br>
+        <div class="checkbox-container">
+            <label for="idCheckbox" class="checkbox-label">아이디 저장</label>
+            <input type="checkbox" id="idCheckbox" name="idCheckbox">
+        </div>
+    </form>
 
-				<div th:if="${param.error}" class="alert alert-danger" role="alert">아이디 또는 비밀번호가 맞지 않습니다</div>
-				<div th:if="${param.logout}" onclick="location.href='/public/productList'" class="alert alert-primary"
-					role="alert">You have been logged out.</div>
+    <script>
 
-				<label for="username" class="sr-only"></label>
-				<input type="text" id="username" name="username" class="form-control" placeholder="  아이디 입력" required
-					autofocus>
-				<br>
-				<label for="inputPassword" class="sr-only"></label>
-				<input type="password" id="inputPassword" name="password" class="form-control2" placeholder="   비밀번호 입력"
-					required>
+        const usernameInput = document.getElementById('username');
+        const idCheckbox = document.getElementById('idCheckbox');
+        const usernameKey = 'savedUsername';
+        const savedUsername = localStorage.getItem(usernameKey);
+        if (savedUsername) {
+            usernameInput.value = savedUsername;
+            idCheckbox.checked = true;
+        }
 
-				<br>
-				<button class="login-button" type="submit">로그인</button><br>
-				<div class="checkbox-container">
-					<label for="idCheckbox" class="checkbox-label">아이디 저장</label>
-					<input type="checkbox" id="idCheckbox" name="idCheckbox">
-				</div>
+        idCheckbox.addEventListener('change', function () {
+            if (idCheckbox.checked) {
+                localStorage.setItem(usernameKey, usernameInput.value);
+            } else {
+                localStorage.removeItem(usernameKey);
+            }
+        });
+    </script>
 
 				<div class="search">
 

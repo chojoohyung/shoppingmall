@@ -36,7 +36,7 @@
                 </div>
                   </div>
                     <div class="adminorder">
-                <div class="btn" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='../admin/order'">
+                <div class="" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='../admin/order'">
                         주문조회
                 </div>
                 </div>
@@ -79,7 +79,7 @@
     <div class="cart-item" th:each="cartDetailDto, index:${cartDetailDtoList}">
 		<a th:href="@{'/public/product/'+${cartDetailDto.cartProductId}}">
         <div>
-            <img th:src="${cartDetailDto.imgUrl}" alt="셔츠">
+            <img class="imgg" th:src="${cartDetailDto.imgUrl}" alt="셔츠">
         </div>
         </a>
         <a class="cartname" th:text="${cartDetailDto.name}"></a>
