@@ -14,10 +14,6 @@ import lombok.Setter;
 @Entity	
 @Getter @Setter	
 @Table(name="usedcomment")
-/*
- * Product 테이블에 대응하는 클래스
- * 
- */
 public class UsedComment {
 	
 	@Id

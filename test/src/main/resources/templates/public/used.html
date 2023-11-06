@@ -6,7 +6,6 @@
 	<meta charset="utf-8">
 	<title>used</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 	<style>
 		.retro-container {
 			background-color: #fff;
@@ -88,15 +87,14 @@
 			margin-top: -15px;
 			margin-bottom: 50px;
 		}
-		
 	</style>
 </head>
 
 <body>
 	<div layout:fragment="content">
-
-		<div class="retro-container">
-			<!-- 이걸로 슬라이드 중고 이미지 칸에 슬라이드로 부탁
+		<form role="form" method="POST" th:object="${usedCommentForm}">
+			<div class="retro-container">
+				<!-- 이걸로 슬라이드 중고 이미지 칸에 슬라이드로 부탁
 				<div th:each="productImgDto, status: ${used.usedImgList}">
 					<div>
 						<input type="hidden" name="productImgIds" th:value="${productImgDto.id}">
@@ -104,39 +102,67 @@
 					</div>
                 </div>
 			-->
-			<img class="product-img" th:src="${used.usedImgList[0].imgUrl}" alt="상품 이미지" width="500" height="600">
-			<div>
-				<button type="button" id="yourButtonId" >상품보기</button>
-				<input type="hidden" id="used.id" th:value="${used.id}">
-				<p class="retro-title" th:text="${used.title}">제목</p><br>
-				<p class="retro-price" th:text="${used.price}+'원'">가격</p><br>
-				<p class="text2"><b>결제혜택</b> : 중고나라 페이 첫 결제 혜택<br></p>
-				<p class="text3">
-					CU 알뜰택배 무료배송<br>
-					세븐일레븐 편의점 택배 무료<br>
-					편의점 픽업 수수료 무료</p>
+				<img class="product-img" th:src="${used.usedImgList[0].imgUrl}" alt="상품 이미지" width="500" height="600">
+				<div>
+					<button type="button" id="yourButtonId">상품보기</button>
+					<input type="hidden" th:field="*{used.id}">
+					<p class="retro-title" th:text="${used.title}">제목</p><br>
+					<p class="retro-price" th:text="${used.price}+'원'">가격</p><br>
+					<p class="text2"><b>결제혜택</b> : 중고나라 페이 첫 결제 혜택<br></p>
+					<p class="text3">
+						CU 알뜰택배 무료배송<br>
+						세븐일레븐 편의점 택배 무료<br>
+						편의점 픽업 수수료 무료</p>
 
-				<span class="retro-date"><b>구매 한 날짜:</b> </span><span class="retro-date1"
-					th:text="${#temporals.format(used.orderProduct.order.orderDate, 'yyyy-MM-dd')}">주문 내역</span>
-				<!-- 실제 작성일 들어가야됨, 옷 사이즈가 createDate문임 수정 해야됨-->
+					<span class="retro-date"><b>구매 한 날짜:</b> </span><span class="retro-date1"
+						th:text="${#temporals.format(used.orderProduct.order.orderDate, 'yyyy-MM-dd')}">주문 내역</span>
+					<!-- 실제 작성일 들어가야됨, 옷 사이즈가 createDate문임 수정 해야됨-->
 
+
+				</div>
+			</div>
+			<div class="waringmessage">
+				<div class="text-form">
+					<p>
+					<h3 style="color: red; text-align: center;">거래 전 주의사항 안내</h3><br>
+					판매자가 별도의 메신저로 결제링크를 보내거나 직거래(직접송금)을<br>
+					유도하는 경우 사기일 가능성이 높으니 거래를 자제해 주시고<br>
+					<p class="text1">HENRY IV 고객센터로 신고해주시기 바랍니다.</p>
+				</div>
+			</div>
+			<div class="content">
+				<p class="content1" th:text="'내용 : '+${used.content}">내용</p>
+			</div>
+
+
+			<!--
+			댓글목록	
+			-->
+			<div class="content">
+				<div th:each="usedComment, index: ${usedCommentList}">
+					<p class="content1" th:text="'내용 : '+${usedComment.content}">내용</p>
+				</div>
+			</div>
+
+
+			<!--
+			댓글작성
+			-->
+			<div class="content">
+
+				<span class="m-title" for="message">댓글</span>
+				<input type="text" th:field="*{content}" required>
+
+				<button th:formaction="@{'/public/used/' + ${used.id}+'/comment' }" type="submit">댓글쓰기</button>
 
 			</div>
-		</div>
-		<div class="waringmessage">
-			<div class="text-form">
-				<p>
-				<h3 style="color: red; text-align: center;">거래 전 주의사항 안내</h3><br>
-				판매자가 별도의 메신저로 결제링크를 보내거나 직거래(직접송금)을<br>
-				유도하는 경우 사기일 가능성이 높으니 거래를 자제해 주시고<br>
-				<p class="text1">HENRY IV 고객센터로 신고해주시기 바랍니다.</p>
-			</div>
-		</div>
-		<div class="content">
-			<p class="content1" th:text="'내용 : '+${used.content}">내용</p>
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 			
 
-		</div>
+
+
+		</form>
+
 		<script>
 			function redirectToUsedPage() {
 				// 현재 페이지 주소를 가져옵니다.

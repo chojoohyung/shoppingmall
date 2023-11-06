@@ -8,13 +8,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.yuhan.entity.Used;
+import com.yuhan.entity.UsedComment;
 
-public interface UsedRepository extends JpaRepository<Used,  Long> {
+public interface UsedCommentRepository extends JpaRepository<UsedComment,  Long> {
 	
-	Used findByid(Long id);
+	List<UsedComment> findByused_id(Long id);
 	
-	List<Used> findByOrderByIdDesc();
-	
-	@Query("SELECT u FROM Used u ORDER BY u.id desc")
-	Page<Used> queryAnnotion(Pageable paging);
 }

@@ -23,9 +23,11 @@ import com.yuhan.dto.UsedFormDto;
 import com.yuhan.entity.OrderProduct;
 import com.yuhan.entity.Product;
 import com.yuhan.entity.Used;
+import com.yuhan.entity.UsedComment;
 import com.yuhan.entity.User;
 import com.yuhan.service.OrderProductService;
 import com.yuhan.service.ProductService;
+import com.yuhan.service.UsedCommentService;
 import com.yuhan.service.UsedService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -38,6 +40,7 @@ public class UsedController {
 	
 	private final UsedService usedService;
 	private final OrderProductService orderProductService;
+	private final UsedCommentService usedCommentService;
 	
 	/*
 	 * 중고상품 등록 폼
@@ -144,14 +147,29 @@ public class UsedController {
 	@GetMapping("/public/used/{id}")
 	public String productList(Model model, @PathVariable("id") Long id) {
 		Used used;
+		List<UsedComment> usedCommentList;
 		try {
 			used = usedService.getDtl(id);
+			usedCommentList = usedCommentService.findusedId(used.getId());
 			model.addAttribute("used", used);
+			model.addAttribute("usedCommentList", usedCommentList);
+			model.addAttribute("usedCommentForm", new UsedComment());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return "/public/used";
+	}
+	
+	/*
+	 * 중고상품 상세정보 댓글입력
+	 */
+	
+	@PostMapping("/public/used/{id}/comment")
+	public String productListComment(Model model, @PathVariable("id") Long id, UsedComment usedComment, Principal principal) {
+		System.out.println("여긴옴?");
+		usedCommentService.save(usedComment, id, principal.getName());
+		return "redirect:/";
 	}
 	
 
