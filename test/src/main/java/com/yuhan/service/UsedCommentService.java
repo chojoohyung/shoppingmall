@@ -30,10 +30,21 @@ public class UsedCommentService {
 		return usedCommentList;
 	}
 	
-	public UsedComment save(UsedComment usedComment, Long usedId, String username) {
+	public UsedComment save(Long usedId, String content, String username) {
+		UsedComment usedComment = new UsedComment();
 		usedComment.setUsed(usedRepository.findByid(usedId));
+		usedComment.setContent(content);
 		usedComment.setUser(userRepository.findByUsername(username));
 		return usedCommentRepository.save(usedComment);
 	}
-
+	/*
+	public UsedComment saveReply(Long usedId, String content, String username, String reply_user) {
+		UsedComment usedComment = new UsedComment();
+		usedComment.setUsed(usedRepository.findByid(usedId));
+		usedComment.setContent(content);
+		usedComment.setUser(userRepository.findByUsername(username));
+		usedComment.setReply_user(userRepository.findByUsername(reply_user));
+		return usedCommentRepository.save(usedComment);
+	}
+	 */
 }

@@ -8,6 +8,8 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.yuhan.dto.OrderProductDto;
@@ -145,7 +148,7 @@ public class UsedController {
 	 * 중고상품 상세정보
 	 */
 	@GetMapping("/public/used/{id}")
-	public String productList(Model model, @PathVariable("id") Long id) {
+	public String productList(Model model, @PathVariable("id") Long id, Principal principal) {
 		Used used;
 		List<UsedComment> usedCommentList;
 		try {
@@ -154,6 +157,7 @@ public class UsedController {
 			model.addAttribute("used", used);
 			model.addAttribute("usedCommentList", usedCommentList);
 			model.addAttribute("usedCommentForm", new UsedComment());
+			model.addAttribute("username", principal.getName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -166,12 +170,21 @@ public class UsedController {
 	 */
 	
 	@PostMapping("/public/used/{id}/comment")
-	public String productListComment(Model model, @PathVariable("id") Long id, UsedComment usedComment, Principal principal) {
-		System.out.println("여긴옴?");
-		usedCommentService.save(usedComment, id, principal.getName());
-		return "redirect:/";
+	public @ResponseBody ResponseEntity saveComment(@PathVariable("id") Long id, @RequestParam("content") String content, Principal principal) {		
+		usedCommentService.save(id, content, principal.getName());
+		return new ResponseEntity<String>("댓글작성", HttpStatus.OK);
 	}
 	
+	/*
+	 * 중고상품 상세정보 답글입력
+	 */
+	/*
+	@PostMapping("/public/used/{id}/reply_comment")
+	public @ResponseBody ResponseEntity savereplyComment(@PathVariable("id") Long id, @RequestParam("content") String content, @RequestParam("reply_user") String reply_user, Principal principal) {		
+		usedCommentService.saveReply(id, content, principal.getName(), reply_user);
+		return new ResponseEntity<String>("댓글작성", HttpStatus.OK);
+	}
+	*/
 
 	
 	

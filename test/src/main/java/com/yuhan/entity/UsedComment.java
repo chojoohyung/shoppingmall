@@ -22,7 +22,11 @@ public class UsedComment {
 	
 	private String content;
 	
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "reply_user_id")
+	private User reply_user;
+	
+	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 	

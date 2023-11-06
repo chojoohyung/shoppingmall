@@ -6,6 +6,8 @@
 	<meta charset="utf-8">
 	<title>used</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<meta name="_csrf" th:content="${_csrf.token}" />
+	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
 	<style>
 		.retro-container {
 			background-color: #fff;
@@ -87,14 +89,40 @@
 			margin-top: -15px;
 			margin-bottom: 50px;
 		}
+
+		.clicked-button {
+			background-color: lightblue;
+			color: white;
+			font-weight: bold;
+			/* 원하는 스타일을 여기에 추가하세요 */
+		}
+
+		.replyInput {
+			visibility: hidden;
+		}
+
+		.my-class-0 {
+			background-color: rgb(240, 240, 240);
+		}
+
+		.my-class-1 {
+			background-color: rgb(240, 240, 240);
+		}
+
+		.my-class-2 {
+			background-color: rgb(39, 120, 94);
+		}
+
+		.my-class-3 {
+			background-color: rgb(173, 36, 36);
+		}
 	</style>
 </head>
 
 <body>
 	<div layout:fragment="content">
-		<form role="form" method="POST" th:object="${usedCommentForm}">
-			<div class="retro-container">
-				<!-- 이걸로 슬라이드 중고 이미지 칸에 슬라이드로 부탁
+		<div class="retro-container">
+			<!-- 이걸로 슬라이드 중고 이미지 칸에 슬라이드로 부탁
 				<div th:each="productImgDto, status: ${used.usedImgList}">
 					<div>
 						<input type="hidden" name="productImgIds" th:value="${productImgDto.id}">
@@ -102,68 +130,197 @@
 					</div>
                 </div>
 			-->
-				<img class="product-img" th:src="${used.usedImgList[0].imgUrl}" alt="상품 이미지" width="500" height="600">
-				<div>
-					<button type="button" id="yourButtonId">상품보기</button>
-					<input type="hidden" th:field="*{used.id}">
-					<p class="retro-title" th:text="${used.title}">제목</p><br>
-					<p class="retro-price" th:text="${used.price}+'원'">가격</p><br>
-					<p class="text2"><b>결제혜택</b> : 중고나라 페이 첫 결제 혜택<br></p>
-					<p class="text3">
-						CU 알뜰택배 무료배송<br>
-						세븐일레븐 편의점 택배 무료<br>
-						편의점 픽업 수수료 무료</p>
+			<img class="product-img" th:src="${used.usedImgList[0].imgUrl}" alt="상품 이미지" width="500" height="600">
+			<div>
+				<button type="button" id="yourButtonId">상품보기</button>
+				<input type="hidden" id="idValue" th:value="${used.id}">
+				<p class="retro-title" th:text="${used.title}">제목</p><br>
+				<p class="retro-price" th:text="${used.price}+'원'">가격</p><br>
+				<p class="text2"><b>결제혜택</b> : 중고나라 페이 첫 결제 혜택<br></p>
+				<p class="text3">
+					CU 알뜰택배 무료배송<br>
+					세븐일레븐 편의점 택배 무료<br>
+					편의점 픽업 수수료 무료</p>
 
-					<span class="retro-date"><b>구매 한 날짜:</b> </span><span class="retro-date1"
-						th:text="${#temporals.format(used.orderProduct.order.orderDate, 'yyyy-MM-dd')}">주문 내역</span>
-					<!-- 실제 작성일 들어가야됨, 옷 사이즈가 createDate문임 수정 해야됨-->
+				<span class="retro-date"><b>구매 한 날짜:</b> </span><span class="retro-date1"
+					th:text="${#temporals.format(used.orderProduct.order.orderDate, 'yyyy-MM-dd')}">주문 내역</span>
+				<!-- 실제 작성일 들어가야됨, 옷 사이즈가 createDate문임 수정 해야됨-->
 
 
-				</div>
 			</div>
-			<div class="waringmessage">
-				<div class="text-form">
-					<p>
-					<h3 style="color: red; text-align: center;">거래 전 주의사항 안내</h3><br>
-					판매자가 별도의 메신저로 결제링크를 보내거나 직거래(직접송금)을<br>
-					유도하는 경우 사기일 가능성이 높으니 거래를 자제해 주시고<br>
-					<p class="text1">HENRY IV 고객센터로 신고해주시기 바랍니다.</p>
-				</div>
+		</div>
+		<div class="waringmessage">
+			<div class="text-form">
+				<p>
+				<h3 style="color: red; text-align: center;">거래 전 주의사항 안내</h3><br>
+				판매자가 별도의 메신저로 결제링크를 보내거나 직거래(직접송금)을<br>
+				유도하는 경우 사기일 가능성이 높으니 거래를 자제해 주시고<br>
+				<p class="text1">HENRY IV 고객센터로 신고해주시기 바랍니다.</p>
 			</div>
-			<div class="content">
-				<p class="content1" th:text="'내용 : '+${used.content}">내용</p>
-			</div>
+		</div>
+		<div class="content">
+			<p class="content1" th:text="'내용 : '+${used.content}">내용</p>
+		</div>
 
 
-			<!--
+		<!--
 			댓글목록	
 			-->
-			<div class="content">
+		<div>
+			<table>
 				<div th:each="usedComment, index: ${usedCommentList}">
-					<p class="content1" th:text="'내용 : '+${usedComment.content}">내용</p>
+					<div th:if="${username == usedComment.user.username or username == used.orderProduct.order.user.username}">
+						<span th:text="${usedComment.user.username}+' : '">유저이름</span>
+						<span th:text="${usedComment.content}">내용</span>
+					</div>
+					<div th:unless="${username == usedComment.user.username or username == used.orderProduct.order.user.username}">
+						<span th:text="${usedComment.user.username}+' : '">유저이름</span>
+						<span>글 작성자와 댓글 작성자만 확인가능합니다</span>
+					</div>
 				</div>
-			</div>
+				<!--
+				<th:block th:with="counter=0">
+					<div th:each="usedComment, index: ${usedCommentList}">
+						<tr>
+							<div th:if="${usedComment.reply_user eq null}">
+								<th:block th:with="counter=0">
+								</th:block>
+								<input type="hidden" th:id="'userId' + ${usedComment.id}"
+									th:value="${usedComment.user.username}">
+								<span th:text="${usedComment.user.username}+' : '">유저이름</span>
+								<span th:text="${usedComment.content}">내용</span>
+								<button th:id="'btn' + ${usedComment.id}">답글</button>
+								<div th:id="'div' + ${usedComment.id}" class="replyInput">
+									<input type="text" name="reply_content" th:id="'content' + ${usedComment.id}">
+									<input type="hidden" th:id="'commentId' + ${usedComment.id}"
+										th:value="${usedComment.id}">
+									<button th:id="'btnsave' + ${usedComment.id}">답글쓰기</button>
+								</div>
+							</div>
+							<div th:unless="${usedComment.reply_user eq null}" th:classappend="'my-class-'+${counter}">
+								<th:block th:with="counter=${counter + 1}">
+								</th:block>
+								<input type="hidden" th:id="'userId' + ${usedComment.id}"
+									th:value="${usedComment.user.username}">
+								<span th:text="${usedComment.user.username}+' : '">유저이름</span>
+								<span th:text="${usedComment.content}">내용</span>
+								<button th:id="'btn' + ${usedComment.id}">답글</button>
+								<div th:id="'div' + ${usedComment.id}" class="replyInput">
+									<input type="text" name="reply_content" th:id="'content' + ${usedComment.id}">
+									<input type="hidden" th:id="'commentId' + ${usedComment.id}"
+										th:value="${usedComment.id}">
+									<button th:id="'btnsave' + ${usedComment.id}">답글쓰기</button>
+								</div>
+							</div>
+						</tr>
+					</div>
+				</th:block>
+				-->
+			</table>
+		</div>
 
 
-			<!--
+		<!--
 			댓글작성
 			-->
-			<div class="content">
+		<div class="content">
 
-				<span class="m-title" for="message">댓글</span>
-				<input type="text" th:field="*{content}" required>
+			<span class="m-title" for="message">댓글</span>
+			<input type="text" name="content" id="content">
 
-				<button th:formaction="@{'/public/used/' + ${used.id}+'/comment' }" type="submit">댓글쓰기</button>
+			<button onclick="comment()">댓글쓰기</button>
 
-			</div>
-			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-			
+		</div>
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
-
-
-		</form>
 
 		<script>
+			/*
+			$(document).ready(function () {
+				// 각 버튼에 대한 이벤트 핸들러를 추가합니다.
+				$('[id^="btn"]').on('click', function () {
+					// 버튼을 클릭할 때 연결된 reply_content의 visibility를 변경합니다.
+					var replyId = $(this).attr("id").replace("btn", "div");
+					var replyInput = $("#" + replyId);
+					replyInput.css("visibility", "visible");
+
+				});
+
+				// '답글쓰기' 버튼에 대한 이벤트 핸들러
+				$('[id^="btnsave"]').on('click', function () {
+					var commentId = $(this).attr("id").replace("btnsave", "");
+					var contentId = "content" + commentId;
+					var userId = "userId" + commentId;
+
+					var contentValue = $("#" + contentId).val();
+					var userIdValue = $("#" + userId).val();
+
+					// 이제 commentIdValue, contentValue 및 userIdValue를 사용하여 Ajax 요청 데이터를 구성합니다.
+					var id = $("#idValue").val();
+					var token = $("meta[name='_csrf']").attr("content");
+					var header = $("meta[name='_csrf_header']").attr("content");
+					var url = "/public/used/" + id + "/reply_comment";
+
+					// Ajax 요청을 보냅니다.
+					$.ajax({
+						url: url,
+						type: "POST",
+						beforeSend: function (xhr) {
+							xhr.setRequestHeader(header, token);
+						},
+						dataType: "json",
+						cache: false,
+						data: {
+							"content": contentValue,
+							"reply_user": userIdValue // 유저 ID 추가
+						},
+						success: function (result, status) {
+							alert("댓글작성");
+							location.href = "/public/used/" + id;
+						},
+						error: function (jqXHR, status, error) {
+							alert("댓글작성");
+							location.href = "/public/used/" + id;
+						}
+					});
+				});
+
+			});
+			*/
+
+			function comment() {
+				var content = $("#content").val();
+				var id = $("#idValue").val();
+
+				var token = $("meta[name='_csrf']").attr("content");
+				var header = $("meta[name='_csrf_header']").attr("content");
+
+				var url = "/public/used/" + id + "/comment";
+
+				if (content.trim() === "") {
+					alert("댓글 내용을 입력해주세요.");
+				} else {
+					$.ajax({
+						url: url,
+						type: "POST",
+						beforeSend: function (xhr) {
+							xhr.setRequestHeader(header, token);
+						},
+						dataType: "json",
+						cache: false,
+						data: { "content": content },
+						success: function (result, status) {
+							alert("댓글작성");
+							location.href = "/public/used/" + id;
+						},
+						error: function (jqXHR, status, error) {
+							alert("댓글작성");
+							location.href = "/public/used/" + id;
+						}
+					});
+				}
+			}
+
 			function redirectToUsedPage() {
 				// 현재 페이지 주소를 가져옵니다.
 				var currentURL = window.location.href;
