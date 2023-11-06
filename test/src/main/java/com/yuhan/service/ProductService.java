@@ -31,6 +31,7 @@ public class ProductService {
 		
 		//상품 등록
 		Product product = productDto.createProduct();
+		product.setIs_delete(false);
 		productRepository.save(product);
 		
 		//이미지 등록
@@ -115,4 +116,9 @@ public class ProductService {
 		return productRepository.findIdByName(id);
 	}
 	
+	public void delete(Long id) {
+		Product product = productRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+		product.setIs_delete(true);
+		productRepository.save(product);
+	}
 }

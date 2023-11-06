@@ -48,6 +48,8 @@ public class Product {
 	
 	private String category;
 	
+	private Boolean is_delete;
+	
 	@OneToMany(mappedBy = "product")
 	private List<ProductImg> productImgList;
 	

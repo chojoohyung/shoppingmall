@@ -36,6 +36,7 @@
                 <button type="button" onclick="addCart()" sec:authorize="hasRole('ROLE_USER')"
                     class="order-button2">CART</button>
                 <button type="button" id="yourButtonId" sec:authorize="hasRole('ROLE_ADMIN')">상품변경</button>
+                <button type="button" id="delete" sec:authorize="hasRole('ROLE_ADMIN')">상품삭제</button>
             </div>
         </div>
         <div class="product-info-container">
@@ -105,6 +106,40 @@
             }
             var button = document.getElementById("yourButtonId"); // 버튼의 ID를 지정하세요.
             button.addEventListener("click", redirectToAdminPage);
+
+            function deleteProduct(){
+                var token = $("meta[name='_csrf']").attr("content");
+				var header = $("meta[name='_csrf_header']").attr("content");
+                var productId = $("#productId").val();
+                var url = "/public/product/" + productId;
+
+                $.ajax({
+					url      : url,
+					type     : "DELETE",
+					beforeSend : function(xhr){
+						/* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+						xhr.setRequestHeader(header, token);
+					},
+					dataType : "json",
+					cache   : false,
+					success  : function(result, status){
+						location.href='/';
+					},
+					error : function(jqXHR, status, error){
+
+						if(jqXHR.status == '401'){
+							alert('로그인 후 이용해주세요');
+							location.href='/public/login';
+						} else{
+							alert(jqXHR.responseJSON.message);
+						}
+
+					}
+            	});
+            }
+
+            var button = document.getElementById("delete"); // 버튼의 ID를 지정하세요.
+            button.addEventListener("click", deleteProduct);
 
 
             $(document).ready(function () {
