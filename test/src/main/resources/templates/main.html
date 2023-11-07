@@ -3,42 +3,34 @@
 	xmls:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/layout_main}">
 
-
 <head>
-
 	<title>Spring Security Example</title>
-
 	<link href="../css/footer.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<!-- CSS only-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+		crossorigin="anonymous">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
-	<!-- JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
 
 	<style>
+		/* 기본 스타일 유지 */
 		.kakao {
 			width: 100px;
 		}
-
-		div,
-		ul,
-		li {
+		div, ul, li {
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;
 			box-sizing: border-box;
 			padding: 0;
-			margin: 0
+			margin: 0;
 		}
-
 		a {
 			text-decoration: none;
 		}
-
 		.sidemenu {
 			position: absolute;
 			width: 130px;
@@ -47,17 +39,13 @@
 			right: 10px;
 			background: #fff;
 		}
-
-
 		.sidemenu ul {
 			position: relative;
 			float: left;
 			width: 100%;
 			display: inline-block;
 			*display: inline;
-
 		}
-
 		.sidemenu ul li {
 			float: left;
 			width: 100%;
@@ -66,8 +54,6 @@
 			display: inline-block;
 			*display: inline;
 		}
-
-
 		.sidemenu ul li a {
 			font-family: 'Nanum Gothic', sans-serif;
 			position: relative;
@@ -79,92 +65,69 @@
 			color: rgb(0, 0, 0);
 			font-size: 14px;
 		}
-
 		.sidemenu ul li a:hover {
 			color: #000;
 		}
-
 		.sidemenu ul li:last-child {
-
 			border: none;
 		}
-
 		.content {
 			position: relative;
 			min-height: 1000px;
 		}
-
 		h2 {
 			font-weight: bold;
 			color: rgb(0, 0, 0);
 		}
-
 		h4 {
 			font-weight: bold;
 			color: rgb(128, 128, 128);
 		}
-
 		.card {
 			width: 25rem;
 			border: none;
 		}
-
 		.card-img-top {
 			width: 540px;
 			height: 600px;
 			transition: filter 0.3s;
 		}
-
 		.card-img-top:hover {
 			opacity: 0.4;
 		}
-
 		.grid-container {
-
 			display: grid;
 			place-items: center;
 			grid-template-columns: repeat(3, 1fr);
-			/* 2열로 나눔 */
 			grid-gap: 20px;
 			margin-right: 50px;
 			margin-top: 30px;
 		}
-
-		/* 각 그리드 아이템 스타일 */
 		.col {
-
 			padding: 5px;
-
 		}
-
 		.card-title {
 			font-family: 'Nanum Gothic', sans-serif;
 			font-size: 14px;
 			border-bottom: 1px solid lightgray;
 			width: 500px;
 			color: #555555;
-
 		}
-
 		.list-group-item1 {
 			margin-top: 15px;
 			font-size: 14px;
-
 			color: #707070;
 		}
-
 		#slider-container {
 			width: 100%;
 			overflow: hidden;
 		}
-
 		#slider {
 			display: flex;
 			position: relative;
 			transition: transform 0.5s ease;
 			box-sizing: border-box;
 		}
-
 		.slidebox {
 			margin-top: 30px;
 			display: flex;
@@ -173,33 +136,35 @@
 			flex-wrap: nowrap;
 			animation: bannermove 40s linear infinite;
 		}
-
-		/* 슬라이드 이미지 크기를 고정합니다 */
 		.slidebox>div {
 			flex: 0 0 500px;
-			/* 이미지 너비를 원하는 크기(여기서는 500px)로 고정 */
 			margin-right: 10px;
-			/* 이미지 간격 조정 */
 		}
-
 		@keyframes bannermove {
 			0% {
 				transform: translate(0, 0);
 			}
-
 			100% {
 				transform: translate(-50%, 0);
 			}
 		}
-
 		.between-text {
 			padding: 3%;
 			text-align: center;
 		}
-
 		.all-container {
 			padding-left: 10%;
 			padding-right: 10%;
+		}
+
+		/* 반응형 스타일 */
+		@media (max-width: 768px) {
+			.grid-container {
+				grid-template-columns: 1fr;
+			}
+			.sidemenu {
+				display: none;
+			}
 		}
 	</style>
 </head>

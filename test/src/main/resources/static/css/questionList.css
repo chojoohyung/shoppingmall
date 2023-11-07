@@ -1,267 +1,273 @@
-  .all-container{
-	padding-left:10% ;
-	padding-right:10% ;
-	
-}
-  
-   body {
-            background-color: #f5f5f5;
-            font-family: Arial, sans-serif;
-        }
+  .all-container {
+  	padding-left: 10%;
+  	padding-right: 10%;
 
-        .row {
-            display: flex;
-            flex-direction: row;
-        }
+  }
 
-        .nav {
-            display: flex;
-            flex-direction: row;
-            padding: 10px;
-        }
+  body {
+  	background-color: #f5f5f5;
+  	font-family: Arial, sans-serif;
+  }
 
-        .col {
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-        }
+  .row {
+  	display: flex;
+  	flex-direction: row;
+  }
 
-        .product-image {
-            max-width: 250px;
-            height: auto;
-            margin: 30px;
-        }
+  .nav {
+  	display: flex;
+  	flex-direction: row;
+  	padding: 10px;
+  }
 
-        .category-buttons {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
+  .col {
+  	display: flex;
+  	flex-direction: column;
+  	text-align: center;
+  }
 
-        .category-buttons .category {
-            font-size: 18px;
-            padding: 20px 160px;
-        }
+  .product-image {
+  	max-width: 250px;
+  	height: auto;
+  	margin: 30px;
+  }
 
-        table {
-            width: 100%;
-            border: 1px solid #444444;
-            text-align: center;
-        }
+  .category-buttons {
+  	display: flex;
+  	justify-content: center;
+  	margin-bottom: 20px;
+  }
 
-        th, td {
-            border: 1px solid #444444;
-        }
+  .category-buttons .category {
+  	font-size: 18px;
+  	padding: 20px 160px;
+  }
 
-        .accordion {
-            cursor: pointer;
-            padding: 18px;
-            border: none;
-            background-color: #f1f1f1;
-            text-align: left;
-            outline: none;
-            transition: 0.4s;
-        }
+  table {
+  	width: 100%;
+  	border: 1px solid #444444;
+  	text-align: center;
+  }
 
-        .active, .accordion:hover {
-            background-color: #ddd;
-        }
+  th,
+  td {
+  	border: 1px solid #444444;
+  }
 
-        .panel {
-            display: none;
-            background-color: white;
-            overflow: hidden;
-        }
+  .accordion {
+  	cursor: pointer;
+  	padding: 18px;
+  	border: none;
+  	background-color: #f1f1f1;
+  	text-align: left;
+  	outline: none;
+  	transition: 0.4s;
+  }
 
-        header {
-            display: block;
-            min-width: 1080px;
-        }
+  .active,
+  .accordion:hover {
+  	background-color: #ddd;
+  }
 
-        .nav {
-            display: flex;
-            flex-direction: row;
-            padding: 10px;
-        }
+  .panel {
+  	display: none;
+  	background-color: white;
+  	overflow: hidden;
+  }
 
-        .pad {
-            padding: 10px;
-        }
+  header {
+  	display: block;
+  	min-width: 1080px;
+  }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            margin: 0;
-            background-color: #f5f5f5;
-        }
+  .nav {
+  	display: flex;
+  	flex-direction: row;
+  	padding: 10px;
+  }
 
-        .question-a {
-        }
+  .pad {
+  	padding: 10px;
+  }
 
-        .header-container {
-            border-top: 2px solid rgb(192, 192, 192);
-            margin-top: 10px;
-            height: 200px;
-            padding: 5px;
-            margin-left: 60px;
-            margin-right: 60px;
-            background-color: rgb(255, 255, 255);
-            border-bottom: 2px solid rgb(192, 192, 192);
-            margin-bottom: 30px;
-            font-size: 12px;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        }
+  .container {
+  	display: flex;
+  	flex-direction: column;
+  	margin: 0;
+  	background-color: #f5f5f5;
+  }
 
-        .number {
-            margin-bottom: 30px;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            font-size: 20px;
-            margin-bottom: 0.5em;
-        }
+  .question-a {}
 
-        .header-left {
-            float: left;
-            border-right: 1px solid gray;
-            width: 400px;
-            height: 200px;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            text-align: center;
-        }
+  .header-container {
+  	display: flex;
 
-        .header-right {
-            float: left;
-            border-right: 1px solid gray;
-            width: 500px;
-            height: 200px;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            text-align: center;
-        }
 
-        .content1 {
-            line-height: 200%;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        }
+  	border-top: 2px solid rgb(192, 192, 192);
+  	margin-top: 10px;
+  	height: 200px;
+  	padding: 5px;
+  	margin-left: 60px;
+  	margin-right: 60px;
+  	background-color: rgb(255, 255, 255);
+  	border-bottom: 2px solid rgb(192, 192, 192);
+  	margin-bottom: 30px;
+  	font-size: 12px;
+  	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
 
-        .header-right1 {
-            text-align: center;
-        }
+  .number {
+  	margin-bottom: 30px;
+  	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  	font-size: 20px;
+  	margin-bottom: 0.5em;
+  }
 
-        .text1 {
-            float: left;
-            margin-left: 5%;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        }
+  .header-left,
+  .header-right,
+  .header-right1 {
+  	flex: 1;
+  }
 
-        .customer {
-            font-size: 20px;
-        }
+  .header-left {
+  	float: left;
+  	border-right: 1px solid gray;
+  	width: 400px;
+  	height: 200px;
+  	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  	text-align: center;
+  }
 
-        .membership {
-            font-size: 20px;
-        }
+  .header-right {
+  	float: left;
+  	border-right: 1px solid gray;
+  	width: 500px;
+  	height: 200px;
+  	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  	text-align: center;
+  }
 
-        .track-num {
-            font-size: 13px;
-        }
+  .content1 {
+  	line-height: 200%;
+  	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
 
-        .question {
-            font-size: 20px;
-        }
+  .header-right1 {
+  	text-align: center;
+  }
 
-        .button {
-			
-        }
+  .text1 {
+  	float: left;
+  	margin-left: 5%;
+  	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
 
-        .question-title {
-            margin-left: 300px;
-            border-top: 1px solid black;
-            border-bottom: 1px solid black;
-            padding: 5px;
-            width: 1190px;
-            background-color: white;
-       
-        }
+  .customer {
+  	font-size: 20px;
+  }
 
-        .title {
-            word-spacing: 13em;
-            margin-left: 10px;
-            font-size: 11px;
-        }
+  .membership {
+  	font-size: 20px;
+  }
 
-        .question-content {
-            margin-left: 300px;
-            padding: 5px;
-            border-bottom: 1px solid gainsboro;
-            font-size: 13px;
-            background-color: white;
-                 
-        }
+  .track-num {
+  	font-size: 13px;
+  }
 
-        .content11 {
-            padding: 30px;
-        }
+  .question {
+  	font-size: 20px;
+  }
 
-        .content22 {
-            padding: 135px;
-        }
+  .button {}
 
-        .content33 {
-            padding: 140px;
-        }
+  .question-title {
+  	margin-left: 300px;
+  	border-top: 1px solid black;
+  	border-bottom: 1px solid black;
+  	padding: 5px;
+  	width: 1190px;
+  	background-color: white;
 
-        .sidebar {
-            float: left;
-            margin-left: 10px;
-           
-            
-        }
+  }
 
-        .sidebar1 {
-            background-color: white;
-            width: 18%;
-            margin-left: 10px;
-           
-        }
+  .title {
+  	word-spacing: 13em;
+  	margin-left: 10px;
+  	font-size: 11px;
+  }
 
-        .subsidebar {
-			
-            margin-left: 30px;
-        }
+  .question-content {
+  	margin-left: 300px;
+  	padding: 5px;
+  	border-bottom: 1px solid gainsboro;
+  	font-size: 13px;
+  	background-color: white;
 
-        .titlee {
-            margin-left: 60px;
-        }
+  }
 
-        .time {
-            background-color: #ddd;
-        }
+  .content11 {
+  	padding: 30px;
+  }
 
-        /* 1대1문의 창 */
-        .m-container {
-            text-align: center;
-        
-        }
-		.h{
-			
-		}
-        textarea {
-            width: 100%;
-            text-align: center;
-            margin-top: 10px;
-        }
+  .content22 {
+  	padding: 135px;
+  }
 
-        m-title {
-           
-        }
-        .m-container{
-			float: left;
-			margin-bottom: 100px;
-			
-			
-			
-		}
-		.m-content{
-			width: 100%;
-		}
+  .content33 {
+  	padding: 140px;
+  }
 
-        
+  .sidebar {
+  	float: left;
+  	margin-left: 10px;
+
+
+  }
+
+  .sidebar1 {
+  	background-color: white;
+  	width: 18%;
+  	margin-left: 10px;
+
+  }
+
+  .subsidebar {
+
+  	margin-left: 30px;
+  }
+
+  .titlee {
+  	margin-left: 60px;
+  }
+
+  .time {
+  	background-color: #ddd;
+  }
+
+  /* 1대1문의 창 */
+  .m-container {
+  	text-align: center;
+
+  }
+
+  .h {}
+
+  textarea {
+  	width: 100%;
+  	text-align: center;
+  	margin-top: 10px;
+  }
+
+  m-title {}
+
+  .m-container {
+  	float: left;
+  	margin-bottom: 100px;
+
+
+
+  }
+
+  .m-content {
+  	width: 100%;
+  }

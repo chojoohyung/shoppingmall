@@ -38,20 +38,22 @@
                 </div>
                 <!-- 멤버십, 쿠폰, 주문배송조회 -->
                 <div class="all">
-                    <div class="userupdate">
-                        <div class="" onclick="location.href='userUpdateForm'">
+					<div class="user-con">
+                    <div class="userupdate"
+                        onclick="location.href='userUpdateForm'">
                             회원정보변경
-                        </div>
+                       
                     </div>
-                    <div class="userorder">
-                        <div class="" sec:authorize="hasRole('ROLE_USER')" onclick="location.href='order'">
+                    <div class="userorder"
+                        sec:authorize="hasRole('ROLE_USER')" onclick="location.href='order'">
                             주문조회
-                        </div>
+                        
                     </div>
-                    <div class="coupon">
-                        <div class="" onclick="location.href='coupon'">
+                    <div class="coupon"
+                        onclick="location.href='coupon'">
                             쿠폰
-                        </div>
+                        
+                    </div>
                     </div>
                     <div class="adminorder">
                         <div class="" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='../admin/order'">

@@ -52,7 +52,7 @@
  }
 
  .all {
- 	border: 2px solid black;
+ 	
  	margin-left: 70px;
  	margin-top: 20px;
  	width: 90%;
@@ -62,20 +62,31 @@
 
 
  }
-
+.user-con{
+	 display: flex;
+	 margin-top:0.3%;
+	 border: 1px solid black;
+}
+.user-con > div{
+	 flex: 1; /* 각 요소가 동일한 너비를 가지도록 설정 */
+            text-align: center; /* 텍스트 가운데 정렬 */
+            padding: 10px; /* 내부 여백 설정 */
+            border: 1px solid #ccc; /* 테두리 설정 */
+            cursor: pointer; /* 포인터 커서를 사용자에게 표시 */
+}
  .userupdate {
- 	float: left;
- 	margin-left: 10%;
+ 	
+ 
  	cursor: pointer;
- 	margin-top: 15px;
+ 
 
  }
 
  .userorder {
- 	float: left;
- 	margin-left: 23%;
+ 	
+ 	
  	cursor: pointer;
- 	margin-top: 15px;
+
  }
   .adminorder {
 	float: left;
@@ -86,10 +97,10 @@
  }
 
  .coupon {
- 	float: left;
- 	margin-left: 27%;
+ 	
+ 	
  	cursor: pointer;
- 	margin-top: 15px;
+ 	
  }
 
  .imgg {
