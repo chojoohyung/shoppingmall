@@ -6,13 +6,36 @@
 <head>
 	<meta charset="utf-8">
     <title>mypage</title>
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
    <link href="../css/mypage.css" rel="stylesheet">
 
 </head>
 <body style="background-color: #f5f5f5;">
     <!-- 홈페이지 헤더부분 -->
 	<div layout:fragment="content">
+			<div class="sidemenu">
+				<ul>
+					<li><a href="../public/usedList">중고마켓</a></li>
+					<li><a href="../protected/questionForm">1:1문의</a></li>
+					<li><a href="coupon">쿠폰</a></li>
+				</ul>
+				<ul >
+					<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao" src="/images/kakao.PNG"></a></li>
+				</ul>
+			</div>
+			
+				
+		
+			<script>
+					$(document).ready(function () {
+						var currentPosition = parseInt($(".sidemenu").css("top"));
+						$(window).scroll(function () {
+							var position = $(window).scrollTop();
+							$(".sidemenu").stop().animate({"top": position + currentPosition + "px"}, 600);
+						});
+					});
+				</script>
 		<div class="all-container">
         <div class="body">
 		<div>

@@ -13,7 +13,7 @@
 	
 	<div th:fragment="header" class="header">
 	<div class="ma">
-		<div class="nav1" style="border-bottom:solid">
+		<div class="nav1" style="border-bottom:1px solid rgb(192, 192, 192);">
 			<div class="pad-container">
 				
 				<div class="pad7" onclick="location.href='/public/usedList'">중고마켓</div>
@@ -56,6 +56,7 @@
 				<a class="padd8" th:href="@{/public/productList?category=SHOES}">신발</a>
 				<a class="padd9" th:href="@{/public/productList?category=ACC}">ACC</a>
 		</div>
+		
 		</nav>
 		<script>
 			function openNav() {

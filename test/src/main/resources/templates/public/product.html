@@ -11,6 +11,9 @@
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
     <link href="../../css/product.css" rel="stylesheet">
+    <link href="../../css/sidemenu.css" rel="stylesheet">
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
 <style>
 
 </style>
@@ -22,7 +25,28 @@
 		<div class="all-container">
         <!-- 상품 정보 컨테이너 -->
         <!-- 기존 코드 유지 -->
-
+	<div class="sidemenu">
+				<ul>
+					<li><a href="../usedList">중고마켓</a></li>
+					<li><a href="/protected/questionForm">1:1문의</a></li>
+					<li><a href="/protected/coupon">쿠폰</a></li>
+				</ul>
+				<ul >
+					<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao" src="/images/kakao.PNG"></a></li>
+				</ul>
+			</div>
+			
+				
+		
+			<script>
+					$(document).ready(function () {
+						var currentPosition = parseInt($(".sidemenu").css("top"));
+						$(window).scroll(function () {
+							var position = $(window).scrollTop();
+							$(".sidemenu").stop().animate({"top": position + currentPosition + "px"}, 600);
+						});
+					});
+				</script>
         <div class="product-info-container1">
             <img class="product-img" th:src="${productDto.productImgDtoList[0].imgUrl}" alt="상품 이미지">
             <div class="product-container1">
@@ -54,7 +78,7 @@
                     <div th:unless="${status.index==0}">
                         <div>
                             <input type="hidden" name="productImgIds" th:value="${productImgDto.id}">
-                            <img class="product-image1" th:src="${productImgDto.imgUrl}">
+                            <img class="product-image11" th:src="${productImgDto.imgUrl}" >
                         </div>
                     </div>
                 </div>

@@ -70,6 +70,9 @@ body {
 	font-family: 'Nanum Gothic', sans-serif;
 	margin-top: 40px;
 }
+.product-container1{
+	width: 100%;
+}
 
 .product-details22 {
 	font-family: 'Nanum Gothic', sans-serif;
@@ -148,11 +151,12 @@ body {
 	height: 600px;
 }
 
-.product-image1 {
+.product-image11 {
 	width: 800px;
-	height: 1000px;
-	margin: 0 auto;
+	
+	
 }
+
 
 .product-images {
 
