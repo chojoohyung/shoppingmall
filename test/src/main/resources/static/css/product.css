@@ -10,6 +10,17 @@ body {
 	padding: 10px;
 }
 
+.buttonn{
+font-family: 'Nanum Gothic', sans-serif;
+	margin-left: 53%;
+	cursor: pointer;
+	font-size: 20px;
+	background-color: white;
+	padding: 15px 5%;
+	
+}
+
+
 /* 상품 정보 컨테이너 스타일 */
 .product-info-container {
 	font-family: 'Nanum Gothic', sans-serif;
@@ -43,6 +54,7 @@ body {
 .kk {
 	font-family: 'Nanum Gothic', sans-serif;
 	width: 550px;
+	height: 600px;
 	margin-left: 250px;
 	border-left: 1px solid rgb(192, 192, 192);
 	margin-top: -30px;
