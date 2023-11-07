@@ -1,4 +1,1 @@
-# shoppingmall
-### 따라오는 사이드바 구현 완료
-### 프론트엔드 수정
-### 패딩값 맞춤
+# shoppingmall/LIB
