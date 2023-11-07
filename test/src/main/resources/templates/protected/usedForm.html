@@ -41,6 +41,10 @@
 			background-color: #f5f5f5;
 			/* 배경색 설정 */
 		}
+		.all-container{
+	padding-left:10% ;
+	padding-right:10% ;
+}
 	</style>
 
 	<th:block layout:fragment="script">
@@ -75,6 +79,7 @@
 
 <body>
 	<div layout:fragment="content">
+			<div class="all-container">
 		<form role="form" method="post" enctype="multipart/form-data" th:object="${usedFormDto}">
 
 			<p class="h2">
@@ -156,6 +161,7 @@
 		</form>
 
 
+	</div>
 	</div>
 	<!--
 	<div layout:fragment="content">

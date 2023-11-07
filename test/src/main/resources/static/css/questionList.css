@@ -1,261 +1,267 @@
-	.row {
-		display: flex;
-		flex-direction: row;
-	}
+  .all-container{
+	padding-left:10% ;
+	padding-right:10% ;
+	
+}
+  
+   body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
 
-	.nav {
-		display: flex;
-		flex-direction: row;
-		padding: 10px;
-	}
+        .row {
+            display: flex;
+            flex-direction: row;
+        }
 
-	.col {
-		display: flex;
-		flex-direction: column;
-		text-align: center;
-	}
+        .nav {
+            display: flex;
+            flex-direction: row;
+            padding: 10px;
+        }
 
-	.product-image {
-		max-width: 250px;
+        .col {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
 
-		height: auto;
-		margin: 30px;
+        .product-image {
+            max-width: 250px;
+            height: auto;
+            margin: 30px;
+        }
 
-	}
+        .category-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
 
-	.category-buttons {
-		display: flex;
-		justify-content: center;
-		margin-bottom: 20px;
-	}
+        .category-buttons .category {
+            font-size: 18px;
+            padding: 20px 160px;
+        }
 
-	.category-buttons .category {
-		font-size: 18px;
-		padding: 20px 160px;
-		/* 버튼 크기 조절 */
-	}
+        table {
+            width: 100%;
+            border: 1px solid #444444;
+            text-align: center;
+        }
 
-	table {
-		width: 100%;
-		border: 1px solid #444444;
-		text-align: center;
-	}
+        th, td {
+            border: 1px solid #444444;
+        }
 
-	th,
-	td {
-		border: 1px solid #444444;
-	}
+        .accordion {
+            cursor: pointer;
+            padding: 18px;
+            border: none;
+            background-color: #f1f1f1;
+            text-align: left;
+            outline: none;
+            transition: 0.4s;
+        }
 
-	.accordion {
-		cursor: pointer;
-		padding: 18px;
-		border: none;
-		background-color: #f1f1f1;
-		text-align: left;
-		outline: none;
-		transition: 0.4s;
-	}
+        .active, .accordion:hover {
+            background-color: #ddd;
+        }
 
-	.active,
-	.accordion:hover {
-		background-color: #ddd;
-	}
+        .panel {
+            display: none;
+            background-color: white;
+            overflow: hidden;
+        }
 
-	.panel {
-		display: none;
-		background-color: white;
-		overflow: hidden;
-	}
+        header {
+            display: block;
+            min-width: 1080px;
+        }
 
+        .nav {
+            display: flex;
+            flex-direction: row;
+            padding: 10px;
+        }
 
-	header {
-		display: block;
-		min-width: 1080px;
-	}
+        .pad {
+            padding: 10px;
+        }
 
-	.nav {
-		display: flex;
-		flex-direction: row;
-		padding: 10px;
-	}
+        .container {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
 
-	.logo {
-		left: 50%;
-	}
+        .question-a {
+        }
 
-	.pad {
-		padding: 10px;
-	}
+        .header-container {
+            border-top: 2px solid rgb(192, 192, 192);
+            margin-top: 10px;
+            height: 200px;
+            padding: 5px;
+            margin-left: 60px;
+            margin-right: 60px;
+            background-color: rgb(255, 255, 255);
+            border-bottom: 2px solid rgb(192, 192, 192);
+            margin-bottom: 30px;
+            font-size: 12px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
 
+        .number {
+            margin-bottom: 30px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 20px;
+            margin-bottom: 0.5em;
+        }
 
+        .header-left {
+            float: left;
+            border-right: 1px solid gray;
+            width: 400px;
+            height: 200px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
 
-	.container {
-		display: flex;
-		flex-direction: column;
-		margin: 0;
-		background-color: #f5f5f5;
-		/* 배경색 설정 */
-	}
+        .header-right {
+            float: left;
+            border-right: 1px solid gray;
+            width: 500px;
+            height: 200px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
 
+        .content1 {
+            line-height: 200%;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
 
+        .header-right1 {
+            text-align: center;
+        }
 
+        .text1 {
+            float: left;
+            margin-left: 5%;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
 
-	.header-container {
+        .customer {
+            font-size: 20px;
+        }
 
-		border-top: 2px solid rgb(0, 0, 0);
-		margin-top: 10px;
-		height: 200px;
-		padding: 5px;
-		margin-left: 60px;
-		margin-right: 60px;
-		background-color: rgb(240, 240, 240);
-		border-bottom: 2px solid rgb(192, 192, 192);
-		margin-bottom: 30px;
-		font-size: 12px;
-		font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        .membership {
+            font-size: 20px;
+        }
 
-	}
+        .track-num {
+            font-size: 13px;
+        }
 
-	.number {
-		margin-bottom: 30px;
-		font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-		font-size: 20px;
-		margin-bottom: 0.5em;
+        .question {
+            font-size: 20px;
+        }
 
-	}
+        .button {
+			
+        }
 
-	.header-left {
-		float: left;
-		border-right: 1px solid gray;
-		width: 400px;
-		height: 200px;
-		font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-		text-align: center;
+        .question-title {
+            margin-left: 300px;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            padding: 5px;
+            width: 1190px;
+            background-color: white;
+       
+        }
 
+        .title {
+            word-spacing: 13em;
+            margin-left: 10px;
+            font-size: 11px;
+        }
 
-	}
+        .question-content {
+            margin-left: 300px;
+            padding: 5px;
+            border-bottom: 1px solid gainsboro;
+            font-size: 13px;
+            background-color: white;
+                 
+        }
 
-	.header-right {
-		float: left;
+        .content11 {
+            padding: 30px;
+        }
 
-		border-right: 1px solid gray;
-		width: 500px;
-		height: 200px;
-		font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-		text-align: center;
+        .content22 {
+            padding: 135px;
+        }
 
-	}
+        .content33 {
+            padding: 140px;
+        }
 
-	.content1 {
-		line-height: 200%;
-		font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        .sidebar {
+            float: left;
+            margin-left: 10px;
+           
+            
+        }
 
+        .sidebar1 {
+            background-color: white;
+            width: 18%;
+            margin-left: 10px;
+           
+        }
 
-	}
+        .subsidebar {
+			
+            margin-left: 30px;
+        }
 
-	.header-right1 {
-		text-align: center;
-	}
+        .titlee {
+            margin-left: 60px;
+        }
 
-	.text1 {
-		float: left;
-		margin-left: 5%;
-		font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        .time {
+            background-color: #ddd;
+        }
 
-
-	}
-
-
-	.customer {
-		font-size: 20px;
-	}
-
-	.membership {
-		font-size: 20px;
-
-	}
-
-	.track-num {
-		font-size: 13px;
-	}
-
-	.question {
-		font-size: 20px;
-	}
-
-	.button {}
-
-	.question-title {
-		margin-left: 300px;
-		border-top: 1px solid black;
-		border-bottom: 1px solid black;
-		padding: 5px;
-		width: 1130px;
-		
-
-	}
-
-	.title {
-		word-spacing: 13em;
-		margin-left: 10px;
-		font-size: 11px;
-	}
-
-	.question-content {
-		margin-left: 300px;
-		padding: 5px;
-		border-bottom: 1px solid gainsboro;
-		font-size: 13px;
-		
-		
-	}
-
-	.content11 {
-		padding: 30px;
-	}
-
-	.content22 {
-		padding: 135px;
-	}
-
-	.content33 {
-		padding: 140px;
-	}
-
-	.sidebar {
-		float: left;
-		margin-left: 10px;
-
-	}
-
-	.sidebar1 {
-		margin-left: 10px;
-		
-	}
-
-	.subsidebar {
-		margin-left: 30px;
-		
-
-	}
-
-	.titlee {
-		margin-left: 60px;
-	}
-
-	.time {
-		background-color: #ddd;
-	}
-	/*1대1문의 창*/
-	.m-container{
-		text-align: center;
+        /* 1대1문의 창 */
+        .m-container {
+            text-align: center;
+        
+        }
+		.h{
+			
 		}
-	textarea{
-		width:1000px;
-		text-align: center;
-		margin-top:10px;
-	}
-	m-title{
-		margin-right: 1000px;
-		
-	}
+        textarea {
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        m-title {
+           
+        }
+        .m-container{
+			float: left;
+			margin-bottom: 100px;
+			
+			
+			
+		}
+		.m-content{
+			width: 100%;
+		}
+
+        

@@ -9,14 +9,39 @@
 	<meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 	
+ <link href="../../css/sidemenu.css" rel="stylesheet">
 	<link href="../css/cart.css" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
 
 	<div layout:fragment="content">
+			<div class="sidemenu">
+				<ul>
+					<li><a href="../public/usedList">중고마켓</a></li>
+					<li><a href="questionForm">1:1문의</a></li>
+					<li><a href="coupon">쿠폰</a></li>
+				</ul>
+				<ul >
+					<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao" th:src="@{/resources/img/kakao.PNG}"></a></li>
+				</ul>
+			</div>
+			
+				
+		
+			<script>
+					$(document).ready(function () {
+						var currentPosition = parseInt($(".sidemenu").css("top"));
+						$(window).scroll(function () {
+							var position = $(window).scrollTop();
+							$(".sidemenu").stop().animate({"top": position + currentPosition + "px"}, 600);
+						});
+					});
+				</script>
+		<div class="all-container">
 		<section class="cart">
 			<h2 class="title">장바구니</h2>
 			<div class="cart_information">
@@ -48,7 +73,7 @@
 						</td>
 						<!--상품정보-->
 						<td>
-							<img th:src="${cartDetailDto.imgUrl}" alt="셔츠">
+							<img class="imgg" th:src="${cartDetailDto.imgUrl}" alt="셔츠"  >
 						</td>
 						<td>
 							<a th:href="@{'/public/product/'+${cartDetailDto.productId}}" th:text="${cartDetailDto.name}"></a> <!--<span class="cart_list_store"> 스마트스토어</span>-->
@@ -248,6 +273,7 @@
 			}
 
 		</script>
+		</div>
 	</div>
 </body>
 </html>

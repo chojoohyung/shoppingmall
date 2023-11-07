@@ -1,182 +1,240 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
 
-<head>
-	<meta charset="utf-8">
-	<title>used</title>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<meta name="_csrf" th:content="${_csrf.token}" />
-	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
-	<style>
-		.retro-container {
-			background-color: #fff;
-			border: 1px solid #ddd;
-			padding: 5%;
-			margin: 20px auto;
-			max-width: 1000px;
-			box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-			display: flex;
-			/* 이미지와 정보를 가로로 나란히 배치하기 위해 flex 사용 */
-		}
+	<head>
+		<meta charset="utf-8">
+		<title>used</title>
+		<link href="../../css/sidemenu.css" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<meta name="_csrf" th:content="${_csrf.token}" />
+		<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+		<style>
+			.all-container {
+				padding-left: 10%;
+				padding-right: 10%;
+			}
 
-		.retro-title {
-			font-size: 40px;
-			margin-left: 50px;
-			margin-top: 0px;
-		}
+			.retro-container {
+				background-color: #fff;
+				border: 1px solid #ddd;
+				padding: 5%;
+				margin: 20px auto;
+				max-width: 1000px;
+				box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+				display: flex;
+				/* 이미지와 정보를 가로로 나란히 배치하기 위해 flex 사용 */
+			}
 
-		.retro-price {
-			font-size: 40px;
-			margin-left: 50px;
-			margin-top: -40px;
-		}
+			.retro-title {
+				font-size: 40px;
+				margin-left: 50px;
+				margin-top: 0px;
+			}
 
-		.retro-content {
-			margin-left: 50px;
-			margin-top: -40px;
-		}
+			.retro-price {
+				font-size: 40px;
+				margin-left: 50px;
+				margin-top: -40px;
+			}
 
-		.retro-date {
-			margin-left: 50px;
+			.retro-content {
+				margin-left: 50px;
+				margin-top: -40px;
+			}
 
-		}
+			.retro-date {
+				margin-left: 50px;
 
-		.product-img {}
+			}
 
-		.waringmessage {
-			padding: 5%;
-			margin: 20px auto;
-			text-align: center;
-			width: 800px;
-			background-color: rgb(240, 240, 240);
+			.product-img {}
 
-		}
+			.waringmessage {
+				padding: 5%;
+				margin: 20px auto;
+				text-align: center;
+				width: 800px;
+				background-color: rgb(240, 240, 240);
 
-		.text1 {
-			border-bottom: solid 1px;
-			border-width: 10%;
-			margin-left: 30%
-		}
+			}
 
-		.text-form {
-			text-align: center;
-			margin-top: -50px;
-		}
+			.text11 {
+				border-bottom: solid 1px;
+				border-width: 10%;
 
-		.content {
-			border: 1px solid #ddd;
-			padding: 5%;
-			margin: 3px auto;
-			max-width: 800px;
-			box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-			display: flex;
+			}
 
-		}
+			.text-form {
+				text-align: center;
+				margin-top: -50px;
+			}
 
-		.content1 {
-			margin-top: -50px;
-			margin-right: 20px;
-		}
+			.content {
+				border: 1px solid #ddd;
+				padding: 5%;
+				margin: 3px auto;
+				max-width: 800px;
+				box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+				display: flex;
 
-		.text2 {
-			margin-left: 50px;
-			margin-top: 40px;
-		}
+			}
 
-		.text3 {
-			margin-left: 130px;
-			margin-top: -15px;
-			margin-bottom: 50px;
-		}
+			.content11 {
+				margin-top: -50px;
+				margin-right: 20px;
+			}
 
-		.clicked-button {
-			background-color: lightblue;
-			color: white;
-			font-weight: bold;
-			/* 원하는 스타일을 여기에 추가하세요 */
-		}
+			.text2 {
+				margin-left: 50px;
+				margin-top: 40px;
+			}
 
-		.replyInput {
-			visibility: hidden;
-		}
+			.text3 {
+				margin-left: 130px;
+				margin-top: -15px;
+				margin-bottom: 50px;
+			}
 
-		.my-class-0 {
-			background-color: rgb(240, 240, 240);
-		}
+			.clicked-button {
+				background-color: lightblue;
+				color: white;
+				font-weight: bold;
+				/* 원하는 스타일을 여기에 추가하세요 */
+			}
 
-		.my-class-1 {
-			background-color: rgb(240, 240, 240);
-		}
+			.replyInput {
+				visibility: hidden;
+			}
 
-		.my-class-2 {
-			background-color: rgb(39, 120, 94);
-		}
+			.my-class-0 {
+				background-color: rgb(240, 240, 240);
+			}
 
-		.my-class-3 {
-			background-color: rgb(173, 36, 36);
-		}
-	</style>
-</head>
+			.my-class-1 {
+				background-color: rgb(240, 240, 240);
+			}
 
-<body>
-	<div layout:fragment="content">
-		<div class="retro-container">
-			<!-- 이걸로 슬라이드 중고 이미지 칸에 슬라이드로 부탁
-				<div th:each="productImgDto, status: ${used.usedImgList}">
-					<div>
-						<input type="hidden" name="productImgIds" th:value="${productImgDto.id}">
-						<img class="product-image" th:src="${productImgDto.imgUrl}">
+			.my-class-2 {
+				background-color: rgb(39, 120, 94);
+			}
+
+			.my-class-3 {
+				background-color: rgb(173, 36, 36);
+			}
+
+			.slideshow-container {
+				position: relative;
+				max-width: 100%;
+				margin: auto;
+			}
+
+			.mySlides {
+				display: none;
+			}
+
+			.prev,
+			.next {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				padding: 10px;
+				font-size: 30px;
+				cursor: pointer;
+				color: rgb(0, 0, 0);
+			}
+
+			.prev {
+				left: 0;
+			}
+
+			.next {
+				right: 0;
+			}
+
+			.used-title {
+				margin-right: 40px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+
+		<div layout:fragment="content">
+			<div class="all-container">
+				<div class="retro-container">
+
+
+					<div class="slideshow-container">
+						<div th:each="productImgDto, status: ${used.usedImgList}">
+							<div class="mySlides">
+								<input type="hidden" name="productImgIds" th:value="${productImgDto.id}">
+								<img class="product-image" th:src="${productImgDto.imgUrl}" width="500" height="500">
+							</div>
+						</div>
+
+
+						<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+
+						<a class="next" onclick="plusSlides(1)">&#10095;</a>
 					</div>
-                </div>
-			-->
-			<img class="product-img" th:src="${used.usedImgList[0].imgUrl}" alt="상품 이미지" width="500" height="600">
-			<div>
-				<button type="button" id="yourButtonId">상품보기</button>
-				<input type="hidden" id="idValue" th:value="${used.id}">
-				<p class="retro-title" th:text="${used.title}">제목</p><br>
-				<p class="retro-price" th:text="${used.price}+'원'">가격</p><br>
-				<p class="text2"><b>결제혜택</b> : 중고나라 페이 첫 결제 혜택<br></p>
-				<p class="text3">
-					CU 알뜰택배 무료배송<br>
-					세븐일레븐 편의점 택배 무료<br>
-					편의점 픽업 수수료 무료</p>
-
-				<span class="retro-date"><b>구매 한 날짜:</b> </span><span class="retro-date1"
-					th:text="${#temporals.format(used.orderProduct.order.orderDate, 'yyyy-MM-dd')}">주문 내역</span>
-				<!-- 실제 작성일 들어가야됨, 옷 사이즈가 createDate문임 수정 해야됨-->
 
 
-			</div>
-		</div>
-		<div class="waringmessage">
-			<div class="text-form">
-				<p>
-				<h3 style="color: red; text-align: center;">거래 전 주의사항 안내</h3><br>
-				판매자가 별도의 메신저로 결제링크를 보내거나 직거래(직접송금)을<br>
-				유도하는 경우 사기일 가능성이 높으니 거래를 자제해 주시고<br>
-				<p class="text1">HENRY IV 고객센터로 신고해주시기 바랍니다.</p>
-			</div>
-		</div>
-		<div class="content">
-			<p class="content1" th:text="'내용 : '+${used.content}">내용</p>
-		</div>
 
 
-		<!--
-			댓글목록	
-			-->
-		<div>
-			<table>
-				<div th:each="usedComment, index: ${usedCommentList}">
-					<div th:if="${username == usedComment.user.username or username == used.orderProduct.order.user.username}">
-						<span th:text="${usedComment.user.username}+' : '">유저이름</span>
-						<span th:text="${usedComment.content}">내용</span>
+					<div class="used-title">
+						<button type="button" id="yourButtonId">상품보기</button>
+						<input type="hidden" id="idValue" th:value="${used.id}">
+						<p class="retro-title" th:text="${used.title}">제목</p><br>
+						<p class="retro-price" th:text="${used.price}+'원'">가격</p><br>
+						<p class="text2"><b>결제혜택</b> : 중고나라 페이 첫 결제 혜택<br></p>
+						<p class="text3">
+							CU 알뜰택배 무료배송<br>
+							세븐일레븐 편의점 택배 무료<br>
+							편의점 픽업 수수료 무료</p>
+
+						<span class="retro-date"><b>구매 한 날짜:</b> </span><span class="retro-date1"
+							th:text="${#temporals.format(used.orderProduct.order.orderDate, 'yyyy-MM-dd')}">주문 내역</span>
+						<!-- 실제 작성일 들어가야됨, 옷 사이즈가 createDate문임 수정 해야됨-->
+
+
 					</div>
-					<div th:unless="${username == usedComment.user.username or username == used.orderProduct.order.user.username}">
-						<span th:text="${usedComment.user.username}+' : '">유저이름</span>
-						<span>글 작성자와 댓글 작성자만 확인가능합니다</span>
+				</div>
+				<div class="waringmessage">
+					<div class="text-form">
+						<p>
+						<h3 style="color: red; text-align: center;">거래 전 주의사항 안내</h3><br>
+						판매자가 별도의 메신저로 결제링크를 보내거나 직거래(직접송금)을<br>
+						유도하는 경우 사기일 가능성이 높으니 거래를 자제해 주시고<br>
+						<p class="text11">HENRY IV 고객센터로 신고해주시기 바랍니다.</p>
 					</div>
+				</div>
+				<div class="content">
+					<p class="content1" th:text="'내용 : '+${used.content}">내용</p>
+				</div>
+
+
+				<!--
+					댓글목록	
+				-->
+				<div>
+					<table>
+						<div th:each="usedComment, index: ${usedCommentList}">
+							<div
+								th:if="${username == usedComment.user.username or username == used.orderProduct.order.user.username
+										 or usedComment.user.username == used.orderProduct.order.user.username}">
+								<span th:text="${usedComment.user.username}+' : '">유저이름</span>
+								<span th:text="${usedComment.content}">내용</span>
+							</div>
+							<div
+								th:unless="${username == usedComment.user.username or username == used.orderProduct.order.user.username
+										 or usedComment.user.username == used.orderProduct.order.user.username}">
+								<span th:text="${usedComment.user.username}+' : '">유저이름</span>
+								<span>글 작성자와 댓글 작성자만 확인가능합니다</span>
+							</div>
+						</div>
+					</table>
 				</div>
 				<!--
 				<th:block th:with="counter=0">
@@ -216,131 +274,171 @@
 					</div>
 				</th:block>
 				-->
-			</table>
-		</div>
 
 
-		<!--
-			댓글작성
-			-->
-		<div class="content">
 
-			<span class="m-title" for="message">댓글</span>
-			<input type="text" name="content" id="content">
+				<!--
+					댓글작성
+				-->
+				<div class="content">
 
-			<button onclick="comment()">댓글쓰기</button>
+					<span class="m-title" for="message">댓글</span>
+					<input type="text" name="content" id="content">
 
-		</div>
-		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+					<button onclick="comment()">댓글쓰기</button>
 
+				</div>
+				<div class="sidemenu">
+					<ul>
+						<li><a href="/public/usedList">중고마켓</a></li>
+						<li><a href="/protected/questionForm">1:1문의</a></li>
+						<li><a href="/protected/coupon">쿠폰</a></li>
+					</ul>
+					<ul>
+						<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao" src="/images/kakao.PNG"></a>
+						</li>
+					</ul>
+				</div>
 
-		<script>
-			/*
-			$(document).ready(function () {
-				// 각 버튼에 대한 이벤트 핸들러를 추가합니다.
-				$('[id^="btn"]').on('click', function () {
-					// 버튼을 클릭할 때 연결된 reply_content의 visibility를 변경합니다.
-					var replyId = $(this).attr("id").replace("btn", "div");
-					var replyInput = $("#" + replyId);
-					replyInput.css("visibility", "visible");
-
-				});
-
-				// '답글쓰기' 버튼에 대한 이벤트 핸들러
-				$('[id^="btnsave"]').on('click', function () {
-					var commentId = $(this).attr("id").replace("btnsave", "");
-					var contentId = "content" + commentId;
-					var userId = "userId" + commentId;
-
-					var contentValue = $("#" + contentId).val();
-					var userIdValue = $("#" + userId).val();
-
-					// 이제 commentIdValue, contentValue 및 userIdValue를 사용하여 Ajax 요청 데이터를 구성합니다.
-					var id = $("#idValue").val();
-					var token = $("meta[name='_csrf']").attr("content");
-					var header = $("meta[name='_csrf_header']").attr("content");
-					var url = "/public/used/" + id + "/reply_comment";
-
-					// Ajax 요청을 보냅니다.
-					$.ajax({
-						url: url,
-						type: "POST",
-						beforeSend: function (xhr) {
-							xhr.setRequestHeader(header, token);
-						},
-						dataType: "json",
-						cache: false,
-						data: {
-							"content": contentValue,
-							"reply_user": userIdValue // 유저 ID 추가
-						},
-						success: function (result, status) {
-							alert("댓글작성");
-							location.href = "/public/used/" + id;
-						},
-						error: function (jqXHR, status, error) {
-							alert("댓글작성");
-							location.href = "/public/used/" + id;
-						}
+				<script>
+					$(document).ready(function () {
+						var currentPosition = parseInt($(".sidemenu").css("top"));
+						$(window).scroll(function () {
+							var position = $(window).scrollTop();
+							$(".sidemenu").stop().animate({ "top": position + currentPosition + "px" }, 600);
+						});
 					});
-				});
-
-			});
-			*/
-
-			function comment() {
-				var content = $("#content").val();
-				var id = $("#idValue").val();
-
-				var token = $("meta[name='_csrf']").attr("content");
-				var header = $("meta[name='_csrf_header']").attr("content");
-
-				var url = "/public/used/" + id + "/comment";
-
-				if (content.trim() === "") {
-					alert("댓글 내용을 입력해주세요.");
-				} else {
-					$.ajax({
-						url: url,
-						type: "POST",
-						beforeSend: function (xhr) {
-							xhr.setRequestHeader(header, token);
-						},
-						dataType: "json",
-						cache: false,
-						data: { "content": content },
-						success: function (result, status) {
-							alert("댓글작성");
-							location.href = "/public/used/" + id;
-						},
-						error: function (jqXHR, status, error) {
-							alert("댓글작성");
-							location.href = "/public/used/" + id;
-						}
+					/*
+					$(document).ready(function () {
+						// 각 버튼에 대한 이벤트 핸들러를 추가합니다.
+						$('[id^="btn"]').on('click', function () {
+							// 버튼을 클릭할 때 연결된 reply_content의 visibility를 변경합니다.
+							var replyId = $(this).attr("id").replace("btn", "div");
+							var replyInput = $("#" + replyId);
+							replyInput.css("visibility", "visible");
+		
+						});
+		
+						// '답글쓰기' 버튼에 대한 이벤트 핸들러
+						$('[id^="btnsave"]').on('click', function () {
+							var commentId = $(this).attr("id").replace("btnsave", "");
+							var contentId = "content" + commentId;
+							var userId = "userId" + commentId;
+		
+							var contentValue = $("#" + contentId).val();
+							var userIdValue = $("#" + userId).val();
+		
+							// 이제 commentIdValue, contentValue 및 userIdValue를 사용하여 Ajax 요청 데이터를 구성합니다.
+							var id = $("#idValue").val();
+							var token = $("meta[name='_csrf']").attr("content");
+							var header = $("meta[name='_csrf_header']").attr("content");
+							var url = "/public/used/" + id + "/reply_comment";
+		
+							// Ajax 요청을 보냅니다.
+							$.ajax({
+								url: url,
+								type: "POST",
+								beforeSend: function (xhr) {
+									xhr.setRequestHeader(header, token);
+								},
+								dataType: "json",
+								cache: false,
+								data: {
+									"content": contentValue,
+									"reply_user": userIdValue // 유저 ID 추가
+								},
+								success: function (result, status) {
+									alert("댓글작성");
+									location.href = "/public/used/" + id;
+								},
+								error: function (jqXHR, status, error) {
+									alert("댓글작성");
+									location.href = "/public/used/" + id;
+								}
+							});
+						});
+		
 					});
-				}
-			}
+					*/
 
-			function redirectToUsedPage() {
-				// 현재 페이지 주소를 가져옵니다.
-				var currentURL = window.location.href;
+					function comment() {
+						var content = $("#content").val();
+						var id = $("#idValue").val();
 
-				// 현재 페이지 주소에서 "/public/"을 "/used/"으로 대체합니다.
-				var newURL = currentURL.replace("/used/", "/product/");
+						var token = $("meta[name='_csrf']").attr("content");
+						var header = $("meta[name='_csrf_header']").attr("content");
 
-				// 변경된 주소로 페이지를 이동합니다.
-				window.location.href = newURL;
-			}
-			var button = document.getElementById("yourButtonId"); // 버튼의 ID를 지정하세요.
-			button.addEventListener("click", redirectToUsedPage);
+						var url = "/public/used/" + id + "/comment";
+
+						if (content.trim() === "") {
+							alert("댓글 내용을 입력해주세요.");
+						} else {
+							$.ajax({
+								url: url,
+								type: "POST",
+								beforeSend: function (xhr) {
+									xhr.setRequestHeader(header, token);
+								},
+								dataType: "json",
+								cache: false,
+								data: { "content": content },
+								success: function (result, status) {
+									alert("댓글작성");
+									location.href = "/public/used/" + id;
+								},
+								error: function (jqXHR, status, error) {
+									alert("댓글작성");
+									location.href = "/public/used/" + id;
+								}
+							});
+						}
+					}
+
+					function redirectToUsedPage() {
+						// 현재 페이지 주소를 가져옵니다.
+						var currentURL = window.location.href;
+
+						// 현재 페이지 주소에서 "/public/"을 "/used/"으로 대체합니다.
+						var newURL = currentURL.replace("/used/", "/product/");
+
+						// 변경된 주소로 페이지를 이동합니다.
+						// window.location.href = newURL;
+					}
+					var button = document.getElementById("yourButtonId"); // 버튼의 ID를 지정하세요.
+					button.addEventListener("click", redirectToUsedPage);
+
+					var slideIndex = 0;
+					var totalPages = document.getElementsByClassName("mySlides").length; // 전체 슬라이드 수
+
+					showSlides();
 
 
+					function plusSlides(n) {
+						slideIndex += n;
+						showSlides();
+					}
 
-		</script>
-	</div>
-	</div>
 
+					function showSlides() {
+						var i;
+						var slides = document.getElementsByClassName("mySlides");
 
-</body>
+						if (slideIndex >= slides.length) {
+							slideIndex = 0;
+						} else if (slideIndex < 0) {
+							slideIndex = slides.length - 1;
+						}
 
-</html>
+						for (i = 0; i < slides.length; i++) {
+							slides[i].style.display = "none";
+						}
+
+						slides[slideIndex].style.display = "block";
+					}
+
+				</script>
+			</div>
+		</div>
+	</body>
+
+	</html>

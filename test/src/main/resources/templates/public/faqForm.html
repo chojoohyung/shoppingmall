@@ -43,6 +43,10 @@
 			background-color: #f5f5f5;
 			/* 배경색 설정 */
 		}
+		.all-container{
+	padding-left:10% ;
+	padding-right:10% ;
+}
 	</style>
 </head>
 <meta charset="UTF-8">
@@ -50,7 +54,7 @@
 <body>
 
 	<div layout:fragment="content">
-
+	<div class="all-container">
 		<nav>
 			<a th:href="@{/public/faq}">Q/A</a>
 			<a href="#">문의하기</a>
@@ -75,7 +79,7 @@
 		</div>
 	</div>
 	</div>
-
+</div>
 
 
 </body>

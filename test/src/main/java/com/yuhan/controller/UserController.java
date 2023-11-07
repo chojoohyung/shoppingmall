@@ -19,9 +19,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/public/login")
+	@GetMapping("public/login")
 	public String login(User user) {
-		return "/public/login";
+		return "public/login";
 	}
 	
 	@GetMapping("/public/register")
