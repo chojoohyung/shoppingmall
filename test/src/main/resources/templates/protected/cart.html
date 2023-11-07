@@ -33,13 +33,7 @@
 				
 		
 			<script>
-					$(document).ready(function () {
-						var currentPosition = parseInt($(".sidemenu").css("top"));
-						$(window).scroll(function () {
-							var position = $(window).scrollTop();
-							$(".sidemenu").stop().animate({"top": position + currentPosition + "px"}, 600);
-						});
-					});
+					
 				</script>
 		<div class="all-container">
 		<section class="cart">
@@ -123,7 +117,14 @@
 				$("input[name=cartChkBox]").change( function(){
 					getOrderTotalPrice();
 				});
+
+				var currentPosition = parseInt($(".sidemenu").css("top"));
+				$(window).scroll(function () {
+					var position = $(window).scrollTop();
+					$(".sidemenu").stop().animate({"top": position + currentPosition + "px"}, 600);
+				});
 			});
+
 
 			function getOrderTotalPrice(){
 				var orderTotalPrice = 0;

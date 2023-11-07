@@ -4,11 +4,14 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yuhan.entity.User;
 import com.yuhan.service.UserService;
@@ -69,5 +72,13 @@ public class UserController {
 		return "redirect:/";
 	}
 	
+	@GetMapping("/public/register/check_id")
+	public @ResponseBody ResponseEntity checkId(@RequestParam("ID") String ID) {
+		User user = userService.findByUsername(ID);
+		if(user == null)
+			return new ResponseEntity<Boolean>(true ,HttpStatus.OK);
+		else
+			return new ResponseEntity<Boolean>(false ,HttpStatus.OK);
+	}
 
 }
