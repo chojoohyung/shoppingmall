@@ -155,6 +155,70 @@
 			.used-title {
 				margin-right: 40px;
 			}
+			input {
+  width:750px;
+  height:100px;
+  font-size:20px;
+}
+.comment-container{
+	padding: 5%;
+				margin: 20px auto;
+				
+				width: 800px;
+				height: 500px;
+	   
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        
+        
+       
+}
+.used-comment{
+	  border: 1px solid #ddd;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        background-color: #fff;
+        
+}
+ .used-comment span {
+        
+        font-weight: bold;
+       
+    }
+     .used-comment span:first-child {
+        color: black;
+    }
+        .used-comment span:last-child {
+        color: #333; /* Dark gray color for content */
+    }
+.commentwrite{
+	margin-top: 20px;
+}
+.co-title {
+        font-weight: bold;
+    }
+   .buttons {
+	   float: right;
+	   justify-content: right;
+	   margin-top:10px;
+        background-color: rgb(192, 192, 192);
+        color: rgb(255, 255, 255);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+      .buttons:hover {
+        background-color: rgb(0, 0, 0);
+    }
+    .comment{
+		font-size: 40px;
+		text-align: center;
+	}
+
+
 		</style>
 	</head>
 
@@ -168,9 +232,11 @@
 
 					<div class="slideshow-container">
 						<div th:each="productImgDto, status: ${used.usedImgList}">
+							<div th:unless="${#strings.isEmpty(productImgDto.imgUrl)}">
 							<div class="mySlides">
 								<input type="hidden" name="productImgIds" th:value="${productImgDto.id}">
 								<img class="product-image" th:src="${productImgDto.imgUrl}" width="500" height="500">
+							</div>
 							</div>
 						</div>
 
@@ -214,20 +280,23 @@
 					<p class="content1" th:text="'내용 : '+${used.content}">내용</p>
 				</div>
 
-
+			<div class="comment-container">
 				<!--
 					댓글목록	
 				-->
+				<p class="comment">COMMENT</p>
 				<div>
+					
 					<table>
+						
 						<div th:each="usedComment, index: ${usedCommentList}">
-							<div
+							<div class="used-comment"
 								th:if="${username == usedComment.user.username or username == used.orderProduct.order.user.username
 										 or usedComment.user.username == used.orderProduct.order.user.username}">
 								<span th:text="${usedComment.user.username}+' : '">유저이름</span>
 								<span th:text="${usedComment.content}">내용</span>
 							</div>
-							<div
+							<div class="used-comment"
 								th:unless="${username == usedComment.user.username or username == used.orderProduct.order.user.username
 										 or usedComment.user.username == used.orderProduct.order.user.username}">
 								<span th:text="${usedComment.user.username}+' : '">유저이름</span>
@@ -235,6 +304,19 @@
 							</div>
 						</div>
 					</table>
+					
+				</div>
+				<!--
+					댓글작성
+				-->
+				<div class="commentwrite">
+					
+					<span class="co-title" for="message">댓글쓰기</span>
+					<input type="text" name="content" id="content">
+
+					<button class="buttons"onclick="comment()">댓글쓰기</button>
+
+				</div>
 				</div>
 				<!--
 				<th:block th:with="counter=0">
@@ -277,22 +359,11 @@
 
 
 
-				<!--
-					댓글작성
-				-->
-				<div class="content">
-
-					<span class="m-title" for="message">댓글</span>
-					<input type="text" name="content" id="content">
-
-					<button onclick="comment()">댓글쓰기</button>
-
-				</div>
+				
 				<div class="sidemenu">
 					<ul>
 						<li><a href="/public/usedList">중고마켓</a></li>
 						<li><a href="/protected/questionForm">1:1문의</a></li>
-						<li><a href="/protected/coupon">쿠폰</a></li>
 					</ul>
 					<ul>
 						<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao" src="/images/kakao.PNG"></a>
