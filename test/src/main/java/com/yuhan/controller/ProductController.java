@@ -23,6 +23,7 @@ import com.yuhan.dto.ProductDto;
 import com.yuhan.entity.Product;
 import com.yuhan.entity.User;
 import com.yuhan.service.ProductService;
+import com.yuhan.service.RecommendService;
 import com.yuhan.service.UserService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -36,6 +37,7 @@ public class ProductController {
 
 	private final ProductService productService;
 	private final UserService userService;
+	private final RecommendService recommendService;
 	
 	/*
 	 * Admin용 상품등록 폼
@@ -159,6 +161,10 @@ public class ProductController {
 		}
 		
 		ProductDto productDto = productService.getProductDtl(id);
+		
+		if(principal != null) {
+			recommendService.updateRecommend(id, principal.getName());
+		}
 		
 		model.addAttribute("productDto", productDto);
 		return "/public/product";

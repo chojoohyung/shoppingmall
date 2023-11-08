@@ -21,8 +21,8 @@ public class PaymentController {
 	private final IamportClient iamportClient;
 
     public PaymentController() {
-        this.iamportClient = new IamportClient(" ",
-                " ");
+        this.iamportClient = new IamportClient("6760024718016865",
+                "ZHwZPH5EJQZSD7XdmiWEvn5LGKpEOOIGMASjTOKG7tRWkIh3Hd2KGdhFPDpFyJvkFixOYBFcCTuQ1npq");
     }
 
     @ResponseBody

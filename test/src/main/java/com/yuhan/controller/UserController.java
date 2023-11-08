@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yuhan.entity.Recommend;
 import com.yuhan.entity.User;
+import com.yuhan.repository.RecommendRepository;
+import com.yuhan.service.RecommendService;
 import com.yuhan.service.UserService;
 
 @Controller
@@ -21,6 +24,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RecommendRepository recommendRepository;
 	
 	@GetMapping("public/login")
 	public String login(User user) {
@@ -37,6 +43,8 @@ public class UserController {
 	public String register(User user, @RequestParam("addr2") String addr2, @RequestParam("addr3") String addr3) {
 		user.setAddr(addr2+' '+addr3);
 		userService.save(user);
+		Recommend recommend = Recommend.createRecommend(user);
+		recommendRepository.save(recommend);
 		return "/public/login";
 	}
 	

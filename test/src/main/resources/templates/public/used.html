@@ -168,9 +168,11 @@
 
 					<div class="slideshow-container">
 						<div th:each="productImgDto, status: ${used.usedImgList}">
-							<div class="mySlides">
-								<input type="hidden" name="productImgIds" th:value="${productImgDto.id}">
-								<img class="product-image" th:src="${productImgDto.imgUrl}" width="500" height="500">
+							<div th:unless="${#strings.isEmpty(productImgDto.imgUrl)}">
+								<div class="mySlides">
+									<input type="hidden" name="productImgIds" th:value="${productImgDto.id}">
+									<img class="product-image" th:src="${productImgDto.imgUrl}" width="500" height="500">
+								</div>
 							</div>
 						</div>
 

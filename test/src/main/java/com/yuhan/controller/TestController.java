@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.yuhan.dto.CartDetailDto;
 import com.yuhan.service.CartService;
+import com.yuhan.service.RecommendService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,10 +21,12 @@ import lombok.RequiredArgsConstructor;
 public class TestController {
 
 	private final CartService cartService;
+	private final RecommendService recommendService;
 
 	@GetMapping("/protected/mypage")
 	public String mypage(Principal principal, Model model) {
 		List<CartDetailDto> cartDetailDtoList = cartService.getCartList(principal.getName());
+		recommendService.RecommendList(principal.getName());
 		model.addAttribute("cartDetailDtoList", cartDetailDtoList);
 		return "/protected/mypage";
 	}
