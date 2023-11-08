@@ -1,6 +1,7 @@
 package com.yuhan.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,8 @@ import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
+import com.yuhan.entity.User;
+import com.yuhan.service.UserService;
 
 @Controller
 public class PaymentController {
@@ -26,7 +29,6 @@ public class PaymentController {
     @PostMapping("/verify/{imp_uid}")
     public IamportResponse<Payment> paymentByImpUid(@PathVariable("imp_uid") String imp_uid)
             throws IamportResponseException, IOException {
-    	System.out.println("이거 왜 실행 안됨");
         return iamportClient.paymentByImpUid(imp_uid);
     }
    

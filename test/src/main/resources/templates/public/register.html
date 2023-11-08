@@ -178,11 +178,15 @@
 									id="addr3" type="text" required />
 							</div>
 						</div>
+						<br>
+						<div class="name">
+							<input type="text" style="width:60%;" id="name" th:field="*{name}" placeholder="이름 입력*" required >
+						</div>
 
 						<div class="phone">
-							<p><input type="tel" style="width:60%;" th:field="*{phone}" placeholder="핸드폰 번호*" required>
-							</p>
+							<input type="tel" style="width:60%;" th:field="*{phone}" placeholder="핸드폰 번호*" required>
 						</div>
+						
 
 						<div class="use"><b>이용약관</b></div>
 						<div class="container-s">

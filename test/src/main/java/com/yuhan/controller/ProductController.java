@@ -1,5 +1,6 @@
 package com.yuhan.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.yuhan.dto.ProductDto;
 import com.yuhan.entity.Product;
+import com.yuhan.entity.User;
 import com.yuhan.service.ProductService;
+import com.yuhan.service.UserService;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -32,6 +35,7 @@ import lombok.RequiredArgsConstructor;
 public class ProductController {
 
 	private final ProductService productService;
+	private final UserService userService;
 	
 	/*
 	 * Admin용 상품등록 폼
@@ -147,8 +151,15 @@ public class ProductController {
 	 * 상품상세정보
 	 */
 	@GetMapping("/public/product/{id}")
-	public String productList(Model model, @PathVariable("id") Long id) {
+	public String productList(Model model, @PathVariable("id") Long id, Principal principal) {
+		
+		if(principal != null) {
+			User user = userService.findByUsername(principal.getName());
+			model.addAttribute("user", user);
+		}
+		
 		ProductDto productDto = productService.getProductDtl(id);
+		
 		model.addAttribute("productDto", productDto);
 		return "/public/product";
 	}

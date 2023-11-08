@@ -79,6 +79,14 @@
             </div>
         </div>
 
+        <script th:inline="javascript">
+            var userEmail = /*[[${user.email}]]*/ null;
+            var userName = /*[[${user.name}]]*/ null;
+            var userPhone = /*[[${user.phone}]]*/ null;
+            var userAddr = /*[[${user.addr}]]*/ null;
+        </script>
+        
+
         <script>
             var IMP = window.IMP;
             IMP.init("imp46787317");
@@ -89,18 +97,16 @@
             var token = $("meta[name='_csrf']").attr("content");
             var header = $("meta[name='_csrf_header']").attr("content");
 
-
             function requestPay() {
                 IMP.request_pay({
                     pg: "kakaopay.TC0ONETIME",
                     pay_method: "card",
                     name: productName,
                     amount: productPrice,                         // 숫자 타입
-                    buyer_email: "gildong@gmail.com",
-                    buyer_name: "홍길동",
-                    buyer_tel: "010-4242-4242",
-                    buyer_addr: "서울특별시 강남구 신사동",
-                    buyer_postcode: "01181"
+                    buyer_email: userEmail,
+                    buyer_name: userName,
+                    buyer_tel: userPhone,
+                    buyer_addr: userAddr,
                 }, function (rsp) { // callback
                     $.ajax({
                         type: 'POST',
