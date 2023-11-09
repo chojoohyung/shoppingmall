@@ -31,8 +31,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query("SELECT p FROM Product p WHERE p.category = :category AND p.is_delete = false ORDER BY p.sales desc")
 	List<Product> catogoryfindsales(Pageable paging, @Param("category") String category);
 	
-	@Query("SELECT p FROM Product p WHERE p.category = :category AND p.is_delete = false AND p.id NOT IN (SELECT op.product.id FROM OrderProduct op WHERE op.order.user.username = :username) ORDER BY p.id DESC")
-	Page<Product> testcatogoryfind(@Param("category") String category, @Param("username") String username, Pageable paging);
+	@Query("SELECT p FROM Product p WHERE p.category = :category AND p.size = :size AND p.color = :color AND p.is_delete = false AND p.id NOT IN (SELECT op.product.id FROM OrderProduct op WHERE op.order.user.username = :username) ORDER BY p.id DESC")
+	Page<Product> testcatogoryfind(@Param("category") String category, @Param("size") String size, @Param("color") String color, @Param("username") String username, Pageable paging);
 	
 	
 	

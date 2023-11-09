@@ -23,6 +23,7 @@ import com.yuhan.repository.RecommendRepository;
 import com.yuhan.test.ACC;
 import com.yuhan.test.BOTTOM;
 import com.yuhan.test.CategoryMap;
+import com.yuhan.test.ColorMap;
 import com.yuhan.test.OUTER;
 import com.yuhan.test.RecommendInterface;
 import com.yuhan.test.SHIRTS;
@@ -53,11 +54,11 @@ public class RecommendService {
 		
 		CategoryMap categoryMap = new CategoryMap();
 		SizeMap sizeMap = new SizeMap();
-		
+		ColorMap colorMap = new ColorMap();
 		
 		categoryMap.getCategoryUpdater(productCategory).update(recommend, RecommendViewOrBuy);
 		sizeMap.getSizeUpdater(productSize).update(recommend, RecommendViewOrBuy);
-		
+		colorMap.getColorUpdater(productColor).update(recommend, RecommendViewOrBuy);
 		
 		recommendRepository.save(recommend);
 	}
@@ -76,29 +77,67 @@ public class RecommendService {
 		OrderBycategory.put("SHOES", recommend.getCategory_SHOES());
 		OrderBycategory.put("ACC", recommend.getCategory_ACC());
 		
-		List<String> keySet = new ArrayList<>(OrderBycategory.keySet());	
-		keySet.sort((o1, o2) -> OrderBycategory.get(o2).compareTo(OrderBycategory.get(o1)));
+		List<String> categoryKeySet = new ArrayList<>(OrderBycategory.keySet());	
+		categoryKeySet.sort((o1, o2) -> OrderBycategory.get(o2).compareTo(OrderBycategory.get(o1)));
 		
-		int keycnt= 0;
+		
+		Map<String, Integer> OrderBySize= new HashMap<>();
+		OrderBySize.put("S", recommend.getSize_S());
+		OrderBySize.put("M", recommend.getSize_M());
+		OrderBySize.put("L", recommend.getSize_L());
+		OrderBySize.put("260", recommend.getSize_260());
+		OrderBySize.put("265", recommend.getSize_265());
+		OrderBySize.put("270", recommend.getSize_270());
+		OrderBySize.put("275", recommend.getSize_275());
+		OrderBySize.put("280", recommend.getSize_280());
+		OrderBySize.put("285", recommend.getSize_285());
+		OrderBySize.put("기타", recommend.getSize_default());
+		
+		List<String> sizeKeySet = new ArrayList<>(OrderBySize.keySet());	
+		sizeKeySet.sort((o1, o2) -> OrderBySize.get(o2).compareTo(OrderBySize.get(o1)));
+		
+		Map<String, Integer> OrderByColor= new HashMap<>();
+		OrderByColor.put("BLACK", recommend.getColor_BLACK());
+		OrderByColor.put("WHITE", recommend.getColor_WHITE());
+		OrderByColor.put("기타", recommend.getColor_DEFAULT());
+		
+		List<String> colorKeySet = new ArrayList<>(OrderByColor.keySet());	
+		colorKeySet.sort((o1, o2) -> OrderByColor.get(o2).compareTo(OrderByColor.get(o1)));
+		
+		int cntCategory = 0;
+		int cntSize = 0;
+		int cntColor = 0;
+		
 		int pageInt = 5;
 		List<Product> allProducts = new ArrayList<>();
 		
 		while(true) {
-			if(allProducts.size()==5 || keycnt >= 7)
+			if(allProducts.size()>=5 || cntCategory >=5 )
 				break;
 			
 			Pageable paging = PageRequest.of(0, pageInt);
-			Page<Product> productList = productRepository.testcatogoryfind(keySet.get(keycnt), username, paging);
+			Page<Product> productList = productRepository.testcatogoryfind(categoryKeySet.get(cntCategory), sizeKeySet.get(cntSize), colorKeySet.get(cntColor), username, paging);
 			allProducts.addAll(productList.getContent());
 			
 			if(allProducts.size()==5) {
 				break;
 			}else {
 				pageInt -= productList.getTotalElements();
-				keycnt++;
+				if(cntSize>8) {
+					if(cntColor>1) {
+						cntColor=0;
+						cntSize=0;
+						cntCategory++;
+					}else {
+						cntSize=0;
+						cntColor++;
+					}
+				}else {
+					cntSize++;
+				}
 			}
+			
 		}
-		
 		
 		return allProducts;
 	}
