@@ -20,6 +20,7 @@ import com.yuhan.dto.ProductDto;
 import com.yuhan.entity.Order;
 import com.yuhan.service.OrderService;
 import com.yuhan.service.ProductService;
+import com.yuhan.service.RecommendService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ import lombok.RequiredArgsConstructor;
 public class OrderController {
 	private final OrderService orderService;
 	private final ProductService productService;
-	
+	private final RecommendService recommendService;
 	/*
 	 * User용 유저 주문내역 리스트
 	 */
@@ -75,6 +76,7 @@ public class OrderController {
 		Long orderId;
 		try {
 			orderId = orderService.order(orderDto, username); 
+			recommendService.updateRecommend(orderDto.getProductId(), principal.getName(), 5*orderDto.getCount());
 		}catch(Exception e) {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}

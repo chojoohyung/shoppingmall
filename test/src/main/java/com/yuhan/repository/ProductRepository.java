@@ -2,12 +2,14 @@ package com.yuhan.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.yuhan.entity.Product;
+import com.yuhan.entity.User;
 
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
@@ -28,5 +30,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 	@Query("SELECT p FROM Product p WHERE p.category = :category AND p.is_delete = false ORDER BY p.sales desc")
 	List<Product> catogoryfindsales(Pageable paging, @Param("category") String category);
+	
+	@Query("SELECT p FROM Product p WHERE p.category = :category AND p.is_delete = false AND p.id NOT IN (SELECT op.product.id FROM OrderProduct op WHERE op.order.user.username = :username) ORDER BY p.id DESC")
+	Page<Product> testcatogoryfind(@Param("category") String category, @Param("username") String username, Pageable paging);
+	
+	
 	
 }

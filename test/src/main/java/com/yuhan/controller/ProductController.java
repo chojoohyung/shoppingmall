@@ -157,14 +157,11 @@ public class ProductController {
 		
 		if(principal != null) {
 			User user = userService.findByUsername(principal.getName());
+			recommendService.updateRecommend(id, principal.getName(), 1);
 			model.addAttribute("user", user);
 		}
 		
 		ProductDto productDto = productService.getProductDtl(id);
-		
-		if(principal != null) {
-			recommendService.updateRecommend(id, principal.getName());
-		}
 		
 		model.addAttribute("productDto", productDto);
 		return "/public/product";

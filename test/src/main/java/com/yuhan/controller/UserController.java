@@ -43,8 +43,10 @@ public class UserController {
 	public String register(User user, @RequestParam("addr2") String addr2, @RequestParam("addr3") String addr3) {
 		user.setAddr(addr2+' '+addr3);
 		userService.save(user);
+		
 		Recommend recommend = Recommend.createRecommend(user);
 		recommendRepository.save(recommend);
+		
 		return "/public/login";
 	}
 	

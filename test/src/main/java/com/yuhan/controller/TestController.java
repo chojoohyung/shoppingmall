@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.yuhan.dto.CartDetailDto;
+import com.yuhan.dto.ProductDto;
+import com.yuhan.entity.Product;
+import com.yuhan.entity.Recommend;
 import com.yuhan.service.CartService;
 import com.yuhan.service.RecommendService;
 
@@ -26,7 +29,10 @@ public class TestController {
 	@GetMapping("/protected/mypage")
 	public String mypage(Principal principal, Model model) {
 		List<CartDetailDto> cartDetailDtoList = cartService.getCartList(principal.getName());
-		recommendService.RecommendList(principal.getName());
+		
+		List<Product> productDtoList = recommendService.RecommendList(principal.getName());
+		
+		model.addAttribute("productList", productDtoList);
 		model.addAttribute("cartDetailDtoList", cartDetailDtoList);
 		return "/protected/mypage";
 	}

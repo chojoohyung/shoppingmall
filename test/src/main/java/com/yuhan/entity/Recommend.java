@@ -45,6 +45,7 @@ public class Recommend {
 	private int size_275;
 	private int size_280;
 	private int size_285;
+	private int size_default;
 	
 	public static Recommend createRecommend(User user) {
 		Recommend recommend = new Recommend();

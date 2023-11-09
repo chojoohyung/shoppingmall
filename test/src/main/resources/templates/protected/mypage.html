@@ -21,7 +21,8 @@
                 <li><a href="coupon">쿠폰</a></li>
             </ul>
             <ul>
-                <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao" th:src="@{/resources/img/kakao.PNG}"></a></li>
+                <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
+                            th:src="@{/resources/img/kakao.PNG}"></a></li>
             </ul>
         </div>
 
@@ -38,22 +39,19 @@
                 </div>
                 <!-- 멤버십, 쿠폰, 주문배송조회 -->
                 <div class="all">
-					<div class="user-con">
-                    <div class="userupdate"
-                        onclick="location.href='userUpdateForm'">
+                    <div class="user-con">
+                        <div class="userupdate" onclick="location.href='userUpdateForm'">
                             회원정보변경
-                       
-                    </div>
-                    <div class="userorder"
-                        sec:authorize="hasRole('ROLE_USER')" onclick="location.href='order'">
+
+                        </div>
+                        <div class="userorder" sec:authorize="hasRole('ROLE_USER')" onclick="location.href='order'">
                             주문조회
-                        
-                    </div>
-                    <div class="coupon"
-                        onclick="location.href='coupon'">
+
+                        </div>
+                        <div class="coupon" onclick="location.href='coupon'">
                             쿠폰
-                        
-                    </div>
+
+                        </div>
                     </div>
                     <div class="adminorder">
                         <div class="" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='../admin/order'">
@@ -77,11 +75,19 @@
                     </div>
 
                     <p class="my-underline">패션 맞춤 추천</p>
+                    <div class="cart-grid">
+                        <div class="cart-item" th:each="product, index:${productList}">
+                            <a th:href="@{'/public/product/'+${product.id}}">
+                                <div>
+                                    <img class="imgg" th:src="${product.productImgList[0].imgUrl}" alt="셔츠">
+                                </div>
+                            </a>
+                            <a class="cartname" th:text="${product.name}"></a>
+                        </div>
+                    </div>
                 </div>
-
-
-
             </div>
+
             <div class="usercart">
                 <div>
                     <span class="m-title"><b>내가 담은 상품 </b></span><span></span>회원님께서 담은 상품을 확인해보세요!
@@ -97,6 +103,7 @@
 
                 <div class="cart-grid">
                     <div class="cart-item" th:each="cartDetailDto, index:${cartDetailDtoList}">
+
                         <a th:href="@{'/public/product/'+${cartDetailDto.productId}}">
                             <div>
                                 <img class="imgg" th:src="${cartDetailDto.imgUrl}" alt="셔츠">
