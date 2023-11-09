@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_test}">
 
 <head>
-    <link href="../css/questionList.css" rel="stylesheet">
+    <link href="../../css/questionList.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -65,16 +65,12 @@
                 <div class="question-title">
                     <p class="title"> 게시번호 아이디 &nbsp;제목</p>
                 </div>
-                <tr th:each="question, index : ${questionList}">
-                    <div class="question-content">
-                        <span class="content11" th:text="${index.index}">게시번호</span>
-                        <span class="content22" th:text="${question.user.username}">아이디</span>
-                        <a th:href="@{'/protected/question/'+${question.id}}">
-                            <span class="content33" th:text="${question.title}">제목</span>
-                        </a>
-                            <!-- <td th:text="${question.content}">내용</td> -->
-                    </div>
-                </tr>
+                <div class="question-content">
+                    <span class="content22" th:text="${question.user.username}">아이디</span>
+                    <span class="content33" th:text="${question.title}">제목</span>
+                    <span class="content33" th:text="${question.content}">내용</span>
+                    <!-- <td th:text="${question.content}">내용</td> -->
+                </div>
             </div>
         </div>
     </div>

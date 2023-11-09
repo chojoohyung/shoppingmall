@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yuhan.entity.Question;
 import com.yuhan.repository.QuestionRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -20,5 +21,9 @@ public class QuestionService {
 	}
 	public List<Question> findAll(){
 		return questionRepository.findAll();
+	}
+	
+	public Question findById(Long id) {
+		return questionRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 	}
 }

@@ -7,4 +7,6 @@ import com.yuhan.entity.Question;
 
 public interface QuestionRepository extends JpaRepository<Question, Long>{
 
+	
+	
 }
