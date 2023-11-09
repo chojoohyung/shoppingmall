@@ -157,7 +157,9 @@ public class UsedController {
 			model.addAttribute("used", used);
 			model.addAttribute("usedCommentList", usedCommentList);
 			model.addAttribute("usedCommentForm", new UsedComment());
-			model.addAttribute("username", principal.getName());
+			if (principal != null) {
+	            model.addAttribute("username", principal.getName());
+	        }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
