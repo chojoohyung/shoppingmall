@@ -5,11 +5,15 @@
 <head>
 	<link href="../css/questionList.css" rel="stylesheet">
 	<style>
-		
-.all-container{
-	padding-left:10% ;
-	padding-right:10% ;
+		/* 전체 페이지 스타일링 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
 }
+
+
+
 
 
 
@@ -23,11 +27,11 @@
 
 	<div layout:fragment="content">
 			<div class="all-container">
+				<div class="question-sub">
 <div class = "sidebar">
-	<div class ="time">
 	
-	</div>
 	<h2 class="titlee" >문의 게시판</h2>
+	
 	<div class="subsidebar">
 <ul>
 
@@ -42,24 +46,32 @@
 		<div class="m-container">
 
 	
-<div class="" style="margin-bottom: 1000px;">
+<div class="question-container" >
 			<form role="form" method="post" th:object="${question}" >
 				<input type="hidden" th:field="*{id}">
 				<div class = "m-title">
-				<span class = "m-title" for="message">제목</span>
-				<input type="text" id="title" th:field="*{title}" required>
+					  <select th:field="*{title}">
+                <option value="배송문의">배송문의</option>
+                <option value="상품문의">상품문의</option>
+                <option value="반품문의">반품문의</option>
+                <option value="교환문의">교환문의</option>
+                <option value="기타문의">기타문의</option>
+                <option value="신고하기">신고하기</option>
+            </select>
+				
 				</div>
 			<div class = "m-content" >
 				<label for="message"></label>
 				<textarea id="content" th:field="*{content}" rows="5" required></textarea>
 			</div>
+			<div class="button-m">
 				<button type="submit">문의 보내기</button>
 				<input type="hidden" th:name = "${_csrf.parameterName}" th:value = "${_csrf.token}">
-				
+				</div>
 			</form>
 		</div>
 		</div>
-	
+	</div>
 			
 
 	</div>

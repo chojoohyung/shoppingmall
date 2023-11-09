@@ -18,7 +18,7 @@
             <ul>
                 <li><a href="../public/usedList">중고마켓</a></li>
                 <li><a href="../protected/questionForm">1:1문의</a></li>
-                <li><a href="coupon">쿠폰</a></li>
+               
             </ul>
             <ul>
                 <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
@@ -46,12 +46,9 @@
                         </div>
                         <div class="userorder" sec:authorize="hasRole('ROLE_USER')" onclick="location.href='order'">
                             주문조회
-
-                        </div>
-                        <div class="coupon" onclick="location.href='coupon'">
-                            쿠폰
-
-                        </div>
+                        
+                    </div>
+                   
                     </div>
                     <div class="adminorder">
                         <div class="" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='../admin/order'">
