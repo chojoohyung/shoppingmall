@@ -122,7 +122,7 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text">내용</span>
 				</div>
-				<input type="text" th:field="*{content}" class="form-control" placeholder="내용을 입력해주세요">
+				<input type="text" th:field="*{content}" class="form-control" placeholder="옷 상태와 직거래 할 시 위치정보를 필히 입력해주세요">
 			</div>
 			<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="fieldError">Incorrect data</p>
 

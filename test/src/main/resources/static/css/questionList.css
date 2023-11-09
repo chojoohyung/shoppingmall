@@ -178,7 +178,10 @@
   	font-size: 20px;
   }
 
-  .button {}
+
+  .question-sub{
+	  margin-top:30px;
+  }
 
   .question-title {
   	margin-left: 300px;
@@ -200,6 +203,7 @@
   	margin-left: 300px;
   	padding: 5px;
   	border-bottom: 1px solid gainsboro;
+  	width: 1190px;
   	font-size: 13px;
   	background-color: white;
 
@@ -220,54 +224,90 @@
   .sidebar {
   	float: left;
   	margin-left: 10px;
+	
 
 
   }
 
-  .sidebar1 {
-  	background-color: white;
-  	width: 18%;
-  	margin-left: 10px;
 
-  }
 
-  .subsidebar {
+ .titlee {
+    font-size: 24px;
+    margin: 0;
+    	
+}
 
-  	margin-left: 30px;
-  }
+.subsidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-left: 20px;
+}
 
-  .titlee {
-  	margin-left: 60px;
-  }
+.subsidebar li {
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
 
-  .time {
-  	background-color: #ddd;
-  }
+.subsidebar a {
+   color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-  /* 1대1문의 창 */
+.subsidebar a:hover {
+    text-decoration: underline;
+}
   .m-container {
-  	text-align: center;
+	  
+	  width: 50%;
+    margin-left: 25%;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  	
 
   }
+  .question-container{
+	
+  }
 
-  .h {}
+ form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+input[type="text"],
+textarea {
+	
+    width: 100%;
+    height: 500px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.button-m{
+	display: flex;
+	justify-content: flex-end;
+}
+button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  
+    
+}
+button[type="submit"]:hover {
+    background-color: #555;
+}
 
   textarea {
   	width: 100%;
   	text-align: center;
   	margin-top: 10px;
   }
-
-  m-title {}
-
-  .m-container {
-  	float: left;
-  	margin-bottom: 100px;
-
-
-
-  }
-
-  .m-content {
-  	width: 100%;
+  .m-title{
+	  text-align: center;
   }
