@@ -1,5 +1,6 @@
 package com.yuhan.controller;
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,7 @@ public class QuestionController {
 	@PostMapping("/protected/questionForm")
 	public String questionPost(Question question , Principal principal) {
 		question.setUser(userRepository.findByUsername(principal.getName()));
+		question.setQuestionDate(LocalDateTime.now());
 		questionService.save(question);
 		return "redirect:/";
 	}

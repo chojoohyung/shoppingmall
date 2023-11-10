@@ -70,12 +70,14 @@
 							<th>제목</th>
 							<th>작성자</th>
 							<th>내용</th>
+							<th>작성일</th>
 						</tr>
 						<thead>
 						<tbody>
 							<tr>
 								<td class="content333" th:text="${question.title}">제목</td>
 								<td class="content222" th:text="${question.user.username}">아이디</td>
+								<td class="content444" th:text="${#temporals.format(question.QuestionDate, 'yyyy-MM-dd HH:mm')}">내용</td>
 								<td class="content444" th:text="${question.content}">내용</td>
 								
 							</tr>

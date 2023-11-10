@@ -1,5 +1,7 @@
 package com.yuhan.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -30,5 +32,7 @@ public class Question {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	private LocalDateTime QuestionDate; 
 	
 }
