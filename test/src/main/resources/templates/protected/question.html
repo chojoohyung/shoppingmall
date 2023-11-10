@@ -3,7 +3,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_test}">
 
 <head>
-	<link href="../../css/questionList.css" rel="stylesheet">
+	<link href="../../css/question.css" rel="stylesheet">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
@@ -61,28 +61,85 @@
 					</ul>
 				</div>
 			</div>
+<style>
+ table {
+  	display: flex;
+  	border-collapse: collapse;
+  	width: 100%;
+  	border: none;
+  	font-size: 14px;
+  	font-family: 'Nanum Gothic', sans-serif;
 
+  }
+
+  th,
+  td {
+  	display: block;
+  	padding: 8px;
+  
+  }
+
+  th {
+  	border-left: none;
+  	width: 200px;
+  	border-bottom:1px solid lightgray;
+  }
+
+  .content111,
+  .content222
+
+{
+	  display: block;
+  	padding: 8px;
+  	width: 950px;
+  	text-align: left;
+  	border-bottom: 1px solid lightgray;
+  	border-right: none;
+  	border-left: 1px solid lightgray;
+
+  }
+  .con111,.content111{
+	  border-top: 1px solid lightgray;
+  }
+.content333{
+	 text-align: right;
+border-bottom: 1px solid lightgray;
+	 
+ }
+.content444{
+	padding: 5%;
+}
+
+  .question-contenta {
+  	margin-left: 300px;
+  	padding: 5px;
+  	border-bottom: 1px solid gainsboro;
+  	width: 1190px;
+  	font-size: 13px;
+  	background-color: white;
+  }
+</style>
 
 			<div class="question-contenta">
 				<table>
 					<thead>
 						<tr>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>내용</th>
-							<th>작성일</th>
+							<th class="con111">제목</th>
+							<th class="con222">작성자</th>
+							
 						</tr>
-						<thead>
+						</thead>
 						<tbody>
 							<tr>
-								<td class="content333" th:text="${question.title}">제목</td>
+								<td class="content111" th:text="${question.title}">제목</td>
 								<td class="content222" th:text="${question.user.username}">아이디</td>
-								<td class="content444" th:text="${#temporals.format(question.QuestionDate, 'yyyy-MM-dd HH:mm')}">내용</td>
-								<td class="content444" th:text="${question.content}">내용</td>
-								
-							</tr>
+									</tr>
 						</tbody>
 				</table>
+								<p class="content333" th:text="${#temporals.format(question.QuestionDate,'작성일 &nbsp;&nbsp;'+ ' yyyy-MM-dd HH:mm')}">작성일</p>
+								<p class="content444" th:text="${question.content}">내용</p>
+								
+						
 
 
 			</div>
