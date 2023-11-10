@@ -1,102 +1,128 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:th="https://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layouts/layout_public}">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
+
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <title>productList</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-     <!-- CSS only-->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    
-     <!-- JS-->
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <link href="../../css/sidemenu.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 
     <style>
+        .all-container {
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+
+        .card-img-top {
+            width: 318px;
+            height: 400px;
+            transition: filter 0.3s;
+            /* 호버 시 효과 적용을 위한 트랜지션 설정 */
+        }
+
+        .card-img-top:hover {
+            opacity: 0.4;
+            /* 호버 시 블러 효과 적용 */
+        }
+
         /* 그리드 컨테이너 설정 */
         .grid-container {
-			margin-left:50px;
+            margin-left: 50px;
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 2열로 나눔 */
-            grid-gap: 20px; /* 그리드 아이템 간의 간격 설정 */
+            grid-template-columns: repeat(4, 1fr);
+            /* 2열로 나눔 */
+            grid-gap: 5px;
+            /* 그리드 아이템 간의 간격 설정 */
+            padding: 7%;
         }
 
         /* 각 그리드 아이템 스타일 */
-        .col {
-            /*border: 1px solid #ddd;  그리드 아이템 테두리 설정 */
-            padding: 10px; /* 그리드 아이템 안의 여백 설정 */
-        }
-        .card-title{
-			font-size: 13px;
-		}
-		.list-group-item1{
-			margin-top:15px;
-			font-size: 9px;
-		}
-		
+        .col {}
 
+        .card-title {
+            font-family: 'Nanum Gothic', sans-serif;
+            font-size: 14px;
+            border-bottom: 1px solid lightgray;
+            color: #555555;
+
+        }
+
+        .list-group-item1 {
+            font-family: 'Nanum Gothic', sans-serif;
+            margin-top: 15px;
+            font-size: 14px;
+
+            color: #999399;
+        }
+
+        .product-t {
+            margin-left: 18%;
+            font-family: 'Nanum Gothic', sans-serif;
+            width: 64%;
+            font-size: 14px;
+            color: black;
+            text-align: left;
+            margin-bottom: -4%;
+            border-bottom: 1px solid lightgray;
+
+        }
     </style>
-    
+
 
 </head>
+
 <body>
     <div layout:fragment="content">
-    
-      <!--  <button class="btn btn-primary" onclick="decrementPage()">이전 페이지</button>
-        <button class="btn btn-primary" onclick="incrementPage()">다음 페이지</button>-->
-        <!-- <button class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='/admin/product/new'">상품등록</button> -->
-        <br>
-        <div class="grid-container" >
-            <div class="card" style="width: 20rem;"  th:each="p:${productPagingDto}">
-                <input type="hidden" name="productImgIds" th:value="${p.id}">
-                <a th:href="'/public/product/'+${p.id}">
-                    <img th:src="${p.productImgDtoList[0].imgUrl}" class="card-img-top" alt="...">
-                </a>
-                <div class="card-body">
-                    <p class="card-title" th:text="${p.name}">옷 이름</p>              
-                    <p class="list-group-item1" th:text="${p.price}+'원 /'">옷 가격</p>
-                    <p class="list-group-item1" th:text="${p.size}">옷 사이즈</p>
-                </p>
-                
+        <div class="sidemenu">
+            <ul>
+                <li><a href="usedList">중고마켓</a></li>
+                <li><a href="../protected/questionForm">1:1문의</a></li>
+              
+            </ul>
+            <ul>
+                <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao" th:src="@{/resources/img/kakao.PNG}"></a></li>
+            </ul>
+        </div>
+        
+        <div class="product-t">
+        </div>
+        <div class="all-container">
+            <br>
+            <div class="grid-container">
+                <div class="card" style="width: 20rem;" th:each="p:${productPagingDto}">
+                    <input type="hidden" name="productImgIds" th:value="${p.id}">
+                    <a th:href="'/public/product/'+${p.id}">
+                        <img th:src="${p.productImgDtoList[0].imgUrl}" class="card-img-top" alt="..." width="200"
+                            height="400">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-title" th:text="${p.name}">옷 이름</p>
+                        <p class="list-group-item1" th:text="'KRW '+${p.price}">옷 가격</p>
+
+
+                    </div>
+                </div>
             </div>
         </div>
-        <!--
-        <div class="grid-container">
-            <div class="col" th:each="p:${productPagingDto}">
-                <a th:href="'/public/product/'+${p.id}">
-                    <img th:src="${p.productImgDtoList[0].imgUrl}">
-                </a>
-                
-                <span th:text="${p.name}">옷 이름</span>
-                <span class="">상품가</span><span class="" th:text="${p.price}"></span>
-                <span th:text="${p.category}">옷 카테고리</span>
-                <span th:text="${p.size}">옷 사이즈</span>
-                <span th:text="${p.stock}">옷 재고</span>
-                <input type="hidden" name="productImgIds" th:value="${p.id}">
-            </div>
-        </div>
-        -->
-       <!-- <script>
-            // 현재 페이지의 숫자를 가져옵니다.
-            const currentPageNumber = parseInt(location.pathname.split('/').pop());
-    
-            // 이전 페이지로 이동하는 함수
-            function decrementPage() {
-                const previousPageNumber = currentPageNumber - 1;
-                if (previousPageNumber >= 0) {
-                    location.href = `/public/productList/${previousPageNumber}`;
-                }
-            }
-    
-            // 다음 페이지로 이동하는 함수
-            function incrementPage() {
-                const nextPageNumber = currentPageNumber + 1;
-                location.href = `/public/productList/${nextPageNumber}`;
-            }
-        </script>-->
+
+        <script>
+            $(document).ready(function () {
+                var currentPosition = parseInt($(".sidemenu").css("top"));
+                $(window).scroll(function () {
+                    var position = $(window).scrollTop();
+                    $(".sidemenu").stop().animate({ "top": position + currentPosition + "px" }, 600);
+                });
+            });
+        </script>
     </div>
-    
 
 </body>
+
 </html>

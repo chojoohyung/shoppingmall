@@ -1,129 +1,277 @@
 /* 전체 헤더 스타일 */
 .header {
-  background-color: #fff; /* 배경색을 흰색으로 설정 */
-  color: #000; /* 텍스트 색상을 검은색으로 설정 */
-  text-align: center;
-  padding: 10px;
-   position: sticky;
-  top: 0px; /* 도달했을때 고정시킬 위치 */
-  padding: 5px;
-/** border: 2px solid rgb(0, 0, 0);**/
-  z-index: 10;
+	background-color: #fff;
+	color: rgb(192, 192, 192);
+	text-align: center;
+	position:sticky;
+	top: 0px;
+	z-index: 10;
+	width: 100%;
+	background-color: white;
+	z-index: 1000;
 }
+
+
+.category1 {
+	border-top: 1px solid rgb(192, 192, 192);
+	border-bottom: 1px solid rgb(192, 192, 192);
+}
+
+
+.category1 a:hover {
+	background-color: rgb(192, 192, 192);
+	border-radius: 10px;
+}
+
+.pad-container div:hover {
+	background-color: rgb(192, 192, 192);
+	border-radius: 10px;
+}
+
 nav {
-			display: flex;
-			justify-content: center;
+	display: flex;
+	justify-content: center;
 
-			background-color: rgb(255, 255, 255);
-			text-decoration: none;
-			padding: 0.7em 0;
+	background-color: rgb(255, 255, 255);
+	text-decoration: none;
+	padding: 0.7em 0;
 
-		}
+}
 
-		nav a{
-			color: rgb(128, 128, 128);
-			margin: 0 3em;
-			text-decoration: none;
+nav a {
+	color: rgb(128, 128, 128);
+	margin: 0 3em;
+	text-decoration: none;
+	
 
-		}
+}
+
+.pad1 {
+	color: black;
+	cursor: pointer;
+	
+		font-family: 'Nanum Gothic', sans-serif;
+}
+
+.pad2 {
+	color: black;
+	cursor: pointer;
+	margin-left: 11px;
+	
+		font-family: 'Nanum Gothic', sans-serif;
+}
+
+.pad3 {
+	color: black;
+	cursor: pointer;
+	margin-left: 11px;
+
+		font-family: 'Nanum Gothic', sans-serif;
+}
+
+.pad4 {
+	color: black;
+	cursor: pointer;
+	margin-right: 11px;
+	margin-left: 11px;
+
+		font-family: 'Nanum Gothic', sans-serif;
+}
+
+.pad5 {
+	color: black;
+	cursor: pointer;
+	margin-right: 11px;
+	
+		font-family: 'Nanum Gothic', sans-serif;
+}
+
+.pad6 {
+	color: black;
+	cursor: pointer;
+	
+		font-family: 'Nanum Gothic', sans-serif;
+}
+
+.pad7 {
+	color: black;
+	margin-right: 11px;
+
+	cursor: pointer;
+		font-family: 'Nanum Gothic', sans-serif;
+}
+
+.pad8 {
+	color: black;
+	cursor: pointer;
+
+		font-family: 'Nanum Gothic', sans-serif;
+}
+
+.padd1 {
+	color: orangered;
+
+		font-family: 'Nanum Gothic', sans-serif;
+}
+
+.padd2 {
+	color: blue;
+
+		font-family: 'Nanum Gothic', sans-serif;
+}
+
+.padd3 {
+	color: black;
+
+		font-family: 'Nanum Gothic', sans-serif;
+}
+
+.padd4 {
+	color: black;
+
+		font-family: 'Nanum Gothic', sans-serif;
+}
+
+.padd5 {
+	color: black;
+
+		font-family: 'Nanum Gothic', sans-serif;
+}
+
+.padd6 {
+	color: black;
+
+		font-family: 'Nanum Gothic', sans-serif;
+}
+
+.padd7 {
+	color: black;
+
+		font-family: 'Nanum Gothic', sans-serif;
+}
+
+.padd8 {
+	color: black;
+
+		font-family: 'Nanum Gothic', sans-serif;
+}
+
+.padd9 {
+	color: black;
+
+		font-family: 'Nanum Gothic', sans-serif;
+}
 
 
 /* 네비게이션 메뉴 스타일 */
 .nav1 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	
 }
 
 /* 로고 이미지 스타일 */
 .logo img {
-  max-height: 80px; /* 로고 이미지의 높이를 조절해보세요 */
-  max-width: 80%;
+ width:250px;
+  height:150px;
+
+
 }
 
 /* 메뉴 항목 스타일 */
 .pad {
-  cursor: pointer;
-  padding: 10px;
-  font-size: 15px;
-  background-color: transparent; /* 배경색 제거 */
-  border: none; /* 테두리 제거 */
-  color: #000; /* 텍스트 색상을 검은색으로 설정 */
+	cursor: pointer;
+	padding: 10px;
+	font-size: 15px;
+	background-color: transparent;
+	/* 배경색 제거 */
+	border: none;
+	/* 테두리 제거 */
+	color: #000;
+	/* 텍스트 색상을 검은색으로 설정 */
+	
 }
 
 .pad:last-child {
-  margin-right: 0; /* 마지막 요소의 오른쪽 여백 제거 */
+	margin-right: 0;
+	/* 마지막 요소의 오른쪽 여백 제거 */
 }
 
 /* 측면 메뉴 스타일 */
 .sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 60px;
 }
 
 .sidenav a {
-  padding: 12px 16px;
-  text-decoration: none;
-  font-size: 20px;
-  color: #818181;
-  display: block;
-  transition: background-color 0.3s, color 0.3s;
+	padding: 12px 16px;
+	text-decoration: none;
+	font-size: 20px;
+	color: #818181;
+	display: block;
+	transition: background-color 0.3s, color 0.3s;
 }
 
 .sidenav a:hover {
-  background-color: #333; /* 배경색 변경 */
-  color: #fff; /* 글자색 변경 */
+	background-color: #333;
+	/* 배경색 변경 */
+	color: #fff;
+	/* 글자색 변경 */
 }
 
 .sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
 }
 
 /* 멤버십 정보 스타일 */
 .membership-info {
-  text-align: center;
-  margin: 20px auto;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  max-width: 400px;
+	text-align: center;
+	margin: 20px auto;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	max-width: 400px;
 }
 
 /* pad-container 스타일 */
 .pad-container {
-  display: flex;
-  align-items: center;
-  background-color: transparent; /* 배경색 제거 */
-  border: none; /* 테두리 제거 */
+	display: flex;
+	align-items: center;
+	background-color: transparent;
+	/* 배경색 제거 */
+	border: none;
+	/* 테두리 제거 */
+	
 }
 
 /* 미디어 쿼리: 화면 폭이 작을 때 스타일 변경 */
 @media (max-width: 768px) {
-  .nav1 {
-    flex-direction: column;
-    align-items: center;
-  }
+	.nav1 {
+		flex-direction: column;
+		align-items: center;
+	}
 
-  .sidenav {
-    padding-top: 80px;
-  }
+	.sidenav {
+		padding-top: 80px;
+	}
 
-  .logo img {
-    max-height: 40px;
-  }
-  		
-  
+	.logo img {
+		max-height: 40px;
+	}
+
+
 }

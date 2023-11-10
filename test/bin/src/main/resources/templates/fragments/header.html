@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>membership</title>
-
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 </head>
 
 <body>
@@ -12,49 +12,51 @@
 	<!-- 홈페이지 헤더부분 -->
 	
 	<div th:fragment="header" class="header">
-	
-		<div class="nav1" style="border-bottom:solid">
+	<div class="ma">
+		<div class="nav1" style="border-bottom:1px solid rgb(192, 192, 192);">
 			<div class="pad-container">
-				<div class="pad" onclick="location.href='/public/productList'">BEST50</div>
-				<div class="pad" onclick="location.href='/public/usedList'">중고마켓</div>
-				<div class="pad" onclick="location.href='/public/faqList'">고객센터</div>
+				
+				<div class="pad7" onclick="location.href='/public/usedList'">중고마켓</div>
+				<div class="pad8" onclick="location.href='/public/faqList'">고객센터</div>
 				<button class="pad" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='/admin/product/new'">상품등록</button>
 			</div>
-			<a href="/">
-				<div class="logo">
-					<img src="../../resources/img/1694590687835.png" alt="로고 이미지">
-				</div>
-			</a>
+		
 			<div class="pad-container" sec:authorize="!isAuthenticated()">
-				<div class="pad" onclick="location.href='/public/register'">회원가입</div>
-				<div class="pad" >CART</div>
-				<div class="pad" onclick="location.href='/public/login'">LOGIN</div>
+				<div class="pad1" onclick="location.href='/public/register'">회원가입</div>
+				<div class="pad2" >CART</div>
+				<div class="pad3" onclick="location.href='/public/login'">LOGIN</div>
 			</div>
 			<div class="pad-container" sec:authorize="isAuthenticated()">
 				
-				<div class="text" ><span sec:authentication="name"></span>님 환영합니다 </div>
-				<div class="pad" onclick="location.href='/protected/mypage'">MY PAGE
+				<div ><span class="text"  sec:authentication="name"></span>님 환영합니다 </div>
+				<div class="pad4" onclick="location.href='/protected/mypage'">MY PAGE
 				</div>
-				<div class="pad" onclick="location.href='/protected/cart'">CART</div>
+				<div class="pad5" onclick="location.href='/protected/cart'">CART</div>
 				<form th:action="@{/logout}" method="post">
-					<button class="pad" type="submit">LOGOUT</button>
+					<button class="pad6" type="submit">LOGOUT</button>
 				</form>
 				
 			</div>
 			
 		</div>
+			<a href="/">
+				<div class="logo">
+					<img src="../../resources/img/1694590687835.png" alt="로고 이미지">
+				</div>
+			</a>
 		<div class="category1">
 			<nav >
-				<a th:href="@{/public/productList}">BEST50</a>
-				<a th:href="@{/}">NEW</a>
-				<a th:href="@{/public/productList?category=TOP}">상의</a>
-				<a th:href="@{/public/productList?category=BOTTOM}">하의</a>
-				<a th:href="@{/public/productList?category=T-SHIRTS}">반팔티</a>
-				<a th:href="@{/public/productList?category=SHIRTS}">셔츠</a>
-				<a th:href="@{/public/productList?category=OUTER}">아우터</a>
-				<a th:href="@{/public/productList?category=SHOES}">신발</a>
-				<a th:href="@{/public/productList?category=ACC}">ACC</a>
+				<a class="padd1"  th:href="@{/public/productList}">BEST50</a>
+				<a class="padd2" th:href="@{/}">NEW</a>
+				<a class="padd3" th:href="@{/public/productList?category=TOP}">상의</a>
+				<a class="padd4" th:href="@{/public/productList?category=BOTTOM}">하의</a>
+				<a class="padd5" th:href="@{/public/productList?category=T-SHIRTS}">반팔티</a>
+				<a class="padd6" th:href="@{/public/productList?category=SHIRTS}">셔츠</a>
+				<a class="padd7" th:href="@{/public/productList?category=OUTER}">아우터</a>
+				<a class="padd8" th:href="@{/public/productList?category=SHOES}">신발</a>
+				<a class="padd9" th:href="@{/public/productList?category=ACC}">ACC</a>
 		</div>
+		
 		</nav>
 		<script>
 			function openNav() {
@@ -65,6 +67,7 @@
 				document.getElementById("mySidenav").style.width = "0";
 			}
 		</script>
+		</div>
 	</div>
 	
 </body>

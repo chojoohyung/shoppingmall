@@ -1,0 +1,69 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
+
+<head>
+	<meta charset="UTF-8">
+	<style>
+		.textForm {
+			border: 1px solid black;
+			width: 16%;
+			height: 300px;
+			margin-left: 42%;
+		}
+
+		.findid {
+			text-align: center;
+			font-size: 2vmax;
+		}
+
+		span1 {
+			font-size: 20px;
+		}
+
+		.findcontent {
+			text-align: center;
+			margin-top: 25%;
+		}
+
+		.pad {
+			border: 1px solid black;
+			margin-top: 30px;
+			margin-left: 15%;
+			width: 70%;
+			background-color: rgb(128, 128, 128);
+			color: white;
+		}
+
+		.text13 {
+			color: gray;
+			font-size: 14px;
+		}
+	</style>
+</head>
+
+
+<body>
+
+	<div layout:fragment="content">
+		<form class="form-search" th:action="@{/public/search}" method="post">
+
+			<p class="findid"><b>FIND ID</b></p>
+
+			<div class="textForm">
+				<div class="findcontent">
+					<span1><b>이메일&nbsp;</b></span1>
+					<span><input type="text" id="email" name="email" class="emailform-control" placeholder="email"
+							required autofocus></span>
+
+					<button class="pad" type="submit">아이디 찾기</button>
+					<br><br>
+					<p class="text13">가입하신 방법에 따라 아이디 찾기가 가능합니다.</p>
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+</body>
+
+</html>

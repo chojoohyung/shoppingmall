@@ -179,8 +179,8 @@
   }
 
 
-  .question-sub{
-	  margin-top:30px;
+  .question-sub {
+  	margin-top: 30px;
   }
 
   .question-title {
@@ -224,93 +224,139 @@
   .sidebar {
   	float: left;
   	margin-left: 10px;
-	
+
 
 
   }
 
 
 
- .titlee {
-    font-size: 24px;
-    margin: 0;
-    	
-}
+  .titlee {
+  	font-size: 24px;
+  	margin: 0;
 
-.subsidebar ul {
-    list-style: none;
-    padding: 0;
-    margin-left: 20px;
-}
+  }
 
-.subsidebar li {
-    margin-bottom: 10px;
-    margin-left: 20px;
-}
+  .subsidebar ul {
+  	list-style: none;
+  	padding: 0;
+  	margin-left: 20px;
+  }
 
-.subsidebar a {
-   color: black;
-    text-decoration: none;
-    font-weight: bold;
-}
+  .subsidebar li {
+  	margin-bottom: 10px;
+  	margin-left: 20px;
+  }
 
-.subsidebar a:hover {
-    text-decoration: underline;
-}
-.sidebar1{
-	
-}
+  .subsidebar a {
+  	color: black;
+  	text-decoration: none;
+  	font-weight: bold;
+  }
+
+  .subsidebar a:hover {
+  	text-decoration: underline;
+  }
+
+  .sidebar1 {}
+
   .m-container {
-	  
-	  width: 50%;
-    margin-left: 25%;
-    padding: 20px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  	
+
+  	width: 50%;
+  	margin-left: 25%;
+  	padding: 20px;
+  	background-color: rgb(255, 255, 255);
+  	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 
   }
-  .question-container{
-	
+
+  .question-container {}
+
+  form {
+  	max-width: 600px;
+  	margin: 0 auto;
   }
 
- form {
-    max-width: 600px;
-    margin: 0 auto;
-}
-input[type="text"],
-textarea {
-	
-    width: 100%;
-    height: 500px;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-.button-m{
-	display: flex;
-	justify-content: flex-end;
-}
-button[type="submit"] {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  
-    
-}
-button[type="submit"]:hover {
-    background-color: #555;
-}
+  input[type="text"],
+  textarea {
+
+  	width: 100%;
+  	height: 500px;
+  	padding: 10px;
+  	margin-bottom: 15px;
+  	border: 1px solid #ccc;
+  	border-radius: 5px;
+  }
+
+  .button-m {
+  	display: flex;
+  	justify-content: flex-end;
+  }
+
+  button[type="submit"] {
+  	background-color: #333;
+  	color: #fff;
+  	padding: 10px 20px;
+  	border: none;
+  	border-radius: 5px;
+  	cursor: pointer;
+
+
+  }
+
+  button[type="submit"]:hover {
+  	background-color: #555;
+  }
 
   textarea {
   	width: 100%;
   	text-align: center;
   	margin-top: 10px;
   }
-  .m-title{
-	  text-align: center;
+
+  .m-title {
+  	text-align: center;
+  }
+
+  table {
+  	display: flex;
+  	border-collapse: collapse;
+  	width: 100%;
+  	border: none;
+  	font-size: 14px;
+  	font-family: 'Nanum Gothic', sans-serif;
+
+  }
+
+  th,
+  td {
+  	display: block;
+  	border: 1px solid lightgray;
+  	border-left: none;
+
+  	padding: 8px;
+
+  }
+
+  th {
+  	border-right: 1px solid lightgray;
+  	width: 200px;
+  }
+
+  td {
+  	width: 900px;
+  	border-right: none;
+  	text-align: left;
+  	border-left: 1px solid lightgray;
+
+  }
+
+  .question-contenta {
+  	margin-left: 300px;
+  	padding: 5px;
+  	border-bottom: 1px solid gainsboro;
+  	width: 1190px;
+  	font-size: 13px;
+  	background-color: white;
   }

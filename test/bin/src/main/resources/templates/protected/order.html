@@ -17,6 +17,7 @@
 			display: grid;
 			grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); /* 열 너비 조정 */
 			grid-gap: 20px; /* 그리드 간격 조정 */
+			
 		}
 
 	
@@ -35,6 +36,10 @@
 		.date {
 			margin-top: 0px;
 			margin-left: 0px;
+			font-weight: bold;
+		}
+		.datetime{
+			font-weight: bold;
 		}
 
 		.productname {
@@ -51,27 +56,37 @@
 			margin-bottom: 10px;
 			float: left;
 		
+		
 		}
 
 		.price {
-			margin-left: 0px;
+			margin-left: 80px;
 
 		}
+		.d{
+				border-bottom: 1px solid black;
+				
+		}
+	
+		
+		.all-container{
+	padding-left:10% ;
+	padding-right:10% ;
+}
 	</style>
 </head>
-
 <body>
 	<!-- Homepage Header -->
 	<div layout:fragment="content">
-		
+		<div class="all-container">
 		<div class="order-container">
-			<div th:each="order, index:${orders}">
+			<div class="d" th:each="order, index:${orders}">
 				<input type="hidden" name="productImgIds" th:value="${order.id}">
 				<p th:text="${order.user.username}" sec:authorize="hasRole('ROLE_ADMIN')">User</p>
 				<!--  <td th:text="${index.index + 1}">#</td>-->
-				<p class="date" th:text="${#temporals.format(order.orderDate, 'yyyy-MM-dd HH:mm')}">Order Date</p>
+				 <p class="datetime">주문 시간: <span class="date" th:text="${#temporals.format(order.orderDate, 'yyyy-MM-dd HH:mm')}">Order Date</span></p>
 				<div class="hiyo" th:each="products, index2:${order.orderProducts}">
-					<img class="product-img" th:src="${products.product.productImgList[0].imgUrl}" alt="Product Image">
+					<img class="product-img" th:src="${products.product.productImgList[0].imgUrl}" alt="Product Image" width="800" height="200">
 					<div>
 						<p th:text="${products.product.name}">Product Name</p>
 						<div>
@@ -81,13 +96,13 @@
 							</p>
 						</div>
 							<p th:text="${products.count}+'개'">Quantity</p>
-						<h2 class="price" th:text="${products.orderPrice * products.count}+'원'">Price</h2>
+						<h2 class="price" th:text=" ${products.orderPrice * products.count}+'원'">Price</h2>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-			
+	</div>
 </body>
 
 </html>
