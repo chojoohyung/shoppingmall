@@ -267,7 +267,7 @@
 
 
 				<div class="used-title">
-					<button type="button" id="yourButtonId">상품보기</button>
+					<button type="button" onclick="product()">상품보기</button>
 					<input type="hidden" id="idValue" th:value="${used.id}">
 					<p class="retro-title" th:text="${used.title}">제목</p><br>
 					<p class="retro-price" th:text="${used.price}+'원'">가격</p><br>
@@ -389,7 +389,7 @@
 				</ul>
 			</div>
 
-			<script>
+			<script th:inline="javascript">
 				$(document).ready(function () {
 					var currentPosition = parseInt($(".sidemenu").css("top"));
 					$(window).scroll(function () {
@@ -397,6 +397,11 @@
 						$(".sidemenu").stop().animate({ "top": position + currentPosition + "px" }, 600);
 					});
 				});
+
+				function product(){
+					var productId = /*[[${used.orderProduct.product.id}]]*/ null;
+					window.location.href="/public/product/"+productId;
+				}
 				/*
 				$(document).ready(function () {
 					// 각 버튼에 대한 이벤트 핸들러를 추가합니다.
@@ -482,19 +487,6 @@
 						});
 					}
 				}
-
-				function redirectToUsedPage() {
-					// 현재 페이지 주소를 가져옵니다.
-					var currentURL = window.location.href;
-
-					// 현재 페이지 주소에서 "/public/"을 "/used/"으로 대체합니다.
-					var newURL = currentURL.replace("/used/", "/product/");
-
-					// 변경된 주소로 페이지를 이동합니다.
-					// window.location.href = newURL;
-				}
-				var button = document.getElementById("yourButtonId"); // 버튼의 ID를 지정하세요.
-				button.addEventListener("click", redirectToUsedPage);
 
 				var slideIndex = 0;
 				var totalPages = document.getElementsByClassName("mySlides").length; // 전체 슬라이드 수

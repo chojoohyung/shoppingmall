@@ -97,11 +97,7 @@ public class UsedService {
 			List<Used> usedList = usedRepository.findByOrderProduct(orderProduct);
 			PIDUsedList.addAll(usedList);
 		}
-		System.out.println("sort before "+PIDUsedList.toString());
 		Collections.sort(PIDUsedList, Comparator.comparing(Used::getCreateDate).reversed());
-		
-		System.out.println("sort after "+PIDUsedList.toString());
-		
 		
 		return PIDUsedList;
 	}
