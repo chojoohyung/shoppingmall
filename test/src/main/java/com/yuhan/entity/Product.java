@@ -65,7 +65,7 @@ public class Product {
 	public void removeStock(int stock) {
 		int restStock = this.stock - stock;
 		if(restStock<0) {
-			throw new OutOfStockException("상품 재고가 부족합니다. 현재 재고 수량 : "+this.stock);
+			throw new OutOfStockException("상품 재고가 부족합니다. 현재 "+this.name+" 재고 수량 : "+this.stock);
 		}
 		this.sales += stock;
 		this.stock = restStock;

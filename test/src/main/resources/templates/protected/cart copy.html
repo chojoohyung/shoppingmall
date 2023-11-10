@@ -145,28 +145,33 @@
 					});
 				});
 
-				
+
 				function removeStock() {
 					var token = $("meta[name='_csrf']").attr("content");
 					var header = $("meta[name='_csrf_header']").attr("content");
 
 					var url = "/protected/cart/orders/removeStock";
 
-					var dataList = new Array();
-					var paramData = new Object();
+					var dataList = []
+					
 
 					$("input[name=cartChkBox]:checked").each(function () {
-						var cartProductId = $(this).val();
-						var cartProductStock = $("#count_" + cartProductId).val();
-						var data = new Object();
-						data["cartProductId"] = cartProductId;
-						data["stock"] = cartProductStock;
-						dataList.push(data);
+						var cartProductId = parseInt($(this).val(), 10); // 10진수로 파싱
+						var cartProductStock = parseInt($("#count_" + cartProductId).val(), 10);
+						var cartData = {
+							cartProductId: cartProductId,
+							stock: cartProductStock
+						};
+						dataList.push(cartData);
 					});
 
-					paramData['cartRemoveDtoList'] = dataList;
-
+					var paramData = {
+						cartRemoveDtoList: dataList
+					};
+					
 					var param = JSON.stringify(paramData);
+					console.log(paramData);
+					console.log(param);
 
 					$.ajax({
 						url: url,
@@ -179,7 +184,10 @@
 						dataType: "json",
 						cache: false,
 						success: function (result, status) {
-							requestPay();
+							
+							request_pay();
+							
+							alert("성공")
 						},
 						error: function (jqXHR, status, error) {
 							if (jqXHR.status == '401') {
@@ -373,6 +381,7 @@
 						contentType: "application/json",
 						data: param,
 						beforeSend: function (xhr) {
+							/* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
 							xhr.setRequestHeader(header, token);
 						},
 						dataType: "json",
