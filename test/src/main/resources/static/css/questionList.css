@@ -51,6 +51,7 @@
   	background-color: white;
   	border-collapse: collapse;
   		font-family: 'Nanum Gothic', sans-serif;
+  	
   }
 
   th,
@@ -59,11 +60,16 @@
   	border-top: 1px solid black;
   	padding: 8px;
   }
+  th{
+	  font-size: 18px;
+  }
 	td{
+		font-size: 13px;
 		border-bottom: 1px solid lightgray;
 	}
 	 a {
          text-decoration: none;
+          color: inherit;
     }
   .accordion {
   	cursor: pointer;

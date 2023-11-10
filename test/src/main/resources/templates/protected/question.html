@@ -4,6 +4,7 @@
 
 <head>
 	<link href="../../css/question.css" rel="stylesheet">
+	<link href="../../css/sidemenu.css" rel="stylesheet">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
@@ -12,6 +13,18 @@
 <body>
 	<div layout:fragment="content">
 		<div class="all-container">
+			 <div class="sidemenu">
+            <ul>
+                <li><a href="../public/usedList">중고마켓</a></li>
+                <li><a href="../protected/questionForm">1:1문의</a></li>
+                	<li><a href="order">주문조회</a></li>
+               
+            </ul>
+            <ul>
+                <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
+                            th:src="@{/resources/img/kakao.PNG}"></a></li>
+            </ul>
+        </div>
 			<div class="header-container">
 				<div class="header-left">
 					<p class="customer">
@@ -61,64 +74,7 @@
 					</ul>
 				</div>
 			</div>
-<style>
- table {
-  	display: flex;
-  	border-collapse: collapse;
-  	width: 100%;
-  	border: none;
-  	font-size: 14px;
-  	font-family: 'Nanum Gothic', sans-serif;
 
-  }
-
-  th,
-  td {
-  	display: block;
-  	padding: 8px;
-  
-  }
-
-  th {
-  	border-left: none;
-  	width: 200px;
-  	border-bottom:1px solid lightgray;
-  }
-
-  .content111,
-  .content222
-
-{
-	  display: block;
-  	padding: 8px;
-  	width: 950px;
-  	text-align: left;
-  	border-bottom: 1px solid lightgray;
-  	border-right: none;
-  	border-left: 1px solid lightgray;
-
-  }
-  .con111,.content111{
-	  border-top: 1px solid lightgray;
-  }
-.content333{
-	 text-align: right;
-border-bottom: 1px solid lightgray;
-	 
- }
-.content444{
-	padding: 5%;
-}
-
-  .question-contenta {
-  	margin-left: 300px;
-  	padding: 5px;
-  	border-bottom: 1px solid gainsboro;
-  	width: 1190px;
-  	font-size: 13px;
-  	background-color: white;
-  }
-</style>
 
 			<div class="question-contenta">
 				<table>

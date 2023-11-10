@@ -5,6 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link href="../css/register.css" rel="stylesheet">
+	  <link href="../../css/sidemenu.css" rel="stylesheet">
 	<meta name="_csrf" th:content="${_csrf.token}" />
 	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -117,6 +118,17 @@
 <body>
 	<div layout:fragment="content">
 		<div class="all-container">
+			  <div class="sidemenu">
+            <ul>
+                <li><a href="usedList">중고마켓</a></li>
+                <li><a href="../protected/questionForm">1:1문의</a></li>
+                <li><a href="../protected/order">주문조회</a></li>
+              
+            </ul>
+            <ul>
+                <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao" th:src="@{/resources/img/kakao.PNG}"></a></li>
+            </ul>
+        </div>
 			<div class="text-form">
 				<p class="sign"><b>SIGN UP</b></p>
 				<form th:action="@{/public/register}" method="post" th:object="${user}"
