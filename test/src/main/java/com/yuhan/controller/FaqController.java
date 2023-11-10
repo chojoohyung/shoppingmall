@@ -34,7 +34,7 @@ public class FaqController {
 	public String faqForm(Faq faq , Principal principal) {
 		faq.setUser(userRepository.findByUsername(principal.getName()));
 		faqService.save(faq);
-		return "redirect:/";
+		return "redirect:/public/faqList";
 	}
 	@GetMapping("/public/faqList")
 	public String faqListGet(Model model) {

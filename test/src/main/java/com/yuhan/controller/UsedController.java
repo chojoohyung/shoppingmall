@@ -53,14 +53,6 @@ public class UsedController {
 
 		List<OrderProductDto> orderProductDtoList = orderProductService.findByName(principal.getName());
 		
-		if(orderProductDtoList.isEmpty()) {
-			List<Used> usedList = usedService.findAll();
-			model.addAttribute("errorMessage", "구매한 상품이 없습니다");
-			model.addAttribute("usedList", usedList);
-			return "/public/usedList";
-		}
-		
-		
 		model.addAttribute("orderProductDtoList", orderProductDtoList);
 		model.addAttribute("usedFormDto", new UsedFormDto());
 			
@@ -71,15 +63,22 @@ public class UsedController {
 	 * 중고상품 등록 뷰
 	 */
 	@PostMapping("/protected/used/new")
-	public String JproductFormPost(@Valid UsedFormDto usedFormDto, BindingResult bindingResult, Model model, 
+	public String JproductFormPost(@Valid UsedFormDto usedFormDto, BindingResult bindingResult, Model model, Principal principal,
 			@RequestParam("usedImgFile") List<MultipartFile> usedImgFilList, @RequestParam("selectedOrderProductId") Long selectedOrderProductId) {
 		
 		if(bindingResult.hasErrors()) {
+			List<OrderProductDto> orderProductDtoList = orderProductService.findByName(principal.getName());
+			model.addAttribute("errorMessage", "등록 오류");
+			model.addAttribute("orderProductDtoList", orderProductDtoList);
+			model.addAttribute("usedFormDto", new UsedFormDto());
 			return "/protected/usedForm";
 		}
 		
 		if(usedImgFilList.get(0).isEmpty() && usedFormDto.getId() == null) {
+			List<OrderProductDto> orderProductDtoList = orderProductService.findByName(principal.getName());
 			model.addAttribute("errorMessage", "이미지는 최소 1개이상 등록해주십시요");
+			model.addAttribute("orderProductDtoList", orderProductDtoList);
+			model.addAttribute("usedFormDto", new UsedFormDto());
 			return "/protected/usedForm";
 		}
 		
@@ -88,11 +87,14 @@ public class UsedController {
 			usedService.save(usedFormDto, usedImgFilList);
 			
 		}catch(Exception e){
+			List<OrderProductDto> orderProductDtoList = orderProductService.findByName(principal.getName());
 			model.addAttribute("errorMessage", "글 등록중 오류가 발생했습니다.");
+			model.addAttribute("orderProductDtoList", orderProductDtoList);
+			model.addAttribute("usedFormDto", new UsedFormDto());
 			return "/protected/usedForm";
 		}
 		
-		return "redirect:/";
+		return "redirect:/public/usedList";
 	}
 	
 	/*
@@ -120,7 +122,7 @@ public class UsedController {
 	 * 중고상품 리스트
 	 */
 	@GetMapping(value = {"/public/usedList/{page}", "/public/usedList"})
-	public String JproductPage(Model model, @PathVariable("page") Optional<Integer> page) {
+	public String JproductPage(Model model, @PathVariable("page") Optional<Integer> page, Principal principal) {
 	    int pageSize = 8; // 페이지당 항목 수
 	    int defaultPage = 0; // 기본 페이지 번호
 
@@ -138,6 +140,15 @@ public class UsedController {
 	    Page<Used> usedPage = usedService.test(pageable);
 	    List<Used> usedList = usedPage.getContent(); // 현재 페이지의 항목 목록
 	    int totalPages = usedPage.getTotalPages() - 1; // 전체 페이지 수
+	    
+	    if(principal != null) {
+	    	List<OrderProductDto> orderProductDtoList = orderProductService.findByName(principal.getName());
+	    	if(orderProductDtoList.isEmpty()) {
+	    		
+	    	}else {
+	    		model.addAttribute("orderProduct_Empty", "1");
+	    	}
+	    }
 
 	    model.addAttribute("usedList", usedList);
 	    model.addAttribute("totalPages", totalPages);

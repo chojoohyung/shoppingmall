@@ -32,7 +32,7 @@ public class QuestionController {
 	public String questionPost(Question question , Principal principal) {
 		question.setUser(userRepository.findByUsername(principal.getName()));
 		questionService.save(question);
-		return "redirect:/";
+		return "redirect:/public/questionList";
 	}
 	@GetMapping("/public/questionList")
 	public String questionListGet(Model model) {

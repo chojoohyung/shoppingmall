@@ -18,7 +18,7 @@
             <ul>
                 <li><a href="../public/usedList">중고마켓</a></li>
                 <li><a href="../protected/questionForm">1:1문의</a></li>
-               
+
             </ul>
             <ul>
                 <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
@@ -44,15 +44,17 @@
                             회원정보변경
 
                         </div>
-                        <div class="userorder" sec:authorize="hasRole('ROLE_USER')" onclick="location.href='order'">
-                            주문조회
-                        
-                    </div>
-                   
-                    </div>
-                    <div class="adminorder">
-                        <div class="" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='../admin/order'">
-                            주문조회
+                        <div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+                            <div class="userorder" sec:authorize="hasRole('ROLE_USER')" onclick="location.href='order'">
+                                주문조회
+
+                            </div>
+                        </div>
+                        <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                            <div class="userorder" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='../admin/order'">
+                                주문조회
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -61,17 +63,8 @@
                 </div>-->
 
                 <div class="container1">
-                    <p class="my-underline">최근 본 상품</p>
-                    <div class="row">
-                        <table>
-                            <tr th:each="p:${plist}">
-                                <a href="login.html"><img th:src="${p.img}"></a>
 
-                            </tr>
-                        </table>
-                    </div>
-
-                    <p class="my-underline">패션 맞춤 추천</p>
+                    <p class="my-underline">추천</p>
                     <div class="cart-grid">
                         <div class="cart-item" th:each="product, index:${productList}">
                             <a th:href="@{'/public/product/'+${product.id}}">

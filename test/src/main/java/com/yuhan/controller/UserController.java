@@ -79,7 +79,7 @@ public class UserController {
 		System.out.println(addr2+' '+addr3);
 		user.setAddr(addr2+' '+addr3);
 		userService.updateUser(user);
-		return "redirect:/";
+		return "redirect:/protected/mypage";
 	}
 	
 	@GetMapping("/public/register/check_id")

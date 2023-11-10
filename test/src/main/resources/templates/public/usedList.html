@@ -6,13 +6,14 @@
 
 <head>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
 	<meta charset="UTF-8">
 	<style>
-		
-			.all-container{
-	padding-left:10% ;
-	padding-right:10% ;
-}
+		.all-container {
+			padding-left: 10%;
+			padding-right: 10%;
+		}
+
 		.retro-item {
 
 			transition: transform 0.3s;
@@ -26,7 +27,7 @@
 
 		/* 그리드 컨테이너 설정 */
 		.retro-container {
-			
+
 			display: grid;
 			place-items: center;
 			grid-template-columns: repeat(4, 1fr);
@@ -64,45 +65,47 @@
 			font-size: 0px;
 			text-align: center;
 		}
-	
+
 		.pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  
-}
+			display: flex;
+			justify-content: center;
+			margin-top: 20px;
 
-.page-button {
-    border: 1px solid rgb(0, 0, 0);
-    background-color: #fff;
-    color: rgb(0, 0, 0);
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin: 0 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-}
+		}
+
+		.page-button {
+			border: 1px solid rgb(0, 0, 0);
+			background-color: #fff;
+			color: rgb(0, 0, 0);
+			padding: 5px 10px;
+			border-radius: 5px;
+			margin: 0 5px;
+			cursor: pointer;
+			transition: background-color 0.3s, color 0.3s;
+		}
 
 
 
-.page-button.active {
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-}
+		.page-button.active {
+			background-color: rgb(255, 255, 255);
+			color: rgb(0, 0, 0);
+		}
 
-.page-button:hover {
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-}
+		.page-button:hover {
+			background-color: rgb(0, 0, 0);
+			color: rgb(255, 255, 255);
+		}
 
-.page-link {
-    text-decoration: none;
-      font-size: 12px;
-      font-weight: bold;
-}
-	.kakao{
+		.page-link {
+			text-decoration: none;
+			font-size: 12px;
+			font-weight: bold;
+		}
+
+		.kakao {
 			width: 100px;
 		}
+
 		div,
 		ul,
 		li {
@@ -125,7 +128,7 @@
 			right: 10px;
 			background: #fff;
 		}
-		
+
 
 		.sidemenu ul {
 			position: relative;
@@ -133,7 +136,7 @@
 			width: 100%;
 			display: inline-block;
 			*display: inline;
-			
+
 		}
 
 		.sidemenu ul li {
@@ -144,7 +147,7 @@
 			display: inline-block;
 			*display: inline;
 		}
-	
+
 
 		.sidemenu ul li a {
 			font-family: 'Nanum Gothic', sans-serif;
@@ -163,7 +166,7 @@
 		}
 
 		.sidemenu ul li:last-child {
-		
+
 			border: none;
 		}
 
@@ -171,98 +174,107 @@
 			position: relative;
 			min-height: 1000px;
 		}
-		.my-button{
-			 border: 1px solid rgb(0, 0, 0);
-    background-color: #fff;
-    color: rgb(0, 0, 0);
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin: 0 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    font-size: 15px;
+
+		.my-button {
+			border: 1px solid rgb(0, 0, 0);
+			background-color: #fff;
+			color: rgb(0, 0, 0);
+			padding: 5px 10px;
+			border-radius: 5px;
+			margin: 0 5px;
+			cursor: pointer;
+			transition: background-color 0.3s, color 0.3s;
+			font-size: 15px;
 		}
 	</style>
 
-	<th:block layout:fragment="script">
-		<script th:inline="javascript">
-			$(document).ready(function () {
-				var errorMessage = [[${ errorMessage }]];
-				if (errorMessage != null) {
-					alert(errorMessage);
-				}
 
-			});
-		</script>
-	</th:block>
 </head>
 
 <body>
 	<div layout:fragment="content">
-<div class="all-container">
-		
-		<h2>중고 등록된 상품!</h2>
-		
+		<div class="all-container">
 
-		<div class="retro-container">
+			<h2>중고 등록된 상품!</h2>
+
 
 			<div class="retro-container">
-				<div class="retro-item" th:each="used,index : ${usedList}">
-					<div th:each="usedImg, index:${used.usedImgList}">
-						<th:block th:if="${index.index == 0}">
-							<a th:href="'/public/used/'+${used.id}">
-								<img class="product-img" th:src="${usedImg.imgUrl}" alt="Image" width="400"
-									height="500">
-							</a>
-						</th:block>
-					</div>
-					<p class="card-title" th:text="${used.title}">제목</p>
-					<p class="retro-item-price" th:text="${used.price}">가격</p>
-					<div class="retro-item-info">
-						<p th:text="${used.orderProduct.order.user.username + ' / ' 
+
+				<div class="retro-container">
+					<div class="retro-item" th:each="used,index : ${usedList}">
+						<div th:each="usedImg, index:${used.usedImgList}">
+							<th:block th:if="${index.index == 0}">
+								<a th:href="'/public/used/'+${used.id}">
+									<img class="product-img" th:src="${usedImg.imgUrl}" alt="Image" width="400"
+										height="500">
+								</a>
+							</th:block>
+						</div>
+						<p class="card-title" th:text="${used.title}">제목</p>
+						<p class="retro-item-price" th:text="${used.price}">가격</p>
+						<div class="retro-item-info">
+							<p th:text="${used.orderProduct.order.user.username + ' / ' 
                 + #temporals.format(used.createDate, 'yyyy-MM-dd HH:mm') + '씀'}">글쓴이</p>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="pagination">
-			<button class="page-button" th:each="pageNumber : ${#numbers.sequence(0, totalPages)}" 
-					th:classappend="${pageNumber == page ? 'active' : ''}" 
+			<div class="pagination">
+				<button class="page-button" th:each="pageNumber : ${#numbers.sequence(0, totalPages)}"
+					th:classappend="${pageNumber == page ? 'active' : ''}"
 					th:if="${pageNumber >= (page - 1) && pageNumber <= (page + 1)}">
-				<a class="page-link" th:href="@{'/public/usedList/' + ${pageNumber}}" th:text="${pageNumber}"></a>
-			</button>
-		</div>
-		<div class="pagination">
-			<button class="page-button" th:classappend="${page == 0 ? 'disabled' : ''}" th:if="${page > 0}">
-				<a class="page-link" th:href="@{(${page} - 1)}">이전</a>
-			</button>
-			<button class="my-button" onclick="location.href='/protected/used/new'" sec:authorize="hasRole('ROLE_USER')"><b>내 상품등록</b></button>
-</div>
-		</div>
-	<div class="sidemenu">
-				<ul>
-					<li><a href="usedList">중고마켓</a></li>
-					<li><a href="../protected/questionForm">1:1문의</a></li>
-				
-				</ul>
-				<ul >
-					<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao" th:src="@{/resources/img/kakao.PNG}"></a></li>
-				</ul>
+					<a class="page-link" th:href="@{'/public/usedList/' + ${pageNumber}}" th:text="${pageNumber}"></a>
+				</button>
 			</div>
-			
-				
-		
+			<div class="pagination">
+				<button class="page-button" th:classappend="${page == 0 ? 'disabled' : ''}" th:if="${page > 0}">
+					<a class="page-link" th:href="@{(${page} - 1)}">이전</a>
+				</button>
+				<div th:if="${orderProduct_Empty}"> <!-- Not null -->
+					<button class="my-button" onclick="location.href='/protected/used/new'"
+						sec:authorize="hasRole('ROLE_USER')"><b>내 상품등록</b></button>
+				</div>
+				<div th:unless="${orderProduct_Empty}"> <!-- null -->
+					<button class="my-button" onclick="orderProduct_Empty_method()"
+						sec:authorize="hasRole('ROLE_USER')"><b>내 상품등록</b></button>
+				</div>
+			</div>
+		</div>
+		<div class="sidemenu">
+			<ul>
+				<li><a href="usedList">중고마켓</a></li>
+				<li><a href="../protected/questionForm">1:1문의</a></li>
+
+			</ul>
+			<ul>
+				<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
+							th:src="@{/resources/img/kakao.PNG}"></a></li>
+			</ul>
+		</div>
+
+		<script th:inline="javascript">
+			/*[# th:if="${orderProduct_Empty != null}"]*/
+			var orderProduct_Empty = /*[[${orderProduct_Empty}]]*/ null;
+			/*[/]*/
+
+
+		</script>
+
 		<script>
-    $(document).ready(function () {
-        var currentPosition = $(".sidemenu").position().top;
+			$(document).ready(function () {
+				var currentPosition = $(".sidemenu").position().top;
 
-        $(window).scroll(function () {
-            var position = $(window).scrollTop();
-            $(".sidemenu").stop().animate({ top: position + currentPosition + "px" }, 600);
-        });
-    });
-</script>
+				$(window).scroll(function () {
+					var position = $(window).scrollTop();
+					$(".sidemenu").stop().animate({ top: position + currentPosition + "px" }, 600);
+				});
+			});
 
+			function orderProduct_Empty_method(){
+				alert("중고 글을 등록할 주문내역이 없습니다.");
+			}
+		</script>
+	</div>
 </body>
 
 </html>
