@@ -222,8 +222,8 @@
 			<div class="pagination">
 				<button class="page-button" th:each="pageNumber : ${#numbers.sequence(0, totalPages)}"
 					th:classappend="${pageNumber == page ? 'active' : ''}"
-					th:if="${pageNumber >= (page - 1) && pageNumber <= (page + 1)}">
-					<a class="page-link" th:href="@{'/public/usedList/' + ${pageNumber}}" th:text="${pageNumber}"></a>
+					th:if="${pageNumber >= (page - 1) && pageNumber <= (page + 1)}" th:text="${pageNumber}"
+					onclick="page(this)" th:value="${pageNumber}">
 				</button>
 			</div>
 			<div class="pagination">
@@ -261,6 +261,23 @@
 		</script>
 
 		<script>
+			function page(button){
+				var pageNumber = button.value;
+				var currentUrl = window.location.href;
+
+				if (currentUrl.includes("public")) {
+					window.location.href = "/public/usedList/"+pageNumber;
+					// 여기에 'public'일 때 수행할 로직 추가
+				} else if (currentUrl.includes("protected")) {
+					window.location.href = "/protected/usedList/"+pageNumber;
+					// 여기에 'protected'일 때 수행할 로직 추가
+				} else {
+					console.log("The URL does not contain 'public' or 'protected'");
+					// 그 외의 경우에 수행할 로직 추가
+				}
+			}
+
+
 			$(document).ready(function () {
 				var currentPosition = $(".sidemenu").position().top;
 

@@ -44,6 +44,10 @@
                             회원정보변경
 
                         </div>
+                        <div class="userupdate" onclick="location.href='../protected/usedList'">
+                            내 중고글 보기
+
+                        </div>
                         <div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
                             <div class="userorder" sec:authorize="hasRole('ROLE_USER')" onclick="location.href='order'">
                                 주문조회

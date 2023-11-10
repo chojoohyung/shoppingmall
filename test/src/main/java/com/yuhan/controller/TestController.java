@@ -32,6 +32,8 @@ public class TestController {
 		
 		List<Product> productDtoList = recommendService.RecommendList(principal.getName());
 		
+		
+		
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("cartDetailDtoList", cartDetailDtoList);
 		return "/protected/mypage";

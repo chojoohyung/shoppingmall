@@ -20,4 +20,6 @@ public interface UsedRepository extends JpaRepository<Used,  Long> {
 	Page<Used> queryAnnotion(Pageable paging);
 	
 	List<Used> findByOrderProduct(OrderProduct orderProduct);
+	
+	Page<Used> findByOrderProduct_Order_User_username(Pageable pageable, String username);
 }

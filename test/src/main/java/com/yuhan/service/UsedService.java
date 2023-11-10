@@ -102,4 +102,8 @@ public class UsedService {
 		return PIDUsedList;
 	}
 	
+	public Page<Used> findByOrderProduct_Order_User_username(Pageable pageable, String username){
+		return usedRepository.findByOrderProduct_Order_User_username(pageable, username);
+	}
+	
 }
