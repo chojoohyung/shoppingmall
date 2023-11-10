@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_protected}">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_test}">
 
 <head>
 	<meta charset="utf-8">
@@ -77,6 +77,42 @@
 			padding-left: 10%;
 			padding-right: 10%;
 		}
+
+		.pagination {
+			display: flex;
+			justify-content: center;
+			margin-top: 20px;
+
+		}
+
+		.page-button {
+			border: 1px solid rgb(0, 0, 0);
+			background-color: #fff;
+			color: rgb(0, 0, 0);
+			padding: 5px 10px;
+			border-radius: 5px;
+			margin: 0 5px;
+			cursor: pointer;
+			transition: background-color 0.3s, color 0.3s;
+		}
+
+
+
+		.page-button.active {
+			background-color: rgb(255, 255, 255);
+			color: rgb(0, 0, 0);
+		}
+
+		.page-button:hover {
+			background-color: rgb(0, 0, 0);
+			color: rgb(255, 255, 255);
+		}
+
+		.page-link {
+			text-decoration: none;
+			font-size: 12px;
+			font-weight: bold;
+		}
 	</style>
 </head>
 
@@ -107,6 +143,21 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="pagination">
+				<button class="page-button" th:each="pageNumber : ${#numbers.sequence(0, totalPages)}"
+					th:classappend="${pageNumber == page ? 'active' : ''}"
+					th:if="${pageNumber >= (page - 1) && pageNumber <= (page + 1)}">
+					<a class="page-link" th:href="@{'/protected/order/' + ${pageNumber}}" th:text="${pageNumber}"
+						sec:authorize="hasRole('ROLE_USER')"></a>
+						<a class="page-link" th:href="@{'/admin/order/' + ${pageNumber}}" th:text="${pageNumber}"
+						sec:authorize="hasRole('ROLE_ADMIN')"></a>
+				</button>
+			</div>
+			<div class="pagination">
+				<button class="page-button" th:classappend="${page == 0 ? 'disabled' : ''}" th:if="${page > 0}">
+					<a class="page-link" th:href="@{(${page} - 1)}">이전</a>
+				</button>
 			</div>
 		</div>
 	</div>

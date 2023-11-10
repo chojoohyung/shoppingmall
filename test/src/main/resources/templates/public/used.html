@@ -398,9 +398,9 @@
 					});
 				});
 
-				function product(){
+				function product() {
 					var productId = /*[[${used.orderProduct.product.id}]]*/ null;
-					window.location.href="/public/product/"+productId;
+					window.location.href = "/public/product/" + productId;
 				}
 				/*
 				$(document).ready(function () {
@@ -477,11 +477,9 @@
 							cache: false,
 							data: { "content": content },
 							success: function (result, status) {
-								alert("댓글작성");
 								location.href = "/public/used/" + id;
 							},
 							error: function (jqXHR, status, error) {
-								alert("댓글작성");
 								location.href = "/public/used/" + id;
 							}
 						});
