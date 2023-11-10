@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.yuhan.entity.Order;
 import com.yuhan.entity.OrderProduct;
+import com.yuhan.entity.Product;
 
 
 public interface OrderProductRepository extends JpaRepository<OrderProduct, Long> {
@@ -20,4 +21,7 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct, Long
 	
 	@Query("SELECT o FROM OrderProduct o WHERE o.product.id = :id")
 	OrderProduct CustomfindById(@Param("id") Long id);
+	
+	
+	List<OrderProduct> findByProduct(Product product);
 }

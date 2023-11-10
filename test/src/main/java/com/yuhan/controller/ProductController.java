@@ -21,9 +21,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.yuhan.dto.ProductDto;
 import com.yuhan.entity.Product;
+import com.yuhan.entity.Used;
 import com.yuhan.entity.User;
 import com.yuhan.service.ProductService;
 import com.yuhan.service.RecommendService;
+import com.yuhan.service.UsedService;
 import com.yuhan.service.UserService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -38,6 +40,7 @@ public class ProductController {
 	private final ProductService productService;
 	private final UserService userService;
 	private final RecommendService recommendService;
+	private final UsedService usedService;
 	
 	/*
 	 * Admin용 상품등록 폼
@@ -162,8 +165,11 @@ public class ProductController {
 		}
 		
 		ProductDto productDto = productService.getProductDtl(id);
+		List<Used> PIDUsedList = usedService.getPIDUsedList(id);
 		
 		model.addAttribute("productDto", productDto);
+		model.addAttribute("PIDUsedList", PIDUsedList);
+		
 		return "/public/product";
 	}
 	

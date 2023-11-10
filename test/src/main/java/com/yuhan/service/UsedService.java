@@ -1,6 +1,8 @@
 package com.yuhan.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -14,7 +16,6 @@ import com.yuhan.dto.ProductDto;
 import com.yuhan.dto.UsedFormDto;
 import com.yuhan.entity.OrderProduct;
 import com.yuhan.entity.Product;
-import com.yuhan.entity.ProductImg;
 import com.yuhan.entity.Used;
 import com.yuhan.entity.UsedImg;
 import com.yuhan.repository.OrderProductRepository;
@@ -84,6 +85,25 @@ public class UsedService {
 		Used used = usedRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 		
 		return used;
+	}
+	
+	public List<Used> getPIDUsedList(Long id) {
+		Product product = productRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+		
+		List<Used> PIDUsedList = new ArrayList<>();
+		
+		List<OrderProduct> orderProductList = orderProductRepository.findByProduct(product);
+		for (OrderProduct orderProduct : orderProductList) {
+			List<Used> usedList = usedRepository.findByOrderProduct(orderProduct);
+			PIDUsedList.addAll(usedList);
+		}
+		System.out.println("sort before "+PIDUsedList.toString());
+		Collections.sort(PIDUsedList, Comparator.comparing(Used::getCreateDate).reversed());
+		
+		System.out.println("sort after "+PIDUsedList.toString());
+		
+		
+		return PIDUsedList;
 	}
 	
 }

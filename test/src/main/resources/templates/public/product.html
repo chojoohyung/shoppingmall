@@ -54,6 +54,16 @@
                             class="product-details55 " th:text="''+${productDto.stock}">옷 재고</span></p>
                     <p class="product-details6">' 수량<input type="number" name="count" id="count" class="form-control"
                             value="1" min="1"><br></p>
+                    <span class="input-group-text">중고목록</span>
+                    <select onchange="UsedSelect(this)" class="custom-select">
+                        <option th:each="PIDUsed, index : ${PIDUsedList}" th:value="${PIDUsed.id}">
+                            <div th:text="${PIDUsed.title}"></div>
+                            <div th:text="${PIDUsed.price}"></div>
+                            <div th:text="${#temporals.format(PIDUsed.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                        </option>
+                    </select>
+
+
                     <button type="button" onclick="requestPay()" sec:authorize="hasRole('ROLE_USER')"
                         class="order-button1">BUY NOW</button><br>
                     <button type="button" onclick="addCart()" sec:authorize="hasRole('ROLE_USER')"
@@ -100,6 +110,10 @@
 
 
             <script>
+                function UsedSelect(selectElement){
+                    var usedId = selectElement.value;
+                    window.location.href = "/public/used/"+usedId;
+                }
                 var IMP = window.IMP;
                 IMP.init("imp46787317");
 
