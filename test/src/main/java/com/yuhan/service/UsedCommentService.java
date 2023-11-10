@@ -1,5 +1,6 @@
 package com.yuhan.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -35,6 +36,7 @@ public class UsedCommentService {
 		usedComment.setUsed(usedRepository.findByid(usedId));
 		usedComment.setContent(content);
 		usedComment.setUser(userRepository.findByUsername(username));
+		usedComment.setCommentDate(LocalDateTime.now());
 		return usedCommentRepository.save(usedComment);
 	}
 	/*

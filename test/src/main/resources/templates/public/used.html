@@ -314,11 +314,13 @@
 									<span th:text="${usedComment.user.username}+''">유저이름</span>
 								</div>
 								<p th:text="${usedComment.content}">내용</p>
+								<span th:text="${#temporals.format(usedComment.commentDate, 'yyyy-MM-dd HH:mm')}"></span>
 							</div>
 							<div class="used-comment" th:unless="${username == usedComment.user.username or username == used.orderProduct.order.user.username
 										 or usedComment.user.username == used.orderProduct.order.user.username}">
 								<span th:text="${usedComment.user.username}+' : '">유저이름</span>
 								<span>글 작성자와 댓글 작성자만 확인가능합니다</span>
+								<span th:text="${#temporals.format(usedComment.commentDate, 'yyyy-MM-dd HH:mm')}"></span>
 							</div>
 						</div>
 					</table>

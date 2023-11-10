@@ -1,5 +1,7 @@
  package com.yuhan.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,5 +36,6 @@ public class UsedComment {
 	@JoinColumn(name = "used_id")
 	private Used used;
 	
+	private LocalDateTime commentDate;
 	
 }
