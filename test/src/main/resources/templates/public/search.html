@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	  <link href="../../css/sidemenu.css" rel="stylesheet">
+	<link href="../../css/sidemenu.css" rel="stylesheet">
 	<style>
 		.textForm {
 			border: 1px solid black;
@@ -46,17 +46,18 @@
 <body>
 
 	<div layout:fragment="content">
-		  <div class="sidemenu">
-            <ul>
-                <li><a href="usedList">중고마켓</a></li>
-                <li><a href="../protected/questionForm">1:1문의</a></li>
-                <li><a href="../protected/order">주문조회</a></li>
-              
-            </ul>
-            <ul>
-                <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao" th:src="@{/resources/img/kakao.PNG}"></a></li>
-            </ul>
-        </div>
+		<div class="sidemenu">
+			<ul>
+				<li><a th:href="@{/public/usedList}">중고마켓</a></li>
+				<li><a th:href="@{/protected/questionForm}">1:1문의</a></li>
+				<li><a th:href="@{/protected/order}">주문조회</a></li>
+
+			</ul>
+			<ul>
+				<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
+							th:src="@{/resources/img/kakao.PNG}"></a></li>
+			</ul>
+		</div>
 		<form class="form-search" th:action="@{/public/search}" method="post">
 
 			<p class="findid"><b>FIND ID</b></p>

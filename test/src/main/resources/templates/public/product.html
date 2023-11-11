@@ -25,18 +25,18 @@
         <div class="all-container">
             <!-- 상품 정보 컨테이너 -->
             <!-- 기존 코드 유지 -->
-           	<div class="sidemenu">
-            <ul>
-                <li><a href="../public/usedList">중고마켓</a></li>
-                <li><a href="../protected/questionForm">1:1문의</a></li>
-                	<li><a href="/protected/order">주문조회</a></li>
-               
-            </ul>
-            <ul>
-                <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
-                            th:src="@{/resources/img/kakao.PNG}"></a></li>
-            </ul>
-        </div>
+            <div class="sidemenu">
+                <ul>
+                    <li><a th:href="@{/public/usedList}">중고마켓</a></li>
+                    <li><a th:href="@{/protected/questionForm}">1:1문의</a></li>
+                    <li><a th:href="@{/protected/order}">주문조회</a></li>
+
+                </ul>
+                <ul>
+                    <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
+                                th:src="@{/resources/img/kakao.PNG}"></a></li>
+                </ul>
+            </div>
 
             <div class="product-info-container1">
                 <img class="product-img" th:src="${productDto.productImgDtoList[0].imgUrl}" alt="상품 이미지">
@@ -64,7 +64,7 @@
                         </option>
                     </select>
 
-                    
+
                     <button type="button" onclick="requestPay()" sec:authorize="hasRole('ROLE_USER')"
                         class="order-button1">BUY NOW</button><br>
                     <button type="button" onclick="addCart()" sec:authorize="hasRole('ROLE_USER')"
@@ -118,18 +118,29 @@
                 var IMP = window.IMP;
                 IMP.init("imp46787317");
 
-                var productName = document.querySelector('#product_name').textContent;
-                var productPrice = document.querySelector('#product_price').textContent;
+
 
                 var token = $("meta[name='_csrf']").attr("content");
                 var header = $("meta[name='_csrf_header']").attr("content");
 
+
+
                 function requestPay() {
+                    var productName = document.querySelector('#product_name').textContent;
+                   
+                    var countValueById = document.getElementById("count").value;
+
+                    var productPriceElement = document.querySelector('#product_price');
+                    var productPriceText = productPriceElement.textContent;
+
+                    var productPrice = parseFloat(productPriceText.replace('won', ''));
+
+                    
                     IMP.request_pay({
                         pg: "kakaopay.TC0ONETIME",
                         pay_method: "card",
                         name: productName,
-                        amount: productPrice,                         // 숫자 타입
+                        amount: countValueById * productPrice,                         // 숫자 타입
                         buyer_email: userEmail,
                         buyer_name: userName,
                         buyer_tel: userPhone,
@@ -139,7 +150,6 @@
                             type: 'POST',
                             url: '/verify/' + rsp.imp_uid,
                             beforeSend: function (xhr) {
-                                /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
                                 xhr.setRequestHeader(header, token);
                             },
                         }).done(function (data) {

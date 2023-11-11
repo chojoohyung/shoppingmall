@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link href="../css/register.css" rel="stylesheet">
-	  <link href="../../css/sidemenu.css" rel="stylesheet">
+	<link href="../../css/sidemenu.css" rel="stylesheet">
 	<meta name="_csrf" th:content="${_csrf.token}" />
 	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -118,17 +118,18 @@
 <body>
 	<div layout:fragment="content">
 		<div class="all-container">
-			  <div class="sidemenu">
-            <ul>
-                <li><a href="usedList">중고마켓</a></li>
-                <li><a href="../protected/questionForm">1:1문의</a></li>
-                <li><a href="../protected/order">주문조회</a></li>
-              
-            </ul>
-            <ul>
-                <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao" th:src="@{/resources/img/kakao.PNG}"></a></li>
-            </ul>
-        </div>
+			<div class="sidemenu">
+				<ul>
+					<li><a th:href="@{/public/usedList}">중고마켓</a></li>
+					<li><a th:href="@{/protected/questionForm}">1:1문의</a></li>
+					<li><a th:href="@{/protected/order}">주문조회</a></li>
+
+				</ul>
+				<ul>
+					<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
+								th:src="@{/resources/img/kakao.PNG}"></a></li>
+				</ul>
+			</div>
 			<div class="text-form">
 				<p class="sign"><b>SIGN UP</b></p>
 				<form th:action="@{/public/register}" method="post" th:object="${user}"
@@ -149,7 +150,7 @@
 							<div class="form-group">
 								<input type="email" style="width:60%;" id="sm_email" th:field="*{email}"
 									placeholder="이메일 주소 입력*" required>
-								<button type="button1" id="myButton">인증번호 보내기</button>
+								<button type="button1" id="myButton">번호보내기</button>
 							</div>
 						</div>
 
@@ -192,13 +193,14 @@
 						</div>
 						<br>
 						<div class="name">
-							<input type="text" style="width:60%;" id="name" th:field="*{name}" placeholder="이름 입력*" required >
+							<input type="text" style="width:60%;" id="name" th:field="*{name}" placeholder="이름 입력*"
+								required>
 						</div>
 
 						<div class="phone">
 							<input type="tel" style="width:60%;" th:field="*{phone}" placeholder="핸드폰 번호*" required>
 						</div>
-						
+
 
 						<div class="use"><b>이용약관</b></div>
 						<div class="container-s">

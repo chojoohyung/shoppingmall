@@ -267,7 +267,8 @@
 
 
 				<div class="used-title">
-					<button type="button" th:if="${username == used.orderProduct.order.user.username or username == 'admin'}"
+					<button type="button"
+						th:if="${username == used.orderProduct.order.user.username or username == 'admin'}"
 						onclick="deleteUsed()">중고 글삭제</button>
 					<button type="button" onclick="product()">상품보기</button>
 					<input type="hidden" id="idValue" th:value="${used.id}">
@@ -305,10 +306,9 @@
 				-->
 				<p class="comment">COMMENT</p>
 				<div>
-
 					<table>
-
 						<div th:each="usedComment, index: ${usedCommentList}">
+							<!-- 글 작성자, 댓글 작성자 유저 -->
 							<div class="used-comment" th:if="${username == usedComment.user.username or username == used.orderProduct.order.user.username
 										 or usedComment.user.username == used.orderProduct.order.user.username}">
 								<div>
@@ -316,25 +316,42 @@
 									<span th:text="${usedComment.user.username}+''">유저이름</span>
 								</div>
 								<p th:text="${usedComment.content}">내용</p>
-								<span
-									th:text="${#temporals.format(usedComment.commentDate, 'yyyy-MM-dd HH:mm')}"></span>
+
+								<span th:text="${#temporals.format(usedComment.commentDate, 'yyyy-MM-dd HH:mm')}">
+								</span>
+
+								<!-- 답글 작성 영역 -->
+								<button type="button" th:id="${usedComment.id}" th:if="${username != null}"
+									onclick="toggleCommentWrite(this)">답글</button>
+
+								<div class="commentwrite" th:id="'commentwrite_' + ${usedComment.id}"
+									style="display: none;">
+									<span class="co-title" for="message">내용</span>
+									<input type="text" name="reply" th:id="'reply_content_' + ${usedComment.id}">
+									<button class="buttons" th:id="'reply_button_' + ${usedComment.id}"
+										onclick="reply(this)">답글쓰기</button>
+								</div>
+
 							</div>
+							<!-- 글 작성자, 댓글 작성자 외 유저 -->
 							<div class="used-comment" th:unless="${username == usedComment.user.username or username == used.orderProduct.order.user.username
 										 or usedComment.user.username == used.orderProduct.order.user.username}">
-								<span th:text="${usedComment.user.username}+' : '">유저이름</span>
-								<span>글 작성자와 댓글 작성자만 확인가능합니다</span>
-								<span
-									th:text="${#temporals.format(usedComment.commentDate, 'yyyy-MM-dd HH:mm')}"></span>
+								<div>
+									<span><img class="pro" th:src="@{/resources/img/pro.png}"></span>
+									<span th:text="${usedComment.user.username}+''">유저이름</span>
+								</div>
+								<p>글 작성자와 댓글 작성자만 확인가능합니다</p>
+
+								<span th:text="${#temporals.format(usedComment.commentDate, 'yyyy-MM-dd HH:mm')}">
+								</span>
 							</div>
 						</div>
 					</table>
-
 				</div>
 				<!--
 					댓글작성
 				-->
 				<div class="commentwrite" th:if="${username != null}">
-
 					<span class="co-title" for="message">내용</span>
 					<input type="text" name="content" id="content">
 					<button class="buttons" onclick="comment()">댓글쓰기</button>
@@ -344,9 +361,9 @@
 
 			<div class="sidemenu">
 				<ul>
-					<li><a href="/public/usedList">중고마켓</a></li>
-					<li><a href="/protected/questionForm">1:1문의</a></li>
-					<li><a href="/protected/order">주문조회</a></li>
+					<li><a th:href="@{/public/usedList}">중고마켓</a></li>
+					<li><a th:href="@{/protected/questionForm}">1:1문의</a></li>
+					<li><a th:href="@{/protected/order}">주문조회</a></li>
 				</ul>
 				<ul>
 					<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
@@ -363,6 +380,63 @@
 						$(".sidemenu").stop().animate({ "top": position + currentPosition + "px" }, 600);
 					});
 				});
+
+				function reply(button) {
+					// 버튼의 ID 얻기
+					var buttonId = button.id;
+					console.log("버튼의 ID: " + buttonId);
+
+					var replyId = buttonId.split('_')[2];
+					console.log("댓글 ID: " + replyId);
+
+					// ID에서 답글 작성 영역의 ID 추출
+					var commentWriteId = 'commentwrite_' + buttonId.split('_')[2];
+					console.log("답글 작성 영역의 ID: " + commentWriteId);
+
+					var contentId = 'reply_content_' + buttonId.split('_')[2];
+					console.log("답글 내용 ID: " + contentId);
+
+					var contentValue = $('#' + contentId).val();
+					console.log("답글 내용 value: " + contentValue);
+
+
+					var id = $("#idValue").val();
+
+					
+					var token = $("meta[name='_csrf']").attr("content");
+					var header = $("meta[name='_csrf_header']").attr("content");
+					var url = "/public/used/" + id + "/" + replyId;
+					/*
+					if (contentValue.trim() === "") {
+						alert("답글 내용을 입력해주세요.");
+					} else {
+						$.ajax({
+							url: url,
+							type: "POST",
+							beforeSend: function (xhr) {
+								xhr.setRequestHeader(header, token);
+							},
+							dataType: "json",
+							cache: false,
+							data: { "content": contentValue },
+							success: function (result, status) {
+								location.href = "/public/used/" + id;
+							},
+							error: function (jqXHR, status, error) {
+								location.href = "/public/used/" + id;
+							}
+						});
+					}*/
+				}
+
+				function toggleCommentWrite(button) {
+					// 버튼의 ID에서 답글 작성 영역의 ID를 추출
+					var commentWriteId = 'commentwrite_' + button.id;
+
+					// 해당 답글 작성 영역을 토글
+					$('#' + commentWriteId).toggle();
+				}
+
 
 				function product() {
 					var productId = /*[[${used.orderProduct.product.id}]]*/ null;

@@ -123,10 +123,10 @@
 		<div class="all-container">
 			<div class="sidemenu">
 				<ul>
-					<li><a href="../public/usedList">중고마켓</a></li>
-					<li><a href="../protected/questionForm">1:1문의</a></li>
-						<li><a href="order">주문조회</a></li>
-				   
+					<li><a th:href="@{/public/usedList}">중고마켓</a></li>
+					<li><a th:href="@{/protected/questionForm}">1:1문의</a></li>
+					<li><a th:href="@{/protected/order}">주문조회</a></li>
+
 				</ul>
 				<ul>
 					<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
@@ -163,7 +163,7 @@
 					th:if="${pageNumber >= (page - 1) && pageNumber <= (page + 1)}">
 					<a class="page-link" th:href="@{'/protected/order/' + ${pageNumber}}" th:text="${pageNumber}"
 						sec:authorize="hasRole('ROLE_USER')"></a>
-						<a class="page-link" th:href="@{'/admin/order/' + ${pageNumber}}" th:text="${pageNumber}"
+					<a class="page-link" th:href="@{'/admin/order/' + ${pageNumber}}" th:text="${pageNumber}"
 						sec:authorize="hasRole('ROLE_ADMIN')"></a>
 				</button>
 			</div>

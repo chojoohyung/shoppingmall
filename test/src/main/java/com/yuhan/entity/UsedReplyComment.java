@@ -15,8 +15,8 @@ import lombok.Setter;
 
 @Entity	
 @Getter @Setter	
-@Table(name="usedcomment")
-public class UsedComment {
+@Table(name="usedreplycomment")
+public class UsedReplyComment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,9 +29,9 @@ public class UsedComment {
 	private User user;
 	
 	@ManyToOne
-	@JoinColumn(name = "used_id")
-	private Used used;
+	@JoinColumn(name = "usedComment_id")
+	private UsedComment usedComment;
 	
-	private LocalDateTime commentDate;
+	private LocalDateTime reply_commentDate;
 	
 }

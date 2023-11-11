@@ -20,18 +20,18 @@
 
 	<div layout:fragment="content">
 		<div class="all-container">
-			 <div class="sidemenu">
-            <ul>
-                <li><a href="../public/usedList">중고마켓</a></li>
-                <li><a href="../protected/questionForm">1:1문의</a></li>
-                	<li><a href="order">주문조회</a></li>
-               
-            </ul>
-            <ul>
-                <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
-                            th:src="@{/resources/img/kakao.PNG}"></a></li>
-            </ul>
-        </div>
+			<div class="sidemenu">
+				<ul>
+					<li><a th:href="@{/public/usedList}">중고마켓</a></li>
+					<li><a th:href="@{/protected/questionForm}">1:1문의</a></li>
+					<li><a th:href="@{/protected/order}">주문조회</a></li>
+
+				</ul>
+				<ul>
+					<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
+								th:src="@{/resources/img/kakao.PNG}"></a></li>
+				</ul>
+			</div>
 			<div class="question-sub">
 				<div class="sidebar">
 
@@ -82,4 +82,5 @@
 		</div>
 	</div>
 </body>
+
 </html>

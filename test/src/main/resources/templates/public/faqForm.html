@@ -3,7 +3,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_protected}">
 
 <head>
-		<link href="../../css/sidemenu.css" rel="stylesheet">
+	<link href="../../css/sidemenu.css" rel="stylesheet">
 	<style>
 		header {
 			display: block;
@@ -44,10 +44,11 @@
 			background-color: #f5f5f5;
 			/* 배경색 설정 */
 		}
-		.all-container{
-	padding-left:10% ;
-	padding-right:10% ;
-}
+
+		.all-container {
+			padding-left: 10%;
+			padding-right: 10%;
+		}
 	</style>
 </head>
 <meta charset="UTF-8">
@@ -55,44 +56,44 @@
 <body>
 
 	<div layout:fragment="content">
-	<div class="all-container">
-		 <div class="sidemenu">
-            <ul>
-                <li><a href="../public/usedList">중고마켓</a></li>
-                <li><a href="../protected/questionForm">1:1문의</a></li>
-                	<li><a href="../protected/order">주문조회</a></li>
-               
-            </ul>
-            <ul>
-                <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
-                            th:src="@{/resources/img/kakao.PNG}"></a></li>
-            </ul>
-        </div>
-		<nav>
-			<a th:href="@{/public/faq}">Q/A</a>
-			<a href="#">문의하기</a>
-			<a href="change">반품 및 교환</a>
-		</nav>
-		<div class="container">
+		<div class="all-container">
+			<div class="sidemenu">
+				<ul>
+					<li><a th:href="@{/public/usedList}">중고마켓</a></li>
+					<li><a th:href="@{/protected/questionForm}">1:1문의</a></li>
+					<li><a th:href="@{/protected/order}">주문조회</a></li>
 
-			<h2>자주하는질문 등록</h2>
-			<p>등록할 내용을 적어주세요</p>
+				</ul>
+				<ul>
+					<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
+								th:src="@{/resources/img/kakao.PNG}"></a></li>
+				</ul>
+			</div>
+			<nav>
+				<a th:href="@{/public/faq}">Q/A</a>
+				<a href="#">문의하기</a>
+				<a href="change">반품 및 교환</a>
+			</nav>
+			<div class="container">
 
-			<form role="form" method="post" th:object="${faq}">
-				<input type="hidden" th:field="*{id}">
-				<label for="message">제목</label>
-				<input type="text" id="title" th:field="*{title}" required>
+				<h2>자주하는질문 등록</h2>
+				<p>등록할 내용을 적어주세요</p>
 
-				<label for="message">내용</label>
-				<textarea id="content" th:field="*{content}" rows="4" required></textarea>
+				<form role="form" method="post" th:object="${faq}">
+					<input type="hidden" th:field="*{id}">
+					<label for="message">제목</label>
+					<input type="text" id="title" th:field="*{title}" required>
 
-				<button type="submit">등록</button>
-				<input type="hidden" th:name = "${_csrf.parameterName}" th:value = "${_csrf.token}">
-			</form>
+					<label for="message">내용</label>
+					<textarea id="content" th:field="*{content}" rows="4" required></textarea>
+
+					<button type="submit">등록</button>
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+				</form>
+			</div>
 		</div>
 	</div>
 	</div>
-</div>
 
 
 </body>

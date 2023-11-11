@@ -1,7 +1,6 @@
 package com.yuhan.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,18 +22,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.yuhan.dto.OrderProductDto;
-import com.yuhan.dto.ProductDto;
 import com.yuhan.dto.UsedFormDto;
-import com.yuhan.entity.OrderProduct;
-import com.yuhan.entity.Product;
 import com.yuhan.entity.Used;
 import com.yuhan.entity.UsedComment;
 import com.yuhan.entity.UsedImg;
-import com.yuhan.entity.User;
 import com.yuhan.service.OrderProductService;
-import com.yuhan.service.ProductService;
 import com.yuhan.service.UsedCommentService;
 import com.yuhan.service.UsedImgService;
+import com.yuhan.service.UsedReplyCommentService;
 import com.yuhan.service.UsedService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -49,6 +44,7 @@ public class UsedController {
 	private final OrderProductService orderProductService;
 	private final UsedCommentService usedCommentService;
 	private final UsedImgService usedImgService;
+	private final UsedReplyCommentService usedReplyCommentService;
 	
 	
 	/*
@@ -239,13 +235,14 @@ public class UsedController {
 	/*
 	 * 중고상품 상세정보 답글입력
 	 */
-	/*
-	@PostMapping("/public/used/{id}/reply_comment")
-	public @ResponseBody ResponseEntity savereplyComment(@PathVariable("id") Long id, @RequestParam("content") String content, @RequestParam("reply_user") String reply_user, Principal principal) {		
-		usedCommentService.saveReply(id, content, principal.getName(), reply_user);
+	
+	@PostMapping("/public/used/{id}/{replyId}")
+	public @ResponseBody ResponseEntity savereplyComment(@PathVariable("id") Long id, @PathVariable("replyId") Long replyId,  @RequestParam("content") String content, Principal principal) {		
+//		usedReplyCommentService.save(id, content, principal.getName(), replyId);
+		System.out.println("usedid "+id+" replyId "+replyId+" content "+content);
 		return new ResponseEntity<String>("댓글작성", HttpStatus.OK);
 	}
-	*/
+	
 	
 	
 	/*
