@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yuhan.entity.Recommend;
 import com.yuhan.entity.User;
 import com.yuhan.repository.RecommendRepository;
-import com.yuhan.service.RecommendService;
+import com.yuhan.repository.UserRepository;
 import com.yuhan.service.UserService;
 
 @Controller
@@ -24,6 +25,10 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserRepository userRepository;
+	
 	
 	@Autowired
 	private RecommendRepository recommendRepository;
@@ -76,7 +81,6 @@ public class UserController {
 	
 	@PostMapping("/protected/userUpdateForm")
 	public String userUpdate(User user, @RequestParam("addr2") String addr2, @RequestParam("addr3") String addr3) {
-		System.out.println(addr2+' '+addr3);
 		user.setAddr(addr2+' '+addr3);
 		userService.updateUser(user);
 		return "redirect:/protected/mypage";
@@ -89,6 +93,18 @@ public class UserController {
 			return new ResponseEntity<Boolean>(true ,HttpStatus.OK);
 		else
 			return new ResponseEntity<Boolean>(false ,HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/protected/mypage/deleteUser")
+	public @ResponseBody ResponseEntity deleteId(Principal principal) {
+		User user = userService.findByUsername(principal.getName());
+		if(user == null)
+			return new ResponseEntity<Boolean>(false ,HttpStatus.OK);
+		else {
+			user.setEnabled(false);
+			userRepository.save(user);
+			return new ResponseEntity<Boolean>(true ,HttpStatus.OK);
+		}
 	}
 
 }

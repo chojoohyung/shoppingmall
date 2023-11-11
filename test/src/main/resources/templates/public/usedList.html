@@ -6,7 +6,7 @@
 
 <head>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	
+
 	<meta charset="UTF-8">
 	<style>
 		.all-container {
@@ -262,15 +262,15 @@
 		</script>
 
 		<script>
-			function page(button){
+			function page(button) {
 				var pageNumber = button.value;
 				var currentUrl = window.location.href;
 
 				if (currentUrl.includes("public")) {
-					window.location.href = "/public/usedList/"+pageNumber;
+					window.location.href = "/public/usedList/" + pageNumber;
 					// 여기에 'public'일 때 수행할 로직 추가
 				} else if (currentUrl.includes("protected")) {
-					window.location.href = "/protected/usedList/"+pageNumber;
+					window.location.href = "/protected/usedList/" + pageNumber;
 					// 여기에 'protected'일 때 수행할 로직 추가
 				} else {
 					console.log("The URL does not contain 'public' or 'protected'");
@@ -288,7 +288,7 @@
 				});
 			});
 
-			function orderProduct_Empty_method(){
+			function orderProduct_Empty_method() {
 				alert("중고 글을 등록할 주문내역이 없습니다.");
 			}
 		</script>

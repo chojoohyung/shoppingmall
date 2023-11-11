@@ -40,6 +40,7 @@
                 <input type="hidden" id="pwDoubleChk" />
                 
                 <div class="form-group">
+                    <label for="addr">주소</label>
 					<input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="addr1"
 						id="addr1" type="text" readonly="readonly">
 					<button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i>
@@ -53,24 +54,15 @@
 					<input class="form-control" placeholder="상세주소" name="addr3" id="addr3" type="text" required/>
 				</div>
 
+                <div class="name">
+                    <label for="phone">이름</label>
+                    <input type="text" id="name" th:field="*{name}" placeholder="이름 입력*" required >
+                </div>
 
                 <div class="phone">
                     <label for="phone">핸드폰번호</label>
                     <input type="tel" id="phone" th:field="*{phone}" class="pform-control1" placeholder="Phone"
                         required>
-                </div>
-                <div class="radio-group">
-                    <label>성별</label>
-                </div>
-                <div class="radio-group1">
-                    <label for="male">남자</label>
-
-
-                    <input type="radio" id="male" th:field="*{gender}" value="MALE">
-                </div>
-                <div class="radio-group2">
-                    <label for="female">여자</label>
-                    <input type="radio" id="female" th:field="*{gender}" value="FEMALE">
                 </div>
 
                 <div class="submit-button">

@@ -247,6 +247,10 @@ public class UsedController {
 	}
 	*/
 	
+	
+	/*
+	 * 중고 글 삭제 
+	 */
 	@DeleteMapping("/public/used/{id}")
 	public @ResponseBody ResponseEntity productListDelete(@PathVariable("id") Long id, Principal principal)  {
 

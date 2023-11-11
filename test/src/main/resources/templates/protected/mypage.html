@@ -8,6 +8,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <link href="../css/mypage.css" rel="stylesheet">
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
 
 </head>
 
@@ -19,7 +21,7 @@
                 <li><a href="../public/usedList">중고마켓</a></li>
                 <li><a href="../protected/questionForm">1:1문의</a></li>
                 <li><a href="order">주문조회</a></li>
-               
+
             </ul>
             <ul>
                 <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
@@ -56,7 +58,8 @@
                             </div>
                         </div>
                         <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                            <div class="userorder" sec:authorize="hasRole('ROLE_ADMIN')" onclick="location.href='../admin/order'">
+                            <div class="userorder" sec:authorize="hasRole('ROLE_ADMIN')"
+                                onclick="location.href='../admin/order'">
                                 주문조회
 
                             </div>
@@ -68,6 +71,7 @@
                 </div>-->
 
                 <div class="container1">
+                    <p class="my-underline" onclick="deleteUser()" sec:authorize="hasRole('ROLE_USER')">회원탈퇴</p>
 
                     <p class="my-underline">추천</p>
                     <div class="cart-grid">
@@ -133,6 +137,60 @@
                             $(".sidemenu").stop().animate({ "top": position + currentPosition + "px" }, 600);
                         });
                     });
+
+                    function deleteUser() {
+                        var confirmDelete = confirm("회원 탈퇴하시겠습니까?");
+
+
+                        if (confirmDelete) {
+                            var token = $("meta[name='_csrf']").attr("content");
+                            var header = $("meta[name='_csrf_header']").attr("content");
+
+                            var url = "/protected/mypage/deleteUser";
+
+                            $.ajax({
+                                url: url,
+                                type: "DELETE",
+                                beforeSend: function (xhr) {
+                                    xhr.setRequestHeader(header, token);
+                                },
+                                dataType: "json",
+                                cache: false,
+                                success: function (result, status) {
+                                    console.log("회원탈퇴 성공");
+                                    deleteLogout();
+
+                                },
+                                error: function (jqXHR, status, error) {
+
+                                    if (jqXHR.status == '401') {
+                                        alert('로그인 후 이용해주세요');
+                                        location.href = '/public/login';
+                                    } else {
+                                        alert(jqXHR.responseJSON.message);
+                                    }
+
+                                }
+                            });
+                        }
+                    }
+
+                    function deleteLogout() {
+                        var token = $("meta[name='_csrf']").attr("content");
+                        var header = $("meta[name='_csrf_header']").attr("content");
+
+                        var url = "/logout";
+
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader(header, token);
+                            },
+                            dataType: "json",
+                            cache: false
+                        }).done(location.href = '/');
+                    }
                 </script>
             </div>
         </div>
