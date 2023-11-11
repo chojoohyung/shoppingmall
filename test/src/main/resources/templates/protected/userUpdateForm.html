@@ -69,8 +69,8 @@
                 <div class="submit-button">
                     <button class="sub" type="submit">정보수정하기</button>
                 </div>
-                   <p class="my-underline" onclick="deleteUser()" sec:authorize="hasRole('ROLE_USER')">회원탈퇴</p>
             </div>
+                   <button class="my-underline" onclick="deleteUser()" sec:authorize="hasRole('ROLE_USER')">회원탈퇴</button>
         </form>
         <script>
             function check_pw() {
