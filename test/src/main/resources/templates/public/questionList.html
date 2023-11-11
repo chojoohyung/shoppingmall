@@ -3,15 +3,27 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
 
 <head>
+	  <link href="../../css/sidemenu.css" rel="stylesheet">
     <link href="../css/questionList.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 </head>
 
 <body>
     <div layout:fragment="content">
         <div class="all-container">
+			    <div class="sidemenu">
+            <ul>
+                <li><a href="usedList">중고마켓</a></li>
+                <li><a href="../protected/questionForm">1:1문의</a></li>
+                <li><a href="../protected/order">주문조회</a></li>
+              
+            </ul>
+            <ul>
+                <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao" th:src="@{/resources/img/kakao.PNG}"></a></li>
+            </ul>
+        </div>
             <div class="header-container">
                 <div class="header-left">
                     <p class="customer">
@@ -61,21 +73,38 @@
                     </ul>
                 </div>
             </div>
+           
             <div class="question-a">
-                <div class="question-title">
-                    <p class="title"> 게시번호 아이디 &nbsp;제목</p>
-                </div>
-                <tr th:each="question, index : ${questionList}">
-                    <div class="question-content">
-                        <span class="content11" th:text="${index.index}">게시번호</span>
-                        <span class="content22" th:text="${question.user.username}">아이디</span>
-                        <a th:href="@{'/protected/question/'+${question.id}}">
-                            <span class="content33" th:text="${question.title}">제목</span>
-                        </a>
-                            <!-- <td th:text="${question.content}">내용</td> -->
-                    </div>
-                </tr>
+				 
+			<table>
+    <thead>
+		
+        <tr>
+	
+            <th class="numm">게시번호</th>
+            <th class="nummm">작성자</th>
+            <th>제목</th>
+            <th>작성일</th>
+    
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="question, index : ${questionList}">
+            <td th:text="${index.index}">게시번호</td>
+            <td th:text="${question.user.username}">아이디</td>
+            <td>
+                <a class="hrefnone" th:href="@{'/protected/question/'+${question.id}}">
+                    <span class="content33" th:text="${question.title}">제목</span>
+                </a>
+            </td>
+            <td th:text="${#temporals.format(question.QuestionDate, 'yyyy-MM-dd')}">작성날짜</td>
+        </tr>
+    </tbody>
+</table>
+
             </div>
+            </div>
+    </div>
         </div>
     </div>
 </body>

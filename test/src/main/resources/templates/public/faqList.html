@@ -5,6 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>q/a</title>
+			<link href="../../css/sidemenu.css" rel="stylesheet">
 	<link href="../css/questionList.css" rel="stylesheet">
 	<!-- JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -19,7 +20,18 @@
 	<!-- 홈페이지 헤더부분 -->
 	<div layout:fragment="content">
 		<div class="all-container">
-
+ <div class="sidemenu">
+            <ul>
+                <li><a href="../public/usedList">중고마켓</a></li>
+                <li><a href="../protected/questionForm">1:1문의</a></li>
+                	<li><a href="../protected/order">주문조회</a></li>
+               
+            </ul>
+            <ul>
+                <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
+                            th:src="@{/resources/img/kakao.PNG}"></a></li>
+            </ul>
+        </div>
 			<div class="header-container">
 				<div class="header-left">
 					<p class="customer">
@@ -95,7 +107,7 @@
 										상품 수령 날짜 기준 10일이내 상품 미반환시 청약철회(교환/반품)를 취소하는 것으로 간주합니다.<br><br>
 										- 교환/반품을 원하실 경우, 반드시 계좌로 배송비를 입금해주셔야 하시며(배송비 차감후 환불은 불가합니다.) <br>
 										동봉을 하여 분실된 배송비에 대해서는 저희 HENRY는 책임지지 않습니다.<br>
-										배송비 입금은 국민 국민 : 938002-00-801546조주형(HENRY) 으로 입금 부탁드리겠습니다.<br>
+										배송비 입금은 국민 123456-00-123456 조주형(HENRY) 으로 입금 부탁드리겠습니다.<br>
 										[배송비는 동봉이 아닌 입금으로 받고있습니다. 주문자명과 동일한 이름으로 입금 부탁드립니다.]<br><br>
 										- 무통장입금,계좌이체 하신 고객님들은 반품봉투 앞면에 환불받으실 계좌정보,은행명,예금주명 기재한 후 보내주십시오.<br>
 										(계좌정보 판별이 불가능 할 땐, 환불 보류 처리되는 점 참고 부탁드립니다.)<br><br>

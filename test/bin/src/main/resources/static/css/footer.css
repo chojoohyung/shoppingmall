@@ -1,0 +1,76 @@
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    margin-top:5%
+}
+
+
+.customer-center,
+.order-tracking,
+.return-exchange,
+.additional-info {
+    flex: 1;
+  
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    text-align: center;
+    border-radius: 5px;
+    margin: 5px;
+    transition: background-color 0.3s;
+    height: 300px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.customer-center h4,
+.order-tracking h4,
+.return-exchange h4,
+.additional-info h4 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.customer-center h3,
+.order-tracking h3,
+.return-exchange h3,
+.additional-info h3 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.customer-center p,
+.order-tracking p,
+.return-exchange p,
+.additional-info p {
+    font-size: 16px;
+}
+
+.customer-center b,
+.order-tracking b,
+.return-exchange b,
+.additional-info b {
+    font-weight: bold;
+}
+
+.all-container{
+	padding-left:10% ;
+	padding-right:10% ;
+}
+
+.company-info,.copyright-text {
+	width: 100%;
+	display: flex;
+	justify-content: left;
+	margin-top: 10px;
+	background-color: black;
+	color: white;
+	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+.underbar{
+	background-color: black;
+	
+}

@@ -3,6 +3,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_protected}">
 
 <head>
+		<link href="../../css/sidemenu.css" rel="stylesheet">
 	<style>
 		header {
 			display: block;
@@ -55,6 +56,18 @@
 
 	<div layout:fragment="content">
 	<div class="all-container">
+		 <div class="sidemenu">
+            <ul>
+                <li><a href="../public/usedList">중고마켓</a></li>
+                <li><a href="../protected/questionForm">1:1문의</a></li>
+                	<li><a href="../protected/order">주문조회</a></li>
+               
+            </ul>
+            <ul>
+                <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
+                            th:src="@{/resources/img/kakao.PNG}"></a></li>
+            </ul>
+        </div>
 		<nav>
 			<a th:href="@{/public/faq}">Q/A</a>
 			<a href="#">문의하기</a>
