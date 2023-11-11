@@ -1,5 +1,7 @@
 package com.yuhan.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
 import com.yuhan.entity.ProductImg;
+import com.yuhan.entity.Used;
 import com.yuhan.entity.UsedImg;
 import com.yuhan.repository.UsedImgRepository;
 
@@ -56,6 +59,13 @@ public class UsedImgService {
 		}
 	}
 	
+	public List<UsedImg> findByUsed(Used used){
+		List<UsedImg> usedImgList = usedImgRepository.findByUsed(used);
+		return usedImgList;
+	}
 	
+	public void delete(UsedImg usedImg) {
+		usedImgRepository.delete(usedImg);
+	}
 	
 }

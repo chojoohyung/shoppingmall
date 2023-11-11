@@ -14,6 +14,7 @@ import com.yuhan.repository.UsedCommentRepository;
 import com.yuhan.repository.UsedRepository;
 import com.yuhan.repository.UserRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -49,4 +50,7 @@ public class UsedCommentService {
 		return usedCommentRepository.save(usedComment);
 	}
 	 */
+	public void delete(UsedComment usedComment) {
+		usedCommentRepository.delete(usedComment);
+	}
 }

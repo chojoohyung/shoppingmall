@@ -267,6 +267,8 @@
 
 
 				<div class="used-title">
+					<button type="button" th:if="${username == used.orderProduct.order.user.username or username == 'admin'}"
+						onclick="deleteUsed()">중고 글삭제</button>
 					<button type="button" onclick="product()">상품보기</button>
 					<input type="hidden" id="idValue" th:value="${used.id}">
 					<p class="retro-title" th:text="${used.title}">제목</p><br>
@@ -279,7 +281,7 @@
 
 					<span class="retro-date"><b>구매 한 날짜:</b> </span><span class="retro-date1"
 						th:text="${#temporals.format(used.orderProduct.order.orderDate, 'yyyy-MM-dd')}">주문 내역</span>
-					
+
 
 
 				</div>
@@ -314,13 +316,15 @@
 									<span th:text="${usedComment.user.username}+''">유저이름</span>
 								</div>
 								<p th:text="${usedComment.content}">내용</p>
-								<span th:text="${#temporals.format(usedComment.commentDate, 'yyyy-MM-dd HH:mm')}"></span>
+								<span
+									th:text="${#temporals.format(usedComment.commentDate, 'yyyy-MM-dd HH:mm')}"></span>
 							</div>
 							<div class="used-comment" th:unless="${username == usedComment.user.username or username == used.orderProduct.order.user.username
 										 or usedComment.user.username == used.orderProduct.order.user.username}">
 								<span th:text="${usedComment.user.username}+' : '">유저이름</span>
 								<span>글 작성자와 댓글 작성자만 확인가능합니다</span>
-								<span th:text="${#temporals.format(usedComment.commentDate, 'yyyy-MM-dd HH:mm')}"></span>
+								<span
+									th:text="${#temporals.format(usedComment.commentDate, 'yyyy-MM-dd HH:mm')}"></span>
 							</div>
 						</div>
 					</table>
@@ -329,54 +333,13 @@
 				<!--
 					댓글작성
 				-->
-				<div class="commentwrite">
+				<div class="commentwrite" th:if="${username != null}">
 
 					<span class="co-title" for="message">내용</span>
 					<input type="text" name="content" id="content">
 					<button class="buttons" onclick="comment()">댓글쓰기</button>
-
 				</div>
 			</div>
-			<!--
-				<th:block th:with="counter=0">
-					<div th:each="usedComment, index: ${usedCommentList}">
-						<tr>
-							<div th:if="${usedComment.reply_user eq null}">
-								<th:block th:with="counter=0">
-								</th:block>
-								<input type="hidden" th:id="'userId' + ${usedComment.id}"
-									th:value="${usedComment.user.username}">
-								<span th:text="${usedComment.user.username}+' : '">유저이름</span>
-								<span th:text="${usedComment.content}">내용</span>
-								<button th:id="'btn' + ${usedComment.id}">답글</button>
-								<div th:id="'div' + ${usedComment.id}" class="replyInput">
-									<input type="text" name="reply_content" th:id="'content' + ${usedComment.id}">
-									<input type="hidden" th:id="'commentId' + ${usedComment.id}"
-										th:value="${usedComment.id}">
-									<button th:id="'btnsave' + ${usedComment.id}">답글쓰기</button>
-								</div>
-							</div>
-							<div th:unless="${usedComment.reply_user eq null}" th:classappend="'my-class-'+${counter}">
-								<th:block th:with="counter=${counter + 1}">
-								</th:block>
-								<input type="hidden" th:id="'userId' + ${usedComment.id}"
-									th:value="${usedComment.user.username}">
-								<span th:text="${usedComment.user.username}+' : '">유저이름</span>
-								<span th:text="${usedComment.content}">내용</span>
-								<button th:id="'btn' + ${usedComment.id}">답글</button>
-								<div th:id="'div' + ${usedComment.id}" class="replyInput">
-									<input type="text" name="reply_content" th:id="'content' + ${usedComment.id}">
-									<input type="hidden" th:id="'commentId' + ${usedComment.id}"
-										th:value="${usedComment.id}">
-									<button th:id="'btnsave' + ${usedComment.id}">답글쓰기</button>
-								</div>
-							</div>
-						</tr>
-					</div>
-				</th:block>
-				-->
-
-
 
 
 			<div class="sidemenu">
@@ -405,58 +368,31 @@
 					var productId = /*[[${used.orderProduct.product.id}]]*/ null;
 					window.location.href = "/public/product/" + productId;
 				}
-				/*
-				$(document).ready(function () {
-					// 각 버튼에 대한 이벤트 핸들러를 추가합니다.
-					$('[id^="btn"]').on('click', function () {
-						// 버튼을 클릭할 때 연결된 reply_content의 visibility를 변경합니다.
-						var replyId = $(this).attr("id").replace("btn", "div");
-						var replyInput = $("#" + replyId);
-						replyInput.css("visibility", "visible");
-	
+				function deleteUsed() {
+					var id = $("#idValue").val();
+
+					var token = $("meta[name='_csrf']").attr("content");
+					var header = $("meta[name='_csrf_header']").attr("content");
+
+					var url = "/public/used/" + id;
+
+					$.ajax({
+						url: url,
+						type: "DELETE",
+						beforeSend: function (xhr) {
+							xhr.setRequestHeader(header, token);
+						},
+						dataType: "json",
+						cache: false,
+						success: function (result, status) {
+							alert("글이 삭제되었습니다");
+							window.location.href = "/public/usedList";
+						},
+						error: function (jqXHR, status, error) {
+							alert(jqXHR.responseText);
+						}
 					});
-	
-					// '답글쓰기' 버튼에 대한 이벤트 핸들러
-					$('[id^="btnsave"]').on('click', function () {
-						var commentId = $(this).attr("id").replace("btnsave", "");
-						var contentId = "content" + commentId;
-						var userId = "userId" + commentId;
-	
-						var contentValue = $("#" + contentId).val();
-						var userIdValue = $("#" + userId).val();
-	
-						// 이제 commentIdValue, contentValue 및 userIdValue를 사용하여 Ajax 요청 데이터를 구성합니다.
-						var id = $("#idValue").val();
-						var token = $("meta[name='_csrf']").attr("content");
-						var header = $("meta[name='_csrf_header']").attr("content");
-						var url = "/public/used/" + id + "/reply_comment";
-	
-						// Ajax 요청을 보냅니다.
-						$.ajax({
-							url: url,
-							type: "POST",
-							beforeSend: function (xhr) {
-								xhr.setRequestHeader(header, token);
-							},
-							dataType: "json",
-							cache: false,
-							data: {
-								"content": contentValue,
-								"reply_user": userIdValue // 유저 ID 추가
-							},
-							success: function (result, status) {
-								alert("댓글작성");
-								location.href = "/public/used/" + id;
-							},
-							error: function (jqXHR, status, error) {
-								alert("댓글작성");
-								location.href = "/public/used/" + id;
-							}
-						});
-					});
-	
-				});
-				*/
+				}
 
 				function comment() {
 					var content = $("#content").val();

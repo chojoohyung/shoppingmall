@@ -8,11 +8,13 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,10 +29,12 @@ import com.yuhan.entity.OrderProduct;
 import com.yuhan.entity.Product;
 import com.yuhan.entity.Used;
 import com.yuhan.entity.UsedComment;
+import com.yuhan.entity.UsedImg;
 import com.yuhan.entity.User;
 import com.yuhan.service.OrderProductService;
 import com.yuhan.service.ProductService;
 import com.yuhan.service.UsedCommentService;
+import com.yuhan.service.UsedImgService;
 import com.yuhan.service.UsedService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -44,6 +48,8 @@ public class UsedController {
 	private final UsedService usedService;
 	private final OrderProductService orderProductService;
 	private final UsedCommentService usedCommentService;
+	private final UsedImgService usedImgService;
+	
 	
 	/*
 	 * 중고상품 등록 폼
@@ -173,7 +179,7 @@ public class UsedController {
 	        page = Optional.of(defaultPage);
 	    }
 
-	    Pageable pageable = PageRequest.of(page.get(), pageSize);
+	    Pageable pageable = PageRequest.of(page.get(), pageSize, Sort.by("createDate").descending());
 
 	    Page<Used> usedPage = usedService.findByOrderProduct_Order_User_username(pageable, principal.getName());
 	    List<Used> usedList = usedPage.getContent(); // 현재 페이지의 항목 목록
@@ -240,6 +246,32 @@ public class UsedController {
 		return new ResponseEntity<String>("댓글작성", HttpStatus.OK);
 	}
 	*/
+	
+	@DeleteMapping("/public/used/{id}")
+	public @ResponseBody ResponseEntity productListDelete(@PathVariable("id") Long id, Principal principal)  {
+
+		Used used;
+		if(principal == null) {
+			return new ResponseEntity<String>("유저정보가 없습니다", HttpStatus.BAD_REQUEST);
+		}
+		try {
+			used = usedService.getDtl(id);
+			List<UsedComment> usedCommentList = usedCommentService.findusedId(used.getId());
+			List<UsedImg> usedImgList = usedImgService.findByUsed(used);	
+			
+			for (UsedComment usedComment : usedCommentList) {
+				usedCommentService.delete(usedComment);
+			}
+			for (UsedImg usedImg : usedImgList) {
+				usedImgService.delete(usedImg);
+			}
+			usedService.delete(used);
+		} catch (Exception e) {
+			return new ResponseEntity<String>("삭제오류", HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<Long>(1L, HttpStatus.OK);
+	}
 
 	
 	

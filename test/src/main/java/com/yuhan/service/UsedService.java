@@ -106,4 +106,8 @@ public class UsedService {
 		return usedRepository.findByOrderProduct_Order_User_username(pageable, username);
 	}
 	
+	public void delete(Used used) {
+		usedRepository.delete(used);
+	}
+	
 }
