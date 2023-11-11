@@ -122,9 +122,16 @@ public class ProductController {
 	@GetMapping("/")
 	public String main(Model model, Optional<Integer> page) {
 		Pageable paging = PageRequest.of(page.isPresent() ? page.get() : 0 , 100);
-		
 		List<ProductDto> productDto = productService.test(paging);
 		
+		/*
+		 * 배너 8개
+		 */
+		Pageable bannerPage = PageRequest.of(0, 8);
+		List<ProductDto> productDtoBanner = productService.testSales(bannerPage);
+		
+		
+		model.addAttribute("productDtoBanner", productDtoBanner);
 		model.addAttribute("productPagingDto", productDto);
 		return "/main";
 	}

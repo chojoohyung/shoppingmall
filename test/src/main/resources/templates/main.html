@@ -184,47 +184,55 @@
 
 				<div id="slider">
 					<div class="slidebox">
+						<div th:each="p:${productDtoBanner}">
+							<a th:href="${'/public/product/'+p.id}">
+								<div style="margin-left: 10px;">
+									<img th:src="${p.productImgDtoList[0].imgUrl}" alt="" width="500px;" height="600px"> 
+								</div>
+							</a>
+						</div>
+						<!--
 						<a href="/">
 							<div style="margin-left: 10px;">
-								<img src="resources/img/q1.PNG" alt="" width="500px;" height="600px"> <!--슬라이드 1-->
+								<img src="resources/img/q1.PNG" alt="" width="500px;" height="600px"> 
 							</div>
 						</a>
 						<a href="/">
 							<div style="margin-left: 10px;">
-								<img src="resources/img/q2.PNG" alt="" width="500px;" height="600px"> <!--슬라이드 2-->
+								<img src="resources/img/q2.PNG" alt="" width="500px;" height="600px"> 
 							</div>
 						</a>
 						<a href="/public/product/54">
 							<div style="margin-left: 10px;">
-								<img src="resources/img/q3.PNG" alt="" width="500px;" height="600px"> <!--슬라이드 3-->
+								<img src="resources/img/q3.PNG" alt="" width="500px;" height="600px"> 
 							</div>
 						</a>
 						<a href="/">
 							<div style="margin-left: 10px;">
-								<img src="resources/img/q4.PNG" alt="" width="500px;" height="600px"> <!--슬라이드 4-->
+								<img src="resources/img/q4.PNG" alt="" width="500px;" height="600px"> 
 							</div>
 						</a>
 						<a href="/">
 							<div style="margin-left: 10px;">
-								<img src="resources/img/q1.PNG" alt="" width="500px;" height="600px"> <!--슬라이드 1-->
+								<img src="resources/img/q1.PNG" alt="" width="500px;" height="600px"> 
 							</div>
 						</a>
 						<a href="/">
 							<div style="margin-left: 10px;">
-								<img src="resources/img/q2.PNG" alt="" width="500px;" height="600px"> <!--슬라이드 2-->
+								<img src="resources/img/q2.PNG" alt="" width="500px;" height="600px"> 
 							</div>
 						</a>
 						<a href="/">
 							<div style="margin-left: 10px;">
-								<img src="resources/img/q3.PNG" alt="" width="500px;" height="600px"> <!--슬라이드 3-->
+								<img src="resources/img/q3.PNG" alt="" width="500px;" height="600px"> 
 							</div>
 						</a>
 						<a href="/">
 							<div style="margin-left: 10px;">
-								<img src="resources/img/q4.PNG" alt="" width="500px;" height="600px"> <!--슬라이드 4-->
+								<img src="resources/img/q4.PNG" alt="" width="500px;" height="600px"> 
 							</div>
 						</a>
-
+						-->
 
 
 					</div>

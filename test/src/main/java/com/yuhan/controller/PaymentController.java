@@ -24,7 +24,7 @@ public class PaymentController {
 
     public PaymentController() {
         this.iamportClient = new IamportClient("6760024718016865",
-                "4LBcN36qBKgMsxJNhxUSYyxIFnrOO7A90tth8ZpqbI9srNe98abP70WbMN5fHNBAZSFSdhmeelp9h16V");
+                "L9p2wZncSXO8pHLKkEMrkRrtusCliZ5uYWC8XIet4p9lUCtQXjkluSZNcC4zb6JDkTBXg3SU8uWKN3o3");
     }
 
     @ResponseBody
