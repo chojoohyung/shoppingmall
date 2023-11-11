@@ -93,8 +93,8 @@
             <td th:text="${index.index}">게시번호</td>
             <td th:text="${question.user.username}">아이디</td>
             <td>
-                <a class="hrefnone" th:href="@{'/protected/question/'+${question.id}}">
-                    <span class="content33" th:text="${question.title}">제목</span>
+                <a class="hrefnone" th:href="@{'/protected/question/'+${question.id}}"  th:text="${question.title}">
+               	제목
                 </a>
             </td>
             <td th:text="${#temporals.format(question.QuestionDate, 'yyyy-MM-dd')}">작성날짜</td>

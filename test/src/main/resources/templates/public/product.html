@@ -1,309 +1,317 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
 
 <head>
-    <meta charset="utf-8">
-    <title>product</title>
-    <meta name="_csrf" th:content="${_csrf.token}" />
-    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
-    <link href="../../css/product.css" rel="stylesheet">
-    <link href="../../css/sidemenu.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<meta charset="utf-8">
+	<title>product</title>
+	<meta name="_csrf" th:content="${_csrf.token}" />
+	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+	<link href="../../css/product.css" rel="stylesheet">
+	<link href="../../css/sidemenu.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <style>
-    </style>
+	<style>
+	</style>
 
 </head>
 
 <body>
-    <div layout:fragment="content">
+	<div layout:fragment="content">
 
-        <div class="all-container">
-            <!-- 상품 정보 컨테이너 -->
-            <!-- 기존 코드 유지 -->
-           	<div class="sidemenu">
-            <ul>
-                <li><a href="../public/usedList">중고마켓</a></li>
-                <li><a href="../protected/questionForm">1:1문의</a></li>
-                	<li><a href="/protected/order">주문조회</a></li>
-               
-            </ul>
-            <ul>
-                <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
-                            th:src="@{/resources/img/kakao.PNG}"></a></li>
-            </ul>
-        </div>
+		<div class="all-container">
+			<!-- 상품 정보 컨테이너 -->
+			<!-- 기존 코드 유지 -->
+			<div class="sidemenu">
+				<ul>
+					<li><a href="../public/usedList">중고마켓</a></li>
+					<li><a href="../protected/questionForm">1:1문의</a></li>
+					<li><a href="/protected/order">주문조회</a></li>
 
-            <div class="product-info-container1">
-                <img class="product-img" th:src="${productDto.productImgDtoList[0].imgUrl}" alt="상품 이미지">
-                <div class="product-container1">
-                    <input type="hidden" id="productId" th:value="${productDto.id}">
-                    <p class="product-details1" id="product_name" th:text="''+${productDto.name}">옷 이름</p>
-                    <p class="product-details2">' 판매가 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;: <span
-                            class="product-details22" id="product_price" th:text="''+${productDto.price}+'won'">옷
-                            가격</span></p>
-                    <p class="product-details3">' 사이즈 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;: <span
-                            class="product-details33 " th:text="''+${productDto.size}">사이즈</span> </p>
-                    <p class="product-details4">' 컬러 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <span
-                            class="product-details44 " th:text="''+${productDto.color}">컬러</span></p>
-                    <p class="product-details5">' 현 재고 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;: <span
-                            class="product-details55 " th:text="''+${productDto.stock}">옷 재고</span></p>
-                    <p class="product-details6">' 수량<input type="number" name="count" id="count" class="form-control"
-                            value="1" min="1"><br></p>
-                    <span class="input-group-text">중고목록</span>
-                    <select onchange="UsedSelect(this)" class="custom-select">
-                        <option value="" disabled selected>중고</option>
-                        <option th:each="PIDUsed, index : ${PIDUsedList}" th:value="${PIDUsed.id}">
-                            <div th:text="${PIDUsed.title}"></div>
-                            <div th:text="${PIDUsed.price}"></div>
-                            <div th:text="${#temporals.format(PIDUsed.createDate, 'yyyy-MM-dd HH:mm')}"></div>
-                        </option>
-                    </select>
+				</ul>
+				<ul>
+					<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
+								th:src="@{/resources/img/kakao.PNG}"></a></li>
+				</ul>
+			</div>
 
-                    
-                    <button type="button" onclick="requestPay()" sec:authorize="hasRole('ROLE_USER')"
-                        class="order-button1">BUY NOW</button><br>
-                    <button type="button" onclick="addCart()" sec:authorize="hasRole('ROLE_USER')"
-                        class="order-button2">CART</button>
-                    <button type="button" id="yourButtonId" sec:authorize="hasRole('ROLE_ADMIN')"
-                        class="order-button1">UPDATE</button><br>
-                    <button type="button" id="delete" sec:authorize="hasRole('ROLE_ADMIN')"
-                        class="order-button2">DELETE</button>
-                    <button type="button" onclick="location.href='/public/login'" sec:authorize="!isAuthenticated()"
-                        class="order-button1">Login</button>
+			<div class="product-info-container1">
+				<img class="product-img" th:src="${productDto.productImgDtoList[0].imgUrl}" alt="상품 이미지">
+				<div class="product-container1">
+					<input type="hidden" id="productId" th:value="${productDto.id}">
+					<p class="product-details1" id="product_name" th:text="''+${productDto.name}">옷 이름</p>
+					<p class="product-details2">' 판매가 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;: 
+						<span class="product-details22" id="product_price" th:text="''+${productDto.price}+'won'">옷
+							가격</span></p>
+					<p class="product-details3">' 사이즈 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;: <span
+							class="product-details33 " th:text="''+${productDto.size}">사이즈</span> </p>
+					<p class="product-details4">' 컬러 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <span
+							class="product-details44 " th:text="''+${productDto.color}">컬러</span></p>
+					<p class="product-details5">' 현 재고 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;: <span
+							class="product-details55 " th:text="''+${productDto.stock}">옷 재고</span></p>
+					<p class="product-details6">' 수량 
+						<input type="number" name="count" id="count" class="form-control"
+							value="1" min="1"></p>
+					<span class="product-details7">' 중고목록&nbsp;&nbsp;&nbsp;</span>
+					<select onchange="UsedSelect(this)" class="custom-select">
+						<optgroup label="중고상품 보기">
+							<option value="" disabled selected>선택하세요</option>
+							<th:block th:each="PIDUsed, index : ${PIDUsedList}">
+								<option th:value="${PIDUsed.id}">
+									<div class="title" th:text="${'제목:'+PIDUsed.title}"></div>
+									<div class="price" th:text="${'가격:'+PIDUsed.price}"></div>
+									<div class="date"
+										th:text="${'게시날짜:'+#temporals.format(PIDUsed.createDate, 'yyyy-MM-dd HH:mm')}">
+									</div>
+								</option>
+							</th:block>
+						</optgroup>
+					</select>
 
-                </div>
 
-                <div class="kk1">
-                    <img class="kk" th:src="@{/resources/img/kk.PNG}" alt="My Image">
-                    <button onclick="location.href='/protected/coupon'" class="buttonn">내 혜택 보러가기</button>
-                </div>
-            </div>
-            <div class="product-info-container">
-                <div class="product-images">
-                    <div th:each="productImgDto, status: ${productDto.productImgDtoList}">
-                        <div th:if="${status.index==0}">
-                        </div>
-                        <div th:unless="${status.index==0}">
-                            <div>
-                                <input type="hidden" name="productImgIds" th:value="${productImgDto.id}">
-                                <img class="product-image11" th:src="${productImgDto.imgUrl}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <script th:inline="javascript">
-                /*[# th:if="${user != null && user.email != null}"]*/
-                var userEmail = /*[[${user.email}]]*/ null;
-                var userName = /*[[${user.name}]]*/ null;
-                var userPhone = /*[[${user.phone}]]*/ null;
-                var userAddr = /*[[${user.addr}]]*/ null;
+					<button type="button" onclick="requestPay()" sec:authorize="hasRole('ROLE_USER')"
+						class="order-button1">BUY NOW</button><br>
+					<button type="button" onclick="addCart()" sec:authorize="hasRole('ROLE_USER')"
+						class="order-button2">CART</button>
+					<button type="button" id="yourButtonId" sec:authorize="hasRole('ROLE_ADMIN')"
+						class="order-button1">UPDATE</button><br>
+					<button type="button" id="delete" sec:authorize="hasRole('ROLE_ADMIN')"
+						class="order-button2">DELETE</button>
+					<button type="button" onclick="location.href='/public/login'" sec:authorize="!isAuthenticated()"
+						class="order-button1">Login</button>
+
+				</div>
+
+				<div class="kk1">
+					<img class="kk" th:src="@{/resources/img/kk.PNG}" alt="My Image">
+
+				</div>
+			</div>
+			<div class="product-info-container">
+				<div class="product-images">
+					<div th:each="productImgDto, status: ${productDto.productImgDtoList}">
+						<div th:if="${status.index==0}">
+						</div>
+						<div th:unless="${status.index==0}">
+							<div>
+								<input type="hidden" name="productImgIds" th:value="${productImgDto.id}">
+								<img class="product-image11" th:src="${productImgDto.imgUrl}">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script th:inline="javascript">
+				/*[# th:if="${user != null && user.email != null}"]*/
+				var userEmail = /*[[${user.email}]]*/ null;
+				var userName = /*[[${user.name}]]*/ null;
+				var userPhone = /*[[${user.phone}]]*/ null;
+				var userAddr = /*[[${user.addr}]]*/ null;
                 /*[/]*/
 
 
-            </script>
+			</script>
 
 
-            <script>
-                function UsedSelect(selectElement) {
-                    var usedId = selectElement.value;
-                    window.location.href = "/public/used/" + usedId;
-                }
-                var IMP = window.IMP;
-                IMP.init("imp46787317");
+			<script>
+				function UsedSelect(selectElement) {
+					var usedId = selectElement.value;
+					window.location.href = "/public/used/" + usedId;
+				}
+				var IMP = window.IMP;
+				IMP.init("imp46787317");
 
-                var productName = document.querySelector('#product_name').textContent;
-                var productPrice = document.querySelector('#product_price').textContent;
+				var productName = document.querySelector('#product_name').textContent;
+				var productPrice = document.querySelector('#product_price').textContent;
 
-                var token = $("meta[name='_csrf']").attr("content");
-                var header = $("meta[name='_csrf_header']").attr("content");
+				var token = $("meta[name='_csrf']").attr("content");
+				var header = $("meta[name='_csrf_header']").attr("content");
 
-                function requestPay() {
-                    IMP.request_pay({
-                        pg: "kakaopay.TC0ONETIME",
-                        pay_method: "card",
-                        name: productName,
-                        amount: productPrice,                         // 숫자 타입
-                        buyer_email: userEmail,
-                        buyer_name: userName,
-                        buyer_tel: userPhone,
-                        buyer_addr: userAddr,
-                    }, function (rsp) { // callback
-                        $.ajax({
-                            type: 'POST',
-                            url: '/verify/' + rsp.imp_uid,
-                            beforeSend: function (xhr) {
-                                /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
-                                xhr.setRequestHeader(header, token);
-                            },
-                        }).done(function (data) {
-                            if (rsp.paid_amount === data.response.amount) {
-                                order();
-                            } else {
-                                alert("결제 실패");
-                            }
-                        });
-                    });
-                }
+				function requestPay() {
+					IMP.request_pay({
+						pg: "kakaopay.TC0ONETIME",
+						pay_method: "card",
+						name: productName,
+						amount: productPrice,                         // 숫자 타입
+						buyer_email: userEmail,
+						buyer_name: userName,
+						buyer_tel: userPhone,
+						buyer_addr: userAddr,
+					}, function (rsp) { // callback
+						$.ajax({
+							type: 'POST',
+							url: '/verify/' + rsp.imp_uid,
+							beforeSend: function (xhr) {
+								/* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+								xhr.setRequestHeader(header, token);
+							},
+						}).done(function (data) {
+							if (rsp.paid_amount === data.response.amount) {
+								order();
+							} else {
+								alert("결제 실패");
+							}
+						});
+					});
+				}
 
-                function redirectToAdminPage() {
-                    // 현재 페이지 주소를 가져옵니다.
-                    var currentURL = window.location.href;
+				function redirectToAdminPage() {
+					// 현재 페이지 주소를 가져옵니다.
+					var currentURL = window.location.href;
 
-                    // 현재 페이지 주소에서 "/public/"을 "/admin/"으로 대체합니다.
-                    var newURL = currentURL.replace("/public/", "/admin/");
+					// 현재 페이지 주소에서 "/public/"을 "/admin/"으로 대체합니다.
+					var newURL = currentURL.replace("/public/", "/admin/");
 
-                    // 변경된 주소로 페이지를 이동합니다.
-                    window.location.href = newURL;
-                }
-                var button = document.getElementById("yourButtonId"); // 버튼의 ID를 지정하세요.
-                button.addEventListener("click", redirectToAdminPage);
+					// 변경된 주소로 페이지를 이동합니다.
+					window.location.href = newURL;
+				}
+				var button = document.getElementById("yourButtonId"); // 버튼의 ID를 지정하세요.
+				button.addEventListener("click", redirectToAdminPage);
 
-                function deleteProduct() {
-                    var token = $("meta[name='_csrf']").attr("content");
-                    var header = $("meta[name='_csrf_header']").attr("content");
-                    var productId = $("#productId").val();
-                    var url = "/public/product/" + productId;
+				function deleteProduct() {
+					var token = $("meta[name='_csrf']").attr("content");
+					var header = $("meta[name='_csrf_header']").attr("content");
+					var productId = $("#productId").val();
+					var url = "/public/product/" + productId;
 
-                    $.ajax({
-                        url: url,
-                        type: "DELETE",
-                        beforeSend: function (xhr) {
-                            /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
-                            xhr.setRequestHeader(header, token);
-                        },
-                        dataType: "json",
-                        cache: false,
-                        success: function (result, status) {
-                            location.href = '/';
-                        },
-                        error: function (jqXHR, status, error) {
+					$.ajax({
+						url: url,
+						type: "DELETE",
+						beforeSend: function (xhr) {
+							/* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+							xhr.setRequestHeader(header, token);
+						},
+						dataType: "json",
+						cache: false,
+						success: function (result, status) {
+							location.href = '/';
+						},
+						error: function (jqXHR, status, error) {
 
-                            if (jqXHR.status == '401') {
-                                alert('로그인 후 이용해주세요');
-                                location.href = '/public/login';
-                            } else {
-                                alert(jqXHR.responseJSON.message);
-                            }
+							if (jqXHR.status == '401') {
+								alert('로그인 후 이용해주세요');
+								location.href = '/public/login';
+							} else {
+								alert(jqXHR.responseJSON.message);
+							}
 
-                        }
-                    });
-                }
+						}
+					});
+				}
 
-                var button = document.getElementById("delete"); // 버튼의 ID를 지정하세요.
-                button.addEventListener("click", deleteProduct);
+				var button = document.getElementById("delete"); // 버튼의 ID를 지정하세요.
+				button.addEventListener("click", deleteProduct);
 
 
-                $(document).ready(function () {
-                    calculateToalPrice();
+				$(document).ready(function () {
+					calculateToalPrice();
 
-                    $("#count").change(function () {
-                        calculateToalPrice();
-                    });
-                });
+					$("#count").change(function () {
+						calculateToalPrice();
+					});
+				});
 
-                function calculateToalPrice() {
-                    var count = $("#count").val();
-                    var price = $("#price").val();
-                    var totalPrice = price * count;
-                    $("#totalPrice").html(totalPrice + '원');
-                }
+				function calculateToalPrice() {
+					var count = $("#count").val();
+					var price = $("#price").val();
+					var totalPrice = price * count;
+					$("#totalPrice").html(totalPrice + '원');
+				}
 
-                function order() {
+				function order() {
 
-                    var token = $("meta[name='_csrf']").attr("content");
-                    var header = $("meta[name='_csrf_header']").attr("content");
-                    var url = "/order";
-                    var paramData = {
-                        productId: $("#productId").val(),
-                        count: $("#count").val()
-                    };
+					var token = $("meta[name='_csrf']").attr("content");
+					var header = $("meta[name='_csrf_header']").attr("content");
+					var url = "/order";
+					var paramData = {
+						productId: $("#productId").val(),
+						count: $("#count").val()
+					};
 
-                    var param = JSON.stringify(paramData);
+					var param = JSON.stringify(paramData);
 
-                    $.ajax({
-                        url: url,
-                        type: "POST",
-                        contentType: "application/json",
-                        data: param,
-                        beforeSend: function (xhr) {
-                            /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
-                            xhr.setRequestHeader(header, token);
-                        },
-                        dataType: "json",
-                        cache: false,
-                        success: function (result, status) {
-                            alert("주문이 완료 되었습니다.");
-                            location.href = '/';
-                        },
-                        error: function (jqXHR, status, error) {
+					$.ajax({
+						url: url,
+						type: "POST",
+						contentType: "application/json",
+						data: param,
+						beforeSend: function (xhr) {
+							/* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+							xhr.setRequestHeader(header, token);
+						},
+						dataType: "json",
+						cache: false,
+						success: function (result, status) {
+							alert("주문이 완료 되었습니다.");
+							location.href = '/';
+						},
+						error: function (jqXHR, status, error) {
 
-                            if (jqXHR.status == '401') {
-                                alert('로그인 후 이용해주세요');
-                                location.href = '/public/login';
-                            } else {
-                                alert(jqXHR.responseText);
-                            }
+							if (jqXHR.status == '401') {
+								alert('로그인 후 이용해주세요');
+								location.href = '/public/login';
+							} else {
+								alert(jqXHR.responseText);
+							}
 
-                        }
-                    });
-                }
+						}
+					});
+				}
 
-                function addCart() {
-                    var token = $("meta[name='_csrf']").attr("content");
-                    var header = $("meta[name='_csrf_header']").attr("content");
+				function addCart() {
+					var token = $("meta[name='_csrf']").attr("content");
+					var header = $("meta[name='_csrf_header']").attr("content");
 
-                    var url = "/cart";
-                    var paramData = {
-                        productId: $("#productId").val(),
-                        count: $("#count").val()
-                    };
+					var url = "/cart";
+					var paramData = {
+						productId: $("#productId").val(),
+						count: $("#count").val()
+					};
 
-                    var param = JSON.stringify(paramData);
+					var param = JSON.stringify(paramData);
 
-                    $.ajax({
-                        url: url,
-                        type: "POST",
-                        contentType: "application/json",
-                        data: param,
-                        beforeSend: function (xhr) {
-                            /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
-                            xhr.setRequestHeader(header, token);
-                        },
-                        dataType: "json",
-                        cache: false,
-                        success: function (result, status) {
-                            alert("상품을 장바구니에 담았습니다.");
-                            location.href = '/';
-                        },
-                        error: function (jqXHR, status, error) {
+					$.ajax({
+						url: url,
+						type: "POST",
+						contentType: "application/json",
+						data: param,
+						beforeSend: function (xhr) {
+							/* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+							xhr.setRequestHeader(header, token);
+						},
+						dataType: "json",
+						cache: false,
+						success: function (result, status) {
+							alert("상품을 장바구니에 담았습니다.");
+							location.href = '/';
+						},
+						error: function (jqXHR, status, error) {
 
-                            if (jqXHR.status == '401') {
-                                alert('로그인 후 이용해주세요');
-                                location.href = '/public/login';
-                            } else {
-                                alert(jqXHR.responseText);
-                            }
-                        }
-                    });
-                }
+							if (jqXHR.status == '401') {
+								alert('로그인 후 이용해주세요');
+								location.href = '/public/login';
+							} else {
+								alert(jqXHR.responseText);
+							}
+						}
+					});
+				}
 
-                $(document).ready(function () {
-                    var currentPosition = parseInt($(".sidemenu").css("top"));
-                    $(window).scroll(function () {
-                        var position = $(window).scrollTop();
-                        $(".sidemenu").stop().animate({ "top": position + currentPosition + "px" }, 600);
-                    });
-                });
-            </script>
-        </div>
-    </div>
+				$(document).ready(function () {
+					var currentPosition = parseInt($(".sidemenu").css("top"));
+					$(window).scroll(function () {
+						var position = $(window).scrollTop();
+						$(".sidemenu").stop().animate({"top": position + currentPosition + "px"}, 600);
+					});
+				});
+			</script>
+		</div>
+	</div>
 </body>
 
 </html>
