@@ -40,7 +40,7 @@
 
 		.retro-content {
 			margin-left: 50px;
-			margin-top: -40px;
+
 		}
 
 		.retro-date {
@@ -87,8 +87,8 @@
 		}
 
 		.text2 {
-			margin-left: 50px;
-			margin-top: 40px;
+			margin-left: 10%;
+
 		}
 
 		.text3 {
@@ -240,13 +240,9 @@
 </head>
 
 <body>
-
-
 	<div layout:fragment="content">
 		<div class="all-container">
 			<div class="retro-container">
-
-
 				<div class="slideshow-container">
 					<div th:each="productImgDto, status: ${used.usedImgList}">
 						<div th:unless="${#strings.isEmpty(productImgDto.imgUrl)}">
@@ -257,13 +253,10 @@
 						</div>
 					</div>
 
-
 					<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
 
 					<a class="next" onclick="plusSlides(1)">&#10095;</a>
 				</div>
-
-
 
 
 				<div class="used-title">
@@ -271,14 +264,13 @@
 						th:if="${username == used.orderProduct.order.user.username or username == 'admin'}"
 						onclick="deleteUsed()">중고 글삭제</button>
 					<button type="button" onclick="product()">상품보기</button>
+
 					<input type="hidden" id="idValue" th:value="${used.id}">
 					<p class="retro-title" th:text="${used.title}">제목</p><br>
 					<p class="retro-price" th:text="${used.price}+'원'">가격</p><br>
-					<p class="text2"><b>결제혜택</b> : 중고나라 페이 첫 결제 혜택<br></p>
-					<p class="text3">
-						CU 알뜰택배 무료배송<br>
-						세븐일레븐 편의점 택배 무료<br>
-						편의점 픽업 수수료 무료</p>
+
+
+
 
 					<span class="retro-date"><b>구매 한 날짜:</b> </span><span class="retro-date1"
 						th:text="${#temporals.format(used.orderProduct.order.orderDate, 'yyyy-MM-dd')}">주문 내역</span>
@@ -402,7 +394,7 @@
 
 					var id = $("#idValue").val();
 
-					
+
 					var token = $("meta[name='_csrf']").attr("content");
 					var header = $("meta[name='_csrf_header']").attr("content");
 					var url = "/public/used/" + id + "/" + replyId;

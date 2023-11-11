@@ -95,7 +95,7 @@ public class UserController {
 			return new ResponseEntity<Boolean>(false ,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/protected/mypage/deleteUser")
+	@DeleteMapping("/protected/userUpdateForm/deleteUser")
 	public @ResponseBody ResponseEntity deleteId(Principal principal) {
 		User user = userService.findByUsername(principal.getName());
 		if(user == null)
