@@ -15,6 +15,8 @@ import com.siot.IamportRestClient.response.Payment;
 import com.yuhan.entity.User;
 import com.yuhan.service.UserService;
 
+import retrofit2.HttpException;
+
 @Controller
 public class PaymentController {
 	
@@ -22,7 +24,7 @@ public class PaymentController {
 
     public PaymentController() {
         this.iamportClient = new IamportClient("6760024718016865",
-                " ");
+                "L9p2wZncSXO8pHLKkEMrkRrtusCliZ5uYWC8XIet4p9lUCtQXjkluSZNcC4zb6JDkTBXg3SU8uWKN3o3");
     }
 
     @ResponseBody

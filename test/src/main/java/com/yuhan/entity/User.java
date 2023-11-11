@@ -59,6 +59,7 @@ public class User {
 		this.phone = user.getPhone();
 		this.gender = user.getGender();
 		this.addr = user.getAddr();
+		this.name = user.getName();
 		
 	}
 	

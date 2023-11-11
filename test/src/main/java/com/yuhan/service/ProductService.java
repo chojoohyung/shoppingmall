@@ -99,6 +99,21 @@ public class ProductService {
 	}
 	
 	@Transactional(readOnly = true)
+	public List<ProductDto> testSales(Pageable pageable) {
+		List<ProductDto> productDtos = new ArrayList<>();
+		
+		List<Product> productList = productRepository.queryAnnotionsales(pageable);
+		
+		for (int i = 0; i < productList.size(); i++) {
+			productDtos.add(getProductDtl(productList.get(i).getId()));
+		}
+		
+		
+		return productDtos;
+	}
+	
+	
+	@Transactional(readOnly = true)
 	public List<ProductDto> findcategory(Pageable pageable, String category) {
 		List<ProductDto> productDtos = new ArrayList<>();
 		

@@ -15,13 +15,21 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yuhan.dto.CartDetailDto;
 import com.yuhan.dto.CartOrderDto;
 import com.yuhan.dto.CartProductDto;
+import com.yuhan.dto.CartRemoveDto;
+import com.yuhan.entity.Product;
+import com.yuhan.entity.User;
+import com.yuhan.repository.ProductRepository;
 import com.yuhan.service.CartService;
+import com.yuhan.service.ProductService;
+import com.yuhan.service.UserService;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -30,6 +38,8 @@ import lombok.RequiredArgsConstructor;
 public class CartController {
 	
 	private final CartService cartService;
+	private final UserService userService;
+	private final ProductRepository productRepository;
 	
 	@PostMapping("/cart")
 	public @ResponseBody ResponseEntity order(@RequestBody @Valid CartProductDto cartProductDto, BindingResult bindingResult, Principal principal) {
@@ -55,9 +65,13 @@ public class CartController {
 	
 	@GetMapping("/protected/cart")
 	public String orderList(Principal principal, Model model) {
+		
 		List<CartDetailDto> cartDetailDtoList = cartService.getCartList(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 		
 		model.addAttribute("cartDetailDtoList", cartDetailDtoList);
+		model.addAttribute("user", user);
+		
 		return "/protected/cart";
 	}
 	
@@ -99,8 +113,24 @@ public class CartController {
 			}
 		}
 		
+		
 		Long orderId = cartService.orderCartProduct(cartOrderDtoList, principal.getName());
 		return new ResponseEntity<Long>(orderId, HttpStatus.OK);
+	}
 	
+	@PostMapping("/protected/cart/orders/removeStock")
+	public @ResponseBody ResponseEntity orderCartProductremoveStock(@RequestBody CartRemoveDto cartRemoveDto) {
+		List<CartRemoveDto> cartRemoveDtoList = cartRemoveDto.getCartRemoveDtoList();
+				
+		
+		Long cartId = null;
+		if(cartRemoveDtoList == null || cartRemoveDtoList.size() == 0) {
+			return new ResponseEntity<String>("주문 상품 선택", HttpStatus.FORBIDDEN);
+		}
+		
+		for (CartRemoveDto cartRemove : cartRemoveDtoList) {
+			cartId = cartService.removeStock(cartRemove);
+		}
+		return new ResponseEntity<Long>(1L, HttpStatus.OK);
 	}
 }

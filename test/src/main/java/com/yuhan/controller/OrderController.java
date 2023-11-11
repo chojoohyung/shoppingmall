@@ -3,7 +3,11 @@ package com.yuhan.controller;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,10 +39,28 @@ public class OrderController {
 	/*
 	 * User용 유저 주문내역 리스트
 	 */
-	@GetMapping("/protected/order")
-	public String orderUser(Model model, Principal principal) {
+	@GetMapping(value = {"/protected/order/{page}", "/protected/order"})
+	public String orderUser(Model model, Principal principal, @PathVariable("page") Optional<Integer> page) {
 		
-		List<Order> orders = orderService.findUsername(principal.getName());
+		int pageSize = 10; // 페이지당 항목 수
+	    int defaultPage = 0; // 기본 페이지 번호
+
+	    if (page.isPresent()) {
+	        if (page.get() < 0) {
+	            // 페이지 번호가 0 미만인 경우 기본 페이지 번호로 설정
+	            page = Optional.of(defaultPage);
+	        }
+	    } else {
+	        page = Optional.of(defaultPage);
+	    }
+
+	    Pageable pageable = PageRequest.of(page.get(), pageSize);
+	    
+		Page<Order> orders = orderService.findUsername(pageable, principal.getName());
+		int totalPages = orders.getTotalPages() - 1; // 전체 페이지 수
+		
+		model.addAttribute("totalPages", totalPages);
+	    model.addAttribute("page", page.orElse(defaultPage)); // 현재 페이지 번호
 		model.addAttribute("orders", orders);
 		return "/protected/order";
 	}
@@ -45,14 +68,34 @@ public class OrderController {
 	/*
 	 * Admin용 모든 주문내역 리스트
 	 */
-	@GetMapping("/admin/order")
-	public String orderAdmin(Model model) {
-		List<Order> orders = orderService.findAll();
+	@GetMapping(value = {"/admin/order/{page}", "/admin/order"})
+	public String orderAdmin(Model model, @PathVariable("page") Optional<Integer> page) {
+		
+		int pageSize = 10; // 페이지당 항목 수
+	    int defaultPage = 0; // 기본 페이지 번호
+
+	    if (page.isPresent()) {
+	        if (page.get() < 0) {
+	            // 페이지 번호가 0 미만인 경우 기본 페이지 번호로 설정
+	            page = Optional.of(defaultPage);
+	        }
+	    } else {
+	        page = Optional.of(defaultPage);
+	    }
+
+	    Pageable pageable = PageRequest.of(page.get(), pageSize);
+		
+		Page<Order> orders = orderService.findAllByOrderByOrderDateDesc(pageable);
 		List<ProductDto> productDtoList = new ArrayList<>();
 		for (Order order : orders) {
 			ProductDto productDto = productService.getProductDtl(order.getOrderProducts().get(0).getProduct().getId());
 			productDtoList.add(productDto);
 		}
+		
+		int totalPages = orders.getTotalPages() - 1; // 전체 페이지 수
+		
+		model.addAttribute("totalPages", totalPages);
+	    model.addAttribute("page", page.orElse(defaultPage)); // 현재 페이지 번호
 		model.addAttribute("orders", orders);
 		model.addAttribute("productDtoList", productDtoList);
 		return "/protected/order";

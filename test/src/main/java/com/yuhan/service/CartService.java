@@ -10,11 +10,13 @@ import org.thymeleaf.util.StringUtils;
 import com.yuhan.dto.CartDetailDto;
 import com.yuhan.dto.CartOrderDto;
 import com.yuhan.dto.CartProductDto;
+import com.yuhan.dto.CartRemoveDto;
 import com.yuhan.dto.OrderDto;
 import com.yuhan.entity.Cart;
 import com.yuhan.entity.CartProduct;
 import com.yuhan.entity.Product;
 import com.yuhan.entity.User;
+import com.yuhan.exception.OutOfStockException;
 import com.yuhan.repository.CartProductRepository;
 import com.yuhan.repository.CartRepository;
 import com.yuhan.repository.ProductRepository;
@@ -117,5 +119,14 @@ public class CartService {
 		}
 		
 		return orderId;
+	}
+	
+	public Long removeStock(CartRemoveDto cartRemoveDto) {
+		CartProduct cartProduct = cartProductRepository.findById(cartRemoveDto.getCartProductId()).orElseThrow(EntityNotFoundException::new);
+		Product product = productRepository.findById(cartProduct.getProduct().getId()).orElseThrow(EntityNotFoundException::new);
+		if(product.getStock()<cartRemoveDto.getStock()) {
+			throw new OutOfStockException("상품 재고가 부족합니다. 현재 "+product.getName()+" 재고 수량 : "+product.getStock());
+		}
+		return null;
 	}
 }

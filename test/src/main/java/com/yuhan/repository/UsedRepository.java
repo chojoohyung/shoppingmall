@@ -16,8 +16,10 @@ public interface UsedRepository extends JpaRepository<Used,  Long> {
 	
 	List<Used> findByOrderByIdDesc();
 	
-	@Query("SELECT u FROM Used u ORDER BY u.id desc")
+	@Query("SELECT u FROM Used u ORDER BY u.createDate desc")
 	Page<Used> queryAnnotion(Pageable paging);
 	
 	List<Used> findByOrderProduct(OrderProduct orderProduct);
+	
+	Page<Used> findByOrderProduct_Order_User_username(Pageable pageable, String username);
 }

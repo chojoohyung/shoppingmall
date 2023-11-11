@@ -3,6 +3,8 @@ package com.yuhan.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -68,4 +70,11 @@ public class OrderService {
 		return orderRepository.findByUserUsername(username);
 	}
 	
+	public Page<Order> findAllByOrderByOrderDateDesc(Pageable pageable){
+		return orderRepository.findAllByOrderByOrderDateDesc(pageable);
+	}
+	
+	public Page<Order> findUsername(Pageable pageable, String username){
+		return orderRepository.findByUserUsername(pageable, username);
+	}
 }

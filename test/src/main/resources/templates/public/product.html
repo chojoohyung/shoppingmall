@@ -15,7 +15,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
-
     </style>
 
 </head>
@@ -57,6 +56,7 @@
                             value="1" min="1"><br></p>
                     <span class="input-group-text">중고목록</span>
                     <select onchange="UsedSelect(this)" class="custom-select">
+                        <option value="" disabled selected>중고</option>
                         <option th:each="PIDUsed, index : ${PIDUsedList}" th:value="${PIDUsed.id}">
                             <div th:text="${PIDUsed.title}"></div>
                             <div th:text="${PIDUsed.price}"></div>
@@ -64,7 +64,7 @@
                         </option>
                     </select>
 
-
+                    
                     <button type="button" onclick="requestPay()" sec:authorize="hasRole('ROLE_USER')"
                         class="order-button1">BUY NOW</button><br>
                     <button type="button" onclick="addCart()" sec:authorize="hasRole('ROLE_USER')"
@@ -111,9 +111,9 @@
 
 
             <script>
-                function UsedSelect(selectElement){
+                function UsedSelect(selectElement) {
                     var usedId = selectElement.value;
-                    window.location.href = "/public/used/"+usedId;
+                    window.location.href = "/public/used/" + usedId;
                 }
                 var IMP = window.IMP;
                 IMP.init("imp46787317");

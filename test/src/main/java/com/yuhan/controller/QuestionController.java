@@ -34,7 +34,7 @@ public class QuestionController {
 		question.setUser(userRepository.findByUsername(principal.getName()));
 		question.setQuestionDate(LocalDateTime.now());
 		questionService.save(question);
-		return "redirect:/";
+		return "redirect:/public/questionList";
 	}
 	@GetMapping("/public/questionList")
 	public String questionListGet(Model model) {

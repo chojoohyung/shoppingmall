@@ -97,13 +97,17 @@ public class UsedService {
 			List<Used> usedList = usedRepository.findByOrderProduct(orderProduct);
 			PIDUsedList.addAll(usedList);
 		}
-		System.out.println("sort before "+PIDUsedList.toString());
 		Collections.sort(PIDUsedList, Comparator.comparing(Used::getCreateDate).reversed());
 		
-		System.out.println("sort after "+PIDUsedList.toString());
-		
-		
 		return PIDUsedList;
+	}
+	
+	public Page<Used> findByOrderProduct_Order_User_username(Pageable pageable, String username){
+		return usedRepository.findByOrderProduct_Order_User_username(pageable, username);
+	}
+	
+	public void delete(Used used) {
+		usedRepository.delete(used);
 	}
 	
 }
