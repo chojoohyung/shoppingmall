@@ -14,9 +14,6 @@
 	<link href="../../css/sidemenu.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-	<style>
-	</style>
-
 </head>
 
 <body>
@@ -30,7 +27,6 @@
 					<li><a th:href="@{/public/usedList}">중고마켓</a></li>
 					<li><a th:href="@{/protected/questionForm}">1:1문의</a></li>
 					<li><a th:href="@{/protected/order}">주문조회</a></li>
-
 				</ul>
 				<ul>
 					<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
@@ -104,6 +100,7 @@
 					</div>
 				</div>
 			</div>
+			
 
 			<script th:inline="javascript">
 				/*[# th:if="${user != null && user.email != null}"]*/
@@ -118,6 +115,21 @@
 
 
 			<script>
+				$(document).ready(function () {
+					var currentPosition = parseInt($(".sidemenu").css("top"));
+					$(window).scroll(function () {
+						var position = $(window).scrollTop();
+						$(".sidemenu").stop().animate({ "top": position + currentPosition + "px" }, 600);
+					});
+
+
+					calculateToalPrice();
+
+					$("#count").change(function () {
+						calculateToalPrice();
+					});
+				});
+				
 				function UsedSelect(selectElement) {
 					var usedId = selectElement.value;
 					window.location.href = "/public/used/" + usedId;
@@ -168,18 +180,7 @@
 					});
 				}
 
-				function redirectToAdminPage() {
-					// 현재 페이지 주소를 가져옵니다.
-					var currentURL = window.location.href;
-
-					// 현재 페이지 주소에서 "/public/"을 "/admin/"으로 대체합니다.
-					var newURL = currentURL.replace("/public/", "/admin/");
-
-					// 변경된 주소로 페이지를 이동합니다.
-					window.location.href = newURL;
-				}
-				var button = document.getElementById("yourButtonId"); // 버튼의 ID를 지정하세요.
-				button.addEventListener("click", redirectToAdminPage);
+				
 
 				function deleteProduct() {
 					var token = $("meta[name='_csrf']").attr("content");
@@ -214,15 +215,6 @@
 
 				var button = document.getElementById("delete"); // 버튼의 ID를 지정하세요.
 				button.addEventListener("click", deleteProduct);
-
-
-				$(document).ready(function () {
-					calculateToalPrice();
-
-					$("#count").change(function () {
-						calculateToalPrice();
-					});
-				});
 
 				function calculateToalPrice() {
 					var count = $("#count").val();
@@ -315,14 +307,18 @@
 					});
 
 				}
+				function redirectToAdminPage() {
+					// 현재 페이지 주소를 가져옵니다.
+					var currentURL = window.location.href;
 
-				$(document).ready(function () {
-					var currentPosition = parseInt($(".sidemenu").css("top"));
-					$(window).scroll(function () {
-						var position = $(window).scrollTop();
-						$(".sidemenu").stop().animate({ "top": position + currentPosition + "px" }, 600);
-					});
-				});
+					// 현재 페이지 주소에서 "/public/"을 "/admin/"으로 대체합니다.
+					var newURL = currentURL.replace("/public/", "/admin/");
+
+					// 변경된 주소로 페이지를 이동합니다.
+					window.location.href = newURL;
+				}
+				var button = document.getElementById("yourButtonId"); // 버튼의 ID를 지정하세요.
+				button.addEventListener("click", redirectToAdminPage);
 			</script>
 		</div>
 	</div>

@@ -1,71 +1,72 @@
-.kakao{
-			width: 100px;
-		}
-		div,
-		ul,
-		li {
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			box-sizing: border-box;
-			padding: 0;
-			margin: 0
-		}
+.kakao {
+	width: 100px;
+}
 
-		a {
-			text-decoration: none;
-		}
+div,
+ul,
+li {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0
+}
 
-		.sidemenu {
-			position: absolute;
-			width: 130px;
-			top: 70%;
-			margin-top: -50px;
-			right: 10px;
-			background: rgb(255, 255, 255);
-		}
-		
+a {
+	text-decoration: none;
+}
 
-		.sidemenu ul {
-			position: relative;
-			float: left;
-			width: 100%;
-			display: inline-block;
-			*display: inline;
-			
-		}
+.sidemenu {
+	position: absolute;
+	width: 130px;
+	top: 70%;
+	margin-top: -50px;
+	right: 10px;
+	background: rgb(255, 255, 255);
+}
 
-		.sidemenu ul li {
-			float: left;
-			width: 100%;
-			border-bottom: 1px solid #ddd;
-			text-align: center;
-			display: inline-block;
-			*display: inline;
-		}
-	
 
-		.sidemenu ul li a {
-			font-family: 'Nanum Gothic', sans-serif;
-			position: relative;
-			float: left;
-			width: 100%;
-			height: 50px;
-			line-height: 50px;
-			text-align: center;
-			color: rgb(0, 0, 0);
-			font-size: 14px;
-		}
+.sidemenu ul {
+	position: relative;
+	float: left;
+	width: 100%;
+	display: inline-block;
+	*display: inline;
 
-		.sidemenu ul li a:hover {
-			color: #000;
-		}
+}
 
-		.sidemenu ul li:last-child {
-		
-			border: none;
-		}
+.sidemenu ul li {
+	float: left;
+	width: 100%;
+	border-bottom: 1px solid #ddd;
+	text-align: center;
+	display: inline-block;
+	*display: inline;
+}
 
-		.content {
-			position: relative;
-			min-height: 1000px;
-		}
+
+.sidemenu ul li a {
+	font-family: 'Nanum Gothic', sans-serif;
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	color: rgb(0, 0, 0);
+	font-size: 14px;
+}
+
+.sidemenu ul li a:hover {
+	color: #000;
+}
+
+.sidemenu ul li:last-child {
+
+	border: none;
+}
+
+.content {
+	position: relative;
+	min-height: 1000px;
+}
