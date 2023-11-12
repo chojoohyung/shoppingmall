@@ -4,10 +4,47 @@
 
 <head>
     <link href="../../css/sidemenu.css" rel="stylesheet">
-    <link href="../css/questionList.css" rel="stylesheet">
+    <link href="../../css/questionList.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <style>
+        .pagination {
+			display: flex;
+			justify-content: center;
+			margin-top: 20px;
+
+		}
+
+		.page-button {
+			border: 1px solid rgb(0, 0, 0);
+			background-color: #fff;
+			color: rgb(0, 0, 0);
+			padding: 5px 10px;
+			border-radius: 5px;
+			margin: 0 5px;
+			cursor: pointer;
+			transition: background-color 0.3s, color 0.3s;
+		}
+
+
+
+		.page-button.active {
+			background-color: rgb(255, 255, 255);
+			color: rgb(0, 0, 0);
+		}
+
+		.page-button:hover {
+			background-color: rgb(0, 0, 0);
+			color: rgb(255, 255, 255);
+		}
+
+		.page-link {
+			text-decoration: none;
+			font-size: 12px;
+			font-weight: bold;
+		}
+    </style>
 </head>
 
 <body>
@@ -91,7 +128,7 @@
                     </thead>
                     <tbody>
                         <tr th:each="question, index : ${questionList}">
-                            <td th:text="${index.index}">게시번호</td>
+                            <td th:text="${question.id}">게시번호</td>
                             <td th:text="${question.user.username}">아이디</td>
                             <td>
                                 <a class="hrefnone" th:href="@{'/protected/question/'+${question.id}}"
@@ -103,7 +140,18 @@
                         </tr>
                     </tbody>
                 </table>
-
+                <div class="pagination">
+                    <button class="page-button" th:each="pageNumber : ${#numbers.sequence(0, totalPages)}"
+                        th:classappend="${pageNumber == page ? 'active' : ''}"
+                        th:if="${pageNumber >= (page - 1) && pageNumber <= (page + 1)}">
+                        <a class="page-link" th:href="@{'/public/questionList/' + ${pageNumber}}" th:text="${pageNumber}"></a>
+                    </button>
+                </div>
+                <div class="pagination">
+                    <button class="page-button" th:classappend="${page == 0 ? 'disabled' : ''}" th:if="${page > 0}">
+                        <a class="page-link" th:href="@{(${page} - 1)}">이전</a>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

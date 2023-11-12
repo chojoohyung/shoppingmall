@@ -2,7 +2,12 @@ package com.yuhan.controller;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,9 +41,30 @@ public class QuestionController {
 		questionService.save(question);
 		return "redirect:/public/questionList";
 	}
-	@GetMapping("/public/questionList")
-	public String questionListGet(Model model) {
-		List<Question> questionList = questionService.findAll();
+	
+	@GetMapping(value =  {"/public/questionList", "/public/questionList/{page}"})
+	public String questionListGet(Model model, @PathVariable("page") Optional<Integer> page) {
+		int pageSize = 10; // 페이지당 항목 수
+	    int defaultPage = 0; // 기본 페이지 번호
+
+	    if (page.isPresent()) {
+	        if (page.get() < 0) {
+	            // 페이지 번호가 0 미만인 경우 기본 페이지 번호로 설정
+	            page = Optional.of(defaultPage);
+	        }
+	    } else {
+	        page = Optional.of(defaultPage);
+	    }
+
+	    Pageable pageable = PageRequest.of(page.get(), pageSize, Sort.by(Sort.Direction.DESC, "id"));
+		
+		Page<Question> questionList = questionService.findAllpage(pageable);
+		
+		int totalPages = questionList.getTotalPages() - 1; // 전체 페이지 수
+		
+		
+		model.addAttribute("totalPages", totalPages);
+	    model.addAttribute("page", page.orElse(defaultPage)); // 현재 페이지 번호
 		model.addAttribute("questionList",questionList);
 		return "/public/questionList";
 	}

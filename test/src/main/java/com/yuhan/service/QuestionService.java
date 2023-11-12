@@ -1,6 +1,8 @@
 package com.yuhan.service;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,5 +27,9 @@ public class QuestionService {
 	
 	public Question findById(Long id) {
 		return questionRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+	}
+	
+	public Page<Question> findAllpage(Pageable pageable){
+		return questionRepository.findAll(pageable);
 	}
 }
