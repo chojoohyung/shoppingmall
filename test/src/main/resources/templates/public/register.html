@@ -600,23 +600,23 @@
 
 		<script>
 			function check_pw() {
-    var password = document.getElementById('inputPassword').value;
-    var confirmPassword = document.getElementById('inputPassword2').value;
+				var password = document.getElementById('inputPassword').value;
+				var confirmPassword = document.getElementById('inputPassword2').value;
 
-    if (password.length < 6) {
-        document.getElementById('check').innerHTML = '비밀번호는 6자리 이상이어야 합니다.';
-        document.getElementById('check').style.color = 'red';
-        $("#pwDoubleChk").val("false");
-    } else if (password === confirmPassword) {
-        document.getElementById('check').innerHTML = '비밀번호가 일치합니다.';
-        document.getElementById('check').style.color = 'blue';
-        $("#pwDoubleChk").val("true");
-    } else {
-        document.getElementById('check').innerHTML = '비밀번호가 일치하지 않습니다.';
-        document.getElementById('check').style.color = 'red';
-        $("#pwDoubleChk").val("false");
-    }
-};
+				if (password.length < 6) {
+					document.getElementById('check').innerHTML = '비밀번호는 6자리 이상이어야 합니다.';
+					document.getElementById('check').style.color = 'red';
+					$("#pwDoubleChk").val("false");
+				} else if (password === confirmPassword) {
+					document.getElementById('check').innerHTML = '비밀번호가 일치합니다.';
+					document.getElementById('check').style.color = 'blue';
+					$("#pwDoubleChk").val("true");
+				} else {
+					document.getElementById('check').innerHTML = '비밀번호가 일치하지 않습니다.';
+					document.getElementById('check').style.color = 'red';
+					$("#pwDoubleChk").val("false");
+				}
+			};
 			function change_id() {
 				$("#IDDoubleChk").val("false");
 			}
@@ -625,7 +625,8 @@
 			document.getElementById('myButton').addEventListener('click', function (event) {
 				var token = $("meta[name='_csrf']").attr("content");
 				var header = $("meta[name='_csrf_header']").attr("content");
-
+				
+				alert("인증번호 발송");
 				$.ajax({
 					url: "/mail",
 					type: "POST",
@@ -636,7 +637,6 @@
 					dataType: "json",
 					data: { "mail": $("#sm_email").val() },
 					success: function (data) {
-						alert("인증번호 발송");
 						code = data;
 					}
 				});
