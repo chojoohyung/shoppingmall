@@ -78,7 +78,7 @@ public class UsedController {
 		
 		if(usedImgFilList.get(0).isEmpty() && usedFormDto.getId() == null) {
 			List<OrderProductDto> orderProductDtoList = orderProductService.findByName(principal.getName());
-			model.addAttribute("errorMessage", "이미지는 최소 1개이상 등록해주십시요");
+			model.addAttribute("errorMessage", "이미지는 순서대로 등록해주십시요");
 			model.addAttribute("orderProductDtoList", orderProductDtoList);
 			model.addAttribute("usedFormDto", new UsedFormDto());
 			return "/protected/usedForm";

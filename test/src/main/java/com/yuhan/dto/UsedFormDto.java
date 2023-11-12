@@ -31,6 +31,8 @@ public class UsedFormDto {
 	
 	private OrderProduct orderProduct;
 	
+	private String addr;
+	
 	private List<OrderProductDto> orderProductDtoList = new ArrayList<>();
 	
 	private List<UsedImgDto> usedImgDtoList = new ArrayList<>();
