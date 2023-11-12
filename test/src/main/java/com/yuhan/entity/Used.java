@@ -35,6 +35,7 @@ public class Used {
 	
 	private String content;
 	
+	
 	private LocalDateTime createDate; 
 	
 	@OneToMany(mappedBy = "used")
