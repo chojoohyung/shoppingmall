@@ -36,6 +36,7 @@ public class Recommend {
 	private int color_WHITE;
 	private int color_DEFAULT;
 	
+	private int size_Free;
 	private int size_S;
 	private int size_M;
 	private int size_L;

@@ -82,6 +82,7 @@ public class RecommendService {
 		
 		
 		Map<String, Integer> OrderBySize= new HashMap<>();
+		OrderBySize.put("Free", recommend.getSize_Free());
 		OrderBySize.put("S", recommend.getSize_S());
 		OrderBySize.put("M", recommend.getSize_M());
 		OrderBySize.put("L", recommend.getSize_L());
@@ -123,7 +124,7 @@ public class RecommendService {
 				break;
 			}else {
 				pageInt -= productList.getTotalElements();
-				if(cntSize>8) {
+				if(cntSize>9) {
 					if(cntColor>1) {
 						cntColor=0;
 						cntSize=0;

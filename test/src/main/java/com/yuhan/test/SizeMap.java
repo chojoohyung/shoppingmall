@@ -8,6 +8,7 @@ public class SizeMap {
 
     public SizeMap() {
         SizeCount = new HashMap<>();
+        SizeCount.put("Free", new Free());
         SizeCount.put("S", new S());
         SizeCount.put("M", new M());
         SizeCount.put("L", new L());
