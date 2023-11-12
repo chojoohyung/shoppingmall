@@ -29,7 +29,7 @@ import com.yuhan.entity.UsedImg;
 import com.yuhan.service.OrderProductService;
 import com.yuhan.service.UsedCommentService;
 import com.yuhan.service.UsedImgService;
-import com.yuhan.service.UsedReplyCommentService;
+import com.yuhan.service.UsedReplyService;
 import com.yuhan.service.UsedService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -44,7 +44,7 @@ public class UsedController {
 	private final OrderProductService orderProductService;
 	private final UsedCommentService usedCommentService;
 	private final UsedImgService usedImgService;
-	private final UsedReplyCommentService usedReplyCommentService;
+	private final UsedReplyService usedReplyService;
 	
 	
 	/*
@@ -205,16 +205,14 @@ public class UsedController {
 	@GetMapping("/public/used/{id}")
 	public String productList(Model model, @PathVariable("id") Long id, Principal principal) {
 		Used used;
-		List<UsedComment> usedCommentList;
 		try {
 			used = usedService.getDtl(id);
-			usedCommentList = usedCommentService.findusedId(used.getId());
 			model.addAttribute("used", used);
-			model.addAttribute("usedCommentList", usedCommentList);
-			model.addAttribute("usedCommentForm", new UsedComment());
+			
 			if (principal != null) {
 	            model.addAttribute("username", principal.getName());
 	        }
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -227,8 +225,8 @@ public class UsedController {
 	 */
 	
 	@PostMapping("/public/used/{id}/comment")
-	public @ResponseBody ResponseEntity saveComment(@PathVariable("id") Long id, @RequestParam("content") String content, Principal principal) {		
-		usedCommentService.save(id, content, principal.getName());
+	public @ResponseBody ResponseEntity saveComment(@PathVariable("id") Long id, @RequestParam("content") String content, @RequestParam("isPrivate") Boolean isPrivate, Principal principal) {		
+		usedCommentService.save(id, content, isPrivate, principal.getName());
 		return new ResponseEntity<String>("댓글작성", HttpStatus.OK);
 	}
 	
@@ -237,9 +235,8 @@ public class UsedController {
 	 */
 	
 	@PostMapping("/public/used/{id}/{replyId}")
-	public @ResponseBody ResponseEntity savereplyComment(@PathVariable("id") Long id, @PathVariable("replyId") Long replyId,  @RequestParam("content") String content, Principal principal) {		
-//		usedReplyCommentService.save(id, content, principal.getName(), replyId);
-		System.out.println("usedid "+id+" replyId "+replyId+" content "+content);
+	public @ResponseBody ResponseEntity saveReply(@PathVariable("id") Long id, @PathVariable("replyId") Long replyId,  @RequestParam("content") String content, @RequestParam("isPrivate") Boolean isPrivate, Principal principal) {		
+		usedReplyService.save(id, content, isPrivate, principal.getName(), replyId);
 		return new ResponseEntity<String>("댓글작성", HttpStatus.OK);
 	}
 	

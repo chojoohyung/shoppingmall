@@ -40,6 +40,9 @@ public class Used {
 	@OneToMany(mappedBy = "used")
 	private List<UsedImg> usedImgList;
 	
+	@OneToMany(mappedBy = "used")
+	private List<UsedComment> usedCommentList;
+	
 	@ManyToOne
 	@JoinColumn(name = "orderProduct_id")
 	private OrderProduct orderProduct;

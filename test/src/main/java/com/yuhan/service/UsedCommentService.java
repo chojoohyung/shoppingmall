@@ -6,10 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yuhan.entity.Used;
 import com.yuhan.entity.UsedComment;
-import com.yuhan.repository.OrderProductRepository;
-import com.yuhan.repository.ProductRepository;
 import com.yuhan.repository.UsedCommentRepository;
 import com.yuhan.repository.UsedRepository;
 import com.yuhan.repository.UserRepository;
@@ -32,16 +29,21 @@ public class UsedCommentService {
 		return usedCommentList;
 	}
 	
-	public UsedComment save(Long usedId, String content, String username) {
+	public UsedComment save(Long usedId, String content, Boolean isPrivate, String username) {
 		UsedComment usedComment = new UsedComment();
 		usedComment.setUsed(usedRepository.findByid(usedId));
 		usedComment.setContent(content);
 		usedComment.setUser(userRepository.findByUsername(username));
 		usedComment.setCommentDate(LocalDateTime.now());
+		usedComment.setIsPrivate(isPrivate);
 		return usedCommentRepository.save(usedComment);
 	}
 	 
 	public void delete(UsedComment usedComment) {
 		usedCommentRepository.delete(usedComment);
+	}
+	
+	public UsedComment findById(Long id) {
+		return usedCommentRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 	}
 }
