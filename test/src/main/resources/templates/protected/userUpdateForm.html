@@ -77,18 +77,22 @@
                    <button class="my-underline" onclick="deleteUser()" sec:authorize="hasRole('ROLE_USER')">회원탈퇴</button>
         </form>
         <script>
-            function check_pw() {
-				if (document.getElementById('inputPassword').value != '' && document.getElementById('inputPassword2').value != '') {
-					if (document.getElementById('inputPassword').value == document.getElementById('inputPassword2').value) {
-						document.getElementById('check').innerHTML = '비밀번호가 일치합니다.'
-						document.getElementById('check').style.color = 'blue';
-						$("#pwDoubleChk").val("true");
-					}
-					else {
-						document.getElementById('check').innerHTML = '비밀번호가 일치하지 않습니다.';
-						document.getElementById('check').style.color = 'red';
-						$("#pwDoubleChk").val("false");
-					}
+          function check_pw() {
+				var password = document.getElementById('inputPassword').value;
+				var confirmPassword = document.getElementById('inputPassword2').value;
+
+				if (password.length < 6) {
+					document.getElementById('check').innerHTML = '비밀번호는 6자리 이상이어야 합니다.';
+					document.getElementById('check').style.color = 'red';
+					$("#pwDoubleChk").val("false");
+				} else if (password === confirmPassword) {
+					document.getElementById('check').innerHTML = '비밀번호가 일치합니다.';
+					document.getElementById('check').style.color = 'blue';
+					$("#pwDoubleChk").val("true");
+				} else {
+					document.getElementById('check').innerHTML = '비밀번호가 일치하지 않습니다.';
+					document.getElementById('check').style.color = 'red';
+					$("#pwDoubleChk").val("false");
 				}
 			};
             function validateForm() {
