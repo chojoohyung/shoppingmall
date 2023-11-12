@@ -1,0 +1,58 @@
+   .all-container {
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+
+        .card-img-top {
+            width: 318px;
+            height: 400px;
+            transition: filter 0.3s;
+
+        }
+
+        .card-img-top:hover {
+            opacity: 0.4;
+            /* 호버 시 블러 효과 적용 */
+        }
+
+        /* 그리드 컨테이너 설정 */
+        .grid-container {
+            margin-left: 50px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /* 2열로 나눔 */
+            grid-gap: 5px;
+            /* 그리드 아이템 간의 간격 설정 */
+            padding: 7%;
+        }
+
+        /* 각 그리드 아이템 스타일 */
+        .col {}
+
+        .card-title {
+            font-family: 'Nanum Gothic', sans-serif;
+            font-size: 14px;
+            border-bottom: 1px solid lightgray;
+            color: #555555;
+
+        }
+
+        .list-group-item1 {
+            font-family: 'Nanum Gothic', sans-serif;
+            margin-top: 15px;
+            font-size: 14px;
+
+            color: #999399;
+        }
+
+        .product-t {
+            margin-left: 18%;
+            font-family: 'Nanum Gothic', sans-serif;
+            width: 64%;
+            font-size: 14px;
+            color: black;
+            text-align: left;
+            margin-bottom: -4%;
+            border-bottom: 1px solid lightgray;
+
+        }
