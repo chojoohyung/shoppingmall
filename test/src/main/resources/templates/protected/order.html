@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<link href="../../css/sidemenu.css" rel="stylesheet">
-	<link href="../css/order.css" rel="stylesheet">
+	<link href="../../css/order.css" rel="stylesheet">
 	<link rel="shortcut icon" type="image/x-icon" href="../../resources/img/1694590687835.png">
 	<title>주문조회</title>
 	
@@ -20,7 +20,8 @@
 				<ul>
 					<li><a th:href="@{/public/usedList}">중고마켓</a></li>
 					<li><a th:href="@{/protected/questionForm}">1:1문의</a></li>
-					<li><a th:href="@{/protected/order}">주문조회</a></li>
+					<li><a th:href="@{/protected/order}" sec:authorize="hasRole('ROLE_USER')">주문조회</a></li>
+					<li><a th:href="@{/admin/order}" sec:authorize="hasRole('ROLE_ADMIN')">주문조회</a></li>
 
 				</ul>
 				<ul>

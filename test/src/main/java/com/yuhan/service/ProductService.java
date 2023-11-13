@@ -117,7 +117,7 @@ public class ProductService {
 	public List<ProductDto> findcategory(Pageable pageable, String category) {
 		List<ProductDto> productDtos = new ArrayList<>();
 		
-		List<Product> productList = productRepository.catogoryfind(pageable, category);
+		List<Product> productList = productRepository.catogoryfindsales(pageable, category);
 		
 		for (int i = 0; i < productList.size(); i++) {
 			productDtos.add(getProductDtl(productList.get(i).getId()));

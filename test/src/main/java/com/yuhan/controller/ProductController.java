@@ -152,7 +152,7 @@ public class ProductController {
 	    	productDto = productService.findcategory(paging, category);
 	    } else {
 	        // 카테고리가 전달되지 않은 경우 기본적으로 전체 상품 목록을 가져옵니다.
-	        productDto = productService.test(paging);
+	        productDto = productService.testSales(paging);
 	    }
 		
 		model.addAttribute("productPagingDto", productDto);

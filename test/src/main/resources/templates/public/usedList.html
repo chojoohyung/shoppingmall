@@ -6,7 +6,7 @@
 
 <head>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<link href="../css/usedList.css" rel="stylesheet">
+	<link href="../../css/usedList.css" rel="stylesheet">
 	<link rel="shortcut icon" type="image/x-icon" href="../../resources/img/1694590687835.png">
 	<meta charset="UTF-8">
 	<title>
@@ -38,7 +38,7 @@
 						<p class="card-title" th:text="${used.title}">제목</p>
 						<p class="retro-item-price" th:text="${used.price}+'원 / '+${used.addr}">가격</p>
 						<div class="retro-item-info">
-							<p th:text="${used.orderProduct.order.user.name + ' / ' 
+							<p th:text="${used.orderProduct.order.user.username + ' / ' 
                 + #temporals.format(used.createDate, 'yyyy-MM-dd HH:mm') + ' 작성'}">글쓴이</p>
 						</div>
 					</div>
@@ -69,7 +69,8 @@
 			<ul>
 				<li><a th:href="@{/public/usedList}">중고마켓</a></li>
 				<li><a th:href="@{/protected/questionForm}">1:1문의</a></li>
-				<li><a th:href="@{/protected/order}">주문조회</a></li>
+				<li><a th:href="@{/protected/order}" sec:authorize="hasRole('ROLE_USER')">주문조회</a></li>
+				<li><a th:href="@{/admin/order}" sec:authorize="hasRole('ROLE_ADMIN')">주문조회</a></li>
 			</ul>
 			<ul>
 				<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"

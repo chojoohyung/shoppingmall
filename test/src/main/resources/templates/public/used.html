@@ -40,10 +40,10 @@
 					</div>
 					<button type="button" class="button2" onclick="product()">새 상품보기</button>
 					<button type="button" class="button1"
-						th:if="${username == used.orderProduct.order.user.username or username == 'admin'}"
+						th:if="${username == used.orderProduct.order.user.username}"
 						onclick="deleteUsed()">글삭제</button>
 					<button type="button" class="button1"
-						th:unless="${username == used.orderProduct.order.user.username or username == 'admin'}"
+						th:unless="${username == used.orderProduct.order.user.username}"
 						onclick="unDeleteUsed()">글삭제</button>
 						<div class ="time" th:datetime="${used.createDate}"></div>
 						<script>
@@ -66,7 +66,7 @@
 					<input type="hidden" id="idValue" th:value="${used.id}">
 					<p class="retro-title" th:text="${used.title}">제목</p><br>
 					<p class="retro-price" th:text="${used.price}+'원'">가격</p><br>
-					<p class="retro-date" th:text="${'작성자: '+used.orderProduct.order.user.name 
+					<p class="retro-date" th:text="${'작성자: '+used.orderProduct.order.user.username 
                 }">글쓴이</p>
          
 					<p class="retro-date" th:text="'내용 : '+${used.content}">내용</p>
@@ -226,7 +226,8 @@
 				<ul>
 					<li><a th:href="@{/public/usedList}">중고마켓</a></li>
 					<li><a th:href="@{/protected/questionForm}">1:1문의</a></li>
-					<li><a th:href="@{/protected/order}">주문조회</a></li>
+					<li><a th:href="@{/protected/order}" sec:authorize="hasRole('ROLE_USER')">주문조회</a></li>
+					<li><a th:href="@{/admin/order}" sec:authorize="hasRole('ROLE_ADMIN')">주문조회</a></li>
 				</ul>
 				<ul>
 					<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"

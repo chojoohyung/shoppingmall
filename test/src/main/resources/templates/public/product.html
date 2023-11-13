@@ -29,7 +29,8 @@
 				<ul>
 					<li><a th:href="@{/public/usedList}">중고마켓</a></li>
 					<li><a th:href="@{/protected/questionForm}">1:1문의</a></li>
-					<li><a th:href="@{/protected/order}">주문조회</a></li>
+					<li><a th:href="@{/protected/order}" sec:authorize="hasRole('ROLE_USER')">주문조회</a></li>
+					<li><a th:href="@{/admin/order}" sec:authorize="hasRole('ROLE_ADMIN')">주문조회</a></li>
 				</ul>
 				<ul>
 					<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
