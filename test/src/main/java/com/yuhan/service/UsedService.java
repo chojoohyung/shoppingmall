@@ -13,13 +13,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.yuhan.dto.OrderProductDto;
 import com.yuhan.dto.ProductDto;
+import com.yuhan.dto.ProductImgDto;
 import com.yuhan.dto.UsedFormDto;
+import com.yuhan.dto.UsedImgDto;
 import com.yuhan.entity.OrderProduct;
 import com.yuhan.entity.Product;
+import com.yuhan.entity.ProductImg;
 import com.yuhan.entity.Used;
 import com.yuhan.entity.UsedImg;
 import com.yuhan.repository.OrderProductRepository;
 import com.yuhan.repository.ProductRepository;
+import com.yuhan.repository.UsedImgRepository;
 import com.yuhan.repository.UsedRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -33,6 +37,7 @@ public class UsedService {
 	private final ProductRepository productRepository;
 	private final OrderProductRepository orderProductRepository;
 	private final UsedImgService usedImgService;
+	private final UsedImgRepository usedImgRepository;
 	
 	public Long save(UsedFormDto usedFormDto, List<MultipartFile> usedImgFileList) throws Exception {
 		
@@ -84,8 +89,27 @@ public class UsedService {
 	public Used getDtl(Long id) throws Exception {
 		Used used = usedRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 		
+		
 		return used;
 	}
+	
+	public UsedFormDto getUsedDtl(Long id) {
+		List<UsedImg> usedImgList = usedImgRepository.findByUsedIdOrderByIdAsc(id);
+		List<UsedImgDto> usedImgDtoList = new ArrayList<>();
+		
+		for (UsedImg usedImg : usedImgList) {
+			UsedImgDto usedImgDto = UsedImgDto.of(usedImg);
+			usedImgDtoList.add(usedImgDto);
+		}
+		
+		//상품 id를 통해 상품조회, 없을시 Exception 발생
+		Used used = usedRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+		UsedFormDto usedFormDto = UsedFormDto.of(used);
+		usedFormDto.setUsedImgDtoList(usedImgDtoList);
+		
+		return usedFormDto;
+	}
+	
 	
 	public List<Used> getPIDUsedList(Long id) {
 		Product product = productRepository.findById(id).orElseThrow(EntityNotFoundException::new);

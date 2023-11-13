@@ -4,15 +4,17 @@
 		}
 		.comment1{
 			font-size: 40px;
+			font-family: 'Nanum Gothic', sans-serif;
 			
 			text-align: center;
 
 		}
 		.comment2{
 			font-size: 20px;
-			
+			font-family: 'Nanum Gothic', sans-serif;
 			text-align: center;
 		}
+
 
 		.retro-container {
 			background-color: #fff;
@@ -23,17 +25,18 @@
 			box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 			display: flex;
 			/* 이미지와 정보를 가로로 나란히 배치하기 위해 flex 사용 */
+			font-family: 'Nanum Gothic', sans-serif;
 		}
 
 		.retro-title {
-			font-size: 40px;
+			font-size: 30px;
 			margin-left: 50px;
 			margin-top: 0px;
 			font-family: 'Nanum Gothic', sans-serif;
 		}
 
 		.retro-price {
-			font-size: 40px;
+			font-size: 30px;
 			margin-left: 50px;
 			margin-top: -40px;
 			font-family: 'Nanum Gothic', sans-serif;
@@ -65,19 +68,20 @@
 		.text11 {
 			border-bottom: solid 1px;
 			border-width: 10%;
-
+font-family: 'Nanum Gothic', sans-serif;
 		}
 
 		.text-form {
 			text-align: center;
 			margin-top: -50px;
+			font-family: 'Nanum Gothic', sans-serif;
 			
 		}
 
 		.content33 {
 				padding: 5%;
 			margin: 20px auto;
-
+font-family: 'Nanum Gothic', sans-serif;
 			width: 800px;
 			height: auto;
 

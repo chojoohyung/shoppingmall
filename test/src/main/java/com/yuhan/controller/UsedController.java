@@ -47,19 +47,7 @@ public class UsedController {
 	private final UsedReplyService usedReplyService;
 	
 	
-	/*
-	 * 중고상품 등록 폼
-	 */
-	@GetMapping("/protected/used/new")
-	public String JproductForm(Model model, Principal principal) {
-
-		List<OrderProductDto> orderProductDtoList = orderProductService.findByName(principal.getName());
-		
-		model.addAttribute("orderProductDtoList", orderProductDtoList);
-		model.addAttribute("usedFormDto", new UsedFormDto());
-			
-		return "/protected/usedForm";
-	}
+	
 	
 	/*
 	 * 중고상품 등록 뷰
@@ -100,25 +88,18 @@ public class UsedController {
 	}
 	
 	/*
-	 * 중고상품 수정 폼
+	 * 중고상품 등록 폼
 	 */
-	@GetMapping("/protected/used/{id}")
-	public String ProductDtl(@PathVariable("id") Long id, Model model) {
-		try {
-			/* 미구현
-			UsedFormDto usedFormDto = usedService.getProductDtl(id);
-			model.addAttribute("productDto", productDto);
-			*/
-		}catch(EntityNotFoundException e) {
-			model.addAttribute("errorMessage", "존재하지 않는 상품입니다");
-			model.addAttribute("usedFormDto", new UsedFormDto());
-			return "/protected/usedForm";
-		}
+	@GetMapping("/protected/used/new")
+	public String JproductForm(Model model, Principal principal) {
 
+		List<OrderProductDto> orderProductDtoList = orderProductService.findByName(principal.getName());
+		
+		model.addAttribute("orderProductDtoList", orderProductDtoList);
+		model.addAttribute("usedFormDto", new UsedFormDto());
+			
 		return "/protected/usedForm";
 	}
-	
-	
 	
 	/*
 	 * 중고상품 리스트

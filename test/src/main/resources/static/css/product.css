@@ -111,9 +111,9 @@ font-family: 'Nanum Gothic', sans-serif;
 /*상품 제목*/
 .product-details1 {
 	font-family: 'Nanum Gothic', sans-serif;
-	font-size: 50px;
+	font-size: 30px;
 	margin-left: 60px;
-	margin-right: -70px;
+	margin-right: -120px;
 	margin-top: 0px;
 	color: #222222;
 

@@ -105,15 +105,15 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text">내용</span>
 					</div>
-					<input type="text" th:field="*{content}" class="form-control"
-						placeholder="옷 상태와 직거래 할 시 기타정보를 필히 입력해주세요.">
+					<textarea type="text" th:field="*{content}" class="form-control"
+						placeholder="옷 상태와 직거래 할 시 기타정보를 필히 입력해주세요." maxlength="-1"></textarea>
 				</div>
 				<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="fieldError">Incorrect data</p>
 
 
 
-
-				<div th:if="${#lists.isEmpty(usedFormDto.orderProductDtoList)}">
+				
+				<div th:if="${#lists.isEmpty(usedFormDto.usedImgDtoList)}">
 					<div class="form-group" th:each="num: ${#numbers.sequence(1,5)}">
 						<div class="custom-file img-div">
 							<input type="file" class="custom-file-input" name="usedImgFile">
@@ -123,8 +123,8 @@
 				</div>
 
 
-				<div th:if="${not #lists.isEmpty(usedFormDto.orderProductDtoList)}">
-					<div class="form-group" th:each="usedImgDto, status: ${usedFormDto.orderProductDtoList}">
+				<div th:if="${not #lists.isEmpty(usedFormDto.usedImgDtoList)}">
+					<div class="form-group" th:each="usedImgDto, status: ${usedFormDto.usedImgDtoList}">
 						<div class="custom-file img-div">
 							<input type="file" class="custom-file-input" name="usedImgFile">
 							<input type="hidden" name="usedImgIds" th:value="${usedImgDto.id}">
@@ -133,7 +133,7 @@
 						</div>
 					</div>
 				</div>
-
+				
 
 				<div th:if="${#strings.isEmpty(usedFormDto.id)}" style="text-align: center">
 					<button th:formaction="@{/protected/used/new}" type="submit" class="btn btn-primary">저장</button>
