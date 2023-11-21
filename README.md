@@ -17,4 +17,7 @@ sts4, MySql 8.0.30
 4. C:\shoppingmall\productImg 폴더 생성
 ### 프로젝트 실행
 5. Spring 에서 shoppingmall 실행
-![image](https://github.com/chojoohyung/shoppingmall/assets/100830437/d00d5ee6-bf28-4e96-ae07-28b98693e7bf)
+
+
+![Uploading 메인.PNG…]()
+
