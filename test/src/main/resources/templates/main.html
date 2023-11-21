@@ -233,8 +233,36 @@
 					<h4>새로 업데이트 된 상품들입니다</h4>
 				</div>
 			</div>
+<div class="grid-container" id="image-slider">
+    <div class="card" th:each="p:${productPagingDto}">
+        <input type="hidden" name="productImgIds" th:value="${p.id}">
+        <a th:href="'/public/product/'+${p.id}">
+            <img th:src="${p.productImgDtoList[0].imgUrl}" class="card-img-top" alt="...">
+        </a>
+        <div class="card-body">
+            <p class="card-title" th:text="${p.name}">옷 이름</p>
+            <span class="list-group-item1" th:text="'KRW '+${p.price}">옷 가격</span>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var slideIndex = 0;
 
-			<div class="grid-container">
+        function showSlides() {
+            var slides = $(".card");
+            slides.hide();
+            slides.eq(slideIndex).show();
+            slideIndex = (slideIndex + 1) % slides.length;
+            setTimeout(showSlides, 1000); // 이미지 전환 간격 (여기서는 2초로 설정)
+        }
+
+        showSlides(); // 페이지 로딩 후 슬라이더 시작
+    });
+</script>
+
+			<!--<div class="grid-container">
 				<div class="card" th:each="p:${productPagingDto}">
 					<input type="hidden" name="productImgIds" th:value="${p.id}">
 					<a th:href="'/public/product/'+${p.id}">
@@ -247,7 +275,9 @@
 						</p>
 
 					</div>
-				</div>
+				</div>-->
+
+</style>
 
 
 
