@@ -20,5 +20,7 @@ sts4, MySql 8.0.30
 
 
 ![메인](https://github.com/chojoohyung/shoppingmall/assets/100830437/57a52188-74a6-49f5-86e2-c03706a55034)
+![상품페이지](https://github.com/chojoohyung/shoppingmall/assets/100830437/31f8a93c-918e-4c79-9293-d9778a169c5f)
+![주문조회](https://github.com/chojoohyung/shoppingmall/assets/100830437/4f6e8bed-c6dd-47a9-9814-69451d2fe50a)
 
 
