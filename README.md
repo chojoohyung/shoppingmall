@@ -19,5 +19,6 @@ sts4, MySql 8.0.30
 5. Spring 에서 shoppingmall 실행
 
 
-![Uploading 메인.PNG…]()
+![메인](https://github.com/chojoohyung/shoppingmall/assets/100830437/57a52188-74a6-49f5-86e2-c03706a55034)
+
 
