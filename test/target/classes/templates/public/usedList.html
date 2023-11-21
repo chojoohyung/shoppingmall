@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
+
+
+
+<head>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link href="../css/usedList.css" rel="stylesheet">
+	<link rel="shortcut icon" type="image/x-icon" href="../../resources/img/1694590687835.png">
+	<meta charset="UTF-8">
+	<title>
+		중고 상품
+	</title>
+
+
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="all-container">
+
+			<h2>중고 등록된 상품!</h2>
+
+
+			<div class="retro-container">
+
+				<div class="retro-container">
+					<div class="retro-item" th:each="used,index : ${usedList}">
+						<div th:each="usedImg, index:${used.usedImgList}">
+							<th:block th:if="${index.index == 0}">
+								<a th:href="'/public/used/'+${used.id}">
+									<img class="product-img" th:src="${usedImg.imgUrl}" alt="Image" width="400"
+										height="500">
+								</a>
+							</th:block>
+						</div>
+						<p class="card-title" th:text="${used.title}">제목</p>
+						<p class="retro-item-price" th:text="${used.price}+'원 / '+${used.addr}">가격</p>
+						<div class="retro-item-info">
+							<p th:text="${used.orderProduct.order.user.name + ' / ' 
+                + #temporals.format(used.createDate, 'yyyy-MM-dd HH:mm') + ' 작성'}">글쓴이</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="pagination">
+				<button class="page-button" th:each="pageNumber : ${#numbers.sequence(0, totalPages)}"
+					th:classappend="${pageNumber == page ? 'active' : ''}"
+					th:if="${pageNumber >= (page - 1) && pageNumber <= (page + 1)}" th:text="${pageNumber}"
+					onclick="page(this)" th:value="${pageNumber}">
+				</button>
+			</div>
+			<div class="pagination">
+				<button class="page-button" th:classappend="${page == 0 ? 'disabled' : ''}" th:if="${page > 0}">
+					<a class="page-link" th:href="@{(${page} - 1)}">이전</a>
+				</button>
+				<div th:if="${orderProduct_Empty}"> <!-- Not null -->
+					<button class="my-button" onclick="location.href='/protected/used/new'"
+						sec:authorize="hasRole('ROLE_USER')"><b>내 상품등록</b></button>
+				</div>
+				<div th:unless="${orderProduct_Empty}"> <!-- null -->
+					<button class="my-button" onclick="orderProduct_Empty_method()"
+						sec:authorize="hasRole('ROLE_USER')"><b>내 상품등록</b></button>
+				</div>
+			</div>
+		</div>
+		<div class="sidemenu">
+			<ul>
+				<li><a th:href="@{/public/usedList}">중고마켓</a></li>
+				<li><a th:href="@{/protected/questionForm}">1:1문의</a></li>
+				<li><a th:href="@{/protected/order}">주문조회</a></li>
+			</ul>
+			<ul>
+				<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
+							th:src="@{/resources/img/kakao.PNG}"></a></li>
+			</ul>
+		</div>
+
+		<script th:inline="javascript">
+			/*[# th:if="${orderProduct_Empty != null}"]*/
+			var orderProduct_Empty = /*[[${orderProduct_Empty}]]*/ null;
+			/*[/]*/
+
+
+		</script>
+
+		<script>
+			function page(button) {
+				var pageNumber = button.value;
+				var currentUrl = window.location.href;
+
+				if (currentUrl.includes("public")) {
+					window.location.href = "/public/usedList/" + pageNumber;
+					// 여기에 'public'일 때 수행할 로직 추가
+				} else if (currentUrl.includes("protected")) {
+					window.location.href = "/protected/usedList/" + pageNumber;
+					// 여기에 'protected'일 때 수행할 로직 추가
+				} else {
+					console.log("The URL does not contain 'public' or 'protected'");
+					// 그 외의 경우에 수행할 로직 추가
+				}
+			}
+
+
+			$(document).ready(function () {
+				var currentPosition = $(".sidemenu").position().top;
+
+				$(window).scroll(function () {
+					var position = $(window).scrollTop();
+					$(".sidemenu").stop().animate({ top: position + currentPosition + "px" }, 600);
+				});
+			});
+
+			function orderProduct_Empty_method() {
+				alert("중고 글을 등록할 주문내역이 없습니다.");
+			}
+		</script>
+
+	</div>
+</body>
+
+</html>

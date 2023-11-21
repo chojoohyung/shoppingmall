@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_test}">
+
+<head>
+	<meta charset="utf-8">
+	<link href="../../css/sidemenu.css" rel="stylesheet">
+	<link href="../css/order.css" rel="stylesheet">
+	<link rel="shortcut icon" type="image/x-icon" href="../../resources/img/1694590687835.png">
+	<title>주문조회</title>
+	
+
+</head>
+
+<body>
+	<!-- Homepage Header -->
+	<div layout:fragment="content">
+		<div class="all-container">
+			<div class="sidemenu">
+				<ul>
+					<li><a th:href="@{/public/usedList}">중고마켓</a></li>
+					<li><a th:href="@{/protected/questionForm}">1:1문의</a></li>
+					<li><a th:href="@{/protected/order}">주문조회</a></li>
+
+				</ul>
+				<ul>
+					<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
+								th:src="@{/resources/img/kakao.PNG}"></a></li>
+				</ul>
+			</div>
+			<div class="order-container">
+				<div class="d" th:each="order, index:${orders}">
+					<input type="hidden" name="productImgIds" th:value="${order.id}">
+					<p th:text="${order.user.username}" sec:authorize="hasRole('ROLE_ADMIN')">User</p>
+					<!--  <td th:text="${index.index + 1}">#</td>-->
+					<p class="datetime">주문 시간: <span class="date"
+							th:text="${#temporals.format(order.orderDate, 'yyyy-MM-dd HH:mm')}">Order Date</span></p>
+					<div class="hiyo" th:each="products, index2:${order.orderProducts}">
+						<img class="product-img" th:src="${products.product.productImgList[0].imgUrl}"
+							alt="Product Image" width="800" height="200">
+						<div>
+							<p th:text="${products.product.name}">Product Name</p>
+							<div>
+								<p style="display: inline;">
+									<span th:text="${products.product.color}">Color</span> /
+									<span th:text="${products.product.size}">Size</span>
+								</p>
+							</div>
+							<p th:text="${products.count}+'개'">Quantity</p>
+							<h2 class="price" th:text=" ${products.orderPrice * products.count}+'원'">Price</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="pagination">
+				<button class="page-button" th:each="pageNumber : ${#numbers.sequence(0, totalPages)}"
+					th:classappend="${pageNumber == page ? 'active' : ''}"
+					th:if="${pageNumber >= (page - 1) && pageNumber <= (page + 1)}">
+					<a class="page-link" th:href="@{'/protected/order/' + ${pageNumber}}" th:text="${pageNumber}"
+						sec:authorize="hasRole('ROLE_USER')"></a>
+					<a class="page-link" th:href="@{'/admin/order/' + ${pageNumber}}" th:text="${pageNumber}"
+						sec:authorize="hasRole('ROLE_ADMIN')"></a>
+				</button>
+			</div>
+			<div class="pagination">
+				<button class="page-button" th:classappend="${page == 0 ? 'disabled' : ''}" th:if="${page > 0}">
+					<a class="page-link" th:href="@{(${page} - 1)}">이전</a>
+				</button>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

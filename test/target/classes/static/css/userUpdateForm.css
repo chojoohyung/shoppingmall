@@ -1,0 +1,118 @@
+.my-underline {
+    border: 1px solid black;
+    display: flex;
+    margin-left: 80%;
+    cursor: pointer;
+    background-color: white;
+}
+
+
+.all-container{
+	padding-left:10% ;
+	padding-right:10% ;
+}
+body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+.form-register1 {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top:70px;
+}
+
+.sign {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.textForm1 {
+    padding: 20px;
+}
+
+.textForm1 input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.textForm1 label {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.pwcheck {
+    display: flex;
+    align-items: center;
+}
+
+.pwcheck input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.radio-group1 {
+    float: left;
+    align-items: center;
+    margin-left: 90px;
+    margin-right: 100px;
+    margin-top: 20px;
+}
+.radio-group2 {
+    float: left;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.radio-group label {
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.submit-button{
+	display: flex;
+	
+}
+
+.sub {
+    background: rgb(0, 0, 0);
+    color: #fff;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    display: block;
+    margin: 0 auto; 
+    transition: background-color 0.3s; 
+}
+
+/* 호버 효과를 정의합니다. */
+.sub:hover {
+    background-color: rgb(0, 171, 253); 
+}
+
+
+
+#check {
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 120px;
+    color: green;
+}

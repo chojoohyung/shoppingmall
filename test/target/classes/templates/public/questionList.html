@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
+
+<head>
+    <link href="../../css/sidemenu.css" rel="stylesheet">
+    <link href="../../css/questionList.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="../../resources/img/1694590687835.png">
+    <title>
+	게시판
+</title>
+   
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="all-container">
+            <div class="sidemenu">
+                <ul>
+                    <li><a th:href="@{/public/usedList}">중고마켓</a></li>
+                    <li><a th:href="@{/protected/questionForm}">1:1문의</a></li>
+                    <li><a th:href="@{/protected/order}">주문조회</a></li>
+
+                </ul>
+                <ul>
+                    <li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
+                                th:src="@{/resources/img/kakao.PNG}"></a></li>
+                </ul>
+            </div>
+            <div class="header-container">
+                <div class="header-left">
+                    <p class="customer">
+                        <b>Customer Center</b>
+                    </p>
+                    <p class="number"><b>☎ 1588-0909</b>
+                    <p class="date">
+                        <b>평일</b> 오전 10:00 ~ 오후 06:00<br>
+                        <b>점심</b> 오후 12:00 ~ 오후 01:00<br>
+                        <b>휴무</b> 토 / 일 / 공휴일은 휴무
+                    </p>
+                </div>
+                <div class="header-right">
+                    <p class="membership">
+                        <b>MemberShip</b>
+                    </p>
+                    <p class="track-num">
+                        <mark style="background-color: aliceblue;">다이아</mark>
+                        <mark style="background-color: aliceblue;">에메랄드</mark>
+                        <mark style="background-color: aliceblue;">플레티넘</mark><br>
+                        <mark style="background-color: aliceblue;">골드</mark>
+                        <mark style="background-color: aliceblue;">실버</mark>
+                    </p>
+                    <p class="content1">
+                    <p>등급 별로 할인률은 상이하나 <br>저희 HENRY IV는 회원 모두 무료 배송입니다.</p>
+                    </p>
+                </div>
+                <div class="header-right1">
+                    <p class="question">
+                        <b>자주하는 질문</b>
+                    </p>
+                    <p class="content1">
+                    <p>FAQ를 참고하신 후 문의를 주시면<br>보다 빠른 답변을 찾으실 수 있습니다.</p>
+                    </p>
+                    <button class="button" onclick="location.href='/public/faqList'">자세히 보기</button>
+                </div>
+            </div>
+            <div class="sidebar">
+                <h2 class="titlee">문의 게시판</h2>
+                <div class="subsidebar">
+                    <ul>
+                        <div class="subsidebar">
+                            <li><a href="/public/faqList">FAQ</a></li>
+                            <li><a href="/public/questionList">문의 글 보기</a></li>
+                            <li><a href="/protected/questionForm">1:1 문의 글 쓰기</a></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question-a">
+
+                <table>
+                    <thead>
+
+                        <tr>
+
+                            <th class="numm">게시번호</th>
+                            <th class="nummm">작성자</th>
+                            <th>제목</th>
+                            <th>작성일</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="question, index : ${questionList}">
+                            <td th:text="${question.id}">게시번호</td>
+                            <td th:text="${question.user.username}">아이디</td>
+                            <td>
+                                <a class="hrefnone" th:href="@{'/protected/question/'+${question.id}}"
+                                    th:text="${question.title}">
+                                    제목
+                                </a>
+                            </td>
+                            <td th:text="${#temporals.format(question.QuestionDate, 'yyyy-MM-dd')}">작성날짜</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <button class="page-button" th:each="pageNumber : ${#numbers.sequence(0, totalPages)}"
+                        th:classappend="${pageNumber == page ? 'active' : ''}"
+                        th:if="${pageNumber >= (page - 1) && pageNumber <= (page + 1)}">
+                        <a class="page-link" th:href="@{'/public/questionList/' + ${pageNumber}}" th:text="${pageNumber}"></a>
+                    </button>
+                </div>
+                <div class="pagination">
+                    <button class="page-button" th:classappend="${page == 0 ? 'disabled' : ''}" th:if="${page > 0}">
+                        <a class="page-link" th:href="@{(${page} - 1)}">이전</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
