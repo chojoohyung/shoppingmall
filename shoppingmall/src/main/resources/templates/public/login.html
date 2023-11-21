@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout_public}">
+
+<head>
+	<link href="../../css/sidemenu.css" rel="stylesheet">
+	<link rel="shortcut icon" type="image/x-icon" href="../../resources/img/1694590687835.png">
+	<meta charset="utf-8">
+	<title>로그인</title>
+
+	<style>
+		.all-container {
+			padding-left: 10%;
+			padding-right: 10%;
+		}
+
+		.login-button {
+			margin-top: 20px;
+			background-color: rgb(0, 0, 0);
+			color: rgb(255, 255, 255);
+			border-color: black;
+			padding: 15px 155px;
+			font-size: 14px;
+			cursor: pointer;
+
+
+
+		}
+
+		.form-control {
+
+			width: 350px;
+			height: 50px;
+
+		}
+
+		.form-control2 {
+
+			width: 350px;
+			height: 50px;
+			margin-top: 15px;
+			border: 1px solid #ddd;
+		}
+
+		.hi {
+			text-align: center;
+
+		}
+
+
+		.checkbox-container {
+			margin-left: 40%;
+			margin-top: 0px;
+			display: flex;
+			margin-top: 10px;
+
+
+		}
+
+		.checkbox-label {
+			margin-right: 10px;
+		}
+
+		.logo {
+			font-size: 30px;
+		}
+
+		.h5 {
+			margin-top: -40px;
+			font-size: 15px;
+		}
+
+		.search {
+			margin-left: 40%;
+			margin-top: 15px;
+			display: flex;
+			align-items: center;
+			background-color: transparent;
+			border: none;
+		}
+	</style>
+</head>
+
+<body class="text-center">
+	<div layout:fragment="content">
+		<div class="all-container">
+			<div class="sidemenu">
+				<ul>
+					<li><a th:href="@{/public/usedList}">중고마켓</a></li>
+					<li><a th:href="@{/protected/questionForm}">1:1문의</a></li>
+					<li><a th:href="@{/protected/order}" sec:authorize="hasRole('ROLE_USER')">주문조회</a></li>
+					<li><a th:href="@{/admin/order}" sec:authorize="hasRole('ROLE_ADMIN')">주문조회</a></li>
+
+				</ul>
+				<ul>
+					<li><a href="https://open.kakao.com/o/sdxxCZQf"><img class="kakao"
+								th:src="@{/resources/img/kakao.PNG}"></a></li>
+				</ul>
+			</div>
+			<div class="hi">
+				<div class="logo">
+					<h2>LOGIN</h2>
+					<h5 class="h5">welcome</h5>
+				</div>
+				<form class="form-signin" th:action="@{/public/login}" method="post">
+					<div th:if="${param.error}" class="alert alert-danger" role="alert">아이디 또는 비밀번호가 맞지 않습니다</div>
+					<div th:if="${param.logout}" onclick="location.href='/public/productList'"
+						class="alert alert-primary" role="alert">You have been logged out.</div>
+
+					<label for="username" class="sr-only"></label>
+					<input type="text" id="username" name="username" class="form-control" placeholder="  아이디 입력"
+						required autofocus>
+					<br>
+					<label for="inputPassword" class="sr-only"></label>
+					<input type="password" id="inputPassword" name="password" class="form-control2"
+						placeholder="   비밀번호 입력" required>
+					<br>
+					<button class="login-button" type="submit">로그인</button>
+					<br>
+					<div class="checkbox-container">
+						<label for="idCheckbox" class="checkbox-label">아이디 저장</label>
+						<input type="checkbox" id="idCheckbox" name="idCheckbox">
+					</div>
+				</form>
+
+				<script>
+
+					const usernameInput = document.getElementById('username');
+					const idCheckbox = document.getElementById('idCheckbox');
+					const usernameKey = 'savedUsername';
+					const savedUsername = localStorage.getItem(usernameKey);
+					if (savedUsername) {
+						usernameInput.value = savedUsername;
+						idCheckbox.checked = true;
+					}
+
+					idCheckbox.addEventListener('change', function () {
+						if (idCheckbox.checked) {
+							localStorage.setItem(usernameKey, usernameInput.value);
+						} else {
+							localStorage.removeItem(usernameKey);
+						}
+					});
+				</script>
+
+				<div class="search">
+					<div class="pad" onclick="location.href='/public/search'">아이디 찾기</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
