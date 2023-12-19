@@ -18,16 +18,15 @@ import lombok.Setter;
 @Entity	
 @Getter @Setter	
 @Table(name="product")
-/*
- * Product 테이블에 대응하는 클래스
- * 
- */
 public class Product {
 	
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@OneToMany(mappedBy = "product")
+	private List<ProductImg> productImgList;
 	
 	@Column(nullable=false, length = 50)
 	private String name;
@@ -50,8 +49,7 @@ public class Product {
 	
 	private Boolean is_delete;
 	
-	@OneToMany(mappedBy = "product")
-	private List<ProductImg> productImgList;
+	
 	
 	public void updateProduct(ProductDto productDto) {
 		this.name = productDto.getName();

@@ -15,10 +15,6 @@ import lombok.Setter;
 @Entity	
 @Getter @Setter	
 @Table(name="product_img")
-/*
- * Product 테이블에 대응하는 클래스
- * 
- */
 public class ProductImg {
 	
 	@Id

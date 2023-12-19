@@ -170,11 +170,13 @@ nav a {
 	align-items: center;
 	padding: 10px;
 	
+	text-size:20px;
+	
 }
 
 /* 로고 이미지 스타일 */
 .logo img {
- width:250px;
+ width:350px;
   height:150px;
 
 
