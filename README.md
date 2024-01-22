@@ -6,14 +6,15 @@
 Sping Boot, VSCode, MySql
 
 ### ScreenShot
-![상품리스트4대3](https://github.com/00LeeIB/shoppingmall/assets/100830265/cb708453-d60e-4aea-b0b9-d696ee6b6d3a)
-![결제화면 1대1](https://github.com/00LeeIB/shoppingmall/assets/100830265/deca48ef-55b5-4d4e-9443-97fba24e3c31)
-![중고화면리스트](https://github.com/00LeeIB/shoppingmall/assets/100830265/88672a56-6c1b-4e74-9f55-2f1107fd4e62)
-![중고댓글화면](https://github.com/00LeeIB/shoppingmall/assets/100830265/14030da9-6edf-4803-a2a3-787855ff854e)
-![중고화면](https://github.com/00LeeIB/shoppingmall/assets/100830265/3923efc3-ea4b-415e-90a0-dcd4edb3ef4c)
+![상품리스트4대3](https://github.com/chojoohyung/shoppingmall/assets/100830265/ae6f5401-d95f-4ce7-9b29-210f3f9aa27f)
+![결제화면 1대1](https://github.com/chojoohyung/shoppingmall/assets/100830265/1a4690b1-9906-4242-b729-8c0d4c6ba12d)
+![중고화면리스트](https://github.com/chojoohyung/shoppingmall/assets/100830265/4f18eb75-066f-4562-92fd-2d03be8e7c90)
+![중고댓글화면](https://github.com/chojoohyung/shoppingmall/assets/100830265/e67444c3-18ea-4ade-9d74-f8d945dc5386)
+![중고화면](https://github.com/chojoohyung/shoppingmall/assets/100830265/a42bdd0c-ab9c-4b71-9cbe-13397c268755)
 
-![4](https://github.com/00LeeIB/shoppingmall/assets/100830265/0710415e-5850-4fc7-a155-388e6c78e6b8)
-![주문조회 1대1](https://github.com/00LeeIB/shoppingmall/assets/100830265/94f91676-99ce-4676-bb49-5a97068a7cde)
+![4](https://github.com/chojoohyung/shoppingmall/assets/100830265/e6ef256f-e77b-4bb5-a386-231b1879db6d)
+![주문조회 1대1](https://github.com/chojoohyung/shoppingmall/assets/100830265/a5ab4c2a-c41f-43bb-9ffb-1ebbe7bdc024)
+
 
 ## 프로그램 실행방법
 ### DB 생성
